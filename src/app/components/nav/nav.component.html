@@ -1,3 +1,15 @@
-<p>
-  nav works!
-</p>
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+      <a routerLink='main'  routerLinkActive="active" class="brand-logo">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a routerLink='profile' routerLinkActive="active" [class.activated]="currentUrl == '/profile'"><i class="large material-icons">account_box</i></a></li>
+        <li><a routerLink='news'  [class.activated]="currentUrl == '/news'"><i class="large material-icons">notifications</i></a></li>
+        <li><a routerLink='subscribe'  routerLinkActive="active"  ><i class="large material-icons">supervised_user_circle</i></a></li>
+        <li > <a routerLink='search'  routerLinkActive="active" [class.activated]="currentUrl == '/search'"> <i class="material-icons">search</i></a> </li> 
+      </ul>
+    </div>
+  </nav>
+
+</div>
+

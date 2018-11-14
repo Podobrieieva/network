@@ -1,0 +1,19 @@
+nav{
+    background-color: rgb(9, 148, 141);
+    .brand-logo {
+        margin-left: 25px;
+    }
+    .hide-on-med-and-down{
+        margin-right: 25px;
+    }
+    ul{
+        li{
+            .activated {
+                background-color: beige;
+            
+            }
+          
+        }
+    }
+  
+}

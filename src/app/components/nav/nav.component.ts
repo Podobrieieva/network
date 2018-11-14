@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-nav',
@@ -6,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
+  public currentUrl: string;
 
-  constructor() { }
+  constructor(private router: Router) {
+    router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url);
+  }
 
   ngOnInit() {
+    
   }
 
 }
