@@ -1,3 +1,41 @@
-<p>
-  log-in works!
-</p>
+<div class="active" id="login">
+  <h3>Login</h3>
+  <p class="text-muted">Log into your account</p>
+  <form [formGroup]="loginForm" name="Login_form" id="Login_form" (ngSubmit)="submitHandler()">
+  <div class="form-group" [class.has-error]="email.invalid && email.touched">
+          <input
+          formControlName="email" 
+          id="email" 
+          class="form-control" 
+          type="text" 
+          name="email" 
+          placeholder="Your Email">
+          <span *ngIf="email.invalid && email.touched">
+          Invalid email
+        </span>
+       </div>
+      
+      <div class="form-group"  [class.has-error]="(password.invalid || (loginForm.errors || {}).matching) && password.touched">
+        <input
+          formControlName="password" 
+          id="password" 
+          class="form-control" 
+          type="password" 
+          name="password"  
+          placeholder="Password">
+          <span *ngIf="(loginForm.errors || {}).matching && password.touched">
+          {{(loginForm.errors || {}).matching}}.
+        </span>
+        <span *ngIf="password.invalid && password.touched">
+          Password should contain at least one character and number
+        </span>
+      </div>
+    <p class="already"><a href="#">Forgot Password?</a></p>
+     <button 
+        [disabled]="loginForm.invalid"
+        type="submit"
+        class="btn btn-success">
+     Login Now
+   </button>
+  </form>
+</div>

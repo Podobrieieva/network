@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Router, CanActivate } from '@angular/router';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RegisterGuard implements CanActivate {
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+  constructor(public router: Router) {}
+
+  canActivate(): boolean {
+    if (!this.isAuthenticated()) {
+      this.router.navigate(['register']);
+      console.log('0000000000000000000000')
+      return false;
+    }
+    console.log('111111111111111111111')
     return true;
+  }
+
+  private isAuthenticated() {
+    return localStorage.getItem('isRegistered') || localStorage.getItem('loggedIn') ;
   }
 }

@@ -1,0 +1,51 @@
+.wrapper {
+	background: url('../../../assets/img/1.jpg') fixed no-repeat;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+
+
+}
+
+.content {
+	width: 100%;
+	height: 90%;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-o-flex-direction: column;
+	flex-direction: column;
+	justify-content: center;
+	-ms-align-items: center;
+	align-items: center;
+}
+h1, h2  {
+	color: #4169E1;
+}
+
+.btn {
+		float: right;
+		margin-right: 25px;
+      background: #27aae1;
+      padding: 0 25px;
+      border: none;
+      font-size: 14px;
+      border-radius: 4px;
+      color: #fff;
+      position: relative;
+      font-weight: 600;
+      outline: none;
+      border-radius: 30px;
+    }
+    .btn:hover{
+      background: #149AC9;
+      transition: all 1s;
+    }

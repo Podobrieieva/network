@@ -1,3 +1,88 @@
-<p>
-  check-in works!
-</p>
+<div class=" active" id="register">
+  <h3>Register Now !!!</h3>
+    <p class="text-muted">Be cool and join today. Meet millions</p>
+  <form [formGroup]="registerForm" (ngSubmit)="submitHandler()" id='registration_form' class="form-inline">
+    <div class="rowName">
+      <div class="form-group" [class.has-error]="firstname.invalid && firstname.touched">
+        <label for="firstname" class="required"></label>
+        <input 
+          formControlName="firstname" 
+          id="firstname" 
+          class="form-control" 
+          type="text" 
+          name="firstname" 
+          placeholder="First name"/>
+        <span *ngIf="firstname.invalid && firstname.touched">
+          Please enter only letters
+        </span>
+      </div>
+      <div class="form-group" [class.has-error]="lastname.invalid && lastname.touched">
+        <label for="lastname" class="required"></label>
+        <input 
+          formControlName="lastname"
+          id="lastname" 
+          class="form-control" 
+          type="text" 
+          name="lastname" 
+          placeholder="Last name"/>
+        <span *ngIf="lastname.invalid && lastname.touched">
+          Please enter only letters
+        </span>
+      </div>
+    </div>   
+    <div class="form-group" [class.has-error]="email.invalid && email.touched">
+      <label for="email" class="required"></label>
+      <input
+        formControlName="email" 
+	      id="email" 
+	      class="form-control" 
+	      type="text" 
+	      name="email" 
+	      placeholder="Your Email"/>
+        <span *ngIf="email.invalid && email.touched">
+          Invalid email
+        </span>
+    </div>
+    <div class="form-group" [class.has-error]="(password.invalid || (registerForm.errors || {}).matching) && password.touched" >
+      <label for="password" class="required"></label>
+      <input
+        formControlName="password" 
+	      id="password" 
+	      class="form-control"
+        type="password" 
+        name="password" 
+        placeholder="Password"/>
+      <span *ngIf="(registerForm.errors || {}).matching && confirmPassword.touched">
+        {{(registerForm.errors || {}).matching}}.
+      </span>        
+      <span *ngIf="password.invalid && password.touched">
+        Password should contain at least one character and number
+      </span> 
+    </div>
+    <div class="form-group" [class.has-error]="(confirmPassword.invalid || (registerForm.errors || {}).matching) && confirmPassword.touched">
+      <label for="confirmPassword" class="required"></label>
+      <input
+        formControlName="confirmPassword" 
+        id="confirmPassword" 
+        class="form-control" 
+        type="password" 
+        name="confirmPassword" 
+        placeholder="Confirm password"/>
+      <span *ngIf="(registerForm.errors || {}).matching && confirmPassword.touched">
+        {{(registerForm.errors || {}).matching}}.
+      </span>
+      <span *ngIf="password.invalid && password.touched">
+        Password should contain at least one character and number
+      </span>       
+    </div>
+    <p class="already"><a href="#">Already have an account?</a></p>
+    <button
+      [disabled]="registerForm.invalid"
+      type="submit"
+      class="btn btn-success">
+      Register Now
+    </button>              
+  </form>
+</div> 
+
+

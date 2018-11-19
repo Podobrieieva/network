@@ -6,23 +6,51 @@ import { SearchComponent } from './components/search/search.component';
 import { PostWrapperComponent } from './containers/post-wrapper/post-wrapper.component';
 import { ProfileComponent } from './containers/profile/profile.component';
 import { FriendsListComponent } from './containers/friends-list/friends-list.component';
+import { RegisterGuard } from './shared/guards/register.guard';
+import { SuccessfulComponent } from './components/successful/successful.component';
 
 const routes: Routes = [
-  {path: '',  redirectTo: 'register', pathMatch: 'full'},
-  
-  {path: 'subscribe', component: FriendsListComponent},
+  {path: '',  
+  redirectTo: 'network', 
+  pathMatch: 'full'
+  },
+  {
+    path: 'network', 
+    canActivate: [RegisterGuard],
+   
+    children: [
+      {
+        path: '',
+        component: SuccessfulComponent
+      },
+      {
+        path: 'subscribe', 
+        component: FriendsListComponent
+      },
+      {
+        path: 'profile', 
+        component: ProfileComponent
+      },
+      {
+        path: 'news', 
+        component: PostWrapperComponent
+      }, 
+      {
+        path: 'main', 
+        component: MainComponent
+      },
+      {
+        path: 'search', 
+        component: SearchComponent
+      }
+     
+    ]
+  },  
 
-  {path: 'profile', component: ProfileComponent},
-
-  {path: 'news', component: PostWrapperComponent}, 
-
-  {path: 'main', component: MainComponent},
-
-  {path: 'search', component: SearchComponent},
-
-  {path: 'error',
-   component: NotFoundComponent},
-
+  {
+    path: 'error', 
+    component: NotFoundComponent
+  },
   {
     path: 'register',
     loadChildren: './containers/register/module#RegisterModule'
@@ -31,7 +59,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot((routes), {enableTracing: true})],
   exports: [RouterModule]
 })
 
