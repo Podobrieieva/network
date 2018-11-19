@@ -1,0 +1,15 @@
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+      <a routerLink='/network/main'  routerLinkActive="active" class="brand-logo">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a routerLink='/network/profile' routerLinkActive="active" [class.activated]="currentUrl == '/network/profile'"><i class="large material-icons">account_box</i></a></li>
+        <li><a routerLink='/network/news'  [class.activated]="currentUrl == '/network/news'"><i class="large material-icons">notifications</i></a></li>
+        <li><a routerLink='/network/subscribe'  routerLinkActive="active" [class.activated]="currentUrl == '/network/subscribe'" ><i class="large material-icons">supervised_user_circle</i></a></li>
+        <li > <a routerLink='/network/search'  routerLinkActive="active" [class.activated]="currentUrl == '/network/search'"> <i class="material-icons">search</i></a> </li> 
+      </ul>
+    </div>
+  </nav>
+
+</div>
+

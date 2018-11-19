@@ -1,13 +1,13 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {NotFoundComponent} from './components/not-found/not-found.component'
-import { MainComponent } from './containers/main/main.component';
-import { SearchComponent } from './components/search/search.component';
-import { PostWrapperComponent } from './containers/post-wrapper/post-wrapper.component';
-import { ProfileComponent } from './containers/profile/profile.component';
-import { FriendsListComponent } from './containers/friends-list/friends-list.component';
+import {NotFoundComponent} from './core/components/not-found/not-found.component'
+import { MainComponent } from './core/containers/main/main.component';
+import { SearchComponent } from './news/components/search/search.component';
+import { PostWrapperComponent } from './news/containers/post-wrapper/post-wrapper.component';
+import { ProfileComponent } from './user/containers/profile/profile.component';
+import { FriendsListComponent } from './user/containers/friends-list/friends-list.component';
 import { RegisterGuard } from './shared/guards/register.guard';
-import { SuccessfulComponent } from './components/successful/successful.component';
+import { SuccessfulComponent } from './core/components/successful/successful.component';
 
 const routes: Routes = [
   {path: '',  
@@ -53,7 +53,7 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    loadChildren: './containers/register/module#RegisterModule'
+    loadChildren: './register/module#RegisterModule'
   },
   { path: '**', redirectTo: 'error' }
 ];
