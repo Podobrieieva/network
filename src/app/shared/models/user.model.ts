@@ -6,7 +6,8 @@ export interface UserModel {
         gender: string,
         dateOfBirth?: number,
         maritalStatus?: string,
-        password: string
+        password: string,
+        confirmPassword: string
     },
     contact?: {
         country: string,

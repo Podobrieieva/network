@@ -1,3 +1,42 @@
-<p>
-  item-post works!
-</p>
+
+  <div class="post">
+    <div class="post-header">
+      <div class="post-header-img">
+          <a class="post-image" routerLink="profile/id">
+            <img url="" alt="" width="50" height="50">
+          </a>
+      </div>
+    
+      <div class="post-header-info">
+           <div class="post-info">
+              <p><a class="author" routerLink="profile/id">UserName</a> </p>
+              <div class="post_date"><a class="post_link" routerLink="news"><span class="rel_date">21 ноября 2018</span></a></div>
+           </div>
+         
+          <div class="post-menu">
+              <ul id="dropdown1" class="dropdown-content">
+                  <li><a href="#!">Remove</a></li>
+                  <li><a href="#!">Edit</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#!">three</a></li>
+                </ul>
+                <a class="dropdown-trigger" data-target="dropdown1"><i class="material-icons right">arrow_drop_down</i></a>
+          </div>
+        </div>
+    </div>
+
+    <div class="post-content">
+      <div class="wall-text">Привет</div>
+      <div class="wall-img"> <img src="" alt=""> </div>
+    </div>
+    <div class="post-footer">
+      <div class="like"><a><i class="material-icons">
+          favorite_border
+          </i></a></div>
+      <div class="add-comment"> <app-add-comment> </app-add-comment> </div>
+    </div>
+    <div class="wrapper-comment"> <app-comment-wrapper> </app-comment-wrapper> </div>
+  </div>
+
+
+
