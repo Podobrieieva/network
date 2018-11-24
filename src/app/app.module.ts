@@ -33,7 +33,7 @@ import { NewsModule } from './news/news.module';
     BrowserAnimationsModule,
     UserModule,
     NewsModule
-
+    
   ],
   providers: [NetworkService, RegisterGuard],
   bootstrap: [AppComponent]

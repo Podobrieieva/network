@@ -1,5 +1,6 @@
-export interface UserModel {
+export interface UserProfileModel {
     main: {
+        id: number,
         name: string,
         surname: string,
         image: string,
@@ -38,10 +39,12 @@ export interface UserModel {
     }
     posts?:[
         {
+            id: number,
             imageUrl?: string,
             videoUrl?: string,
             content?: string,
             like: number,
+
             //like: [id]
             comments?: [
                 {
@@ -60,4 +63,11 @@ export interface UserModel {
         }
     ]
 
+}
+
+export interface CommentModel{
+    avatar?: string;
+    content:string;
+    userName?:string;
+    
 }

@@ -1,42 +1,28 @@
 
-  <div class="post">
-    <div class="post-header">
-      <div class="post-header-img">
-          <a class="post-image" routerLink="profile/id">
-            <img url="" alt="" width="50" height="50">
-          </a>
-      </div>
-    
-      <div class="post-header-info">
-           <div class="post-info">
-              <p><a class="author" routerLink="profile/id">UserName</a> </p>
-              <div class="post_date"><a class="post_link" routerLink="news"><span class="rel_date">21 ноября 2018</span></a></div>
-           </div>
-         
-          <div class="post-menu">
-              <ul id="dropdown1" class="dropdown-content">
-                  <li><a href="#!">Remove</a></li>
-                  <li><a href="#!">Edit</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#!">three</a></li>
-                </ul>
-                <a class="dropdown-trigger" data-target="dropdown1"><i class="material-icons right">arrow_drop_down</i></a>
-          </div>
+<div class="wrapper">
+  <div class="post-content">
+    <img src="https://thunder-team.com/friend-finder/images/post-images/1.jpg" alt="post-image" class="img-responsive post-image">
+    <div class="post-container">
+      <img src="https://thunder-team.com/friend-finder/images/users/user-11.jpg" alt="user" class="profile-photo-md pull-left">
+      <div class="post-detail">
+        <div class="user-info">
+          <h5><a href="timeline.html" class="profile-link">Alexis Clark</a> <span class="following">following</span></h5>
+          <p class="text-muted">Published a photo about 3 mins ago</p>
         </div>
+        <div class="reaction">
+          <a (click) = "like()" class="btn text-green"><i class="material-icons">  thumb_up  </i> {{counterLike}}</a>
+          <a (click) = "dislike()" class="btn text-red"><i class="material-icons">  thumb_down  </i> {{counterDislike}}</a>
+        </div>
+        <div class="line-divider"></div>
+        <div class="post-text">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
+        </div>
+        <div class="line-divider"></div>
+        <a class="comment clearfix" (click) = "addBtnClickHandler()" *ngIf="!editMode" > Add comment</a>
+        <app-comment-wrapper></app-comment-wrapper>
+        <app-add-comment *ngIf="editMode" (addEvt)="addHandler($event)" ></app-add-comment>
+      </div>
     </div>
-
-    <div class="post-content">
-      <div class="wall-text">Привет</div>
-      <div class="wall-img"> <img src="" alt=""> </div>
-    </div>
-    <div class="post-footer">
-      <div class="like"><a><i class="material-icons">
-          favorite_border
-          </i></a></div>
-      <div class="add-comment"> <app-add-comment> </app-add-comment> </div>
-    </div>
-    <div class="wrapper-comment"> <app-comment-wrapper> </app-comment-wrapper> </div>
   </div>
-
-
+</div>
 
