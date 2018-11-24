@@ -9,7 +9,7 @@ export interface UserProfileModel {
         maritalStatus?: string,
         password: string,
         confirmPassword: string
-    },
+    };
     contact?: {
         country: string,
         city?: string,
@@ -17,7 +17,7 @@ export interface UserProfileModel {
         mobilePhone?: number,
         email?: number,
         skype?: string
-    },
+    };
     education?:{
         country?: string,
         city?: string,
@@ -25,18 +25,18 @@ export interface UserProfileModel {
         university?: string,
         periodOfSchool: number,
         periodOfUniversity: number
-    },
+    };
     work?:{
         country?: string,
         city?: string,
         company: string,
         period: number,
-    }
+    };
     interests?:{
         hobby?: string,
         music?: string,
         movies?: string  
-    }
+    };
     posts?:[
         {
             id: number,
@@ -70,4 +70,14 @@ export interface CommentModel{
     content:string;
     userName?:string;
     
+}
+
+export interface PostModel{
+    avatar: string;
+    content:string;
+    userName:string;
+    image?: string;
+    id: number;
+
+
 }

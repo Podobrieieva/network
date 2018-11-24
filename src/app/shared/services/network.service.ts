@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CommentModel } from '../models/user.model';
-import { BehaviorSubject } from 'rxjs';
+import { CommentModel, PostModel } from '../models/user.model';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 export class NetworkService {
   private commentSubj: BehaviorSubject<any> = new BehaviorSubject(3)
   private commentForComSubj: BehaviorSubject<any> = new BehaviorSubject(3)
+  private url = `http://localhost:3000`;
   public commentWrapper: CommentModel [] = [
     {
       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud",
@@ -30,7 +33,12 @@ export class NetworkService {
   ] 
   
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  public getPosts(): Observable<PostModel[]> {
+    return this.http.get<PostModel[]>(`${this.url}/network/news`);
+
+  }
 
   public getComments() {
     return this.fetchComments(this.commentWrapper);
