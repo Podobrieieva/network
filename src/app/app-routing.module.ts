@@ -8,6 +8,7 @@ import { ProfileComponent } from './user/containers/profile/profile.component';
 import { FriendsListComponent } from './user/containers/friends-list/friends-list.component';
 import { RegisterGuard } from './shared/guards/register.guard';
 import { SuccessfulComponent } from './core/components/successful/successful.component';
+import { SearchWrapperComponent } from './news/containers/search-wrapper/search-wrapper.component';
 
 const routes: Routes = [
   {path: '',  
@@ -41,7 +42,7 @@ const routes: Routes = [
       },
       {
         path: 'search', 
-        component: SearchComponent
+        component: SearchWrapperComponent
       }
      
     ]
