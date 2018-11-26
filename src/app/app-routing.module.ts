@@ -36,10 +36,10 @@ const routes: Routes = [
         path: 'news', 
         component: PostWrapperComponent
       }, 
-      {
-        path: 'main', 
-        component: MainComponent
-      },
+      // {
+      //   path: 'main', 
+      //   component: MainComponent
+      // },
       {
         path: 'search', 
         component: SearchWrapperComponent
@@ -47,6 +47,11 @@ const routes: Routes = [
      
     ]
   },  
+   {
+        path: 'main', 
+        canActivate: [RegisterGuard],
+        component: MainComponent
+      },
 
   {
     path: 'error', 
