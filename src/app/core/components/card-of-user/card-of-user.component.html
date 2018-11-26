@@ -1,6 +1,25 @@
-<div class="UserList">
+<!--<div class="UserList">
   <div class="User-card">
-    <img class="Card-avatar" src="http://icons.iconarchive.com/icons/papirus-team/papirus-status/512/avatar-default-icon.png" />
-    <h4 class="Card-name">Amanda Smith</h4>
+    <img class="Card-avatar" src="https://img.icons8.com/ios/2x/contacts.png" />
+    <h4 class="Card-name">Amanda</h4>
+  </div>
+
+  
+</div>-->
+
+  <div class="user-card" *ngFor="let card of cards">
+  <div class="avatar">
+    <p>{{card.url}}</p>
+  </div>
+  <div class="details">
+    <div class="name">
+      {{card.name}}
+    </div>
+    <div class="name">
+      {{card.last}}
+    </div>
+    <div class="number">
+      <p>{{card.id}}</p>
+    </div>
   </div>
 </div>
