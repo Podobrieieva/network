@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NetworkService } from '../../../shared/services/network.service';
 
 @Component({
   selector: 'app-comment-wrapper',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comment-wrapper.component.scss']
 })
 export class CommentWrapperComponent implements OnInit {
+  public commentWrapper: Array<any>;
 
-  constructor() { }
+  constructor(private networkService: NetworkService) { 
+    const subscription = this.networkService.commentSubjObservable().subscribe(data => {
+      this.commentWrapper = data;
+    });
+  }
 
   ngOnInit() {
+    this.networkService.getComments();
   }
+
+
 
 }

@@ -1,3 +1,14 @@
-<p>
-  add-comment works!
-</p>
+<form #commentForm="ngForm" (ngSubmit)="onSubmit(commentForm)" >
+<div class="post-comment">
+          <img src="https://thunder-team.com/friend-finder/images/users/user-11.jpg" alt="" class="profile-photo-sm">
+          <input
+           type="text"
+           class="form-control" 
+           placeholder="Post a comment" 
+           [(ngModel)]="model.content"  
+            name="content"
+            id="content">
+            <button type="submit">Add comment</button>
+</div>
+</form>
+<!-- (click)="addBtnClickHandler() -->

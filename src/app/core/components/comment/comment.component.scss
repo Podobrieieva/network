@@ -1,0 +1,38 @@
+.post-comment {
+    display: inline-flex;
+    margin: 10px auto;
+    width: 100%;
+    img.profile-photo-sm {
+        margin-right: 10px;
+        height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 0;
+    }
+   
+   
+}
+.line-divider {
+    background: none;
+    height: 1px;
+    border-top: 1px solid #e6e6e6;
+    width: 100%;
+    margin: auto;
+    margin-bottom: 10px;
+}
+a:hover{
+    color: #23527c;
+    cursor: pointer;
+}
+// .comment{
+//     float: right;
+// }
+// *:after{
+// 	box-sizing: border-box;
+// }
+// .clearfix:after{
+// 	display: block;
+// 	content: "";
+// 	clear: both;
+// }
