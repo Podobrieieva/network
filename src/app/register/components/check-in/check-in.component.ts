@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import {select, Store} from "@ngrx/store";
+import {getIsRegister, State} from "../../store";
+import { Subscription } from "rxjs";
+import { GetRegister } from "../../store/actions/register.actions";
 
 
 @Component({
@@ -10,18 +13,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./check-in.component.scss']
 })
 export class CheckInComponent implements OnInit {
+  private isRegisteredSubscription: Subscription;
 	public registerForm:FormGroup;
-  public currentUrl: string;	
-  constructor( private fb: FormBuilder, private router: Router) { }
+ 	
+  constructor( private fb: FormBuilder, private router: Router, private store: Store<State>) { 
+    this.isRegisteredSubscription = this.store.pipe(select(getIsRegister)).subscribe(isRegister => {
+      if(isRegister) {
+        localStorage.setItem('isRegistered', 'true');
+        this.router.navigate(['']);
+      }
+    })
+  }
 
   ngOnInit() {
   	this.registerForm = this.fb.group(this.createFromGroup().controls, {validator: this.passwordConfirming});
   }
 
   submitHandler() {
-    localStorage.setItem('isRegistered', 'true');
-    console.log('33333333333333333')
-    this.router.navigate(['']);
+ console.log('33333333333333333')
+    this.store.dispatch(new GetRegister())
+    // localStorage.setItem('isRegistered', 'true');   
+    // this.router.navigate(['']);
   }
 
   get firstname() {

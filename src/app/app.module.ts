@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { StoreModule } from  '@ngrx/store';
-// import { EffectsModule } from '@ngrx/effects';
-// import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from "@ngrx/store";
 
+import { StoreRouterConnectingModule } from "@ngrx/router-store";
+import { StoreDevtoolsModule}  from "@ngrx/store-devtools";
+import { environment } from "../environments/environment";
+import { EffectsModule } from "@ngrx/effects";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NetworkDirective } from './shared/directives/network.directive';
@@ -18,12 +20,13 @@ import { NewsModule } from './news/news.module';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     NetworkDirective,
-    CustomPipe,
-  
+    CustomPipe  
   ],
   imports: [
     BrowserModule,
@@ -32,8 +35,17 @@ import { NewsModule } from './news/news.module';
     HttpClientModule,
     BrowserAnimationsModule,
     UserModule,
+<<<<<<< HEAD
     NewsModule
     
+=======
+    NewsModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({name: 'store devtools', logOnly: environment.production}),
+    StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
+
+>>>>>>> origin/viktor
   ],
   providers: [NetworkService, RegisterGuard],
   bootstrap: [AppComponent]
