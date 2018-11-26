@@ -22,7 +22,7 @@ import { NewsModule } from './news/news.module';
   declarations: [
     AppComponent,
     NetworkDirective,
-    CustomPipe
+    CustomPipe,
   
   ],
   imports: [

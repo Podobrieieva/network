@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CARD } from '../../../mock-user';
 
 
 
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-of-user.component.scss']
 })
 export class CardOfUserComponent implements OnInit {
+  cards = CARD;
 
 
   constructor() { }
