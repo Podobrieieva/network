@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+.mat-ripple-element {
+  background-color: rgba(255, 255, 255, 0.1);
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: opacity, transform 0s cubic-bezier(0, 0, 0.2, 1);
+  transform: scale(0);
+}
+.mat-tab-label.mat-ripple.ng-star-inserted.mat-tab-label-active {
+  overflow: hidden;
+  color: #0cb6ad;
+}
+.mat-tab-label.mat-ripple.ng-star-inserted {
+    padding: 0;
+    min-width: 100px;
+}
+.mat-tab-header {
+  background-color: #00000059;
+  padding-left: 21%;
+  margin-bottom: 110px;
+  color: #fff;
+
+}
+.mat-tab-labels {
+}
+.mat-ink-bar {
+  background-color: #0cb6ad;
+  height: 3px !important;
+}
+.mat-tab-body-wrapper {
+    // position: absolute !important;
+}

@@ -1,17 +1,23 @@
-@import "./bootstap.scss";
-html,
-body {
-  height: 100%;
-  width: 100%;
+* {
+  margin: 0;
+  padding: 0;
 }
-.ion-thumbsdown:before {
+
+.ion-thumbs-down:before {
   content: "\f250";
 }
 
 .ion-thumbsup:before {
   content: "\f251";
 }
-
+.btn-main {
+  margin-left: 30px;
+  background-color: #09948d;
+  border-radius: 30px;
+  border: none;
+  padding: 7px 25px;
+  color: #fff;
+}
 .btn {
   display: inline-block;
   margin-bottom: 0; // For input.btn
@@ -23,48 +29,33 @@ body {
   background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
   border: 1px solid transparent;
   white-space: nowrap;
-
+  box-shadow: none;
+  background-color: transparent;
+  min-width: 40px;
   &:hover,
   &:focus,
   &.focus {
+    background: transparent;
     color: transparent;
     text-decoration: none;
   }
 
   &:active,
   &.active {
+    background: transparent;
+
     outline: 0;
     background-image: none;
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   }
 }
-body {
-  font-family: "Lato", sans-serif;
-  line-height: 26px;
-  color: #6d6e71;
-  font-size: 13px;
-}
+
 /*==================================================
     Typography
     ==================================================*/
-
-h1,
-h2,
 h3,
-h4,
-h5,
 h6 {
-  color: #27aae1;
-}
-
-h1.grey,
-h2.grey,
-h3.grey,
-h4.grey,
-h5.grey,
-h6.grey {
-  color: #6d6e71;
-  margin: 0 auto 20px;
+  color: #09948d;
 }
 
 .text-white {
@@ -100,31 +91,17 @@ h6.grey {
 }
 
 a {
-  color: #27aae1;
+  color: #09948d;
 }
 
 a:hover {
-  color: #149ac9;
+  color: #09948c;
 }
 
 a,
 a:active,
 a:focus {
   outline: none;
-}
-
-section h1.section-title {
-  font-family: "Agency FB", sans-serif;
-  font-size: 215px;
-  color: #e6e7e8;
-  margin-bottom: -55px;
-}
-
-section h2.sub-title {
-  font-family: "Agency FB", sans-serif;
-  color: #e6e7e8;
-  font-size: 50px;
-  margin: 40px 0;
 }
 
 .following {
@@ -139,84 +116,35 @@ section h2.sub-title {
 .form-group {
   display: flex;
   justify-content: space-around;
+  width: 80%;
 }
-.container {
-//   max-width: 1050px;
+.tools {
+  width: 10%;
 }
-
-section .wrapper {
-  padding-top: 100px;
-  padding-bottom: 100px;
+.create-post {
+  margin-left: 0%;
 }
-
-.page-title-section {
-  background: #f1f2f2;
-  text-align: center;
-  padding: 30px 0 40px;
-  position: relative;
+.comment {
+  margin-left: 10px;
+  width: 95%;
 }
-
-.page-title-section h1 {
-  font-family: "Agency FB", sans-serif;
-  font-size: 50px;
+.row {
+  padding-bottom: 35px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 #page-contents {
-  padding: 30px 0 50px;
+  // padding: 35px 0 50px;
 }
-
-.btn-primary {
-  background: #27aae1;
-  padding: 7px 25px;
-  border: none;
-  font-size: 14px;
-  border-radius: 4px;
-  color: #fff;
-  position: relative;
-  font-weight: 600;
-  outline: none;
-  border-radius: 30px;
+#page-contents .main-post-field {
+  margin-left: 19%;
+  width: 80%;
 }
-
-.btn-primary:hover {
-  background: #149ac9;
-  transition: all 1s;
-}
-
-.btn-secondary {
-  background: linear-gradient(
-    to bottom,
-    rgba(109, 110, 113, 1),
-    rgba(0, 0, 0, 1)
-  );
-  padding: 0 40px;
-  border: none;
-  min-height: 36px;
-  font-size: 18px;
-  border-radius: 6px;
-  color: #fff;
-  position: relative;
-  outline: none;
-}
-
-.btn-secondary:hover {
-  background: #000;
-  transition: all 1s;
-}
-
-section img {
-  margin: auto;
-}
-
 img.profile-photo {
   height: 58px;
   width: 58px;
-  border-radius: 50%;
-}
-
-img.profile-photo-lg {
-  height: 80px;
-  width: 80px;
   border-radius: 50%;
 }
 
@@ -232,40 +160,8 @@ img.profile-photo-sm {
   border-radius: 50%;
 }
 
-img.profile-photo-xs {
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-}
-
-.img-wrapper {
-  position: relative;
-}
-
-.img-wrapper::after {
-  content: "";
-  cursor: pointer;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  transition: all 1s ease 0s;
-}
-
-.img-wrapper:hover:after {
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
 ul {
   padding-left: 15px;
-}
-
-.line {
-  background: #f1f2f2;
-  height: 1px;
-  width: 100%;
-  margin-bottom: 10px;
 }
 
 .line-divider {
@@ -275,16 +171,6 @@ ul {
   width: 100%;
   margin: auto;
   margin-bottom: 10px;
-}
-
-.map {
-  width: 100%;
-  height: auto;
-  border: none;
-}
-
-.static {
-  position: static;
 }
 
 textarea {
@@ -309,23 +195,12 @@ textarea {
   width: 80%;
 }
 
-.screen-reader-text {
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  position: absolute;
-  margin: -1px;
-  padding: 0;
-  height: 1px;
-  width: 1px;
-  border: 0 none;
-}
-
 /*==================================================
   Post Contents CSS
   ==================================================*/
 
 .post-content {
-  background: #f8f8f8; 
+  background: #f8f8f8;
   border-radius: 4px;
   width: 100%;
   border: 1px solid #f1f2f2;
@@ -346,11 +221,14 @@ video.post-video,
 }
 
 .post-content .post-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   padding: 20px;
 }
 
 .post-content .post-container .post-detail {
-  margin-left: 65px;
+  width: 92%;
   position: relative;
 }
 
@@ -372,14 +250,14 @@ video.post-video,
 }
 
 .post-content .post-container .post-detail .post-comment img.profile-photo-sm {
-  margin-right: 10px;
+  margin: 0;
 }
 
 .post-content .post-container .post-detail .post-comment .form-control {
   height: 30px;
   border: 1px solid #ccc;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  margin: 7px 0;
+  margin: 7px 0 0 10px;
   min-width: 0;
 }
 
@@ -399,139 +277,57 @@ video.post-video,
 /*Timeline Menu for Large Screens*/
 
 .timeline-cover .timeline-nav-bar {
-  background: rgba(0, 0, 0, 0.7);
+  // background: rgba(0, 0, 0, 0.7);
   width: 100%;
   position: absolute;
-  bottom: 25px;
+  bottom: 0;
 }
 
 .timeline-cover .timeline-nav-bar .profile-info {
   position: absolute;
   text-align: center;
   padding: 0 20px;
-  top: -100px;
+  top: -199px;
+  z-index: 2;
 }
-
+.timeline-cover .timeline-nav-bar .profile-info h3 {
+  font-size: 35px;
+}
 .timeline-cover .timeline-nav-bar .profile-info img.profile-photo {
   height: 200px;
   width: 200px;
   border-radius: 50%;
-  border: 10px solid #fff;
+  // border: 10px solid #fff;
+}
+.timeline-cover .timeline-nav-bar .profile-cont {
+  margin: 0 250px;
+  width: 70%;
+}
+.profile-menu {
+  width: 100%;
+  top: -120px;
+  position: relative;
+  // color: #e6e6e6;
+  z-index: 1;
 }
 
-.timeline-cover .timeline-nav-bar ul.profile-menu {
-  margin: 0;
-  display: table;
-}
-
-.timeline-cover .timeline-nav-bar .profile-menu li {
-  display: table-cell;
-  vertical-align: middle;
-  padding: 15px 0;
-}
-
-.timeline-cover .timeline-nav-bar .profile-menu li a {
-  color: #fff;
-  padding: 15px;
-  text-decoration: none;
-}
-
-.timeline-cover .timeline-nav-bar .profile-menu li a.active {
-  color: #27aae1;
-}
-
-.timeline-cover .timeline-nav-bar .profile-menu li a:hover {
-  color: #27aae1;
-}
-
-.timeline-cover .timeline-nav-bar ul.follow-me {
+.timeline-cover .timeline-nav-bar .follow-me {
+  width: 35%;
   margin: 0;
   position: absolute;
   right: 15px;
-  top: 2px;
+  top: -120px;
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 9px 15px;
+  line-height: 31px;
+  z-index: 2;
 }
 
 .timeline-cover .timeline-nav-bar .follow-me li {
-  padding: 6px 15px;
   color: #fff;
-}
-
-/*Timeline Menu for Small Screens*/
-
-.timeline-cover .navbar-mobile {
-  bottom: -185px;
-  left: 0;
-  position: absolute;
-  right: 0;
-  text-align: center;
-}
-
-.timeline-cover .navbar-mobile .profile-info img.profile-photo {
-  border: 10px solid #fff;
-  border-radius: 50%;
-  height: 200px;
-  margin: auto;
-  width: 200px;
-}
-
-.timeline-cover .navbar-mobile .mobile-menu ul {
-  margin: 0 0 20px;
-}
-
-.timeline-cover .navbar-mobile .mobile-menu ul li {
-  padding-left: 10px;
-  padding-right: 10px;
-  position: relative;
-}
-
-.timeline-cover .navbar-mobile .mobile-menu ul li::after {
-  content: "";
-  height: 20px;
-  background: none;
-  border-right: 1px solid #f1f2f2;
-  position: absolute;
-  right: 0;
-}
-
-.timeline-cover .navbar-mobile .mobile-menu ul li:nth-child(4)::after {
-  content: none;
-}
-
-.timeline-cover .navbar-mobile .mobile-menu ul li a {
-  color: #4d4d4d;
-}
-
-.timeline-cover .navbar-mobile .mobile-menu ul li a.active {
-  color: #27aae1;
-}
-
-/*==================================================
-    Timeline Sidebar Right
-    ==================================================*/
-
-.feed-item {
-  text-align: left;
-  margin-bottom: 13px;
-  padding: 0 20px;
-  position: relative;
-}
-
-.feed-item::before {
-  border-left: 2px solid #8dc63f;
-  position: absolute;
-  height: 30px;
-  content: "";
-  left: 0;
-  top: 5px;
-}
-
-.feed-item img.profile-photo-sm {
-  float: left;
-  margin-right: 10px;
-}
-
-.feed-item .live-activity {
-  border-bottom: 1px solid #f1f2f2;
 }
 
 /*==================================================
@@ -573,61 +369,6 @@ video.post-video,
 
 .timeline .post-content img.post-image {
   border-radius: 4px 4px 0 0;
-}
-
-/*==================================================
-    About Profile
-    ==================================================*/
-
-.about-profile {
-  margin-bottom: 20px;
-}
-
-.about-profile .about-content-block {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #f1f2f2;
-  line-height: 24px;
-  margin-bottom: 10px;
-}
-
-.about-profile .about-content-block h4 i.icon-in-title {
-  margin-right: 15px;
-  color: #27aae1;
-}
-
-.about-profile .about-content-block .organization img.img-org {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-}
-
-.about-profile .about-content-block .organization .work-info {
-  margin-left: 50px;
-}
-
-.about-profile .about-content-block .google-maps .map {
-  height: 150px;
-}
-
-ul.interests span.int-icons {
-  color: #fff;
-  font-size: 25px;
-  color: #8dc63f;
-  cursor: pointer;
-}
-
-.map-container {
-  width: 100%;
-}
-.map-container iframe {
-  display: block;
-  width: 100%;
-  position: relative; /* IE needs a position other than static */
-  pointer-events: none;
-}
-.map-container iframe.clicked {
-  pointer-events: auto;
 }
 
 /*==================================================
@@ -816,4 +557,26 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+@media screen and (max-width: 1024px) {
+  .timeline .post-content::before {
+    display: none;
+  }
+  .timeline .post-content .post-date {
+    display: none;
+  }
+  .create-post {
+    margin-left: 19%;
+  }
+  #page-contents .main-post-field {
+    margin-left: 2%;
+    width: 96%;
+  }
+  .timeline-cover .timeline-nav-bar .follow-me {
+    width: 40%;
+  }
+  .btn-main{
+    margin: 0;
+  }
 }
