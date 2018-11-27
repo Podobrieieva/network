@@ -1,0 +1,146 @@
+.wrapper{
+    width: 50%;
+}
+
+.post-content {
+    background: #f8f8f8;
+    border-radius: 4px;
+    width: 100%;
+    border: 1px solid #f1f2f2;
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+
+    img.post-image, video.post-video {
+        width: 100%;
+        height: auto;
+    }
+
+    .post-container {
+        padding: 20px;
+
+        .post-detail {
+            margin-left: 65px;
+            position: relative;
+            .reaction{
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+            .post-text {
+                line-height: 24px;
+                margin: 0;
+            }
+        }
+    }
+}
+
+h5 {
+    display: block;
+    font-size: 15px;
+    margin-block-start: 1.67em;
+    margin-block-end: 1.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: inherit;
+    color: rgb(9, 148, 141);
+}
+a {
+    background-color: transparent;
+    text-decoration: none;
+}
+ a:hover {
+    color: #23527c;
+    cursor: pointer;
+ 
+}
+
+p {
+    margin: 0 0 10px;
+    text-align: justify;
+}
+
+
+img {
+    vertical-align: middle;
+    border: 0;
+
+}
+
+
+img.profile-photo-md {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+.pull-left {
+    float: left!important;
+}
+
+.profile-link {
+    font-weight: 600;
+}
+
+.following {
+    color: #8dc63f;
+    font-size: 12px;
+    margin-left: 20px;
+}
+
+.text-muted {
+    color: #939598;
+}
+
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.text-green {
+    color: #8dc63f;
+}
+.text-red {
+    color: #ef4136;
+}
+.line-divider {
+    background: none;
+    height: 1px;
+    border-top: 1px solid #e6e6e6;
+    width: 100%;
+    margin: auto;
+    margin-bottom: 10px;
+}
+ .comment{
+        float: right;
+    }
+    *:after{
+    	box-sizing: border-box;
+    }
+    .clearfix:after{
+    	display: block;
+    	content: "";
+    	clear: both;
+    }
+
+
+

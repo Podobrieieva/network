@@ -14,6 +14,9 @@ import { CommentComponent } from './components/comment/comment.component';
 import { MainComponent } from './containers/main/main.component';
 import { SuccessfulComponent } from './components/successful/successful.component';
 import { CardOfUserComponent } from './components/card-of-user/card-of-user.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AddCommentForCommentComponent } from './containers/add-comment-for-comment/add-comment-for-comment.component';
+import { AppStoreModule } from './store/store.module';
 
 
 
@@ -22,6 +25,9 @@ import { CardOfUserComponent } from './components/card-of-user/card-of-user.comp
   imports: [
     CommonModule,
     RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
+    AppStoreModule
    
   ],
   declarations: [
@@ -35,8 +41,10 @@ import { CardOfUserComponent } from './components/card-of-user/card-of-user.comp
     CommentComponent, 
     MainComponent,
     SuccessfulComponent,
-    CardOfUserComponent
+    CardOfUserComponent,
+    AddCommentForCommentComponent
     ],
+    
   exports: [
     HeaderComponent, 
     NavComponent,
