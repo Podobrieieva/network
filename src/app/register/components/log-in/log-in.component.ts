@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store} from "@ngrx/store";
@@ -14,6 +14,7 @@ import { GetLogin } from "../../store/actions/login.actions";
 export class LogInComponent implements OnInit {
   private isLoginSubscription: Subscription;
 	public loginForm: FormGroup;
+  @Output() onClickRecovery = new EventEmitter<boolean>();
 
   constructor( 
     private fb: FormBuilder, 
@@ -29,6 +30,9 @@ export class LogInComponent implements OnInit {
 
   ngOnInit() {
   	this.loginForm = this.fb.group(this.createFromGroup().controls);
+  }
+  clickedRecovery(recovery:boolean) {
+      this.onClickRecovery.emit(recovery);
   }
 
   submitHandler() {

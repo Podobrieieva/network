@@ -14,6 +14,6 @@ export class RegisterGuard implements CanActivate {
   }
 
   private isAuthenticated() {
-    return localStorage.getItem('isRegistered') || localStorage.getItem('loggedIn') ;
+    return localStorage.getItem('isRegistered') || localStorage.getItem('loggedIn') || localStorage.getItem('accountFree') ;
   }
 }
