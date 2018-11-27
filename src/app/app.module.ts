@@ -35,17 +35,12 @@ import { NewsModule } from './news/news.module';
     HttpClientModule,
     BrowserAnimationsModule,
     UserModule,
-<<<<<<< HEAD
-    NewsModule
-    
-=======
     NewsModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({name: 'store devtools', logOnly: environment.production}),
     StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
 
->>>>>>> origin/viktor
   ],
   providers: [NetworkService, RegisterGuard],
   bootstrap: [AppComponent]
