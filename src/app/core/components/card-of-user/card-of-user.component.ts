@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CARD } from '../../../mock-user';
+import { Component, OnInit, Input } from '@angular/core';
+
 
 
 
@@ -9,8 +9,8 @@ import { CARD } from '../../../mock-user';
   styleUrls: ['./card-of-user.component.scss']
 })
 export class CardOfUserComponent implements OnInit {
-  cards = CARD;
-
+  @Input () user =  <any>{};
+  @Input() index = 0;
 
   constructor() { }
 

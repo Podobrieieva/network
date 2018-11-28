@@ -1,25 +1,16 @@
-<!--<div class="UserList">
-  <div class="User-card">
-    <img class="Card-avatar" src="https://img.icons8.com/ios/2x/contacts.png" />
-    <h4 class="Card-name">Amanda</h4>
-  </div>
 
-  
-</div>-->
+    <div class="col s3">
+      <div class="card" >
+        <div class="card-image">
+          <img [src]="user.photo">
+          <span class="card-title"> {{user.name | uppercase}}</span>
+          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+        </div>
+        <div class="card-content">
+          <p> {{user.surname | uppercase}}</p>
+        </div>
+      </div>
+    </div>
+ 
 
-  <div class="user-card" *ngFor="let card of cards">
-  <div class="avatar">
-    <p>{{card.url}}</p>
-  </div>
-  <div class="details">
-    <div class="name">
-      {{card.name}}
-    </div>
-    <div class="name">
-      {{card.last}}
-    </div>
-    <div class="number">
-      <p>{{card.id}}</p>
-    </div>
-  </div>
-</div>
+

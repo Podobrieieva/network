@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { CommentModel, PostModel } from '../models/user.model';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { CommentModel, PostModel} from '../models/user.model';
+import { BehaviorSubject, Observable} from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { map, switchMap } from 'rxjs/operators'
+
 
 
 @Injectable({
@@ -33,7 +35,26 @@ export class NetworkService {
   ] 
   
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    
+   }
+
+  public getUsers(){
+    return this.http.get("https://randomuser.me/api/?page=3&results=10&seed=abc").pipe(
+                 map(response => response.results),
+                 map(users=>{
+                   return users.map( (user,i) => {
+                     return {
+                       name: user.name.first,
+                       surname: user.name.last,
+                       photo: user.picture.large,
+                       id: i,
+                     }
+                   })
+                 }))
+                          
+                    
+  }
 
   public getPosts(): Observable<PostModel[]> {
     return this.http.get<PostModel[]>(`${this.url}/network/news`);

@@ -41,7 +41,7 @@ const routes: Routes = [
       // },
       {
         path: 'search', 
-        component: SearchComponent
+        component: SearchWrapperComponent
       },
       {
         path: 'error', 

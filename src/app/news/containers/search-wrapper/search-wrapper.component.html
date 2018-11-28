@@ -1,6 +1,19 @@
+<app-header>   </app-header>
 <div class = "search_wrapper">
-  <app-search>
-  </app-search>
-  <app-card-of-user>
-  </app-card-of-user>
+<div class="row">
+  <form class="col s12">
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="material-icons prefix">people</i>
+        <input type="text" id="search" name="search" [(ngModel)] = "searchStr" #search = "ngModel" placeholder="Search user"  >
+      </div>
+    </div>
+  </form>
 </div>
+    <div class="row"> 
+      <app-card-of-user *ngFor = "let u of users|search:searchStr; let i = index"
+      [user]="u" [index]="i">
+      </app-card-of-user>
+    </div>
+</div>
+<app-footer> </app-footer>
