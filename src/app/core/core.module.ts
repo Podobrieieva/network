@@ -17,6 +17,7 @@ import { CardOfUserComponent } from './components/card-of-user/card-of-user.comp
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddCommentForCommentComponent } from './containers/add-comment-for-comment/add-comment-for-comment.component';
 import { AppStoreModule } from './store/store.module';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
 
@@ -42,7 +43,8 @@ import { AppStoreModule } from './store/store.module';
     MainComponent,
     SuccessfulComponent,
     CardOfUserComponent,
-    AddCommentForCommentComponent
+    AddCommentForCommentComponent,
+    ChangePasswordComponent
     ],
     
   exports: [
@@ -57,7 +59,8 @@ import { AppStoreModule } from './store/store.module';
     MainComponent,
     SuccessfulComponent,
     CommonModule,
-    CardOfUserComponent
+    CardOfUserComponent,
+    ChangePasswordComponent
  
   ]
 })
