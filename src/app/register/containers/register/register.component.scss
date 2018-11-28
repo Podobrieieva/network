@@ -1,5 +1,6 @@
 
-@import "~font-awesome/css/font-awesome.css";
+ $fa-font-path: "~font-awesome/fonts";
+ @import '~font-awesome/scss/font-awesome';
 
 .registerAll {
     background: linear-gradient(to right, rgba(0,0,0, 0.7) , rgba(0,0,0, 0.7)), url(https://thunder-team.com/friend-finder/images/bg/bg-3.jpg) fixed no-repeat;
@@ -193,3 +194,4 @@
 
   color: #27aae1;
   float: right;
+  }

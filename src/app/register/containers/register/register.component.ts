@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { RegisterService } from '../../service/register.service'
+import { RegisterService } from '../../service/register.service';
+
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,7 +13,8 @@ export class RegisterComponent implements OnInit {
 	register: boolean=false;
   alert: boolean=false;
   recovery: boolean=false;
-		
+
+  	
   constructor() { }
 
   ngOnInit() {

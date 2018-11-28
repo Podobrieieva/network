@@ -4,6 +4,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RegisterRoutingModule} from './routing.module';
+import { CoreModule } from '../core/core.module';
+
 
 import { RegisterEffect } from './store/effects/register.effects';
 import { LoginEffect } from './store/effects/login.effects';
@@ -17,7 +19,7 @@ import { PasswordRecoveryComponent } from './components/password-recovery/passwo
 import { CheckInComponent } from './components/check-in/check-in.component';
 import { LogInComponent } from './components/log-in/log-in.component'
 import { RegisterComponent } from './containers/register/register.component';
-
+import { ChangePasswordComponent } from '../core/components/change-password/change-password.component'
 
 
 
@@ -33,6 +35,7 @@ import { RegisterComponent } from './containers/register/register.component';
 	  CommonModule, 
 	  ReactiveFormsModule, 
 	  RegisterRoutingModule,
+    CoreModule,
     StoreModule.forFeature('auth', reducers),
     EffectsModule.forFeature([RegisterEffect, LoginEffect, EmailEffect, CodeEffect])
   ],

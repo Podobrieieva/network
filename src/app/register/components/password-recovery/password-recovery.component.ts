@@ -22,7 +22,9 @@ export class PasswordRecoveryComponent implements OnInit {
 
   emailShow: boolean=true;
   codeShow: boolean= false;
-  codeUser:string =''
+  codeUser:string ='';
+
+  changePass:boolean = false;
 
   constructor( 
   	private registerService: RegisterService,
@@ -38,19 +40,15 @@ export class PasswordRecoveryComponent implements OnInit {
 		  this.isCodeSubscription = this.store.pipe(select(getIsCode)).subscribe(isCode => {
 	      if (isCode) {	      	
 	      	localStorage.setItem('accountFree', isCode);
-	      	let code = localStorage.getItem('accountAvailability');
-
-	      	console.log(code)
-	      	console.log(this.codeUser )
-	      	if (code !== this.codeUser ) {
-	      		this.codeUser = '';
+          this.changePass = true;
 	      		return;
-	      	}
-	      		this.router.navigate(['']);
-	      		 localStorage.removeItem ('accountAvailability');
+	      	} 
+      this.codeUser = '';     
+    		// this.router.navigate(['']);
+	     //  localStorage.removeItem ('accountAvailability');
 	      		
 	      	        
-	      }      
+	           
 	    })
 
 
