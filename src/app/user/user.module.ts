@@ -13,6 +13,7 @@ import { ProfileComponent } from './containers/profile/profile.component';
 import { FriendsListComponent } from './containers/friends-list/friends-list.component';
 import { AddNewPostComponent } from './containers/add-new-post/add-new-post.component';
 import MaterialModule from './material-module';
+import { SettingsComponent } from './containers/settings/settings.component';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import MaterialModule from './material-module';
   declarations: [
     ProfileComponent,
     AddNewPostComponent,
-    FriendsListComponent
+    FriendsListComponent,
+    SettingsComponent
   ],
   exports: [
     ProfileComponent,
