@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CommentModel, PostModel} from '../models/user.model';
+import { CommentModel, PostModel, UserCard} from '../models/user.model';
 import { BehaviorSubject, Observable} from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, switchMap } from 'rxjs/operators'
@@ -39,9 +39,9 @@ export class NetworkService {
     
    }
 
-  public getUsers(){
+  public getUsers():Observable<UserCard[]>{
     return this.http.get("https://randomuser.me/api/?page=3&results=10&seed=abc").pipe(
-                 map(response => response.results),
+                 map(response => response["results"]),
                  map(users=>{
                    return users.map( (user,i) => {
                      return {

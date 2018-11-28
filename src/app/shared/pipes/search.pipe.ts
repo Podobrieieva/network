@@ -7,9 +7,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SearchPipe implements PipeTransform {
 
   transform(users, value): any {
-    return users.filter(user => {
+    return users &&
+    users.filter(user => {
         return user.name.includes(value) || user.surname.includes(value)
     })
   }
-
+  
 }
