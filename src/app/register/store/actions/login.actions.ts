@@ -8,6 +8,7 @@ export enum LoginsActionTypes {
 
 export class GetLogin implements Action {
   readonly type = LoginsActionTypes.GET_LOGIN;
+  constructor(public payload: object) {}
 }
 
 export class GetLoginSuccess implements Action {

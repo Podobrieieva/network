@@ -1,9 +1,9 @@
 import {Action} from "@ngrx/store";
 
 export enum PasswordChangesActionTypes {
-  GET_PASSWORD = '[PASSWORD] Fetch email requested',
-  GET_PASSWORD_SUCCESS = '[PASSWORD] Fetch email success',
-  GET_PASSWORD_FAIL = '[PASSWORD] Fetch email failed',
+  GET_PASSWORD = '[PASSWORD] Fetch password requested',
+  GET_PASSWORD_SUCCESS = '[PASSWORD] Fetch password success',
+  GET_PASSWORD_FAIL = '[PASSWORD] Fetch password failed',
 }
 
 export class GetPassword implements Action {
@@ -22,4 +22,4 @@ export class GetPasswordFail implements Action {
 
 }
 
-export type PassworChangesdActionsUnion = GetPassword | GetPasswordSuccess | GetPasswordFail;
+export type PassworChangesActionsUnion = GetPassword | GetPasswordSuccess | GetPasswordFail;

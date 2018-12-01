@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from "@ngrx/store";
-import { getIsPassword, State } from "../../store";
+import { getIsNewPassword, State } from '../../store';
 import { Subscription } from "rxjs";
 import { GetPassword } from "../../store/actions/password-change.actions";
-
+import { getIsLogin } from '../../../register/store/index'
 
 @Component({
   selector: 'app-change-password',
@@ -17,14 +17,13 @@ export class ChangePasswordComponent implements OnInit {
  
   private isPassChangeSubscription: Subscription;
   public changePasswordForm:FormGroup;
-  private changePass:boolean = true;	
+  private changePass:boolean = false;	
 
   constructor( private fb: FormBuilder, private router: Router, private store: Store<State>) { 
-    this.isPassChangeSubscription = this.store.pipe(select(getIsPassword)).subscribe(isChange => {
-    	console.log('11111111111111111')
-    	console.log(isChange)
-      if(isChange && !this.changePass) {
-        localStorage.setItem('isChange', 'true');
+    this.isPassChangeSubscription = this.store.pipe(select(getIsNewPassword)).subscribe(isChange => {
+      if(isChange) {
+        // this.store.select('post').subscribe(d => console.log(d))
+        localStorage.setItem('authorization', 'true');
         this.router.navigate(['']);
       }
     })
@@ -35,12 +34,9 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   submitHandler() {
-
+    console.log('11111111111111111')
 		this.store.dispatch(new GetPassword())
-
-    // 
-    // localStorage.setItem('isRegistered', 'true');   
-    // this.router.navigate(['']);
+     console.log('1111111222222222222222222')
   }
 
   get currentPassword() {

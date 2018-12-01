@@ -16,7 +16,7 @@ import { SuccessfulComponent } from './components/successful/successful.componen
 import { CardOfUserComponent } from './components/card-of-user/card-of-user.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddCommentForCommentComponent } from './containers/add-comment-for-comment/add-comment-for-comment.component';
-import { AppStoreModule } from './store/store.module';
+
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
@@ -27,9 +27,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule,
-    AppStoreModule
-   
+    FormsModule   
   ],
   declarations: [
     HeaderComponent, 

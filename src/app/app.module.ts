@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from "@ngrx/store";
 
@@ -17,31 +18,28 @@ import { NetworkService } from './shared/services/network.service';
 import { RegisterGuard } from './shared/guards/register.guard';
 import { UserModule } from './user/user.module';
 import { NewsModule } from './news/news.module';
-
-
-
-
+import { AppStoreModule } from './core/store/store.module'
+import { AlertComponent } from './register/components/alert/alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NetworkDirective,
-    CustomPipe  
+    CustomPipe,
+    AlertComponent 
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpModule,
     HttpClientModule,
     BrowserAnimationsModule,
     UserModule,
     NewsModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({name: 'store devtools', logOnly: environment.production}),
-    StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
-
-  ],
+    AppStoreModule
+   ],
   providers: [NetworkService, RegisterGuard],
   bootstrap: [AppComponent]
 })

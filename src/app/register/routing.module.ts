@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './containers/register/register.component';
 
 
+
 const routes: Routes = [{
   path: '',
   component: RegisterComponent

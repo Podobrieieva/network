@@ -4,6 +4,9 @@ import {Observable, of} from 'rxjs';
 import {Action} from '@ngrx/store';
 import {GetLoginFail, GetLoginSuccess, LoginsActionTypes} from '../actions/login.actions';
 import {catchError, map} from 'rxjs/operators';
+import { UserData} from '../../../shared/models/user.model'
+
+
 
 @Injectable()
 export class LoginEffect {

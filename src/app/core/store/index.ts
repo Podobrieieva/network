@@ -23,17 +23,14 @@ export const reducers: ActionReducerMap < State > = {
 // console.log all actions
 export function logger(reducer: ActionReducer < State >): ActionReducer < State > {
   return function (state: State, action: any): State {
-    console.log('state', state);
     console.log('action', action);
-
+    console.log('state', state);
     return reducer(state, action);
   };
 }
 
 
-export const getIsPassword = (state) => state.passwordChange.isPassChanges;
-// export const getPassChange = createFeatureSelector<fromPasswordChange.IpassChangeState>('auth');
-// export const getIsPassword = createSelector(getPassChange, fromPasswordChange.selectIspasswordChange);
+export const getIsNewPassword = (state) => state.passwordChange.isGetNewPass;
 
 // export const getNewsState = createFeatureSelector<fromNews.State>('news');
 

@@ -1,15 +1,9 @@
-export interface LoginData {
-  email: string;
-  password: string;
+export class User {
+    id?: number;
+    firstname: string;
+    lastname: string;    
+    password: string;
+    email: string;
+    token?: string;
 }
-
-
-export interface RegisterData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
-
 

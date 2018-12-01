@@ -10,7 +10,7 @@ export class RegisterEffect {
   @Effect()
   getIsRegister$: Observable<Action>  = this.actions$.pipe(
     ofType(RegistersActionTypes.GET_REGISTER),
-    map(() => new GetRegisterSuccess(true)),
+    map((data) => new GetRegisterSuccess(data)),
     catchError(err => of(new GetRegisterFail(err)))
   );
 

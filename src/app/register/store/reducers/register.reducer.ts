@@ -1,11 +1,11 @@
 import {RegisterActionsUnion, RegistersActionTypes} from '../actions/register.actions';
 
 export interface IregisterState {
-  isRegistered: boolean;
+  authorization: object;
 }
 
 export const  initialState: IregisterState = {
-  isRegistered: false
+  authorization: {}
 };
 
 export function reducer (state: IregisterState = initialState, action: RegisterActionsUnion) {
@@ -13,11 +13,11 @@ export function reducer (state: IregisterState = initialState, action: RegisterA
     case RegistersActionTypes.GET_REGISTER_SUCCESS:
       return {
         ...state,
-        isRegistered: action.payload
+        authorization: action.payload
       };
     default:
       return state;
   }
 }
 
-export const selectIsregistered = (state) => state.register.isRegistered;
+export const selectIsregistered = (state) => state.register.authorization;

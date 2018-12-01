@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { select, Store} from "@ngrx/store";
 import { Subscription } from "rxjs";
 
-import { getIsEmail, getIsCode, State} from "../../store";
+import { getIsEmail, getIsUserCode,  State} from "../../store";
 import { RegisterService } from '../../service/register.service'
 import { GetEmail } from "../../store/actions/password-recovery.actions";
 import { GetCode } from "../../store/actions/code-recovery.actions";
@@ -22,8 +22,6 @@ export class PasswordRecoveryComponent implements OnInit {
 
   emailShow: boolean=true;
   codeShow: boolean= false;
-  codeUser:string ='';
-
   changePass:boolean = false;
 
   constructor( 
@@ -37,22 +35,15 @@ export class PasswordRecoveryComponent implements OnInit {
 	        this.codeShow = true;
 	      }      
 	    })
-		  this.isCodeSubscription = this.store.pipe(select(getIsCode)).subscribe(isCode => {
-	      if (isCode) {	      	
-	      	localStorage.setItem('accountFree', isCode);
+		  this.isCodeSubscription = this.store.pipe(select(getIsUserCode)).subscribe(isUserCode => {
+	      if (isUserCode && localStorage.getItem ('accountAvailability') ) {	      	
+	      	localStorage.setItem('accountFree', isUserCode);
           this.changePass = true;
 	      		return;
-	      	} 
-      this.codeUser = '';     
-    		// this.router.navigate(['']);
-	     //  localStorage.removeItem ('accountAvailability');
-	      		
-	      	        
-	           
-	    })
-
-
+      	} 
+      })
   }
+  
 
   ngOnInit() {
   	this.recoveryForm = this.fb.group(this.createFromGroup().controls);
@@ -65,8 +56,7 @@ export class PasswordRecoveryComponent implements OnInit {
 
     submitCode() {
     let form = this.recoveryForm.value;
-    console.log(this.password.value);
-    this.codeUser = this.password.value;
+    console.log(this.password.value);   
 
     this.store.dispatch(new GetCode());  
   }

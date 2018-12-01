@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RegisterRoutingModule} from './routing.module';
 import { CoreModule } from '../core/core.module';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { RegisterEffect } from './store/effects/register.effects';
 import { LoginEffect } from './store/effects/login.effects';
@@ -20,8 +20,8 @@ import { CheckInComponent } from './components/check-in/check-in.component';
 import { LogInComponent } from './components/log-in/log-in.component'
 import { RegisterComponent } from './containers/register/register.component';
 import { ChangePasswordComponent } from '../core/components/change-password/change-password.component'
-
-
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor'
 
 
 @NgModule({
@@ -39,7 +39,11 @@ import { ChangePasswordComponent } from '../core/components/change-password/chan
     StoreModule.forFeature('auth', reducers),
     EffectsModule.forFeature([RegisterEffect, LoginEffect, EmailEffect, CodeEffect])
   ],
-  providers: [RegisterService],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    RegisterService
+  ],
 
 })
 export class RegisterModule {}

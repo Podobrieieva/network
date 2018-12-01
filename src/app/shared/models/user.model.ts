@@ -87,9 +87,9 @@ export interface UserData {
     surname: string;
     email: string;
     photo: string;
-    _token?: string;
-    age: number | string;
-    birthDate: Date;
+    _token: string;
+    age?: number | string;
+    birthDate?: Date;
 }
 
 export interface UserCard {

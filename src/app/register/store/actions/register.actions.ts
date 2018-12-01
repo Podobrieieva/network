@@ -8,11 +8,12 @@ export enum RegistersActionTypes {
 
 export class GetRegister implements Action {
   readonly type = RegistersActionTypes.GET_REGISTER;
+  constructor(public payload: object) {}
 }
 
 export class GetRegisterSuccess implements Action {
   readonly type = RegistersActionTypes.GET_REGISTER_SUCCESS;
-  constructor(public payload: boolean) {}
+  constructor(public payload: object) {}
 }
 
 export class GetRegisterFail implements Action {

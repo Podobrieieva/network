@@ -11,7 +11,10 @@ export class PasswordChangeEffect {
   @Effect()
   getIsEmail$: Observable<Action>  = this.actions$.pipe(
     ofType(PasswordChangesActionTypes.GET_PASSWORD),
-    map(() => new GetPasswordSuccess(true)),
+    map(() => {    	
+    	return new GetPasswordSuccess(true)
+    }
+    ),
     catchError(err => of(new GetPasswordFail(err)))
   );
 

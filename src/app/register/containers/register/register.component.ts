@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
     this.login=false;
     this.register=false;
     this.alert=false;
-    this.recovery=recovery;    
+    this.recovery = true;    
   }
 
 

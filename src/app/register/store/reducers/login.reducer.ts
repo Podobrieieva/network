@@ -1,11 +1,11 @@
 import {LoginActionsUnion, LoginsActionTypes} from '../actions/login.actions';
 
 export interface IloginState {
-  isLogined: boolean;
+  authorization: boolean;
 }
 
 export const  initialState: IloginState = {
-  isLogined: false
+  authorization: false  
 };
 
 export function reducer (state: IloginState = initialState, action: LoginActionsUnion) {
@@ -13,11 +13,11 @@ export function reducer (state: IloginState = initialState, action: LoginActions
     case LoginsActionTypes.GET_LOGIN_SUCCESS:
       return {
         ...state,
-        isLogined: action.payload
+        authorization: true        
       };
     default:
       return state;
   }
 }
 
-export const selectIslogined = (state) => state.login.isLogined;
+export const selectIslogined = (state) => state.login.authorization;
