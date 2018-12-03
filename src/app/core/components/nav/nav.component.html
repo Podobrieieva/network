@@ -2,6 +2,7 @@
   <nav>
     <div class="nav-wrapper">
       <a routerLink='/main'  routerLinkActive="active" class="brand-logo">Logo</a>
+      <img class="img-profile" src="{{currentUser?.avatar}}">
       <ul class="right hide-on-med-and-down">
         <li><a routerLink='/network/profile' routerLinkActive="active" [class.activated]="currentUrl == '/network/profile'"><i class="large material-icons">account_box</i></a></li>
         <li><a routerLink='/network/news'  [class.activated]="currentUrl == '/network/news'"><i class="large material-icons">notifications</i></a></li>

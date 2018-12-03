@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { RegisterService } from './register/service/register.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'SocialNetwork';
+
+  constructor(
+    private router: Router,
+    private registerService: RegisterService
+  ) {}
+
+  logout() {
+    this.registerService.logout();
+    this.router.navigate(['/register']);
+  }
 }
+
+
+
+
+  
+
+   

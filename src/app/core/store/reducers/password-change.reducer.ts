@@ -1,19 +1,19 @@
-import {PassworChangesdActionsUnion, PasswordChangesActionTypes} from '../actions/password-change.actions';
+import {PassworChangesActionsUnion, PasswordChangesActionTypes} from '../actions/password-change.actions';
 
 export interface IpassChangeState {
-  isPassChanges: boolean;
+  isNewPass: boolean;
 }
 
 export const  initialState: IpassChangeState = {
-  isPassChanges: false
+  isNewPass: false,
 };
 
-export function reducer (state: IpassChangeState = initialState, action: PassworChangesdActionsUnion) {
+export function reducer (state: IpassChangeState = initialState, action: PassworChangesActionsUnion) {
   switch (action.type) {
     case PasswordChangesActionTypes.GET_PASSWORD_SUCCESS:
-      return {
+      return {        
         ...state,
-        isPassChanges: action.payload
+        isNewPass: action.payload
       };
     default:
       return state;

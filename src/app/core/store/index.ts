@@ -3,6 +3,7 @@ import {environment} from '../../../environments/environment';
 import * as fromRouter from '@ngrx/router-store';
 import * as fromNews from './reducers/news.reducer';
 import * as fromPasswordChange from './reducers/password-change.reducer';
+import * as fromUserProfile from './reducers/user-profile.reducer';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -12,28 +13,27 @@ export interface State {
   router: fromRouter.RouterReducerState;
   post: fromNews.INewsState;
   passwordChange: fromPasswordChange.IpassChangeState;
+  userProfail: fromUserProfile.State;
 }
 
 export const reducers: ActionReducerMap < State > = {
   router: fromRouter.routerReducer,
   post: fromNews.reducer,
-  passwordChange: fromPasswordChange.reducer
+  passwordChange: fromPasswordChange.reducer,
+  userProfail: fromUserProfile.reducer
 };
 
 // console.log all actions
 export function logger(reducer: ActionReducer < State >): ActionReducer < State > {
   return function (state: State, action: any): State {
-    console.log('state', state);
     console.log('action', action);
-
+    console.log('state', state);
     return reducer(state, action);
   };
 }
 
-
-export const getIsPassword = (state) => state.passwordChange.isPassChanges;
-// export const getPassChange = createFeatureSelector<fromPasswordChange.IpassChangeState>('auth');
-// export const getIsPassword = createSelector(getPassChange, fromPasswordChange.selectIspasswordChange);
+export const getIsUserProfile = (state) => state.userProfaile.isUserProfile
+export const getIsNewPassword = (state) => state.passwordChange.isGetNewPass;
 
 // export const getNewsState = createFeatureSelector<fromNews.State>('news');
 

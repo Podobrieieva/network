@@ -1,5 +1,6 @@
 <div class="registerAll">
   <div class="wrapper">
+    <app-alert></app-alert>
     <div class="reg-form-container">  
       <div class="reg-options">
         <ul class="nav-tabs">
@@ -24,10 +25,4 @@
       </ul>
     </div>
   </div>
-
 </div>       
-<div *ngIf="alert" class="alertAll" >
-    <div class="" (click)="toggleAlert()"><i class="fa fa-times did" ></i></div>
-    <p>The email and password entered are not the same as those stored in our database. Check that the entered data is correct and try again.</p>
-      
-</div>

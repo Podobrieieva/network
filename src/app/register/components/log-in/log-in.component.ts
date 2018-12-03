@@ -1,10 +1,14 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
 import { select, Store} from "@ngrx/store";
-import { getIsLogin, State} from "../../store";
+import { RegisterService } from '../../service/register.service'
+import { getIsAuthorization, State} from "../../store";
 import { Subscription } from "rxjs";
-import { GetLogin } from "../../store/actions/login.actions";
+import { GetLogin } from "../../store/actions/register.actions";
+
+
 
 @Component({
   selector: 'app-log-in',
@@ -14,29 +18,45 @@ import { GetLogin } from "../../store/actions/login.actions";
 export class LogInComponent implements OnInit {
   private isLoginSubscription: Subscription;
 	public loginForm: FormGroup;
+
+  public loading = false;
+  public submitted = false;
+  public returnUrl: string;
+  public error = '';
+
   @Output() onClickRecovery = new EventEmitter<boolean>();
 
-  constructor( 
-    private fb: FormBuilder, 
+  constructor(
+    private registerService: RegisterService, 
+    private fb: FormBuilder,
+    private route: ActivatedRoute, 
     private router: Router, 
     private store: Store<State> ) { 
-    this.isLoginSubscription = this.store.pipe(select(getIsLogin)).subscribe(isLogin => {
-      if (isLogin) {
-        localStorage.setItem('loggedIn', 'true');
-        this.router.navigate(['']);
-      }      
-    })
+    // this.isLoginSubscription = this.store.pipe(select(getIsAuthorization)).subscribe(isLogin => {
+    //   console.log(isLogin)
+    //   if (isLogin) {
+    //     localStorage.setItem('authorization', 'true');
+    //     this.router.navigate(['']);
+    //   }      
+    // })
   }
 
   ngOnInit() {
   	this.loginForm = this.fb.group(this.createFromGroup().controls);
+    // reset login status
+    this.registerService.logout();
+
+        // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
   }
   clickedRecovery(recovery:boolean) {
       this.onClickRecovery.emit(recovery);
   }
 
   submitHandler() {
-    this.store.dispatch(new GetLogin())  
+    console.log(this.email.value, this.password.value)
+    this.store.dispatch(new GetLogin({"email":this.email.value, "password": this.password.value}))  
   }
 
   get email() {

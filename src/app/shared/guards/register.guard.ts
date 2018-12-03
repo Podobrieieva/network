@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-@Injectable()
+import { RegisterService } from '../../register/service/register.service'
+
+
+@Injectable({ providedIn: 'root' })
 export class RegisterGuard implements CanActivate {
-  constructor(public router: Router) {}
+  constructor(
+    public router: Router,
+    private registerService: RegisterService
+    ) {}
 
-  canActivate(): boolean {
-    if (!this.isAuthenticated()) {
-      this.router.navigate(['register']);      
-      return false;
-    }  
-    return true;
-  }
-
-  private isAuthenticated() {
-    return localStorage.getItem('isRegistered') || localStorage.getItem('loggedIn') || localStorage.getItem('isChange') ;
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    const permissionToEnter = this.registerService.permissionToEnterValue;
+    console.log(permissionToEnter)
+    if (permissionToEnter) {
+      return true;
+    }
+    this.router.navigate(['/register'], { queryParams: { returnUrl: state.url } });
+        return false;
   }
 }

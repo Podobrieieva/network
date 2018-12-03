@@ -1,10 +1,20 @@
 nav{
     background-color: rgb(9, 148, 141);
+    position: relative;
     .brand-logo {
         margin-left: 25px;
     }
     .hide-on-med-and-down{
         margin-right: 25px;
+    }
+    .img-profile {
+        position: absolute;
+        margin-left: 70%;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        top: 50%;
+        transform: translate(0, -50%);
     }
     ul{
         li{

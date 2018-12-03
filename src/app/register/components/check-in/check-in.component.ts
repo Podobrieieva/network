@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import {select, Store} from "@ngrx/store";
-import {getIsRegister, State} from "../../store";
+import { first } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
+import { select, Store } from "@ngrx/store";
+import { getIsAuthorization, State } from "../../store";
 import { Subscription } from "rxjs";
-import { GetRegister } from "../../store/actions/register.actions";
-
+import { GetRegister, GetRegisterSuccess } from "../../store/actions/register.actions";
+import { User } from '../../models/profile.model';
+import { RegisterService } from '../../service/register.service';
+import { AlertService } from '../../service/alert.service';
+import { UserService } from '../../service/user.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-check-in',
@@ -15,25 +20,45 @@ import { GetRegister } from "../../store/actions/register.actions";
 export class CheckInComponent implements OnInit {
   private isRegisteredSubscription: Subscription;
 	public registerForm:FormGroup;
- 	
-  constructor( private fb: FormBuilder, private router: Router, private store: Store<State>) { 
-    this.isRegisteredSubscription = this.store.pipe(select(getIsRegister)).subscribe(isRegister => {
-      if(isRegister) {
-        localStorage.setItem('isRegistered', 'true');
-        this.router.navigate(['']);
-      }
-    })
+  public user: User;
+  public submitted = false;
+  public loading = false;
+  public returnUrl: string;
+
+
+  constructor(
+    private registerService: RegisterService,
+    private fb: FormBuilder,
+    private route: ActivatedRoute,    
+    private router: Router, 
+    private store: Store<State>,
+    private userService: UserService,
+    private alertService: AlertService
+    ) { 
+    
+    if (this.registerService.permissionToEnterValue) { 
+      this.router.navigate(['']);
+    }  
+
+    // this.isRegisteredSubscription = this.store.pipe(select(getIsRegister)).subscribe(isRegister => {
+    //   console.log(isRegister)
+    //   if(isRegister) {
+    //     this.router.navigate(['']);
+    //   }
+
+    // })
   }
 
   ngOnInit() {
   	this.registerForm = this.fb.group(this.createFromGroup().controls, {validator: this.passwordConfirming});
+    
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
   }
 
   submitHandler() {
- console.log('33333333333333333')
-    this.store.dispatch(new GetRegister())
-    // localStorage.setItem('isRegistered', 'true');   
-    // this.router.navigate(['']);
+    console.log(this.registerForm.value) 
+    this.store.dispatch(new GetRegister(this.registerForm.value));
   }
 
   get firstname() {

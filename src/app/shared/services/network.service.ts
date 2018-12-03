@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CommentModel, PostModel, UserCard} from '../models/user.model';
 import { BehaviorSubject, Observable} from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map, switchMap } from 'rxjs/operators'
-
+import {RequestOptions, Request, RequestMethod} from '@angular/http';
 
 
 @Injectable({
@@ -12,6 +12,7 @@ import { map, switchMap } from 'rxjs/operators'
 export class NetworkService {
   private commentSubj: BehaviorSubject<any> = new BehaviorSubject(3)
   private commentForComSubj: BehaviorSubject<any> = new BehaviorSubject(3)
+  private apiUrl:string = 'https://s-network.herokuapp.com/api/v1';
   private url = `http://localhost:3000`;
   public commentWrapper: CommentModel [] = [
     {
@@ -34,6 +35,14 @@ export class NetworkService {
   constructor(private http: HttpClient) {
     
    }
+
+ public getUserProfile() {
+   const token = localStorage.getItem('token')
+   console.log(token)
+   return this.http.get<any>(`${this.apiUrl}/profile`);  
+}
+
+
 
   public getUsers():Observable<UserCard[]>{
     return this.http.get("https://randomuser.me/api/?page=3&results=10&seed=abc").pipe(

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { select, Store} from "@ngrx/store";
 import { Subscription } from "rxjs";
 
-import { getIsEmail, getIsCode, State} from "../../store";
+import { getIsEmail, getIsUserCode,  State} from "../../store";
 import { RegisterService } from '../../service/register.service'
 import { GetEmail } from "../../store/actions/password-recovery.actions";
 import { GetCode } from "../../store/actions/code-recovery.actions";
@@ -21,9 +21,7 @@ export class PasswordRecoveryComponent implements OnInit {
   public recoveryForm: FormGroup;
 
   emailShow: boolean=true;
-  codeShow: boolean= false;
-  codeUser:string ='';
-
+  //codeShow: boolean= false;
   changePass:boolean = false;
 
   constructor( 
@@ -33,43 +31,34 @@ export class PasswordRecoveryComponent implements OnInit {
     private store: Store<State> ) { 
 	    this.isEmailSubscription = this.store.pipe(select(getIsEmail)).subscribe(isEmail => {
 	      if (isEmail) {
-	        localStorage.setItem('accountAvailability', isEmail);        
-	        this.codeShow = true;
+	        //localStorage.setItem('accountAvailability', isEmail);        
+	        //this.codeShow = true;
 	      }      
 	    })
-		  this.isCodeSubscription = this.store.pipe(select(getIsCode)).subscribe(isCode => {
-	      if (isCode) {	      	
-	      	localStorage.setItem('accountFree', isCode);
-          this.changePass = true;
-	      		return;
-	      	} 
-      this.codeUser = '';     
-    		// this.router.navigate(['']);
-	     //  localStorage.removeItem ('accountAvailability');
-	      		
-	      	        
-	           
-	    })
-
-
+		  // this.isCodeSubscription = this.store.pipe(select(getIsUserCode)).subscribe(isUserCode => {
+	   //    if (isUserCode && localStorage.getItem ('accountAvailability') ) {	      	
+	   //    	localStorage.setItem('accountFree', isUserCode);
+    //       this.changePass = true;
+	   //    		return;
+    //   	} 
+    //   })
   }
+  
 
   ngOnInit() {
   	this.recoveryForm = this.fb.group(this.createFromGroup().controls);
   }
 
   submitEmail() {
-  	let email = this.email.value;  	
-    this.store.dispatch(new GetEmail())  
+  	this.store.dispatch(new GetEmail({'email': this.email.value}))  
   }
 
-    submitCode() {
-    let form = this.recoveryForm.value;
-    console.log(this.password.value);
-    this.codeUser = this.password.value;
+  //   submitCode() {
+  //   let form = this.recoveryForm.value;
+  //   console.log(this.password.value);   
 
-    this.store.dispatch(new GetCode());  
-  }
+  //   this.store.dispatch(new GetCode());  
+  // }
 
   get email() {
     return this.recoveryForm.get('email');

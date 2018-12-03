@@ -1,23 +1,27 @@
-import {RegisterActionsUnion, RegistersActionTypes} from '../actions/register.actions';
-
-export interface IregisterState {
-  isRegistered: boolean;
+import { RegisterActionTypes, RegisterActionsUnion} from '../actions/register.actions';
+export interface State {
+  authorization: boolean;
 }
 
-export const  initialState: IregisterState = {
-  isRegistered: false
+export const  initialState: State = {
+  authorization: false
 };
 
-export function reducer (state: IregisterState = initialState, action: RegisterActionsUnion) {
+export function reducer (state: State = initialState, action: RegisterActionsUnion) {
   switch (action.type) {
-    case RegistersActionTypes.GET_REGISTER_SUCCESS:
+    case RegisterActionTypes.GET_LOGIN_SUCCESS:
       return {
         ...state,
-        isRegistered: action.payload
+        authorization: true        
       };
+    case RegisterActionTypes.GET_REGISTER_SUCCESS:
+      return {
+        ...state,
+        authorization: true
+      };  
     default:
       return state;
   }
 }
 
-export const selectIsregistered = (state) => state.register.isRegistered;
+

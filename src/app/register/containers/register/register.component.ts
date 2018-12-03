@@ -11,10 +11,7 @@ import { RegisterService } from '../../service/register.service';
 export class RegisterComponent implements OnInit {
 	login: boolean=true;
 	register: boolean=false;
-  alert: boolean=false;
-  recovery: boolean=false;
-
-  	
+  recovery: boolean=false;  	
   constructor() { }
 
   ngOnInit() {
@@ -24,26 +21,17 @@ export class RegisterComponent implements OnInit {
   changeRegister() {
   	this.login=false;
     this.register=true;
-    this.alert=false;
     this.recovery=false;
   }
   changeLogin() {
     this.login=true;
     this.register=false;
-    this.alert=false;
     this.recovery=false;  	
   }
 
   onClickRecovery(recovery:boolean) {
     this.login=false;
     this.register=false;
-    this.alert=false;
-    this.recovery=recovery;    
+     this.recovery = true;    
   }
-
-
-  toggleAlert() {
-    this.alert = false;
-  }
-
 }

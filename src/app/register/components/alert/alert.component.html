@@ -1,0 +1,9 @@
+<div 
+	*ngIf="message" 
+	[ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }"
+	class="alertMessage">
+	<div class="" (click)="toggleAlert()">
+		<i class="fa fa-times did" ></i>
+	</div>
+	{{message.text}}
+</div>
