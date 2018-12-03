@@ -20,8 +20,8 @@ export class AddCommentForCommentComponent implements OnInit {
   @ViewChild('commentForm') commentForm: NgForm;
 
   constructor( private networkService: NetworkService) { 
-    this.model.avatar = this.networkService.commentWrapperForComment[0].avatar
-    this.model.userName = this.networkService.commentWrapperForComment[0].userName
+    this.model.avatar = 'https://thunder-team.com/friend-finder/images/users/user-11.jpg'
+    this.model.userName = 'name John'
   }
 
   ngOnInit() {
@@ -30,7 +30,7 @@ export class AddCommentForCommentComponent implements OnInit {
   public onSubmit(form: NgForm) {
     const comment = {...this.model};
     this.networkService.addCommentForComment(comment)
-      
+    console.log(this.model);
   }
 
   // public addBtnClickHandler() {

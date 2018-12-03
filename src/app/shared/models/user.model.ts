@@ -102,8 +102,11 @@ export interface UserCard {
 export interface Post {
     id: string;
     photo: string;
-    header: string;
     text: number | string;
+    user: UserCard;
+    like: number;
+    dislike: number;
+    date: Date;
     comments: Array<PostComment>;
 }
 
@@ -111,6 +114,7 @@ export interface PostComment {
     id: string;
     user: UserCard;
     text: string;
+    date: Date;
     childrensId: Array<string>;
 }
 

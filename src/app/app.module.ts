@@ -22,6 +22,8 @@ import { NewsModule } from './news/news.module';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +45,6 @@ import { NewsModule } from './news/news.module';
 
   ],
   providers: [NetworkService, RegisterGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

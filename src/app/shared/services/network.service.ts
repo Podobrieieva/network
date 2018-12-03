@@ -26,11 +26,7 @@ export class NetworkService {
     }
   ]
   public commentWrapperForComment:CommentModel [] = [
-    {
-    content: 'fhkf',
-    avatar: "https://thunder-team.com/friend-finder/images/users/user-11.jpg ",
-    userName:"John"
-    }
+    
 
   ] 
   
@@ -89,7 +85,9 @@ export class NetworkService {
     this.commentWrapper.push(comment);
   }
   public addCommentForComment(comment){
-     this.commentWrapperForComment.push(comment)
+     this.commentWrapperForComment.push(comment);
+    console.log(this.commentWrapperForComment);
+
   }
   
 }

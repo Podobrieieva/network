@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 
+
 import { HeaderComponent } from './containers/header/header.component'
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './containers/footer/footer.component';
@@ -18,6 +19,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddCommentForCommentComponent } from './containers/add-comment-for-comment/add-comment-for-comment.component';
 import { AppStoreModule } from './store/store.module';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import  MaterialModule  from '../user/material-module';
 
 
 
@@ -28,7 +30,9 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    AppStoreModule
+    AppStoreModule,
+    MaterialModule
+    
    
   ],
   declarations: [

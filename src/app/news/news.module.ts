@@ -10,12 +10,14 @@ import { SearchPipe } from '../shared/pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
 
 
+
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     CoreModule,
-    FormsModule
+    FormsModule,
+  
   ],
   declarations: [
     PostWrapperComponent,

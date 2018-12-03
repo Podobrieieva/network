@@ -12,7 +12,23 @@
         <div class="reaction">
           <a (click) = "like()" class="btn text-green"><i class="material-icons">  thumb_up  </i> {{counterLike}}</a>
           <a (click) = "dislike()" class="btn text-red"><i class="material-icons">  thumb_down  </i> {{counterDislike}}</a>
+          
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item>
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
+                  </button>
+                  <button mat-menu-item>
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                  </button>
+                </mat-menu>
+              
         </div>
+      
         <div class="line-divider"></div>
         <div class="post-text">
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
@@ -23,6 +39,8 @@
         <app-add-comment *ngIf="editMode" (addEvt)="addHandler($event)" ></app-add-comment>
       </div>
     </div>
+ 
   </div>
+
 </div>
 
