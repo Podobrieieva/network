@@ -10,14 +10,20 @@ export class UserService {
 
     register(user) {
        const body = {
-        firstName: user.firstname,
-        lastName: user.lastname,
-        email: user.email,
-        password: user.password
-           
+        "name": user.firstname,
+        "surname": user.lastname,
+        "email": user.email,
+        "password": user.password           
        } 
-        return this.http.post(`${this.apiUrl}/entries/register`, JSON.stringify(body));
+       console.log(body)
+        return this.http.post<any>(`${this.apiUrl}/entries/register`, body);
     }
+
+    login(email: string, password: string) {
+        return this.http.post<any>(`${this.apiUrl}/entries/login`, { email, password })
+    }
+
+
 
 
     getAll() {

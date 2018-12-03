@@ -1,11 +1,11 @@
 import {EmailActionsUnion, EmailsActionTypes} from '../actions/password-recovery.actions';
 
 export interface IemailState {
-  isEmail: string;
+  isPasswordRecovery: object;
 }
 
 export const  initialState: IemailState = {
-  isEmail: ""
+  isPasswordRecovery: {}
 };
 
 export function reducer (state: IemailState = initialState, action: EmailActionsUnion) {
@@ -13,11 +13,11 @@ export function reducer (state: IemailState = initialState, action: EmailActions
     case EmailsActionTypes.GET_EMAIL_SUCCESS:
       return {
         ...state,
-        isEmail: action.payload
+        isPasswordRecovery: action.payload
       };
     default:
       return state;
   }
 }
 
-export const selectIsemail = (state) => state.email.isEmail;
+export const selectIsemail = (state) => state.email.isPasswordRecovery;

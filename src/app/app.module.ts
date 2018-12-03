@@ -5,7 +5,8 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from "@ngrx/store";
-
+import { JwtInterceptor } from './register/helpers/jwt.interceptor';
+import { ErrorInterceptor } from './register/helpers/error.interceptor'
 import { StoreRouterConnectingModule } from "@ngrx/router-store";
 import { StoreDevtoolsModule}  from "@ngrx/store-devtools";
 import { environment } from "../environments/environment";
@@ -19,14 +20,13 @@ import { RegisterGuard } from './shared/guards/register.guard';
 import { UserModule } from './user/user.module';
 import { NewsModule } from './news/news.module';
 import { AppStoreModule } from './core/store/store.module'
-import { AlertComponent } from './register/components/alert/alert.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NetworkDirective,
-    CustomPipe,
-    AlertComponent 
+    CustomPipe
 
   ],
   imports: [
@@ -40,7 +40,12 @@ import { AlertComponent } from './register/components/alert/alert.component';
     NewsModule,
     AppStoreModule
    ],
-  providers: [NetworkService, RegisterGuard],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    NetworkService, 
+    RegisterGuard
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,16 @@
-export class User {
+export interface User {
     id?: number;
-    firstname: string;
-    lastname: string;    
+    name: string;
+    surname: string;    
     password: string;
     email: string;
-    token?: string;
 }
+
+export interface PermissionToEnter {
+    ok: boolean;
+    data: {
+    	token:string;
+    };
+}
+
 

@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { select, Store } from "@ngrx/store";
-import { getIsRegister, State } from "../../store";
+import { getIsAuthorization, State } from "../../store";
 import { Subscription } from "rxjs";
-import { GetRegister } from "../../store/actions/register.actions";
+import { GetRegister, GetRegisterSuccess } from "../../store/actions/register.actions";
 import { User } from '../../models/profile.model';
 import { RegisterService } from '../../service/register.service';
 import { AlertService } from '../../service/alert.service';
 import { UserService } from '../../service/user.service';
-
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-check-in',
@@ -21,52 +21,44 @@ export class CheckInComponent implements OnInit {
   private isRegisteredSubscription: Subscription;
 	public registerForm:FormGroup;
   public user: User;
- 	public loading = false;
   public submitted = false;
+  public loading = false;
+  public returnUrl: string;
+
+
   constructor(
     private registerService: RegisterService,
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
+    private route: ActivatedRoute,    
     private router: Router, 
     private store: Store<State>,
     private userService: UserService,
     private alertService: AlertService
     ) { 
     
-    if (this.registerService.currentUserValue) { 
-      this.router.navigate(['/']);
+    if (this.registerService.permissionToEnterValue) { 
+      this.router.navigate(['']);
     }  
 
-    this.isRegisteredSubscription = this.store.pipe(select(getIsRegister)).subscribe(isRegister => {
-      if(isRegister) {
-        localStorage.setItem('authorization', 'true');
-        this.router.navigate(['']);
-      }
+    // this.isRegisteredSubscription = this.store.pipe(select(getIsRegister)).subscribe(isRegister => {
+    //   console.log(isRegister)
+    //   if(isRegister) {
+    //     this.router.navigate(['']);
+    //   }
 
-    })
+    // })
   }
 
   ngOnInit() {
   	this.registerForm = this.fb.group(this.createFromGroup().controls, {validator: this.passwordConfirming});
+    
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
   }
 
   submitHandler() {
-    this.submitted = true;
-    this.loading = true;
-    console.log(this.registerForm.value)
-  
-    this.userService.register(this.registerForm.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          console.log(data)
-          this.alertService.success('Registration successful', true);
-          this.router.navigate(['']);
-        },
-      error => {
-        this.alertService.error(error);
-        this.loading = false;
-      });
-    //this.store.dispatch(new GetRegister(this.user))
+    console.log(this.registerForm.value) 
+    this.store.dispatch(new GetRegister(this.registerForm.value));
   }
 
   get firstname() {

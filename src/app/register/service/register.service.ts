@@ -3,38 +3,39 @@ import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
-import { User } from '../models/profile.model';
-
+import { PermissionToEnter } from '../models/profile.model';
 
 
 @Injectable({ providedIn: 'root' })
+
 export class RegisterService {    
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
-  constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
+ public apiUrl:string = 'https://s-network.herokuapp.com/api/v1';
+  constructor(private http: HttpClient) { }
+
+  public get permissionToEnterValue():PermissionToEnter {
+    return JSON.parse(localStorage.getItem('permissionToEnter'));
   }
 
-  public get currentUserValue(): User {
-    return this.currentUserSubject.value;
+ register(user) {
+       const body = {
+        "name": user.firstname,
+        "surname": user.lastname,
+        "email": user.email,
+        "password": user.password           
+       } 
+       console.log(body)
+        return this.http.post<any>(`${this.apiUrl}/entries/register`, body);
+    }
+
+  login(body) {
+    return this.http.post<any>(`${this.apiUrl}/entries/login`, body)
   }
 
-  login(email: string, password: string) {
-    return this.http.post<any>('https://s-network.herokuapp.com/api/v1/entries/login', { email, password })
-      .pipe(map(user => {
-        if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.currentUserSubject.next(user);
-        }
-        return user;
-      }));
-    }
+  passwordRecovery(body) {
+      return this.http.post<any>(`${this.apiUrl}/entries/forgot_password`, body)
+  }
 
-
-
-    logout() {
-        localStorage.removeItem('currentUser');
-        this.currentUserSubject.next(null);
-    }
+  logout() {
+    localStorage.removeItem('permissionToEnter');        
+  }
 }

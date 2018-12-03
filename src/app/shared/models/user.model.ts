@@ -3,15 +3,15 @@ export interface UserProfileModel {
         id: number,
         name: string,
         surname: string,
-        image: string,
-        gender: string,
+        image?: string,
+        gender?: string,
         dateOfBirth?: number,
         maritalStatus?: string,
         password: string,
         confirmPassword: string
     };
     contact?: {
-        country: string,
+        country?: string,
         city?: string,
         street?: string,
         mobilePhone?: number,
@@ -23,14 +23,14 @@ export interface UserProfileModel {
         city?: string,
         school?: number,
         university?: string,
-        periodOfSchool: number,
-        periodOfUniversity: number
+        periodOfSchool?: number,
+        periodOfUniversity?: number
     };
     work?:{
         country?: string,
         city?: string,
-        company: string,
-        period: number,
+        company?: string,
+        period?: number,
     };
     interests?:{
         hobby?: string,

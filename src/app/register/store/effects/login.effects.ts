@@ -1,21 +1,45 @@
-import {Actions, Effect, ofType} from '@ngrx/effects';
-import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
-import {Action} from '@ngrx/store';
-import {GetLoginFail, GetLoginSuccess, LoginsActionTypes} from '../actions/login.actions';
-import {catchError, map} from 'rxjs/operators';
-import { UserData} from '../../../shared/models/user.model'
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
+import { Action } from '@ngrx/store';
+import { GetLogin, GetLoginSuccess, GetLoginFail, RegisterActionTypes } from '../actions/register.actions';
+import { catchError, exhaustMap, map } from 'rxjs/operators';
+import { AlertService } from '../../service/alert.service';
+import { RegisterService } from '../../service/register.service'
 
 
 
 @Injectable()
 export class LoginEffect {
   @Effect()
-  getIsRegister$: Observable<Action>  = this.actions$.pipe(
-    ofType(LoginsActionTypes.GET_LOGIN),
-    map(() => new GetLoginSuccess(true)),
-    catchError(err => of(new GetLoginFail(err)))
+  getIsLogin$: Observable<Action>  = this.actions$
+  .pipe(
+    ofType<GetLogin>(RegisterActionTypes.GET_LOGIN),
+    exhaustMap(
+    	action => this.registerService.login(action.payload).pipe(
+    		map(data => {
+    			console.log(data)
+           		this.alertService.success('Registration successful', true);
+           		localStorage.setItem('permissionToEnter', JSON.stringify(data));
+           		localStorage.setItem('token', data['data'].token);
+           		this.router.navigate([""]);
+           		return new GetLoginSuccess(data);
+           		    			
+    		}),
+    		catchError(err => {
+    			this.alertService.error('The email and password entered are not the same as those stored in our database. Check that the entered data is correct and try again.', true);
+    			return of(new GetLoginFail(err));
+    		})
+  		)
+    )  
+
   );
 
-  constructor(private actions$: Actions) {}
+  constructor(
+  	private actions$: Actions,
+  	private registerService: RegisterService,
+  	private alertService: AlertService,
+  	private router: Router
+  	) {}
 }

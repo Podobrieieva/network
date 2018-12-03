@@ -4,9 +4,9 @@ import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { select, Store} from "@ngrx/store";
 import { RegisterService } from '../../service/register.service'
-import { getIsLogin, State} from "../../store";
+import { getIsAuthorization, State} from "../../store";
 import { Subscription } from "rxjs";
-import { GetLogin } from "../../store/actions/login.actions";
+import { GetLogin } from "../../store/actions/register.actions";
 
 
 
@@ -32,13 +32,13 @@ export class LogInComponent implements OnInit {
     private route: ActivatedRoute, 
     private router: Router, 
     private store: Store<State> ) { 
-    this.isLoginSubscription = this.store.pipe(select(getIsLogin)).subscribe(isLogin => {
-      console.log(isLogin)
-      if (isLogin) {
-        localStorage.setItem('authorization', 'true');
-        this.router.navigate(['']);
-      }      
-    })
+    // this.isLoginSubscription = this.store.pipe(select(getIsAuthorization)).subscribe(isLogin => {
+    //   console.log(isLogin)
+    //   if (isLogin) {
+    //     localStorage.setItem('authorization', 'true');
+    //     this.router.navigate(['']);
+    //   }      
+    // })
   }
 
   ngOnInit() {
@@ -55,20 +55,8 @@ export class LogInComponent implements OnInit {
   }
 
   submitHandler() {
-    this.submitted = true;
-    this.loading = true;
     console.log(this.email.value, this.password.value)
-    this.registerService.login(this.email.value, this.password.value)
-      .pipe(first())
-      .subscribe(
-      data => {
-        this.router.navigate([this.returnUrl]);
-      },
-      error => {
-        this.error = error;
-        this.loading = false;
-      });
-    // this.store.dispatch(new GetLogin({email:this.email.value, password: this.password.value}))  
+    this.store.dispatch(new GetLogin({"email":this.email.value, "password": this.password.value}))  
   }
 
   get email() {

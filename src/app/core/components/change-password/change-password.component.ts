@@ -5,7 +5,6 @@ import { select, Store } from "@ngrx/store";
 import { getIsNewPassword, State } from '../../store';
 import { Subscription } from "rxjs";
 import { GetPassword } from "../../store/actions/password-change.actions";
-import { getIsLogin } from '../../../register/store/index'
 
 @Component({
   selector: 'app-change-password',

@@ -8,11 +8,12 @@ export enum EmailsActionTypes {
 
 export class GetEmail implements Action {
   readonly type = EmailsActionTypes.GET_EMAIL;
+  constructor(public payload: object) {}
 }
 
 export class GetEmailSuccess implements Action {
   readonly type = EmailsActionTypes.GET_EMAIL_SUCCESS;
-  constructor(public payload: string) {}
+  constructor(public payload: object) {}
 }
 
 export class GetEmailFail implements Action {
