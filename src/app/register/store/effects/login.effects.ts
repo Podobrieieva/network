@@ -6,7 +6,7 @@ import { Action } from '@ngrx/store';
 import { GetLogin, GetLoginSuccess, GetLoginFail, RegisterActionTypes } from '../actions/register.actions';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
 import { AlertService } from '../../service/alert.service';
-import { RegisterService } from '../../service/register.service'
+import { RegisterService } from '../../service/register.service';
 
 
 
@@ -20,15 +20,14 @@ export class LoginEffect {
     	action => this.registerService.login(action.payload).pipe(
     		map(data => {
     			console.log(data)
-           		this.alertService.success('Registration successful', true);
            		localStorage.setItem('permissionToEnter', JSON.stringify(data));
            		localStorage.setItem('token', data['data'].token);
            		this.router.navigate([""]);
-           		return new GetLoginSuccess(data);
-           		    			
+           		return new GetLoginSuccess(data);           		    			
     		}),
     		catchError(err => {
-    			this.alertService.error('The email and password entered are not the same as those stored in our database. Check that the entered data is correct and try again.', true);
+          this.alertService.error('The email or password entered are not the same as those stored in our database. Check that the entered data is correct and try again.', true);
+   			
     			return of(new GetLoginFail(err));
     		})
   		)

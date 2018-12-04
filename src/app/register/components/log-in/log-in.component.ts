@@ -18,9 +18,7 @@ import { GetLogin } from "../../store/actions/register.actions";
 export class LogInComponent implements OnInit {
   private isLoginSubscription: Subscription;
 	public loginForm: FormGroup;
-
   public loading = false;
-  public submitted = false;
   public returnUrl: string;
   public error = '';
 
@@ -43,15 +41,12 @@ export class LogInComponent implements OnInit {
 
   ngOnInit() {
   	this.loginForm = this.fb.group(this.createFromGroup().controls);
-    // reset login status
-    this.registerService.logout();
-
-        // get return url from route parameters or default to '/'
+    this.registerService.logout(); 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-
   }
+
   clickedRecovery(recovery:boolean) {
-      this.onClickRecovery.emit(recovery);
+    this.onClickRecovery.emit(recovery);
   }
 
   submitHandler() {
@@ -73,5 +68,5 @@ export class LogInComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')])
     });
   }
-
+  
 }

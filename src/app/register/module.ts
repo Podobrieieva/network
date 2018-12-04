@@ -10,7 +10,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterEffect } from './store/effects/register.effects';
 import { LoginEffect } from './store/effects/login.effects';
 import { EmailEffect } from './store/effects/password-recovery.effects';
-import { CodeEffect } from './store/effects/code-recovery.effects'
 import { reducers } from './store';
 
 import { RegisterService } from './service/register.service'
@@ -37,11 +36,10 @@ import { AlertComponent } from './components/alert/alert.component';
 	  RegisterRoutingModule,
     CoreModule,
     StoreModule.forFeature('auth', reducers),
-    EffectsModule.forFeature([RegisterEffect, LoginEffect, EmailEffect, CodeEffect])
+    EffectsModule.forFeature([RegisterEffect, LoginEffect, EmailEffect])
   ],
   providers: [
     RegisterService
-  ],
-
+  ]
 })
 export class RegisterModule {}

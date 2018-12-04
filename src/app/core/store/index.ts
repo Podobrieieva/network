@@ -32,7 +32,8 @@ export function logger(reducer: ActionReducer < State >): ActionReducer < State 
   };
 }
 
-export const getIsUserProfile = (state) => state.userProfaile.isUserProfile
+export const getIsUserProfile = (state) => state.userProfaile.isUserProfile;
+
 export const getIsNewPassword = (state) => state.passwordChange.isGetNewPass;
 
 // export const getNewsState = createFeatureSelector<fromNews.State>('news');

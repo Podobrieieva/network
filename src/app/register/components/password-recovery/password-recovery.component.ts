@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 import { select, Store} from "@ngrx/store";
 import { Subscription } from "rxjs";
 
-import { getIsEmail, getIsUserCode,  State} from "../../store";
+import { getIsEmail,  State} from "../../store";
 import { RegisterService } from '../../service/register.service'
 import { GetEmail } from "../../store/actions/password-recovery.actions";
-import { GetCode } from "../../store/actions/code-recovery.actions";
+
 
 @Component({
   selector: 'app-password-recovery',
@@ -16,33 +16,14 @@ import { GetCode } from "../../store/actions/code-recovery.actions";
 })
 export class PasswordRecoveryComponent implements OnInit {
 
-  private isEmailSubscription: Subscription;
-  private isCodeSubscription: Subscription;
   public recoveryForm: FormGroup;
-
-  emailShow: boolean=true;
-  //codeShow: boolean= false;
-  changePass:boolean = false;
+  public changePass:boolean = false;
 
   constructor( 
   	private registerService: RegisterService,
     private fb: FormBuilder, 
     private router: Router, 
-    private store: Store<State> ) { 
-	    this.isEmailSubscription = this.store.pipe(select(getIsEmail)).subscribe(isEmail => {
-	      if (isEmail) {
-	        //localStorage.setItem('accountAvailability', isEmail);        
-	        //this.codeShow = true;
-	      }      
-	    })
-		  // this.isCodeSubscription = this.store.pipe(select(getIsUserCode)).subscribe(isUserCode => {
-	   //    if (isUserCode && localStorage.getItem ('accountAvailability') ) {	      	
-	   //    	localStorage.setItem('accountFree', isUserCode);
-    //       this.changePass = true;
-	   //    		return;
-    //   	} 
-    //   })
-  }
+    private store: Store<State> ) { }
   
 
   ngOnInit() {
@@ -52,14 +33,7 @@ export class PasswordRecoveryComponent implements OnInit {
   submitEmail() {
   	this.store.dispatch(new GetEmail({'email': this.email.value}))  
   }
-
-  //   submitCode() {
-  //   let form = this.recoveryForm.value;
-  //   console.log(this.password.value);   
-
-  //   this.store.dispatch(new GetCode());  
-  // }
-
+  
   get email() {
     return this.recoveryForm.get('email');
   }

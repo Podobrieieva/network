@@ -19,19 +19,14 @@ export class EmailEffect {
     		map(data => {
     			console.log(data)
            		this.alertService.success('You have requested a password reset, for this, use the link sent to your e-mail', true);
-           		// localStorage.setItem('permissionToEnter', JSON.stringify(data));
-           		// localStorage.setItem('token', data['data'].token);
-           		// this.router.navigate([""]);
-           		return new GetEmailSuccess(data);
-           		    			
+           		return new GetEmailSuccess(data);           		    			
     		}),
     		catchError(err => {
-    			this.alertService.error('Email !!!!! failed', true);
+    			this.alertService.error('The email address you entered does not match the data stored in our database. Make sure the entered data is correct and try again.', true);
     			return of(new GetEmailFail(err));
     		})
   		)
-    )  
-
+    )
   );
 
   constructor(

@@ -18,10 +18,8 @@ export class UserProfileEffect {
     		map(data => {
     			console.log(data)
            		localStorage.setItem('UserProfile', JSON.stringify(data));
-           		this.router.navigate(["network/profile"])
-
-               return new GetUserProfileSuccess(data);
-           		    			
+           		this.router.navigate(["network/profile"]);
+               return new GetUserProfileSuccess(data);           		    			
     		}),
     		catchError(err => {
     			return of(new GetUserProfileFail(err));

@@ -12,7 +12,7 @@ export function reducer (state: State = initialState, action: NewsActionsUnion) 
     case UserProfileActionTypes.GET_USER_PROFILE_SUCCESS:
       return {
         ...state,
-        userProfile: action.payload        
+        isUserProfile: action.payload        
       };
     default:
       return state;

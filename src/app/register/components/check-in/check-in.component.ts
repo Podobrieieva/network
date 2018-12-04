@@ -9,7 +9,6 @@ import { GetRegister, GetRegisterSuccess } from "../../store/actions/register.ac
 import { User } from '../../models/profile.model';
 import { RegisterService } from '../../service/register.service';
 import { AlertService } from '../../service/alert.service';
-import { UserService } from '../../service/user.service';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -20,8 +19,6 @@ import { map } from 'rxjs/operators';
 export class CheckInComponent implements OnInit {
   private isRegisteredSubscription: Subscription;
 	public registerForm:FormGroup;
-  public user: User;
-  public submitted = false;
   public loading = false;
   public returnUrl: string;
 
@@ -32,32 +29,21 @@ export class CheckInComponent implements OnInit {
     private route: ActivatedRoute,    
     private router: Router, 
     private store: Store<State>,
-    private userService: UserService,
     private alertService: AlertService
-    ) { 
-    
+    ) 
+  {     
     if (this.registerService.permissionToEnterValue) { 
       this.router.navigate(['']);
     }  
-
-    // this.isRegisteredSubscription = this.store.pipe(select(getIsRegister)).subscribe(isRegister => {
-    //   console.log(isRegister)
-    //   if(isRegister) {
-    //     this.router.navigate(['']);
-    //   }
-
-    // })
   }
 
   ngOnInit() {
   	this.registerForm = this.fb.group(this.createFromGroup().controls, {validator: this.passwordConfirming});
-    
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-
   }
 
   submitHandler() {
-    console.log(this.registerForm.value) 
+    console.log(this.registerForm.value); 
     this.store.dispatch(new GetRegister(this.registerForm.value));
   }
 

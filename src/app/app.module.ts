@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from "@ngrx/store";
 import { JwtInterceptor } from './register/helpers/jwt.interceptor';
@@ -34,6 +35,7 @@ import { AppStoreModule } from './core/store/store.module'
     AppRoutingModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     HttpClientModule,
     BrowserAnimationsModule,
     UserModule,
