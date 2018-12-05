@@ -16,7 +16,7 @@ import { GetLogin } from "../../store/actions/register.actions";
   styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent implements OnInit {
-  private isLoginSubscription: Subscription;
+  //private isLoginSubscription: Subscription;
 	public loginForm: FormGroup;
   public loading = false;
   public returnUrl: string;

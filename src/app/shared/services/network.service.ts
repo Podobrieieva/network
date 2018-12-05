@@ -36,17 +36,18 @@ export class NetworkService {
   ] 
   
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { }
     
-   }
+   
 
- public getUserProfile() {
-   const token = localStorage.getItem('token')
-   console.log(token)
-   return this.http.get<any>(`${this.apiUrl}/profile`);  
+public getUserProfile() {
+  return this.http.get<any>(`${this.apiUrl}/profile`);  
 }
 
-
+public logout() {
+  localStorage.removeItem('permissionToEnter'); 
+  location.reload(true);    
+}
 
   public getUsers():Observable<UserCard[]>{
     return this.http.get("https://randomuser.me/api/?page=3&results=10&seed=abc").pipe(

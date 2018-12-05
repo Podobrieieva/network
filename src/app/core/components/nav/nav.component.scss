@@ -1,20 +1,42 @@
 nav{
     background-color: rgb(9, 148, 141);
     position: relative;
+    width: 100%;
     .brand-logo {
         margin-left: 25px;
     }
     .hide-on-med-and-down{
         margin-right: 25px;
     }
-    .img-profile {
-        position: absolute;
-        margin-left: 70%;
-        height: 40px;
-        width: 40px;
-        border-radius: 50%;
-        top: 50%;
-        transform: translate(0, -50%);
+    .nav-wrapper {
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        -moz-flex-direction: row;
+        -ms-flex-direction: row;
+        -o-flex-direction: row;
+        flex-direction: row;
+        align-items: center;
+
+        a {
+
+        }
+        img {
+            margin-left: 90%;            
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+           
+           
+        }
+    /*mat-menu > button {
+        .activated {
+                background-color:#25a59f;
+            
+            }
     }
     ul{
         li{
@@ -24,6 +46,6 @@ nav{
             }
           
         }
+    }*/
     }
-  
-}
+}    

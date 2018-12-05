@@ -4,7 +4,6 @@ import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { select, Store } from "@ngrx/store";
 import { getIsAuthorization, State } from "../../store";
-import { Subscription } from "rxjs";
 import { GetRegister, GetRegisterSuccess } from "../../store/actions/register.actions";
 import { User } from '../../models/profile.model';
 import { RegisterService } from '../../service/register.service';
@@ -17,8 +16,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./check-in.component.scss']
 })
 export class CheckInComponent implements OnInit {
-  private isRegisteredSubscription: Subscription;
-	public registerForm:FormGroup;
+  public registerForm:FormGroup;
   public loading = false;
   public returnUrl: string;
 

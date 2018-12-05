@@ -36,7 +36,7 @@ import { AppStoreModule } from './core/store/store.module'
     FormsModule,
     HttpModule,
     HttpClientModule,
-    HttpClientModule,
+    NgHttpLoaderModule,
     BrowserAnimationsModule,
     UserModule,
     NewsModule,
