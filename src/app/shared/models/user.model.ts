@@ -96,18 +96,18 @@ export interface UserCard {
     name: string;
     surname: string;
     photo: string;
-    id: number
+    id: string
 }
 
 export interface Post {
     id: string;
-    photo: string;
+    photo?: string;
     text: number | string;
     user: UserCard;
     like: number;
     dislike: number;
-    date: Date;
-    comments: Array<PostComment>;
+    date?: Date;
+    comments?: Array<PostComment>;
 }
 
 export interface PostComment {

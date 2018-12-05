@@ -31,8 +31,15 @@
                 line-height: 24px;
                 margin: 0;
             }
+            textarea {
+              
+                height: 5rem;
+               
+                padding-left: 10px;
+                overflow: auto;
         }
     }
+}
 }
 
 #menu{
@@ -147,5 +154,15 @@ img.profile-photo-md {
     	clear: both;
     }
 
+    .btn-main {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        background-color: #09948d;
+        border-radius: 30px;
+        border: none;
+        padding: 7px 25px;
+        color: #fff;
+      }
 
 

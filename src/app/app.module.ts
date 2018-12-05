@@ -4,13 +4,8 @@ import { FormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule } from "@ngrx/store";
 import { JwtInterceptor } from './register/helpers/jwt.interceptor';
 import { ErrorInterceptor } from './register/helpers/error.interceptor'
-import { StoreRouterConnectingModule } from "@ngrx/router-store";
-import { StoreDevtoolsModule}  from "@ngrx/store-devtools";
-import { environment } from "../environments/environment";
-import { EffectsModule } from "@ngrx/effects";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NetworkDirective } from './shared/directives/network.directive';
@@ -40,16 +35,6 @@ import { AppStoreModule } from './core/store/store.module'
     BrowserAnimationsModule,
     UserModule,
     NewsModule,
-<<<<<<< HEAD
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({name: 'store devtools', logOnly: environment.production}),
-    StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
-
-  ],
-  providers: [NetworkService, RegisterGuard],
-  bootstrap: [AppComponent],
-=======
     AppStoreModule
    ],
   providers: [
@@ -59,6 +44,5 @@ import { AppStoreModule } from './core/store/store.module'
     RegisterGuard
     ],
   bootstrap: [AppComponent]
->>>>>>> origin/viktor
 })
 export class AppModule { }

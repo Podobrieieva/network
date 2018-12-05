@@ -1,9 +1,9 @@
 
 <div class="wrapper">
   <div class="post-content">
-    <img src="https://thunder-team.com/friend-finder/images/post-images/1.jpg" alt="post-image" class="img-responsive post-image">
+    <img [src]="item.photo || 'https://techflourish.com/images/jpeg-flower-images-2.jpg'" alt="post-image" class="img-responsive post-image">
     <div class="post-container">
-      <img src="https://thunder-team.com/friend-finder/images/users/user-11.jpg" alt="user" class="profile-photo-md pull-left">
+      <img [src]="item.user.photo" alt="user" class="profile-photo-md pull-left">
       <div class="post-detail">
         <div class="user-info">
           <h5><a href="timeline.html" class="profile-link">Alexis Clark</a> <span class="following">following</span></h5>
@@ -17,11 +17,11 @@
                   <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                  <button mat-menu-item>
+                  <button (click)="deleteBtnCkickHandler(item)" mat-menu-item>
                     <mat-icon>delete</mat-icon>
                     <span>Delete</span>
                   </button>
-                  <button mat-menu-item>
+                  <button (click)="editBtnCkickHandler()" mat-menu-item>
                     <mat-icon>edit</mat-icon>
                     <span>Edit</span>
                   </button>
@@ -30,9 +30,14 @@
         </div>
       
         <div class="line-divider"></div>
-        <div class="post-text">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
+        <div class="post-text" *ngIf="editModePost">
+          <textarea type="text" [value]="item.text" (input)="inputHandler($event)"></textarea>
         </div>
+        <div class="post-text" *ngIf="!editModePost" >
+          <p>{{item.text}} <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
+        </div>
+        <button class="btn-main" *ngIf="editModePost" (click)="saveBtnClickHandler(item, itemIndex)">Send</button>
+        <button class="btn-main" *ngIf="editModePost" (click)="cancelBtnClickHandler(item, itemIndex)">Cancel</button>
         <div class="line-divider"></div>
         <a class="comment clearfix" (click) = "addBtnClickHandler()" *ngIf="!editMode" > Add comment</a>
         <app-comment-wrapper></app-comment-wrapper>
