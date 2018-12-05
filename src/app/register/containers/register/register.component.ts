@@ -15,7 +15,6 @@ export class RegisterComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
   }
 
   changeRegister() {
@@ -23,6 +22,7 @@ export class RegisterComponent implements OnInit {
     this.register=true;
     this.recovery=false;
   }
+  
   changeLogin() {
     this.login=true;
     this.register=false;
@@ -32,6 +32,6 @@ export class RegisterComponent implements OnInit {
   onClickRecovery(recovery:boolean) {
     this.login=false;
     this.register=false;
-     this.recovery = true;    
+    this.recovery = true;    
   }
 }

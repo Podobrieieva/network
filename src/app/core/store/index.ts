@@ -13,14 +13,14 @@ export interface State {
   router: fromRouter.RouterReducerState;
   post: fromNews.INewsState;
   passwordChange: fromPasswordChange.IpassChangeState;
-  userProfail: fromUserProfile.State;
+  userProfile: fromUserProfile.State;
 }
 
 export const reducers: ActionReducerMap < State > = {
   router: fromRouter.routerReducer,
   post: fromNews.reducer,
   passwordChange: fromPasswordChange.reducer,
-  userProfail: fromUserProfile.reducer
+  userProfile: fromUserProfile.reducer
 };
 
 // console.log all actions
@@ -32,7 +32,8 @@ export function logger(reducer: ActionReducer < State >): ActionReducer < State 
   };
 }
 
-export const getIsUserProfile = (state) => state.userProfaile.isUserProfile
+export const getIsUserProfile = (state) => state.userProfile.isUserProfile;
+
 export const getIsNewPassword = (state) => state.passwordChange.isGetNewPass;
 
 // export const getNewsState = createFeatureSelector<fromNews.State>('news');

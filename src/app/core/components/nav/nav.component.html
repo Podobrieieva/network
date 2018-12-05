@@ -2,13 +2,33 @@
   <nav>
     <div class="nav-wrapper">
       <a routerLink='/main'  routerLinkActive="active" class="brand-logo">Logo</a>
-      <img class="img-profile" src="{{currentUser?.avatar}}">
-      <ul class="right hide-on-med-and-down">
+        
+        <img class="img-profile" src="{{currentUser?.avatar}}" mat-button [matMenuTriggerFor] = "menu">
+        
+         <mat-menu  #menu="matMenu" [overlapTrigger]="false">
+      <!--    <div mat-menu-item class="currentUserData">
+              {{currentUser.name}}  {{currentUser.surname}} {{currentUser.email}}
+          </div> -->
+          <!-- <div mat-menu-item >
+            <span class="currentUserData">
+              {{currentUser.email}}
+            </span> 
+          </div>  -->
+          <button mat-menu-item>{{fullname}}</button>        
+          <button mat-menu-item routerLink='/network/profile'>account_box</button>
+          <button mat-menu-item routerLink='/network/news'>notifications</button>
+          <button mat-menu-item routerLink='/network/subscribe'>supervised_user_circle</button>
+          <button mat-menu-item routerLink='/network/search'>search</button>
+          <button mat-menu-item (click)="logout()">Log out</button>
+        </mat-menu>
+
+      
+      <!-- <ul class="right hide-on-med-and-down">
         <li><a routerLink='/network/profile' routerLinkActive="active" [class.activated]="currentUrl == '/network/profile'"><i class="large material-icons">account_box</i></a></li>
         <li><a routerLink='/network/news'  [class.activated]="currentUrl == '/network/news'"><i class="large material-icons">notifications</i></a></li>
         <li><a routerLink='/network/subscribe'  routerLinkActive="active" [class.activated]="currentUrl == '/network/subscribe'" ><i class="large material-icons">supervised_user_circle</i></a></li>
         <li > <a routerLink='/network/search'  routerLinkActive="active" [class.activated]="currentUrl == '/network/search'"> <i class="material-icons">search</i></a> </li> 
-      </ul>
+      </ul> -->
     </div>
   </nav>
 

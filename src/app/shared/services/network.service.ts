@@ -106,13 +106,16 @@ export class NetworkService {
   public commentWrapperForComment:CommentModel [];
   
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { }
     
-   }
+  public logout() {
+    localStorage.removeItem('permissionToEnter'); 
+    location.reload(true);    
+  }
 
  public getUserProfile() {
-   const token = localStorage.getItem('token')
-   console.log(token)
+  //  const token = localStorage.getItem('token')
+  //  console.log(token)
    return this.http.get<any>(`${this.apiUrl}/profile`);  
    
 }
