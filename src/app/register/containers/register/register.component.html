@@ -1,6 +1,6 @@
 <div class="registerAll">
   <div class="wrapper">
-    <app-alert></app-alert>
+    <app-alert (changeLogin)="changeLogin($event)"></app-alert>
     <div class="reg-form-container">  
       <div class="reg-options">
         <ul class="nav-tabs">
@@ -11,7 +11,7 @@
       <div class="tab-content">
         <app-log-in *ngIf="login" (onClickRecovery)="onClickRecovery($event)"></app-log-in>
         <app-check-in *ngIf="register"></app-check-in>
-        <app-password-recovery *ngIf="recovery" ></app-password-recovery>
+        <app-password-recovery *ngIf="recovery"></app-password-recovery>
       </div> 
     </div>
     <div class="icons"> 

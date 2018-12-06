@@ -38,6 +38,7 @@ export class RegisterService {
   logout() {
     localStorage.removeItem('permissionToEnter');        
   }
+  
   //     getAll() {
   //       return this.http.get<User[]>(`${this.apiUrl}/users`);
   //   }

@@ -8,6 +8,7 @@ import { RegisterService } from '../../service/register.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent implements OnInit {
 	login: boolean=true;
 	register: boolean=false;
@@ -28,10 +29,12 @@ export class RegisterComponent implements OnInit {
     this.register=false;
     this.recovery=false;  	
   }
-
+  
   onClickRecovery(recovery:boolean) {
     this.login=false;
     this.register=false;
     this.recovery = true;    
   }
+
+
 }

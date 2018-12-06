@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store} from "@ngrx/store";
-import { Subscription } from "rxjs";
-
-import { getIsEmail,  State} from "../../store";
+import { State} from "../../store";
 import { RegisterService } from '../../service/register.service'
 import { GetEmail } from "../../store/actions/password-recovery.actions";
 
