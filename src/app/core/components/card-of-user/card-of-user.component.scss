@@ -1,110 +1,116 @@
-
-/*.UserList {
-  padding: 0em 2.5rem 0;
-}
-
-.User {
-  display: flex;
-}
-.Card-avatar {
-  margin: 0 1em 0 0;
-  min-width: 40px;
-  max-width: 80px;
-  border-radius: 50%;
-}
-
-.Card-name {
-  font-size: 1.3em; 
-  color: rgb(29, 28, 28);
-}*/
-
-body{
-  display:flex;
-  min-height:80vh;
-  justify-content:center;
-  align-items:center;
+.flexbox{
+    display: flex;
+   flex-direction: row;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
   
-}
-
-.user-card{
-  position:relative;
-  height:100px;
-  width:300px;
-  border:1px solid #ddd;
-  display:flex;
-  align-items:center;
-  box-sizing:border-box;
-  padding:16px;
-  margin-left: 20px;
-}
-
-.user-card:after{
-  position:absolute;
-  content:'';
-  height:2px;
-  background:#2ab6b6;
-  width:100%;
-  bottom:0px;
-  left:0px;
-  width:100%;
-  transform:scale(0);
-  transition:transform 550ms ease;
-}
-
-.user-card:hover::after{
-  transform:scale(1);
-}
-
-.user-card p,.user-card div{
-  margin:0px;
-  padding:0px;
-}
-
-.user-card .avatar,.user-card  .avatar img,.user-card  .avatar i{
-  height:100px;
-  width:100px;
-  border-radius:100%;
-}
-
-.user-card .avatar{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-right:20px;
-  font-size:2em;
-  color:#676a6c;
-}
-
-.user-card .avatar i{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.user-card .details{
-  width:100%;
-  text-overflow:ellipsis;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-} 
-
-.user-card .details .name{
-  margin:0;
-  padding:0;
-  width:60%;
-  font-size:20px;
-  word-wrap:break-word;
-  color:black;
-}
-
-.user-card .details .number{
-  margin:0;
-  padding:0;
-  color:#555;
-  display:flex;
-  align-items:center;
-  margin-top:10px;
-}
-
+  .card,
+  .box {
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+  }
+  img {
+    display: block;
+    width: 100%;
+  }
   
+  .follow, .view {
+    background:rgb(192, 245, 240);
+    border: 1px solid #09948d;
+    border-radius: 30px;
+    color: rgba(0,0,0,0.75);
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    height: 34px;
+    letter-spacing: 2px;
+    line-height: 20px;
+    margin:20px auto;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+    width: 90%;
+  }
+  
+  .follow:hover {
+    background-color:rgb(52, 207, 122);
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.15);
+  }
+  .card {
+    background: linear-gradient(to top, #9ac9bb 0%, #5fccba 36%, #0e7063 100%);
+    box-shadow: 0 0 100px  rgba(0,0,0,0.25);
+    height: 380px;
+    margin: 2em;
+    width: 180px;
+    display: flex;
+    border-radius: 20px;
+  }
+  
+  .header {
+    color: #FFF;
+    left: 0;
+    text-align: center;
+    top: 0;
+    width: inherit;
+  }
+  
+  .header:before {
+    border: 2px solid rgba(161, 220, 255, 0.34);
+    border-radius: 100%;
+    content: "";
+    height: 140px;
+    left: 0;
+    margin: 40px auto;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 140px;
+    z-index: 2;
+    -webkit-transform: scale(1.24, 1.24);
+    -moz-transform: scale(1.24, 1.24);
+    transform: scale(1.24, 1.24);
+  }
+  
+  .header img {
+    border: 5px solid #A1DCFF;
+    border-radius: 100%;
+    height: 140px;
+    margin: 2em auto 0.5em;
+    width: 140px;
+  }
+  
+  .header h2 {
+    display: inline-block;
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin: 0 auto;
+    padding: 30px 0 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  }
+  
+  .header h3 {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 15px;
+    margin: 0 auto;
+    padding: 5px 0 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    text-transform: uppercase;
+  }
+  
+  .footer {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: inherit;
+    height: 29%;
+  }
