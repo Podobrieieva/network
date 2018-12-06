@@ -16,6 +16,7 @@ export class CommentComponent implements OnInit {
 
   constructor(private networkService: NetworkService) { 
     const subscription = this.networkService.commentForComSubjObservable().subscribe(data => {
+      console.log(data);
       this.commentForComment = data;
     });
   }

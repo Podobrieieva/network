@@ -5,13 +5,8 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule } from "@ngrx/store";
 import { JwtInterceptor } from './register/helpers/jwt.interceptor';
 import { ErrorInterceptor } from './register/helpers/error.interceptor'
-import { StoreRouterConnectingModule } from "@ngrx/router-store";
-import { StoreDevtoolsModule}  from "@ngrx/store-devtools";
-import { environment } from "../environments/environment";
-import { EffectsModule } from "@ngrx/effects";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NetworkDirective } from './shared/directives/network.directive';
@@ -21,6 +16,8 @@ import { RegisterGuard } from './shared/guards/register.guard';
 import { UserModule } from './user/user.module';
 import { NewsModule } from './news/news.module';
 import { AppStoreModule } from './core/store/store.module'
+
+
 
 
 @NgModule({

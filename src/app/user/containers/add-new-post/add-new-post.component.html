@@ -1,22 +1,26 @@
 <div class="create-post">
+    <form #f="ngForm" (ngSubmit)="onSubmitNewPost(post)">
   <div class="row">
+    
     <div class="form-group">
       <img
         width="40"
         height="40"
-        src="../../../../assets/img/user-profile/users/user-1.jpg"
+        [src]="post.user.photo"
         alt=""
         class="profile-photo-md"
       />
       <textarea
-        name="texts"
-        id="exampleTextarea"
+      type="text" id="text" class="form-control" 
+       [(ngModel)]="post.text" name="text" #text = "ngModel" 
         cols="30"
         rows="1"
-        class="form-control"
         placeholder="Write what you wish"
       ></textarea>
     </div>
     <div class="tools"><button class="btn-main">Publish</button></div>
+   
   </div>
+</form>
 </div>
+

@@ -1,16 +1,13 @@
+<div class="card">
+  <div class="box header">
+    <img [src]="user.photo">
+    <h2>{{user.name | uppercase}}</h2>
+    <h3>{{user.surname | uppercase}}</h3>
+  </div>
+  <div class="box footer">
+    <button class="view">View Profile</button>
+    <button class="follow">Follow</button>
 
-    <div class="col s3">
-      <div class="card" >
-        <div class="card-image">
-          <img [src]="user.photo">
-          <span class="card-title"> {{user.name | uppercase}}</span>
-          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-        </div>
-        <div class="card-content">
-          <p> {{user.surname | uppercase}}</p>
-        </div>
-      </div>
-    </div>
- 
-
+  </div>
+</div> 
 

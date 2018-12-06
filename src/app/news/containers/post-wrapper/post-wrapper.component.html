@@ -2,8 +2,13 @@
 <div class ="wrapper">
 <!-- <app-add-new-post></app-add-new-post> -->
 <ul class="news">
-    <li *ngFor= "let post of posts"></li>
-<app-item-post></app-item-post>
-</ul>
+        <div *ngFor= "let itemPost of userPosts; let i = index">
+            <app-item-post
+             [item]="itemPost"
+              [itemIndex]="i"
+              >
+            </app-item-post>
+        </div>
+        </ul>
 </div>
 <app-footer></app-footer>

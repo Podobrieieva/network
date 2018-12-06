@@ -10,12 +10,20 @@
       <div class="timeline-nav-bar">
         <div class="profile-info">
           <img
-            src="{{currentUser.avatar}}"
+            [src]="currentUser.avatar"
             alt=""
             class="img-responsive profile-photo"
           />
+          <input 
+            style="display: none" 
+            type="file" (change)="onFileChanged($event)" 
+            #fileInput>
+          <button  class="btn-main" (click)="fileInput.click()">Change photo</button>
           <h3>{{ currentUser.name }} {{ currentUser.surname }}</h3>
           <p class="text-muted">{{ currentUser.workPosition }}</p>
+          
+          
+
         </div>
         <div class="profile-cont">
           <div class="follow-me">
@@ -31,8 +39,18 @@
           <div class="main-wrap">
             <div class="main-post-field">
               <app-add-new-post></app-add-new-post>
-
-              <app-item-post *ngFor="let item of userPosts"></app-item-post>
+               <ul>
+                <div *ngFor= "let itemPost of userPosts; let i = index">
+                    <app-item-post
+                     [item]="itemPost"
+                      [itemIndex]="i"
+                      (saveEvt)="saveHandler($event)"
+                      (cancelEvt)="cancelHandler()"
+                      (deleteEvt) = "deleteHandler($event)">
+                    </app-item-post>
+                </div>
+                </ul>
+              
               <!--
                 <div class="post-date">
                       <h5>{{ item.user.name }}</h5>
@@ -118,4 +136,4 @@
   </div>
 </div>
 
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->

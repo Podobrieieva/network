@@ -30,7 +30,7 @@ private isUserSubscription: Subscription;
   ngOnInit() {
   }
 
-  btnSabmit() {
+  btnSubmit() {
    
     this.store.dispatch(new GetUserProfile());
   }

@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatNativeDateModule } from '@angular/material';
-import { MaterModule } from './material_module'
+
+
 
 import { HeaderComponent } from './containers/header/header.component'
 import { NavComponent } from './components/nav/nav.component';
@@ -18,6 +19,7 @@ import { CardOfUserComponent } from './components/card-of-user/card-of-user.comp
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AddCommentForCommentComponent } from './containers/add-comment-for-comment/add-comment-for-comment.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import   MaterialModule  from '../user/material-module';
 
 
 
@@ -28,7 +30,9 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    MaterModule
+    MaterialModule
+    
+   
   ],
   declarations: [
     HeaderComponent, 
