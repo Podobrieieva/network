@@ -9,6 +9,9 @@
   transition: opacity, transform 0s cubic-bezier(0, 0, 0.2, 1);
   transform: scale(0);
 }
+.mat-tab-header *{
+
+}
 .mat-tab-label.mat-ripple.ng-star-inserted.mat-tab-label-active {
   overflow: hidden;
   color: #0cb6ad;
@@ -21,10 +24,11 @@
   background-color: #00000059;
   padding-left: 21%;
   margin-bottom: 110px;
+}
+
+.mat-tab-label{
   color: #fff;
 
-}
-.mat-tab-labels {
 }
 .mat-ink-bar {
   background-color: #0cb6ad;

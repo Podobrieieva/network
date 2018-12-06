@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
     const subscrip = this.service.userProfileSubjObservable().subscribe(data => {
       this.user= data;
     });
+   
   }
 
   ngOnInit() {

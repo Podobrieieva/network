@@ -21,6 +21,7 @@ $fa-font-path: '~font-awesome/fonts';
 }
 
 .wrapper {
+  margin-top: 120px;
   display: flex;
   -webkit-flex-direction: column;
   -moz-flex-direction: column;
@@ -249,7 +250,7 @@ i {
       no-repeat;
 }
 .back-cover-player {
-  animation: back-fadeout 26.7s ease-out infinite;
+  animation: back-fadeout 26.7s  1s ease-out infinite;
 }
 .back-cover {
   animation: fadeout 10s linear;
@@ -258,7 +259,7 @@ i {
   position: absolute;
   z-index: 2;
   width: 500px;
-  top: 15%;
+  top: 12%;
   left: 50%;
   transform: translate(-50%,-50%);
   display: flex;
@@ -302,7 +303,7 @@ path {
     top: 50%;
   }
   100% {
-    top: 15%;
+    top: 12%;
 
   }
 }

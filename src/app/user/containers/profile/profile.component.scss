@@ -289,6 +289,8 @@ video.post-video,
   padding: 0 20px;
   top: -199px;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
 }
 .timeline-cover .timeline-nav-bar .profile-info h3 {
   font-size: 35px;
