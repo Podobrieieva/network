@@ -8,6 +8,9 @@ import { catchError, exhaustMap, map } from 'rxjs/operators';
 import { AlertService } from '../../service/alert.service';
 import { RegisterService } from '../../service/register.service';
 
+import { State} from '../../../core/store'
+import { select, Store} from '@ngrx/store';
+import { GetUserProfile } from '../../../core/store/actions/user-profile.actions';
 
 
 @Injectable()
@@ -20,15 +23,14 @@ export class LoginEffect {
     	action => this.registerService.login(action.payload).pipe(
     		map(data => {
     			console.log(data)
-           		localStorage.setItem('permissionToEnter', JSON.stringify(data));
-           		localStorage.setItem('token', data['data'].token);
-           		this.router.navigate([""]);
-           		return new GetLoginSuccess(data);           		    			
+          localStorage.setItem('permissionToEnter', JSON.stringify(data));
+          localStorage.setItem('token', data['data'].token);
+          this.store.dispatch(new GetUserProfile());
+          return new GetLoginSuccess(data);           		    			
     		}),
     		catchError(err => {
           this.alertService.error('The email or password entered are not the same as those stored in our database. Check that the entered data is correct and try again.', true);
-   			
-    			return of(new GetLoginFail(err));
+   				return of(new GetLoginFail(err));
     		})
   		)
     )  
@@ -39,6 +41,7 @@ export class LoginEffect {
   	private actions$: Actions,
   	private registerService: RegisterService,
   	private alertService: AlertService,
-  	private router: Router
+  	private router: Router,
+    private store: Store<State>
   	) {}
 }

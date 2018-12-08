@@ -7,7 +7,7 @@ import { RegisterService } from '../../service/register.service'
 import { getIsAuthorization, State} from "../../store";
 import { Subscription } from "rxjs";
 import { GetLogin } from "../../store/actions/register.actions";
-
+import { GetUserProfile } from '../../../core/store/actions/user-profile.actions';
 
 
 @Component({

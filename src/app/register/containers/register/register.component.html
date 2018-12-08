@@ -1,9 +1,7 @@
 <div class="registerAll">
   <div class="wrapper">
     <app-alert (changeLogin)="changeLogin($event)"></app-alert>
-    <div class="reg-form-container">
-    <app-alert></app-alert>
-    <div class="reg-form-container">
+    <div class="reg-form-container">    
       <div class="reg-options">
         <ul class="nav-tabs">
           <li class="reg" (click)="changeRegister()">
@@ -23,9 +21,7 @@
         ></app-log-in>
         <app-check-in *ngIf="register"></app-check-in>
         <app-password-recovery *ngIf="recovery"></app-password-recovery>
-      </div> 
-
-      </div>
+      </div>    
     </div>
     <div class="icons">
       <ul class="list-inline social-icons">
@@ -63,13 +59,6 @@
     </div>
 
 </div>       
-</div>
-<div *ngIf="alert" class="alertAll">
-  <div class="" (click)="toggleAlert()"><i class="fa fa-times did"></i></div>
-  <p>
-    The email and password entered are not the same as those stored in our
-    database. Check that the entered data is correct and try again.
-  </p>
 </div>
 <!-- background animations -->
 <div class="video-background">

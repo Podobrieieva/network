@@ -9,6 +9,7 @@ import { FriendsListComponent } from './user/containers/friends-list/friends-lis
 import { RegisterGuard } from './shared/guards/register.guard';
 import { SuccessfulComponent } from './core/components/successful/successful.component';
 import { SearchWrapperComponent } from './news/containers/search-wrapper/search-wrapper.component';
+import { ChangePasswordComponent }  from './core/components/change-password/change-password.component'
 
 const routes: Routes = [
   {path: '',  
@@ -16,9 +17,14 @@ const routes: Routes = [
   pathMatch: 'full'
   },
   {
+    path: 'auth/reset_password',
+    component: ChangePasswordComponent
+  },
+  {
     path: 'error', 
     component: NotFoundComponent
-  }, 
+  },
+
   {
     path: 'network', 
     canActivate: [RegisterGuard],

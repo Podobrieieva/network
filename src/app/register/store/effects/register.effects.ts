@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { Action } from '@ngrx/store';
-import { GetRegister, GetRegisterFail, GetRegisterSuccess, RegisterActionTypes } from '../actions/register.actions';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
+
+import { GetRegister, GetRegisterFail, GetRegisterSuccess, RegisterActionTypes } from '../actions/register.actions';
 import { AlertService } from '../../service/alert.service';
 import { RegisterService } from '../../service/register.service'
 

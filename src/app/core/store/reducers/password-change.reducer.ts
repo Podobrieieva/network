@@ -1,11 +1,11 @@
 import {PassworChangesActionsUnion, PasswordChangesActionTypes} from '../actions/password-change.actions';
 
 export interface IpassChangeState {
-  isNewPass: boolean;
+  isNewPass: object;
 }
 
 export const  initialState: IpassChangeState = {
-  isNewPass: false,
+  isNewPass: {},
 };
 
 export function reducer (state: IpassChangeState = initialState, action: PassworChangesActionsUnion) {

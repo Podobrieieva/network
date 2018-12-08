@@ -16,8 +16,8 @@ export class UserProfileEffect {
     exhaustMap(
     	action => this.networkService.getUserProfile().pipe(
     		map(data => {
-           		this.router.navigate(["network/profile"]);
-              return new GetUserProfileSuccess(data);           		    			
+          this.router.navigate(["network/profile"]);
+          return new GetUserProfileSuccess(data);           		    			
     		}),
     		catchError(err => {
     			return of(new GetUserProfileFail(err));

@@ -21,8 +21,7 @@ export class ChangePasswordComponent implements OnInit {
   constructor( private fb: FormBuilder, private router: Router, private store: Store<State>) { 
     this.isPassChangeSubscription = this.store.pipe(select(getIsNewPassword)).subscribe(isChange => {
       if(isChange) {
-        localStorage.setItem('authorization', 'true');
-        this.router.navigate(['']);
+
       }
     })
   }
@@ -32,7 +31,14 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   submitHandler() {
-    this.store.dispatch(new GetPassword())
+    const token = (window.location.search.split('='))[1];
+    console.log(token)
+    const data = {
+      "password": this.password.value,
+      "token": token
+    }
+    console.log(data)    
+    this.store.dispatch(new GetPassword(data))
   }
 
   get currentPassword() {

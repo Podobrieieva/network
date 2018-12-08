@@ -8,16 +8,16 @@ export enum PasswordChangesActionTypes {
 
 export class GetPassword implements Action {
   readonly type = PasswordChangesActionTypes.GET_PASSWORD;
+  constructor(public payload: object) {}
 }
 
 export class GetPasswordSuccess implements Action {
   readonly type = PasswordChangesActionTypes.GET_PASSWORD_SUCCESS;
-  constructor(public payload: boolean) {}
+  constructor(public payload: object) {}
 }
 
 export class GetPasswordFail implements Action {
   readonly type = PasswordChangesActionTypes.GET_PASSWORD_FAIL;
-
   constructor(public error: any) {}
 
 }

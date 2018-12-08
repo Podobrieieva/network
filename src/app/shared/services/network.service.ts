@@ -107,18 +107,33 @@ export class NetworkService {
   
 
   constructor(private http: HttpClient) { }
+
     
   public logout() {
     localStorage.removeItem('permissionToEnter'); 
     location.reload(true);    
   }
 
- public getUserProfile() {
-  //  const token = localStorage.getItem('token')
-  //  console.log(token)
-   return this.http.get<any>(`${this.apiUrl}/profile`);  
-   
-}
+ // REQUESTS
+  public getUserProfile() {
+    return this.http.get<any>(`${this.apiUrl}/profile`);
+  }
+
+  public getCurrentUserProfile(id) {
+    return this.http.get<any>(`${this.apiUrl}/profile/${id}`);
+  }
+
+  public resetPassword(reset) {
+    console.log(reset)
+    return this.http.post<any>(`${this.apiUrl}/entries/reset_password`, reset);
+  }
+
+
+//////////////////////////////////////////////////////////////////
+
+
+
+
   
 public uploadPhotoUser(selectedFile){
   const uploadData = new FormData();
