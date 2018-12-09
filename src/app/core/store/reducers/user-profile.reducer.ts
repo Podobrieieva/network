@@ -14,7 +14,8 @@ export function reducer (state: State = initialState, action: UserProfileActions
     case UserProfileActionTypes.GET_USER_PROFILE_SUCCESS:
       return {
         ...state,
-        isUserProfile: action.payload        
+        isUserProfile: action.payload,
+        isCurrentUserProfile: action.payload         
       };
     case UserProfileActionTypes.GET_CURRENT_USER_PROFILE_SUCCESS:
       return {

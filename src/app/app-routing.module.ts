@@ -39,7 +39,11 @@ const routes: Routes = [
       },
       {
         path: 'profile', 
-        component: ProfileComponent
+        component: ProfileComponent,
+        data: {
+          type: 'profile'
+        }
+
       },
       {
         path: 'news', 

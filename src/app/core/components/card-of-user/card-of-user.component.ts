@@ -3,7 +3,7 @@ import { select, Store} from '@ngrx/store';
 import { Subscription } from "rxjs";
 import { State} from '../../store';
 import { GetCurrentUserProfile } from '../../store/actions/user-profile.actions'
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-of-user',
@@ -16,14 +16,16 @@ export class CardOfUserComponent implements OnInit {
   
   private id:string = '5c03f167ca808300044080ba';
 
-  constructor(private store: Store<State>) { }
+  constructor(private store: Store<State>, private router: Router) { }
 
   ngOnInit() {
   }
 
   public viewCurrentUser() {
-  	console.log(this.id);
 
-  	this.store.dispatch(new GetCurrentUserProfile(this.id));
+  	console.log(this.id);
+    this.store.dispatch(new GetCurrentUserProfile(this.id));
+    //this.router.navigate(["network/profile", {id: this.id}]);
+    
   }
 }

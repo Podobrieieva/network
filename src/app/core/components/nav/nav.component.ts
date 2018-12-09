@@ -4,8 +4,8 @@ import { select, Store} from "@ngrx/store";
 import { Subscription } from "rxjs";
 import { getIsUserProfile, State} from "../../store";
 import { NetworkService } from '../../../shared/services/network.service'
-
-
+import { GetCurrentUserProfile } from '../../store/actions/user-profile.actions'
+import { UserProfileModel } from '../../../shared/models/user.model'
 
 
 @Component({
@@ -17,7 +17,7 @@ export class NavComponent implements OnInit {
 
   private isUserProfileSubscription: Subscription;
   public currentUrl: string;
-  public fullname: string;
+  public userProfile: UserProfileModel;
 
   public currentUser = {
     name: 'Sarah',
@@ -34,13 +34,16 @@ export class NavComponent implements OnInit {
       this.isUserProfileSubscription = this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
         console.log(isUserProfile)
         if (isUserProfile) {
-          this.fullname = isUserProfile.data.user.fullname
+          this.userProfile = isUserProfile.data.user
         }      
       })
   }
 
   ngOnInit() {
  }
+goToProfilePage() {
+  this.store.dispatch(new GetCurrentUserProfile(this.userProfile.id));
+}
 
 public logout() {
   this.networkService.logout();

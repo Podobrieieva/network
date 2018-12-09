@@ -15,6 +15,7 @@ export class NetworkService {
   private commentSubj: BehaviorSubject<any> = new BehaviorSubject(3);
   private commentForComSubj: BehaviorSubject<any> = new BehaviorSubject(3);
   private addPostSubject: Subject <any> = new Subject();
+  private UsersSubscription: BehaviorSubject<any>;
   private apiUrl:string = 'https://s-network.herokuapp.com/api/v1';
   private url = `http://localhost:3000`;
   
@@ -110,7 +111,8 @@ export class NetworkService {
 
     
   public logout() {
-    localStorage.removeItem('permissionToEnter'); 
+    //localStorage.removeItem('permissionToEnter');
+    localStorage.clear(); 
     location.reload(true);    
   }
 
@@ -128,7 +130,13 @@ export class NetworkService {
     return this.http.post<any>(`${this.apiUrl}/entries/reset_password`, reset);
   }
 
+  public addSubscribe(id) {
+    return this.http.get<any>(`${this.apiUrl}/profile/${id}/subscribe`);
+  }
 
+  public showFriendlist(id) {
+    return this.http.get<any>(`${this.apiUrl}/profile/${id}/subscriptions`);
+  }
 //////////////////////////////////////////////////////////////////
 
 
@@ -229,5 +237,7 @@ public uploadPhotoUser(selectedFile){
   public addPost(post){
     this.userPosts.push(post)
   }
-  
+  public addFriend(id) {
+    return this.http.get<any>(`${this.apiUrl}/profile/${id}`);
+  }
 }

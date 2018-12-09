@@ -21,7 +21,8 @@ export class CurrentUserProfileEffect {
     			console.log(data)
            		//this.alertService.success('Registration successful', true);
            		localStorage.setItem('currentUserProfile', JSON.stringify(data));
-           		this.router.navigate(["network/profile"]);
+           		//this.router.navigate(["network/profile"]);
+              this.router.navigate(["network/profile", {id: data.data.user.id}]);
            		return new GetCurrentUserProfileSuccess(data);
            		    			
     		}),
