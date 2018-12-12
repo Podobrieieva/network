@@ -99,6 +99,7 @@ export interface UserCard {
     id: string
 }
 
+
 export interface Post {
     id: string;
     photo?: string;

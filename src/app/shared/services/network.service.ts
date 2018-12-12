@@ -166,22 +166,22 @@ public uploadPhotoUser(selectedFile){
                     
   }
 
-  public getPosts(): Observable<PostModel[]> {
-    return this.http.get<PostModel[]>(`${this.url}/network/news`);
+  public getPosts() {
+    return this.http.get(`${this.apiUrl}/posts`);
 
   }
 
-  public getUserPosts(){
-    return this.fetchUserPosts(this.userPosts.reverse());
+  public getUserPosts(userId){
+    return this.http.get(`${this.apiUrl}/posts${userId}`);
   }
 
-  public fetchUserPosts(params){
-    this.userPostsSubj.next(params)
-  }
+  // public fetchUserPosts(params){
+  //   this.userPostsSubj.next(params)
+  // }
 
-  public userPostsSubjObservable(){
-    return this.userPostsSubj.asObservable()
-  }
+  // public userPostsSubjObservable(){
+  //   return this.userPostsSubj.asObservable()
+  // }
    public userProfileSubjObservable(){
     return this.userProfileSubj.asObservable()
  }
@@ -220,14 +220,15 @@ public uploadPhotoUser(selectedFile){
   }
   public setItemByIndex(item,index){
     this.userPosts[index] = item;
-    this.getUserPosts();
+    // this.getUserPosts();
   }
 
   public getAddPostObservable(){
     return this.addPostSubject.asObservable();
   }
   public addPost(post){
-    this.userPosts.push(post)
+    // this.userPosts.push(post)
+    return this.http.post<any>(`${this.apiUrl}/posts`, post);
   }
   
 }

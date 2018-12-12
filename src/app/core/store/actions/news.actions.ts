@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import { PostModel } from '../../../shared/models/user.model';
+import { Post} from '../../../shared/models/user.model';
 
 export enum NewsActionTypes {
     GET_POSTS = '[POSTS] Fetch todos requested',
@@ -17,7 +17,7 @@ export enum NewsActionTypes {
 
   export class GetPostsSuccess implements Action {
     readonly type = NewsActionTypes.GET_POSTS_SUCCESS;
-    constructor(public payload: PostModel[]) {}
+    constructor(public payload: Post[]) {}
   }
 
   export type NewsActionsUnion = GetPosts | GetPostsFail | GetPostsSuccess;

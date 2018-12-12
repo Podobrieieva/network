@@ -1,8 +1,8 @@
-import { PostModel } from "../../../shared/models/user.model";
+import { Post} from "../../../shared/models/user.model";
 import { NewsActionsUnion, NewsActionTypes } from "../actions/news.actions"
 
 export  interface INewsState {
-    posts: PostModel [];
+    posts: Post [];
   }
 
   export const initialState: INewsState = {

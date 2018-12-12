@@ -1,9 +1,10 @@
-import {ActionReducerMap, ActionReducer, MetaReducer, createFeatureSelector, createSelector} from '@ngrx/store';
+import {ActionReducerMap, ActionReducer, MetaReducer, createFeatureSelector, createSelector, State} from '@ngrx/store';
 import {environment} from '../../../environments/environment';
 import * as fromRouter from '@ngrx/router-store';
 import * as fromNews from './reducers/news.reducer';
 import * as fromPasswordChange from './reducers/password-change.reducer';
 import * as fromUserProfile from './reducers/user-profile.reducer';
+import * as fromUserPosts from './reducers/user-posts.reducer'
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
@@ -14,17 +15,19 @@ export interface State {
   post: fromNews.INewsState;
   passwordChange: fromPasswordChange.IpassChangeState;
   userProfile: fromUserProfile.State;
+  userPosts: fromUserPosts.State;
 }
 
 export const reducers: ActionReducerMap < State > = {
   router: fromRouter.routerReducer,
   post: fromNews.reducer,
   passwordChange: fromPasswordChange.reducer,
-  userProfile: fromUserProfile.reducer
+  userProfile: fromUserProfile.reducer,
+  userPosts: fromUserPosts.reducer
 };
 
 // console.log all actions
-export function logger(reducer: ActionReducer < State >): ActionReducer < State > {
+export function logger(reducer: ActionReducer <State>): ActionReducer < State > {
   return function (state: State, action: any): State {
     console.log('action', action);
     console.log('state', state);
@@ -38,7 +41,12 @@ export const getIsNewPassword = (state) => state.passwordChange.isNewPass;
 
 // export const getNewsState = createFeatureSelector<fromNews.State>('news');
 
-export const getPosts = (state: State) => state.post.posts;
+export const getPosts = (state) => state.post.posts;
+export const getIsUserPosts = (state) => state.userPosts.isUserPosts;
+export const getIsAddUserPost = (state) => state.userPosts.isAddUserPost;
+
+
+
 
 // export const getTodosSelector = createSelector(
 //     getNewsState,

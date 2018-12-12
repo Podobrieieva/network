@@ -8,6 +8,7 @@ import { Post } from '../../../shared/models/user.model';
   styleUrls: ['./item-post.component.scss']
 })
 export class ItemPostComponent implements OnInit {
+
   
   @Input() item: Post;
   @Input() itemIndex = 0;
@@ -20,7 +21,9 @@ export class ItemPostComponent implements OnInit {
   public counterDislike: any  = 0;
   
 
-  constructor() { }
+  constructor() { 
+  }
+
   private editingItem = <Post>{};
 
   ngOnInit() {

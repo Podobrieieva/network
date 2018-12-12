@@ -6,8 +6,8 @@
       <img [src]="item.user.photo" alt="user" class="profile-photo-md pull-left">
       <div class="post-detail">
         <div class="user-info">
-          <h5><a href="timeline.html" class="profile-link">Alexis Clark</a> <span class="following">following</span></h5>
-          <p class="text-muted">Published a photo about 3 mins ago</p>
+          <h5><a href="timeline.html" class="profile-link">{{item.user.name}} {{item.user.surname}}</a> <span class="following">following</span></h5>
+          <p class="text-muted">Published a photo about 3 mins ago {{item.date}}</p>
         </div>
         <div class="reaction">
           <a (click) = "like()" class="btn text-green"><i class="material-icons">  thumb_up  </i> {{counterLike}}</a>
@@ -17,13 +17,13 @@
                   <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                  <button (click)="deleteBtnCkickHandler(item)" mat-menu-item>
-                    <mat-icon>delete</mat-icon>
-                    <span>Delete</span>
-                  </button>
                   <button (click)="editBtnCkickHandler()" mat-menu-item>
                     <mat-icon>edit</mat-icon>
                     <span>Edit</span>
+                  </button>
+                  <button (click)="deleteBtnCkickHandler(item)" mat-menu-item>
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
                   </button>
                 </mat-menu>
               

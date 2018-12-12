@@ -16,14 +16,15 @@ export class PostWrapperComponent implements OnInit {
   public userPosts: Array<Post>;
 
   constructor(private store:Store<State>, private service: NetworkService ) { 
-    const subscription = this.service.userPostsSubjObservable().subscribe(data => {
-      this.userPosts= data;
-  })}
+    // const subscription = this.service.userPostsSubjObservable().subscribe(data => {
+    //   this.userPosts= data;
+  // })
+  }
 
   ngOnInit() {
     this.store.dispatch({type: NewsActions.NewsActionTypes.GET_POSTS})
     this.postList$ = this.store.pipe(select(getPosts));
-    this.service.getUserPosts();
+    // this.service.getUserPosts();
   }
 
 
