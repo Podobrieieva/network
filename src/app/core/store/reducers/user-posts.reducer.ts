@@ -1,12 +1,12 @@
 import { UserPostsActionTypes,UserPostsActionsUnion} from '../actions/user-posts.actions';
 export interface State {
- isUserPosts: Array<object>;
+ isUserPosts:object;
  isAddUserPost: object;
  
 }
 
 export const  initialState: State = {
-  isUserPosts: [],
+  isUserPosts: {},
   isAddUserPost: {},
 
 };

@@ -13,7 +13,7 @@ export enum UserPostsActionTypes {
 
   export class GetUserPosts implements Action{
     readonly type = UserPostsActionTypes.GET_USER_POSTS;
-    constructor(public payload: object) {}
+    constructor(public payload: string) {}
   }
 
   export class GetUserPostsSuccess implements Action {

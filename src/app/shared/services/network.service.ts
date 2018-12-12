@@ -167,12 +167,12 @@ public uploadPhotoUser(selectedFile){
   }
 
   public getPosts() {
-    return this.http.get(`${this.apiUrl}/posts`);
+    return this.http.get<any>(`${this.apiUrl}/posts`);
 
   }
 
   public getUserPosts(userId){
-    return this.http.get(`${this.apiUrl}/posts${userId}`);
+    return this.http.get<any>(`${this.apiUrl}/posts${userId}`);
   }
 
   // public fetchUserPosts(params){

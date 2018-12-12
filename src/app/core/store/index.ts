@@ -1,4 +1,4 @@
-import {ActionReducerMap, ActionReducer, MetaReducer, createFeatureSelector, createSelector, State} from '@ngrx/store';
+import {ActionReducerMap, ActionReducer, MetaReducer, createFeatureSelector, createSelector} from '@ngrx/store';
 import {environment} from '../../../environments/environment';
 import * as fromRouter from '@ngrx/router-store';
 import * as fromNews from './reducers/news.reducer';
