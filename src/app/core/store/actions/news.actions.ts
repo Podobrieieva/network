@@ -13,11 +13,12 @@ export enum NewsActionTypes {
 
   export class GetPostsFail implements Action {
     readonly type = NewsActionTypes.GET_POSTS_FAIL;
+    constructor(public payload: object) {}
   }
 
   export class GetPostsSuccess implements Action {
     readonly type = NewsActionTypes.GET_POSTS_SUCCESS;
-    constructor(public payload: Post[]) {}
+    constructor(public payload: any) {}
   }
 
   export type NewsActionsUnion = GetPosts | GetPostsFail | GetPostsSuccess;

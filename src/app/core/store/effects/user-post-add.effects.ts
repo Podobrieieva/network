@@ -16,7 +16,7 @@ export class UserPostAddEffect {
   .pipe(
     ofType<GetUserPostAdd>(UserPostsActionTypes.GET_USER_POST_ADD),
     exhaustMap(
-    	action => this.networkService.addPost(action.payload).pipe(
+    	action => this.networkService.addPost(action.payload, action.imageUrl).pipe(
     		map(data => {
     			console.log(data)
            		

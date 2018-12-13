@@ -12,7 +12,7 @@ import * as fromUserPosts from './reducers/user-posts.reducer'
  */
 export interface State {
   router: fromRouter.RouterReducerState;
-  post: fromNews.INewsState;
+  post: fromNews.State;
   passwordChange: fromPasswordChange.IpassChangeState;
   userProfile: fromUserProfile.State;
   userPosts: fromUserPosts.State;

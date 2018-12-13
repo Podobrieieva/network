@@ -28,7 +28,7 @@ export enum UserPostsActionTypes {
   
   export class GetUserPostAdd implements Action{
     readonly type = UserPostsActionTypes.GET_USER_POST_ADD;
-    constructor(public payload: object) {}
+    constructor(public payload: object, public imageUrl:string) {}
   }
 
   export class GetUserPostAddSuccess implements Action {

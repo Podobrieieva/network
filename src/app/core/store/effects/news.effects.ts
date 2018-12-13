@@ -15,9 +15,12 @@ export class NewsEffects {
       ofType<newsAction.GetPosts>(newsAction.NewsActionTypes.GET_POSTS),
       exhaustMap(
         action => this.networkService.getPosts().pipe(
-          map(data => ({type: newsAction.NewsActionTypes.GET_POSTS_SUCCESS, payload: data})),
-          catchError(() => of({type: newsAction.NewsActionTypes.GET_POSTS_FAIL}))
-        )
+          map(data=> {
+            return new newsAction.GetPostsSuccess(data)}),
+          catchError(err => {
+            return of(new newsAction.GetPostsFail(err));
+          })
+         )
       )
     );
 

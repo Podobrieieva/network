@@ -5,6 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { State, getPosts, getIsUserPosts, getIsUserProfile } from '../../../core/store';
 import {GetUserPosts } from '../../../core/store/actions/user-posts.actions'
 import { Subscription } from 'rxjs';
+import { GetPosts } from '../../../core/store/actions/news.actions';
 
 
 @Component({
@@ -49,7 +50,8 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.service.getUserPosts();
+    // this.service.getPosts();
+    
     this.store.dispatch(new GetUserPosts (this.userId));
     this.service.getUserProfile();
   }

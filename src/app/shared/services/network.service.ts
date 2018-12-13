@@ -31,76 +31,77 @@ export class NetworkService {
     }
   ]
    
-  public userPosts: Array<Post> = [
-    {
-      user: {
-        name: 'Sarah',
-        photo: '../../../../assets/img/user-profile/users/user-1.jpg',
-        surname: 'Cruiz',
-        id: ""
-      },
-      id: '0',
-      photo: '../../../../assets/img/user-profile/post-images/12.jpg',
-      // date: ,
-      like: 13,
-      dislike: 8,
-      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-      do eiusmod tempor incididunt ut labore et dolore magna
-      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      Duis aute irure dolor in reprehenderit in voluptate velit
-      esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-      occaecat cupidatat non proident, sunt in culpa qui officia
-      deserunt mollit anim id est laborum.`,
-      comments: [ ]
-    },
-    {
-      user: {
-        name: 'Sarah',
-        photo: '../../../../assets/img/user-profile/users/user-1.jpg',
-        surname: 'Cruiz',
-        id: ""
-      },
-      id: '1',
-      photo: '../../../../assets/img/user-profile/post-images/12.jpg',
-      // date: ,
-      like: 13,
-      dislike: 8,
-      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-      do eiusmod tempor incididunt ut labore et dolore magna
-      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      Duis aute irure dolor in reprehenderit in voluptate velit
-      esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-      occaecat cupidatat non proident, sunt in culpa qui officia
-      deserunt mollit anim id est laborum.`,
-      comments: [
-      ]
-    }, {
-      user: {
-        name: 'Sarah',
-        photo: '../../../../assets/img/user-profile/users/user-1.jpg',
-        surname: 'Cruiz',
-        id: ""
-      },
-      id: '2',
-      photo: '../../../../assets/img/user-profile/post-images/12.jpg',
-      // date: ,
-      like: 13,
-      dislike: 8,
-      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-      do eiusmod tempor incididunt ut labore et dolore magna
-      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      Duis aute irure dolor in reprehenderit in voluptate velit
-      esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-      occaecat cupidatat non proident, sunt in culpa qui officia
-      deserunt mollit anim id est laborum.`,
-      comments:[]
-    },
+  public userPosts: Array<Post>
+  //  = [
+  //   {
+  //     user: {
+  //       name: 'Sarah',
+  //       photo: '../../../../assets/img/user-profile/users/user-1.jpg',
+  //       surname: 'Cruiz',
+  //       id: ""
+  //     },
+  //     id: '0',
+  //     imageUrl: '../../../../assets/img/user-profile/post-images/12.jpg',
+  //     // date: ,
+  //     like: 13,
+  //     dislike: 8,
+  //     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+  //     do eiusmod tempor incididunt ut labore et dolore magna
+  //     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+  //     ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  //     Duis aute irure dolor in reprehenderit in voluptate velit
+  //     esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+  //     occaecat cupidatat non proident, sunt in culpa qui officia
+  //     deserunt mollit anim id est laborum.`,
+  //     comments: [ ]
+  //   },
+  //   {
+  //     user: {
+  //       name: 'Sarah',
+  //       photo: '../../../../assets/img/user-profile/users/user-1.jpg',
+  //       surname: 'Cruiz',
+  //       id: ""
+  //     },
+  //     id: '1',
+  //     imageUrl: '../../../../assets/img/user-profile/post-images/12.jpg',
+  //     // date: ,
+  //     like: 13,
+  //     dislike: 8,
+  //     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+  //     do eiusmod tempor incididunt ut labore et dolore magna
+  //     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+  //     ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  //     Duis aute irure dolor in reprehenderit in voluptate velit
+  //     esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+  //     occaecat cupidatat non proident, sunt in culpa qui officia
+  //     deserunt mollit anim id est laborum.`,
+  //     comments: [
+  //     ]
+  //   }, {
+  //     user: {
+  //       name: 'Sarah',
+  //       photo: '../../../../assets/img/user-profile/users/user-1.jpg',
+  //       surname: 'Cruiz',
+  //       id: ""
+  //     },
+  //     id: '2',
+  //     imageUrl: '../../../../assets/img/user-profile/post-images/12.jpg',
+  //     // date: ,
+  //     like: 13,
+  //     dislike: 8,
+  //     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+  //     do eiusmod tempor incididunt ut labore et dolore magna
+  //     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+  //     ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  //     Duis aute irure dolor in reprehenderit in voluptate velit
+  //     esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+  //     occaecat cupidatat non proident, sunt in culpa qui officia
+  //     deserunt mollit anim id est laborum.`,
+  //     comments:[]
+  //   },
      
      
-  ];
+  // ];
 
 
   public commentWrapperForComment:CommentModel [];
@@ -226,9 +227,12 @@ public uploadPhotoUser(selectedFile){
   public getAddPostObservable(){
     return this.addPostSubject.asObservable();
   }
-  public addPost(post){
+  public addPost(post, selectedFile ){
     // this.userPosts.push(post)
-    return this.http.post<any>(`${this.apiUrl}/posts`, post);
+    const uploadData = new FormData();
+    uploadData.append('image', selectedFile, selectedFile.name );
+
+    return this.http.post<any>(`${this.apiUrl}/posts`, post, selectedFile);
   }
   
 }

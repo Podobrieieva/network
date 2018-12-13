@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import * as NewsActions from '../../../core/store/actions/news.actions';
+import {GetPosts} from '../../../core/store/actions/news.actions';
 import { State, getPosts } from '../../../core/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { PostModel, Post } from '../../../shared/models/user.model';
 import { NetworkService } from '../../../shared/services/network.service';
 
@@ -12,19 +12,28 @@ import { NetworkService } from '../../../shared/services/network.service';
   styleUrls: ['./post-wrapper.component.scss']
 })
 export class PostWrapperComponent implements OnInit {
-  postList$: Observable <PostModel[]>
+  // postList$: Observable <PostModel[]>
+  public isUserPostSubscription: Subscription; 
   public userPosts: Array<Post>;
 
   constructor(private store:Store<State>, private service: NetworkService ) { 
     // const subscription = this.service.userPostsSubjObservable().subscribe(data => {
     //   this.userPosts= data;
   // })
+  this.isUserPostSubscription = this.store.pipe(select(getPosts)).subscribe(posts => {
+    console.log(posts)
+    if (posts) {
+      this.userPosts = posts.data.posts
+    }      
+  })
   }
 
   ngOnInit() {
-    this.store.dispatch({type: NewsActions.NewsActionTypes.GET_POSTS})
-    this.postList$ = this.store.pipe(select(getPosts));
+    // this.store.dispatch({type: NewsActions.NewsActionTypes.GET_POSTS})
+    // this.postList$ = this.store.pipe(select(getPosts));
     // this.service.getUserPosts();
+    this.store.dispatch(new GetPosts());
+
   }
 
 

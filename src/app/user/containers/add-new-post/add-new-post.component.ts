@@ -6,6 +6,7 @@ import { Store, select } from '@ngrx/store';
 import { Subscription } from "rxjs";
 import { State, getIsUserProfile } from '../../../core/store'
 import { GetUserPostAdd } from '../../../core/store/actions/user-posts.actions';
+import { readElementValue } from '@angular/core/src/render3/util';
 
 @Component({
   selector: 'app-add-new-post',
@@ -15,18 +16,22 @@ import { GetUserPostAdd } from '../../../core/store/actions/user-posts.actions';
 export class AddNewPostComponent implements OnInit {
   private isUserProfileSubscription: Subscription;
   private addPostSub: Subscription;
+
+  public fileToUpload: File = null;
   public post: Post = {
         id: '',
         text: '',
-        user: { name: "",
+        author: { name: "",
         surname: "",
-        photo: '',
+        fullname: "",
+        avatarUrl: '',
         id: '8',
 
         },
-        like: 0,
-        dislike: 0,
+        likes: 0,
+        dislikes: 0,
         date: new Date(),
+        imageUrl:"../../../../../assets/img/images-default.png",
 
   }
 
@@ -37,15 +42,28 @@ export class AddNewPostComponent implements OnInit {
     this.isUserProfileSubscription = this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
       console.log(isUserProfile)
       if (isUserProfile) {
-        this.post.user.name = isUserProfile.data.user.name;
-        this.post.user.surname = isUserProfile.data.user.surname;
-        this.post.user.photo = isUserProfile.data.user.avatarUrl;
+        this.post.author.name = isUserProfile.data.user.name;
+        this.post.author.surname = isUserProfile.data.user.surname;
+        this.post.author.avatarUrl = isUserProfile.data.user.avatarUrl;
+        this.post.author.id = isUserProfile.data.user.id;
+
       }      
     })
   }
 
   ngOnInit() {
   }
+  public handleFileInput (file: FileList){
+    this.fileToUpload = file.item(0);
+    var reader = new FileReader();
+    reader.onload = (event:any) => {
+      this.post.imageUrl = event.target.result;
+    }
+    reader.readAsDataURL(this.fileToUpload)
+
+  }
+
+
 
   public onSubmitNewPost(f:NgForm){
 
@@ -55,8 +73,10 @@ export class AddNewPostComponent implements OnInit {
       //   form.resetForm();
       // });
       this.post.text = f.value;
+      this.service.addPost(this.post, this.fileToUpload)
+
     
-      this.store.dispatch(new GetUserPostAdd(this.post))
+      // this.store.dispatch(new GetUserPostAdd(this.post.text, this.post.photo))
   
 
     // this.service.addPost(form);
@@ -64,5 +84,6 @@ export class AddNewPostComponent implements OnInit {
     // this.f.resetForm();
    
   }
+
   
 }
