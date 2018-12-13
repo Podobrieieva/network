@@ -22,8 +22,8 @@ export class PostWrapperComponent implements OnInit {
   // })
   this.isUserPostSubscription = this.store.pipe(select(getPosts)).subscribe(posts => {
     console.log(posts)
-    if (posts) {
-      this.userPosts = posts.data.posts
+    if (posts.length) {
+      this.userPosts = posts
     }      
   })
   }

@@ -72,11 +72,16 @@ export class AddNewPostComponent implements OnInit {
       // this.addPostSub = this.service.addPost(poster).subscribe(() => {
       //   form.resetForm();
       // });
-      this.post.text = f.value;
-      this.service.addPost(this.post, this.fileToUpload)
+      // this.post.text = f.value;
+      // this.service.addPost(this.post, this.fileToUpload).subscribe(
+      //   data=> {
+      //     console.log("done")
+      //     f.resetForm()
+      //   }
+      // )
 
     
-      // this.store.dispatch(new GetUserPostAdd(this.post.text, this.post.photo))
+      this.store.dispatch(new GetUserPostAdd(this.post, this.fileToUpload))
   
 
     // this.service.addPost(form);

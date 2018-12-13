@@ -45,7 +45,17 @@
     border: none;
     padding: 7px 25px;
     color: #fff;
+    
+    transition: 1s;
+  }
+  .btn-main:hover{
+    background-color: #06746e;
     cursor: pointer;
+
+  }
+  .btn-main:disabled{
+    background-color:#9cf8f3 ;
+  
   }
 
 

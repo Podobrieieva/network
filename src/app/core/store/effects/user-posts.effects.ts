@@ -15,7 +15,8 @@ export class UserPostsEffect {
     ofType<GetUserPosts>(UserPostsActionTypes.GET_USER_POSTS),
     exhaustMap(
     	action => this.networkService.getUserPosts(action.payload).pipe(
-    		map(data => {
+    		map(
+					data => {
             console.log(data)
           return new GetUserPostsSuccess(data);           		    			
     		}),

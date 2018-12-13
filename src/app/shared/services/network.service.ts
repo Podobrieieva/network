@@ -173,7 +173,9 @@ public uploadPhotoUser(selectedFile){
   }
 
   public getUserPosts(userId){
-    return this.http.get<any>(`${this.apiUrl}/posts${userId}`);
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    return this.http.get<any>(`${this.apiUrl}/posts`, {params});
   }
 
   // public fetchUserPosts(params){
@@ -228,9 +230,12 @@ public uploadPhotoUser(selectedFile){
     return this.addPostSubject.asObservable();
   }
   public addPost(post, selectedFile ){
-    // this.userPosts.push(post)
+  
+
+    
     const uploadData = new FormData();
     uploadData.append('image', selectedFile, selectedFile.name );
+    uploadData.append('data', post)
 
     return this.http.post<any>(`${this.apiUrl}/posts`, post, selectedFile);
   }
