@@ -6,6 +6,7 @@ import * as fromPasswordChange from './reducers/password-change.reducer';
 import * as fromUserProfile from './reducers/user-profile.reducer';
 import * as fromUserPosts from './reducers/user-posts.reducer'
 
+import * as fromSubscribe from './reducers/subscribers.reducer';
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
  * our top level state interface is just a map of keys to inner state types.
@@ -16,6 +17,7 @@ export interface State {
   passwordChange: fromPasswordChange.IpassChangeState;
   userProfile: fromUserProfile.State;
   userPosts: fromUserPosts.State;
+  subscribers: fromSubscribe.State
 }
 
 export const reducers: ActionReducerMap < State > = {
@@ -23,7 +25,8 @@ export const reducers: ActionReducerMap < State > = {
   post: fromNews.reducer,
   passwordChange: fromPasswordChange.reducer,
   userProfile: fromUserProfile.reducer,
-  userPosts: fromUserPosts.reducer
+  userPosts: fromUserPosts.reducer,
+  subscribers: fromSubscribe.reducer
 };
 
 // console.log all actions
@@ -38,7 +41,11 @@ export function logger(reducer: ActionReducer <State>): ActionReducer < State > 
 export const getIsUserProfile = (state) => state.userProfile.isUserProfile;
 export const getIsCurrentUserProfile = (state) => state.userProfile.isCurrentUserProfile;
 export const getIsNewPassword = (state) => state.passwordChange.isNewPass;
-
+export const getIsSubscribersCurrent = (state) => state.subscribers.isGetSubscribersCurrent;
+export const getIsSubscribersProfile = (state) => state.subscribers.isGetSubscribersProfile;
+export const getIsAddSubscribe = (state) => state.subscribers.isAddSubscribe;
+export const getIsDeleteSubscribe = (state) => state.subscribers.isDeleteSubscribe;
+export const getIsSubscriptionsProfile = (state) => state.subscribers.isGetSubscriptionsProfile;
 // export const getNewsState = createFeatureSelector<fromNews.State>('news');
 
 export const getPosts = (state) => state.post.posts;

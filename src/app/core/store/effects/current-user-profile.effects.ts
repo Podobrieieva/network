@@ -18,15 +18,10 @@ export class CurrentUserProfileEffect {
     exhaustMap(
     	action => this.networkService.getCurrentUserProfile(action.payload).pipe(
     		map(data => {
-    			console.log(data)
-           		//this.alertService.success('Registration successful', true);
-           		localStorage.setItem('currentUserProfile', JSON.stringify(data));
-           		this.router.navigate(["network/profile"]);
-           		return new GetCurrentUserProfileSuccess(data);
-           		    			
+       		localStorage.setItem('currentUserProfile', JSON.stringify(data.data.user));
+       		return new GetCurrentUserProfileSuccess(data.data.user);           		    			
     		}),
     		catchError(err => {
-    			//this.alertService.error('Registration failed', true);
     			return of(new GetCurrentUserProfileFail(err));
     		})
   		)
@@ -38,6 +33,5 @@ export class CurrentUserProfileEffect {
   	private actions$: Actions,
   	private networkService: NetworkService,
   	private alertService: AlertService,
-  	private router: Router
-  	) {}
+  	private router: Router) {}
 }

@@ -10,7 +10,7 @@
       <div class="timeline-nav-bar">
         <div class="profile-info">
           <img
-            [src]="currentUser.avatar"
+            [src]="user$.avatarUrl"
             alt=""
             class="img-responsive profile-photo"
           />
@@ -19,8 +19,8 @@
             type="file" (change)="onFileChanged($event)" 
             #fileInput>
           <button  class="btn-main" (click)="fileInput.click()">Change photo</button>
-          <h3>{{ currentUser.name }} {{ currentUser.surname }}</h3>
-          <p class="text-muted">{{ currentUser.workPosition }}</p>
+         <h3>{{user$.fullname}}</h3> 
+         <p class="text-muted">{{user$.fullname}}</p> 
           
           
 
@@ -28,7 +28,7 @@
         <div class="profile-cont">
           <div class="follow-me">
             <p>1,299 people following her</p>
-            <button class="btn-main">Add Friend</button>
+            <button class="btn-main" (click)="addSubscribe()">Add Friend</button>
           </div>
         </div>
       </div>
@@ -129,8 +129,8 @@
         <app-settings></app-settings>
       </mat-tab>
       <mat-tab label="Something else">Content 3</mat-tab>
-      <mat-tab label="Friends">
-        <app-friends-list></app-friends-list>
+      <mat-tab label="Friends" >
+        <app-friends-list [userSubscribers$]="userSubscribers" ></app-friends-list>
       </mat-tab>
     </mat-tab-group>
   </div>

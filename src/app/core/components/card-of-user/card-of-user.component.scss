@@ -114,3 +114,9 @@
     width: inherit;
     height: 29%;
   }
+.view:hover {
+    background-color:rgb(52, 207, 122);
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.15);
+
+}

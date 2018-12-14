@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import { UserProfileModel } from '../../../shared/models/user.model';
+
 
 export enum UserProfileActionTypes {
     GET_USER_PROFILE = '[USER_PROFILE] Fetch UserProfile requested',

@@ -10,6 +10,8 @@ import { RegisterGuard } from './shared/guards/register.guard';
 import { SuccessfulComponent } from './core/components/successful/successful.component';
 import { SearchWrapperComponent } from './news/containers/search-wrapper/search-wrapper.component';
 import { ChangePasswordComponent }  from './core/components/change-password/change-password.component'
+import { SubscriptionListComponent } from './core/containers/subscription-list/subscription-list.component'
+
 
 const routes: Routes = [
   {path: '',  
@@ -34,12 +36,16 @@ const routes: Routes = [
         component: SuccessfulComponent
       },
       {
-        path: 'subscribe', 
-        component: FriendsListComponent
+        path: 'subscriptions', 
+        component: SubscriptionListComponent
       },
       {
         path: 'profile', 
-        component: ProfileComponent
+        component: ProfileComponent,
+        data: {
+          type: 'profile'
+        }
+
       },
       {
         path: 'news', 

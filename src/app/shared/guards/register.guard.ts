@@ -14,7 +14,7 @@ export class RegisterGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const permissionToEnter = this.registerService.permissionToEnterValue;
     console.log(permissionToEnter)
-    if (permissionToEnter) {
+    if (permissionToEnter && permissionToEnter.data.token) {
       return true;
     }
     this.router.navigate(['/register'], { queryParams: { returnUrl: state.url } });

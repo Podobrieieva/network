@@ -31,8 +31,8 @@ private isUserSubscription: Subscription;
   }
 
   btnSubmit() {
-   
-    this.store.dispatch(new GetUserProfile());
+   this.router.navigate(['/network/profile', {id: 'profile'}]); 
+    //this.store.dispatch(new GetUserProfile());
   }
  
 
