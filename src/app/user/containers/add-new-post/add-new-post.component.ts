@@ -7,6 +7,7 @@ import { Subscription } from "rxjs";
 import { State, getIsUserProfile } from '../../../core/store'
 import { GetUserPostAdd } from '../../../core/store/actions/user-posts.actions';
 import { readElementValue } from '@angular/core/src/render3/util';
+import { GetUserProfile } from '../../../core/store/actions/user-profile.actions';
 
 @Component({
   selector: 'app-add-new-post',
@@ -40,19 +41,33 @@ export class AddNewPostComponent implements OnInit {
 
   constructor(private service: NetworkService, private store: Store<State>) { 
     const addPostSubscription = this.service.getAddPostObservable().subscribe(data => this.post = data);
-    this.isUserProfileSubscription = this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
-      console.log(isUserProfile)
-      if (isUserProfile) {
-        this.post.author.name = isUserProfile.data.name;
-        this.post.author.surname = isUserProfile.data.surname;
-        this.post.author.avatarUrl = isUserProfile.data.avatarUrl;
-        this.post.author.id = isUserProfile.data.id;
 
-      }      
-    })
+    // this.isUserProfileSubscription = this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
+    //   console.log(isUserProfile)
+    //   if (isUserProfile) {
+    //     this.post.author.name = isUserProfile.data.name;
+    //     this.post.author.surname = isUserProfile.data.surname;
+    //     this.post.author.avatarUrl = isUserProfile.data.avatarUrl;
+    //     this.post.author.id = isUserProfile.data.id;
+
+    //   }      
+    // })
+    this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile =>
+      {console.log(isUserProfile)
+        this.post.author.name = isUserProfile.name;
+            this.post.author.surname = isUserProfile.surname;
+            this.post.author.avatarUrl = isUserProfile.avatarUrl;
+            this.post.author.id = isUserProfile.id;
+      } );
+
+  
+       
+  
+
   }
 
   ngOnInit() {
+    this.store.dispatch(new GetUserProfile());
   }
   // public handleFileInput (file: FileList){
   //   this.fileToUpload = file.item(0);

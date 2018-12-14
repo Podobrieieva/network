@@ -20,7 +20,6 @@ export class NetworkService {
   private commentSubj: BehaviorSubject<any> = new BehaviorSubject(3);
   private commentForComSubj: BehaviorSubject<any> = new BehaviorSubject(3);
   private addPostSubject: Subject <any> = new Subject();
-   private url = `http://localhost:3000`;  
 
 
   private UsersSubscription: BehaviorSubject<any>;
@@ -114,7 +113,7 @@ export class NetworkService {
   // ];
 
 
-  public commentWrapperForComment:CommentModel [];
+
   
 
   constructor(private http: HttpClient, private store: Store<State>, private registerService:RegisterService) { }
@@ -226,13 +225,13 @@ public uploadPhotoUser(selectedFile){
     return this.http.get<any>(`${this.apiUrl}/posts`, {params});
   }
 
-  // public fetchUserPosts(params){
-  //   this.userPostsSubj.next(params)
-  // }
+  public fetchUserPosts(params){
+    this.userPostsSubj.next(params)
+  }
 
-  // public userPostsSubjObservable(){
-  //   return this.userPostsSubj.asObservable()
-  // }
+  public userPostsSubjObservable(){
+    return this.userPostsSubj.asObservable()
+  }
    public userProfileSubjObservable(){
     return this.userProfileSubj.asObservable()
  }
@@ -249,9 +248,7 @@ public uploadPhotoUser(selectedFile){
     return this.commentSubj.asObservable();
   }
 
-  public getCommentsForComments() {
-    return this.fetchCommentsForCom(this.commentWrapperForComment);
-  }
+  
 
   public fetchCommentsForCom(params) {
       this.commentForComSubj.next(params);
@@ -264,11 +261,7 @@ public uploadPhotoUser(selectedFile){
   public addComment(comment){
     this.commentWrapper.push(comment);
   }
-  public addCommentForComment(comment){
-     this.commentWrapperForComment.push(comment);
-    console.log(this.commentWrapperForComment);
 
-  }
   public setItemByIndex(item,index){
     this.userPosts[index] = item;
     // this.getUserPosts();
@@ -277,6 +270,7 @@ public uploadPhotoUser(selectedFile){
   public getAddPostObservable(){
     return this.addPostSubject.asObservable();
   }
+  
   // public addPost(post, selectedFile ){
     
   //    let postUser = JSON.stringify(post)

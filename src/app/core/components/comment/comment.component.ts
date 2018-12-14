@@ -15,14 +15,14 @@ export class CommentComponent implements OnInit {
   public commentForComment: Array<any>;
 
   constructor(private networkService: NetworkService) { 
-    const subscription = this.networkService.commentForComSubjObservable().subscribe(data => {
-      console.log(data);
-      this.commentForComment = data;
-    });
+    // const subscription = this.networkService.commentForComSubjObservable().subscribe(data => {
+    //   console.log(data);
+    //   this.commentForComment = data;
+    // });
   }
 
   ngOnInit() {
-    this.networkService.getCommentsForComments();
+    // this.networkService.getCommentsForComments();
   }
 
   public addBtnClickHandler(){
