@@ -43,10 +43,10 @@ export class AddNewPostComponent implements OnInit {
     this.isUserProfileSubscription = this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
       console.log(isUserProfile)
       if (isUserProfile) {
-        this.post.author.name = isUserProfile.data.user.name;
-        this.post.author.surname = isUserProfile.data.user.surname;
-        this.post.author.avatarUrl = isUserProfile.data.user.avatarUrl;
-        this.post.author.id = isUserProfile.data.user.id;
+        this.post.author.name = isUserProfile.data.name;
+        this.post.author.surname = isUserProfile.data.surname;
+        this.post.author.avatarUrl = isUserProfile.data.avatarUrl;
+        this.post.author.id = isUserProfile.data.id;
 
       }      
     })

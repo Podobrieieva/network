@@ -277,7 +277,6 @@ public uploadPhotoUser(selectedFile){
   public getAddPostObservable(){
     return this.addPostSubject.asObservable();
   }
-<<<<<<< HEAD
   // public addPost(post, selectedFile ){
     
   //    let postUser = JSON.stringify(post)
@@ -306,15 +305,4 @@ public uploadPhotoUser(selectedFile){
    return this.http.post<any>(`${this.apiUrl}/posts`, uploadData );
 
 }
-=======
-  public addPost(post){
-    this.userPosts.push(post)
-  }
-
-  //   ngOnDestroy() {
-  //   this.userProfileСontrol.unsubscribe();
-
-  // }
- 
->>>>>>> origin/viktor
 }
