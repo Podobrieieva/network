@@ -20,11 +20,11 @@
       ></textarea>
     </div>
     <img [src] = "post.imageUrl"  style = " height: 3em; cursor: pointer" (click)="Image.click()">
-    <input type="file"  #Image accept="image/*" (change) = "handleFileInput($event.target.files)" style="display:none" >
+    <input type="file"  #Image accept="image/*" (change) = "handleFileInput($event)" style="display:none" >
     <div class="tools"><button  type="submit" class="btn-main" [disabled]="Image.value =='' || !f.valid">Publish</button></div>
 
   </div>
 </form>
 </div>
 
-<!--  -->
+<!-- (change) = "handleFileInput($event.target.files)" -->

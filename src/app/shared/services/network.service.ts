@@ -229,15 +229,32 @@ public uploadPhotoUser(selectedFile){
   public getAddPostObservable(){
     return this.addPostSubject.asObservable();
   }
-  public addPost(post, selectedFile ){
-  
+  // public addPost(post, selectedFile ){
+    
+  //    let postUser = JSON.stringify(post)
 
     
-    const uploadData = new FormData();
-    uploadData.append('image', selectedFile, selectedFile.name );
-    uploadData.append('data', post)
+  //   const uploadData = new FormData();
+  //   uploadData.append('image', selectedFile, selectedFile.name );
+  //   uploadData.append('data', postUser)
 
-    return this.http.post<any>(`${this.apiUrl}/posts`, post, selectedFile);
-  }
+  //   return this.http.post<any>(`${this.apiUrl}/posts`, postUser, selectedFile);
+  // }
   
+  public addPost(post, selectedFile ){
+    
+    let postUser = JSON.stringify(post)
+
+   
+   const uploadData = new FormData();
+   uploadData.append('data', postUser)
+
+   const uploadImage = new FormData();
+   uploadData.append('image', selectedFile, selectedFile.name );
+
+ 
+
+   return this.http.post<any>(`${this.apiUrl}/posts`, uploadData );
+
+}
 }

@@ -16,6 +16,7 @@ import { readElementValue } from '@angular/core/src/render3/util';
 export class AddNewPostComponent implements OnInit {
   private isUserProfileSubscription: Subscription;
   private addPostSub: Subscription;
+  private selectedFile: File;
 
   public fileToUpload: File = null;
   public post: Post = {
@@ -53,13 +54,22 @@ export class AddNewPostComponent implements OnInit {
 
   ngOnInit() {
   }
-  public handleFileInput (file: FileList){
-    this.fileToUpload = file.item(0);
+  // public handleFileInput (file: FileList){
+  //   this.fileToUpload = file.item(0);
+  //   var reader = new FileReader();
+  //   reader.onload = (event:any) => {
+  //     this.post.imageUrl = event.target.result;
+  //   }
+  //   reader.readAsDataURL(this.fileToUpload)
+
+  // }
+    public handleFileInput (event){
+      this.selectedFile = event.target.files[0]
     var reader = new FileReader();
     reader.onload = (event:any) => {
       this.post.imageUrl = event.target.result;
     }
-    reader.readAsDataURL(this.fileToUpload)
+    reader.readAsDataURL(this.selectedFile )
 
   }
 
@@ -81,7 +91,7 @@ export class AddNewPostComponent implements OnInit {
       // )
 
     
-      this.store.dispatch(new GetUserPostAdd(this.post, this.fileToUpload))
+      this.store.dispatch(new GetUserPostAdd(this.post, this.selectedFile))
   
 
     // this.service.addPost(form);
