@@ -32,13 +32,14 @@ nav{
            
            
         }
-    /*mat-menu > button {
+    mat-menu > button {
+
         .activated {
                 background-color:#25a59f;
             
             }
     }
-    ul{
+/*    ul{
         li{
             .activated {
                 background-color:#25a59f;
@@ -46,6 +47,11 @@ nav{
             }
           
         }
-    }*/
     }
+*/    }
 }    
+    i {
+        margin-right: 10px; 
+         color: #25a59f;    
+            font-size: 25px;
+        }

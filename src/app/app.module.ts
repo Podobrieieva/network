@@ -16,7 +16,7 @@ import { RegisterGuard } from './shared/guards/register.guard';
 import { UserModule } from './user/user.module';
 import { NewsModule } from './news/news.module';
 import { AppStoreModule } from './core/store/store.module'
-
+import { AlertComponent } from './register/components/alert/alert.component'
 
 
 
@@ -24,7 +24,8 @@ import { AppStoreModule } from './core/store/store.module'
   declarations: [
     AppComponent,
     NetworkDirective,
-    CustomPipe
+    CustomPipe,
+    AlertComponent
 
   ],
   imports: [

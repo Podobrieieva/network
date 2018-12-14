@@ -1,12 +1,13 @@
 <div class="card">
   <div class="box header">
-    <img [src]="user.photo">
+    <img [src]="user.avatarUrl">
     <h2>{{user.name | uppercase}}</h2>
     <h3>{{user.surname | uppercase}}</h3>
   </div>
   <div class="box footer">
-    <button class="view" (click)="viewCurrentUser()">View Profile</button>
-    <button class="follow">Follow</button>
+    <button class="view" (click)="viewSubscribeUser(user)">View Profile</button>
+    <button *ngIf="!btnChange" class="follow">Follow</button>
+    <button *ngIf="btnChange" class="follow" (click)="removeFromFriends(user)">Delete</button>
 
   </div>
 </div> 

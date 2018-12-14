@@ -14,7 +14,7 @@ export class AddNewPostComponent implements OnInit {
         text: '',
         user: { name: "Jerry",
         surname: "Milly",
-        photo: '../../../../assets/img/user-profile/users/user-1.jpg',
+        avatarUrl: '../../../../assets/img/user-profile/users/user-1.jpg',
         id: '8',
 
         },

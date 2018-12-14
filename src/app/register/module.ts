@@ -20,15 +20,13 @@ import { RegisterComponent } from './containers/register/register.component';
 import { ChangePasswordComponent } from '../core/components/change-password/change-password.component'
 
 
-import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
   	RegisterComponent,
   	CheckInComponent,
     LogInComponent,
-    PasswordRecoveryComponent,
-    AlertComponent 
+    PasswordRecoveryComponent
   ],
   imports: [
 	  CommonModule, 

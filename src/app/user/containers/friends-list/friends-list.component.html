@@ -1,8 +1,14 @@
 
 <div class = "friends_list_wrapper">
 	<div class="row"> 
-      	<app-card-of-user >
-      	</app-card-of-user>
+      	<app-card-of-user *ngFor = "let item of userSubscribers$; let i = index"
+      		[user]="item" 
+      		[index]="i"
+      		(viewEvt)="onViewSubscribeUser($event)"
+			(addEvt)="onAddAsFriend($event)"
+			(removeEvt)="onRemoveFromFriends($event)"
+      		>
+      </app-card-of-user>
     </div>
 </div>
 

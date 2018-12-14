@@ -72,10 +72,11 @@ export interface UserData {
 }
 
 export interface UserCard {
+    avatarUrl: string;
+    fullname?: string;
+    id: string;
     name: string;
     surname: string;
-    photo: string;
-    id: string
 }
 
 export interface Post {

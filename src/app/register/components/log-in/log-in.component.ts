@@ -19,7 +19,7 @@ export class LogInComponent implements OnInit {
   //private isLoginSubscription: Subscription;
 	public loginForm: FormGroup;
   public loading = false;
-  public returnUrl: string;
+  //public returnUrl: string;
   public error = '';
 
   @Output() onClickRecovery = new EventEmitter<boolean>();
@@ -30,19 +30,12 @@ export class LogInComponent implements OnInit {
     private route: ActivatedRoute, 
     private router: Router, 
     private store: Store<State> ) { 
-    // this.isLoginSubscription = this.store.pipe(select(getIsAuthorization)).subscribe(isLogin => {
-    //   console.log(isLogin)
-    //   if (isLogin) {
-    //     localStorage.setItem('authorization', 'true');
-    //     this.router.navigate(['']);
-    //   }      
-    // })
   }
 
   ngOnInit() {
   	this.loginForm = this.fb.group(this.createFromGroup().controls);
     this.registerService.logout(); 
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    //this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   clickedRecovery(recovery:boolean) {

@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
 import { CommentModel, Post, PostModel, UserCard} from '../models/user.model';
-import { BehaviorSubject, Observable, Subject} from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject} from 'rxjs';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map, switchMap } from 'rxjs/operators'
-import {RequestOptions, Request, RequestMethod} from '@angular/http';
+import { RequestOptions, Request, RequestMethod} from '@angular/http';
+import { UserProfileModel} from '../models/user.model'
+import { GetUserProfile, GetCurrentUserProfile } from '../../core/store/actions/user-profile.actions'
+import { select, Store} from "@ngrx/store";
+import { getIsUserProfile, State, getIsCurrentUserProfile, getIsSubscribersProfile, getIsSubscribersCurrent } from "../../core/store";
+import { RegisterService } from '../../register/service/register.service'
 
 
 @Injectable({
@@ -15,10 +20,14 @@ export class NetworkService {
   private commentSubj: BehaviorSubject<any> = new BehaviorSubject(3);
   private commentForComSubj: BehaviorSubject<any> = new BehaviorSubject(3);
   private addPostSubject: Subject <any> = new Subject();
+   private url = `http://localhost:3000`;  
+
+
   private UsersSubscription: BehaviorSubject<any>;
-  private apiUrl:string = 'https://s-network.herokuapp.com/api/v1';
-  private url = `http://localhost:3000`;
-  
+  private apiUrl:string = 'https://s-network.herokuapp.com/api/v1'; 
+  public userProfileСontrol:BehaviorSubject<string> = new BehaviorSubject('profile');
+
+
   public commentWrapper: CommentModel [] = [
     {
       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud",
@@ -36,7 +45,7 @@ export class NetworkService {
     {
       user: {
         name: 'Sarah',
-        photo: '../../../../assets/img/user-profile/users/user-1.jpg',
+        avatarUrl: '../../../../assets/img/user-profile/users/user-1.jpg',
         surname: 'Cruiz',
         id: ""
       },
@@ -58,7 +67,7 @@ export class NetworkService {
     {
       user: {
         name: 'Sarah',
-        photo: '../../../../assets/img/user-profile/users/user-1.jpg',
+        avatarUrl: '../../../../assets/img/user-profile/users/user-1.jpg',
         surname: 'Cruiz',
         id: ""
       },
@@ -80,7 +89,7 @@ export class NetworkService {
     }, {
       user: {
         name: 'Sarah',
-        photo: '../../../../assets/img/user-profile/users/user-1.jpg',
+        avatarUrl: '../../../../assets/img/user-profile/users/user-1.jpg',
         surname: 'Cruiz',
         id: ""
       },
@@ -107,13 +116,15 @@ export class NetworkService {
   public commentWrapperForComment:CommentModel [];
   
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private store: Store<State>, private registerService:RegisterService) { }
 
     
   public logout() {
-    //localStorage.removeItem('permissionToEnter');
-    localStorage.clear(); 
-    location.reload(true);    
+    this.registerService.logout()
+
+    // localStorage.removeItem('permissionToEnter');
+    // //localStorage.clear(); 
+    // location.reload(true);    
   }
 
  // REQUESTS
@@ -131,12 +142,37 @@ export class NetworkService {
   }
 
   public addSubscribe(id) {
-    return this.http.get<any>(`${this.apiUrl}/profile/${id}/subscribe`);
+    return this.http.post<any>(`${this.apiUrl}/profile/${id}/subscribe`, id);
   }
 
-  public showFriendlist(id) {
-    return this.http.get<any>(`${this.apiUrl}/profile/${id}/subscriptions`);
+  public deleteSubscribe(id) {
+    console.log("delete service")
+    return this.http.post<any>(`${this.apiUrl}/profile/${id}/unsubscribe`, id);
   }
+
+  public getUsersSubscribersProfile() {
+    return this.http.get<any>(`${this.apiUrl}/profile/subscribers`);
+  }
+
+  public getUsersSubscribersId(id) {
+    console.log(id)
+    return this.http.get<any>(`${this.apiUrl}/profile/${id}/subscribers`);
+  }
+
+  public profileSubjObservable() {
+    return this.userProfileСontrol.asObservable();
+  }
+
+  public profileСhange(params) {
+    this.userProfileСontrol.next(params);
+  }
+
+  public getUsersSubscriptionsProfile() {
+    return this.http.get<any>(`${this.apiUrl}/profile/subscriptions`);
+  }
+
+  
+
 //////////////////////////////////////////////////////////////////
 
 
@@ -150,9 +186,11 @@ public uploadPhotoUser(selectedFile){
   {
     reportProgress: true,
     observe: 'events'
+    
   })
     .subscribe(event => {
       console.log(event); // handle event here
+      this.store.dispatch(new GetUserProfile())
     });
 }
 
@@ -173,6 +211,8 @@ public uploadPhotoUser(selectedFile){
                           
                     
   }
+  
+
 
   public getPosts(): Observable<PostModel[]> {
     return this.http.get<PostModel[]>(`${this.url}/network/news`);
@@ -237,7 +277,10 @@ public uploadPhotoUser(selectedFile){
   public addPost(post){
     this.userPosts.push(post)
   }
-  public addFriend(id) {
-    return this.http.get<any>(`${this.apiUrl}/profile/${id}`);
-  }
+
+  //   ngOnDestroy() {
+  //   this.userProfileСontrol.unsubscribe();
+
+  // }
+ 
 }

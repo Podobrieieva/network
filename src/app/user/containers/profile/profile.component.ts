@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NetworkService } from '../../../shared/services/network.service';
-import { Post, UserProfileModel } from '../../../shared/models/user.model';
-import { Router, ActivatedRoute ,} from '@angular/router';
-import { Subscription } from 'rxjs'
-import { getIsUserProfile, State, getIsCurrentUserProfile} from "../../../core/store";
+import { Post, UserProfileModel, UserCard } from '../../../shared/models/user.model';
+import { Router, ActivatedRoute } from '@angular/router';
+import { BehaviorSubject, Observable, of, Subject, Subscription} from 'rxjs';
+import { getIsUserProfile, State, getIsCurrentUserProfile, getIsSubscribersProfile, getIsSubscribersCurrent } from "../../../core/store";
 import { select, Store} from "@ngrx/store";
-import { GetCurrentUserProfile } from '../../../core/store/actions/user-profile.actions'
+
+import { GetUserProfile, GetCurrentUserProfile } from '../../../core/store/actions/user-profile.actions'
+import { AddSubscribe, GetSubscribersId, GetSubscribersProfile } from '../../../core/store/actions/subscribe.actions'
 
 
 @Component({
@@ -13,7 +15,7 @@ import { GetCurrentUserProfile } from '../../../core/store/actions/user-profile.
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy  {
   public selectedFile: File;
   public currentUser = {
     name: 'Sarah',
@@ -22,58 +24,68 @@ export class ProfileComponent implements OnInit {
     workPosition: 'Creative Director'
   };
   public userPosts: Array<Post>;
-  public user: UserProfileModel;
-  public userProfile:UserProfileModel;
-  public carrentUser: UserProfileModel;
-  public id:string;
+ 
+  
+ 
+
+  
+  
+  public userSubscribers:Array<UserCard>;
+  //private paramsRouteId:string;
   private isUserProfileSubscription: Subscription;
   private subscriptionIdUser: Subscription;
   private isCurrentUserSubscription: Subscription;
-  
+  private isUserProfileSubscribers: Subscription;
+  private isCurrentUserSubscribers: Subscription;
+  private user$: UserProfileModel;
+  private profileСhange: string;
 
   constructor(
     private service: NetworkService,
-    private activateRoute: ActivatedRoute, 
+   //private activateRoute: ActivatedRoute, 
     private store: Store<State>) {
-      // const subscription = this.service.userPostsSubjObservable().subscribe(data => {
-      //   this.userPosts= data;
-      // });
-      // const subscrip = this.service.userProfileSubjObservable().subscribe(data => {
-      //   this.user= data;
-      // });
+      const subscription = this.service.userPostsSubjObservable().subscribe(data => {
+        this.userPosts= data;
+      });
 
-           
-    this.isUserProfileSubscription = this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
-      console.log(isUserProfile)
-      this.userProfile = isUserProfile.data.user;      
-    })
-       
+    // this.subscriptionIdUser = this.activateRoute.params.subscribe(params=>{
+    //   this.paramsRouteId = (!params['id'])? 'profile': params['id'];
+      
+      
+    // });
+
+this.subscriptionIdUser = this.service.profileSubjObservable().subscribe(data => {
+      this.profileСhange = data
+      console.log(data)
+      if (data === 'profile') {
+         this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => this.user$ = isUserProfile);
+         this.isUserProfileSubscribers =  this.store.pipe(select(getIsSubscribersProfile)).subscribe(isUserSubscribers => this.userSubscribers = isUserSubscribers);
+
+      } else {
+        
+        this.isCurrentUserSubscription =  this.store.pipe(select(getIsCurrentUserProfile)).subscribe(isCurrentUserProfile => this.user$ = isCurrentUserProfile) 
+        this.isCurrentUserSubscribers = this.store.pipe(select(getIsSubscribersCurrent)).subscribe(isUserSubscribers => this.userSubscribers = isUserSubscribers);
+      }
+    });
   }
 
   ngOnInit() {
-    //this.service.getUserPosts();
-    // this.service.getUserProfile();
-    this.subscriptionIdUser = this.activateRoute.params.subscribe(params=>this.id=params['id']); 
-    this.isCurrentUserSubscription = this.store.pipe(select(getIsCurrentUserProfile)).subscribe(isCarrentUser => {
-      console.log(isCarrentUser)
-      this.user = isCarrentUser.data.user;
-    })
-      
-
-      if (this.id !== this.userProfile.id) {
-    } 
-    console.log(this.user)
-
-    
+    if (this.profileСhange === 'profile') {
+      this.store.dispatch(new GetUserProfile());
+      this.store.dispatch(new GetSubscribersProfile());      
+    } else {
+      this.store.dispatch(new GetCurrentUserProfile(this.profileСhange));
+      this.store.dispatch(new GetSubscribersId(this.profileСhange));      
+    }
   }
-  addSubscribe() {
-    this.service.addSubscribe(this.id)
+
+  public addSubscribe() {
+    this.store.dispatch(new AddSubscribe(this.user$.id))
   }
 
 
   public onFileChanged(event) {
-    this.selectedFile = event.target.files[0]
-   
+    this.selectedFile = event.target.files[0]   
     this.service.uploadPhotoUser(this.selectedFile)
   } 
  
@@ -86,6 +98,13 @@ export class ProfileComponent implements OnInit {
   }
   public deleteHandler(id){
 
+  }
+
+
+  ngOnDestroy() {
+    // this.subscriptionIdUser.unsubscribe();
+    // this.isUserProfileSubscription.unsubscribe();
+    //this.isCurrentUserSubscription.unsubscribe();
   }
 
 }

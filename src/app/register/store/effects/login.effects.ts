@@ -24,9 +24,9 @@ export class LoginEffect {
     		map(data => {
     			console.log(data)
           localStorage.setItem('permissionToEnter', JSON.stringify(data));
-          localStorage.setItem('token', data['data'].token);
-          this.store.dispatch(new GetUserProfile());
-          return new GetLoginSuccess(data);           		    			
+          this.registerService.permissionSubject.next(data);
+          this.router.navigate(['/network/profile', {id: 'profile'}]); 
+          return new GetLoginSuccess(data['data'].user);           		    			
     		}),
     		catchError(err => {
           this.alertService.error('The email or password entered are not the same as those stored in our database. Check that the entered data is correct and try again.', true);

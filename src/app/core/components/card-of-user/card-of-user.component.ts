@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { select, Store} from '@ngrx/store';
 import { Subscription } from "rxjs";
 import { State} from '../../store';
 import { GetCurrentUserProfile } from '../../store/actions/user-profile.actions'
 import { Router } from '@angular/router';
+import { NetworkService } from '../../../shared/services/network.service'
 
 @Component({
   selector: 'app-card-of-user',
@@ -13,19 +14,38 @@ import { Router } from '@angular/router';
 export class CardOfUserComponent implements OnInit {
   @Input () user =  <any>{};
   @Input() index = 0;
+  @Output() viewEvt = new EventEmitter();
+  @Output() addEvt = new EventEmitter();
+  @Output() removeEvt = new EventEmitter();
   
-  private id:string = '5c03f167ca808300044080ba';
+  private btnChange: boolean;
+  profileSubscription: Subscription; 
 
-  constructor(private store: Store<State>, private router: Router) { }
+  constructor(private store: Store<State>, private router: Router, private service: NetworkService) {
+     this.profileSubscription = this.service.profileSubjObservable().subscribe(data => {
+      console.log(data)
+    this.btnChange = (data==='profile')? true: false; 
+      
+    })
+  }
 
   ngOnInit() {
   }
 
-  public viewCurrentUser() {
-
-  	console.log(this.id);
-    this.store.dispatch(new GetCurrentUserProfile(this.id));
-    //this.router.navigate(["network/profile", {id: this.id}]);
-    
+  public viewSubscribeUser(item) {
+  	console.log(item);
+    this.viewEvt.emit(item.id)
+    //this.store.dispatch(new GetCurrentUserProfile(this.id));
+    //this.viewEvt(params) 
+    //this.router.navigate(["network/profile", {id: params}]);    
   }
+
+  public addAsFriend(item) {
+    this.addEvt.emit(item.id)
+  }
+
+  public removeFromFriends(item) {
+    this.removeEvt.emit(item.id)
+  }
+
 }

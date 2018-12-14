@@ -9,9 +9,14 @@ import { PermissionToEnter } from '../models/profile.model';
 @Injectable({ providedIn: 'root' })
 
 export class RegisterService {    
+
+  public permissionSubject: BehaviorSubject<PermissionToEnter>;
   public apiUrl:string = 'https://s-network.herokuapp.com/api/v1';
-  
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient) {
+    this.permissionSubject = new BehaviorSubject<PermissionToEnter>(JSON.parse(localStorage.getItem('permissionToEnter')));
+    this.permissionSubject.asObservable();
+  }
 
   public get permissionToEnterValue():PermissionToEnter {
     return JSON.parse(localStorage.getItem('permissionToEnter'));
@@ -35,25 +40,10 @@ export class RegisterService {
       return this.http.post<any>(`${this.apiUrl}/entries/forgot_password`, body)
   }
 
-  logout() {
-    localStorage.removeItem('permissionToEnter');        
+  public logout() {
+    localStorage.removeItem('permissionToEnter');
+    this.permissionSubject.next(null);        
   }
   
-  //     getAll() {
-  //       return this.http.get<User[]>(`${this.apiUrl}/users`);
-  //   }
-
-  //   getById(id: number) {
-  //       return this.http.get(`${this.apiUrl}/users/${id}`);
-  //   }
-
-
-
-  //   update(user: User) {
-  //       return this.http.put(`${this.apiUrl}/users/${user.id}`, user);
-  //   }
-
-  //   delete(id: number) {
-  //       return this.http.delete(`${this.apiUrl}/users/${id}`);
-  //   }
+ 
 }
