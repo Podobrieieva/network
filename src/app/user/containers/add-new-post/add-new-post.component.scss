@@ -1,20 +1,23 @@
 .form-group {
     display: flex;
     justify-content: space-around;
-    width: 80%;
+    width:  75%;
   }
   .tools {
     width: 10%;
+    display: flex;
+    align-items: center;
   }
   .create-post {
-    margin-left: 0%;
+    margin-left: 20%;
   }
   .comment {
     margin-left: 10px;
     width: 95%;
   }
   .row {
-    padding-top: 35px;
+    padding-top: 25px;
+    margin-bottom: 30px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -37,9 +40,10 @@
     border-radius: 4px;
     color: #939598;
     width: 80%;
+    min-height: 50px;
   }
   .btn-main {
-    margin-left: 30px;
+    // margin-left: 30px;
     background-color: #09948d;
     border-radius: 30px;
     border: none;
@@ -54,7 +58,8 @@
 
   }
   .btn-main:disabled{
-    background-color:#9cf8f3 ;
+    // background-color:#9cf8f3 ;
+    color: #939598;
   
   }
 
