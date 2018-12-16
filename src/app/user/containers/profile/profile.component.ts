@@ -2,13 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NetworkService } from '../../../shared/services/network.service';
 import { Post, UserProfileModel,  UserCard } from '../../../shared/models/user.model';
 import { Store, select } from '@ngrx/store';
-import { State, getIsUserPosts, getIsUserProfile, getIsCurrentUserProfile, getIsSubscribersProfile, getIsSubscribersCurrent } from '../../../core/store';
-import {GetUserPosts } from '../../../core/store/actions/user-posts.actions'
+import { State, getIsUserPosts, getIsUserProfile, getIsCurrentUserProfile,  getIsSubscriptionsProfile, getIsSubscriptionsId } from '../../../core/store';
+import { GetUserPosts } from '../../../core/store/actions/user-posts.actions'
 import { BehaviorSubject, Observable, of, Subject, Subscription } from 'rxjs';
 import { GetPosts } from '../../../core/store/actions/news.actions';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GetUserProfile, GetCurrentUserProfile } from '../../../core/store/actions/user-profile.actions'
-import { AddSubscribe, GetSubscribersId, GetSubscribersProfile } from '../../../core/store/actions/subscribe.actions'
+import { AddSubscribe, GetSubscriptionsId, GetSubscriptionsProfile } from '../../../core/store/actions/subscribe.actions'
 
 
 @Component({
@@ -51,45 +51,34 @@ export class ProfileComponent implements OnInit, OnDestroy  {
     // const subscription = this.service.userPostsSubjObservable().subscribe(data => {
     //   this.userPosts= data;
     // });
-    // const subscrip = this.service.userProfileSubjObservable().subscribe(data => {
-    //   this.user$= data;
-    // });
+    const subscrip = this.service.userProfileSubjObservable().subscribe(data => {
+      this.user$ = data;
+    });
     
-this.subscriptionIdUser = this.service.profileSubjObservable().subscribe(data => {
-  this.profileСhange = data
-  console.log(data)
-  if (data === 'profile') {
-     this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => this.user$ = isUserProfile);
-     this.isUserProfileSubscribers =  this.store.pipe(select(getIsSubscribersProfile)).subscribe(isUserSubscribers => this.userSubscribers = isUserSubscribers);
+    this.subscriptionIdUser = this.service.profileSubjObservable().subscribe(data => {
+      this.profileСhange = data
+      console.log(data)
+      if (data === 'profile') {
+        this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => this.user$ = isUserProfile);
+        this.isUserProfileSubscribers =  this.store.pipe(select( getIsSubscriptionsProfile)).subscribe(isUserSubscribers => this.userSubscribers = isUserSubscribers);
 
-  } else {
-    
-    this.isCurrentUserSubscription =  this.store.pipe(select(getIsCurrentUserProfile)).subscribe(isCurrentUserProfile => this.user$ = isCurrentUserProfile) 
-    this.isCurrentUserSubscribers = this.store.pipe(select(getIsSubscribersCurrent)).subscribe(isUserSubscribers => this.userSubscribers = isUserSubscribers);
-  }
-});
-
-    this.isUserProfileSubscription = this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
-      console.log(isUserProfile)
-      if (isUserProfile) {
-        this.userId = isUserProfile.id
-      }      
-    })
-   
+      } else {    
+        this.isCurrentUserSubscription =  this.store.pipe(select(getIsCurrentUserProfile)).subscribe(isCurrentUserProfile => this.user$ = isCurrentUserProfile) 
+        this.isCurrentUserSubscribers = this.store.pipe(select(getIsSubscriptionsId)).subscribe(isUserSubscribers => this.userSubscribers = isUserSubscribers);
+      }
+    });      
   }
 
   ngOnInit() {
-    // this.service.getPosts();
     if (this.profileСhange === 'profile') {
       this.store.dispatch(new GetUserProfile());
-      this.store.dispatch(new GetSubscribersProfile());      
+      this.store.dispatch(new GetSubscriptionsProfile());     
     } else {
       this.store.dispatch(new GetCurrentUserProfile(this.profileСhange));
-      this.store.dispatch(new GetSubscribersId(this.profileСhange));      
+      this.store.dispatch(new GetSubscriptionsId(this.profileСhange));      
     }
 
-    this.store.dispatch(new GetUserPosts (this.userId));
-    this.service.getUserProfile();
+    this.store.dispatch(new GetUserPosts (this.user$.id));
   }
 
  
@@ -106,9 +95,7 @@ this.subscriptionIdUser = this.service.profileSubjObservable().subscribe(data =>
       this.service.setItemByIndex(item, itemIndex);
   }
 
-  // public cancelHandler(){
-  //   this.service.getUserPosts()
-  // }
+
   public deleteHandler(id){
 
   }

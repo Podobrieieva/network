@@ -22,8 +22,7 @@ export class LoginEffect {
     exhaustMap(
     	action => this.registerService.login(action.payload).pipe(
     		map(data => {
-    			console.log(data)
-          localStorage.setItem('permissionToEnter', JSON.stringify(data));
+    			localStorage.setItem('permissionToEnter', JSON.stringify(data));
           this.registerService.permissionSubject.next(data);
           this.router.navigate(['/network/profile', {id: 'profile'}]); 
           return new GetLoginSuccess(data['data'].user);           		    			

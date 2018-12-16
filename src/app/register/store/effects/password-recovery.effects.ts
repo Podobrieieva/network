@@ -17,7 +17,6 @@ export class EmailEffect {
     exhaustMap(
     	action => this.registerService.passwordRecovery(action.payload).pipe(
     		map(data => {
-    			console.log(data)
            		this.alertService.success('You have requested a password reset, for this, use the link sent to your e-mail', true);
            		return new GetEmailSuccess(data);           		    			
     		}),

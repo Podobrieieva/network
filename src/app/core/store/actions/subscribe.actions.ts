@@ -13,15 +13,13 @@ export enum SubscribersActionTypes {
     GET_SUBSCRIBERS_PROFILE_FAIL = '[SUBSCRIBERS_PROFILE] Fetch GetSubscribersProfile failed',
     DELETE_SUBSCRIBE = '[DELETE_SUBSCRIBE] Fetch DeleteSubscribe requested',
     DELETE_SUBSCRIBE_SUCCESS = '[DELETE_SUBSCRIBE] Fetch DeleteSubscribe success',
-    DELETE_SUBSCRIBE_FAIL = '[DELETE_SUBSCRIBE Fetch DeleteSubscribe failed', 
-
-
+    DELETE_SUBSCRIBE_FAIL = '[DELETE_SUBSCRIBE Fetch DeleteSubscribe failed',
     GET_SUBSCRIPTIONS_PROFILE = '[SUBSCRIPTIONS_PROFILE] Fetch GetSubscriptionsProfile requested',
     GET_SUBSCRIPTIONS_PROFILE_SUCCESS = '[SUBSCRIPTIONS_PROFILE] Fetch GetSubscriptionsProfile success',
-    GET_SUBSCRIPTIONS_PROFILE_FAIL = '[SUBSCRIPTIONS_PROFILE] Fetch GetSubscriptionsProfile failed'
-  
-
-
+    GET_SUBSCRIPTIONS_PROFILE_FAIL = '[SUBSCRIPTIONS_PROFILE] Fetch GetSubscriptionsProfile failed',
+    GET_SUBSCRIPTIONS_ID = '[SUBSCRIPTIONS_ID] Fetch GetSubscriptionsId requested',
+    GET_SUBSCRIPTIONS_ID_SUCCESS = '[SUBSCRIPTIONS_ID] Fetch GetSubscriptionsId success',
+    GET_SUBSCRIPTIONS_ID_FAIL = '[SUBSCRIPTIONS_ID] Fetch GetSubscriptionsId failed'
 
   }
 
@@ -83,6 +81,7 @@ export enum SubscribersActionTypes {
     readonly type = SubscribersActionTypes.DELETE_SUBSCRIBE_FAIL;
     constructor(public payload: any) {}
   }
+
   export class GetSubscriptionsProfile implements Action{
     readonly type = SubscribersActionTypes.GET_SUBSCRIPTIONS_PROFILE;
   }
@@ -94,6 +93,21 @@ export enum SubscribersActionTypes {
 
   export class GetSubscriptionsProfileFail implements Action {
     readonly type = SubscribersActionTypes.GET_SUBSCRIPTIONS_PROFILE_FAIL;
+    constructor(public payload: any) {}
+  }
+
+  export class GetSubscriptionsId implements Action{
+    readonly type = SubscribersActionTypes.GET_SUBSCRIPTIONS_ID;
+    constructor(public payload: string) {}
+  }
+
+  export class GetSubscriptionsIdSuccess implements Action {
+    readonly type = SubscribersActionTypes.GET_SUBSCRIPTIONS_ID_SUCCESS;
+    constructor(public payload: any) {}
+  }
+
+  export class GetSubscriptionsIdFail implements Action {
+    readonly type = SubscribersActionTypes.GET_SUBSCRIPTIONS_ID_FAIL;
     constructor(public payload: any) {}
   }
 
@@ -112,4 +126,7 @@ export enum SubscribersActionTypes {
     DeleteSubscribeSuccess | 
     GetSubscriptionsProfile |
     GetSubscriptionsProfileSuccess | 
-    GetSubscriptionsProfileFail;
+    GetSubscriptionsProfileFail | 
+    GetSubscriptionsId |
+    GetSubscriptionsIdSuccess | 
+    GetSubscriptionsIdFail;
