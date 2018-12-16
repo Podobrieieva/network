@@ -4,10 +4,10 @@ import { Observable, Subscription } from 'rxjs'
 import { select, Store} from '@ngrx/store';
 
 import { State} from '../../../core/store';
-import { AddSubscribe, GetSubscribersId, GetSubscriptionsProfile } from '../../../core/store/actions/subscribe.actions';
+import { AddSubscribe, GetSubscribersId, GetSubscribersProfile } from '../../../core/store/actions/subscribe.actions';
 import { GetCurrentUserProfile, GetUserProfile } from '../../../core/store/actions/user-profile.actions';
 
-import { getIsUserProfile, getIsCurrentUserProfile, getIsSubscriptionsProfile, getIsSubscribersCurrent } from "../../../core/store";
+import { getIsUserProfile, getIsCurrentUserProfile, getIsSubscribersProfile, getIsSubscribersCurrent } from "../../../core/store";
 
 import { UserCard } from '../../../shared/models/user.model';
 import { NetworkService } from '../../../shared/services/network.service';
@@ -19,32 +19,44 @@ import { NetworkService } from '../../../shared/services/network.service';
 })
 export class SubscriptionListComponent implements OnInit {
 
-private userSubscription:Array<UserCard>;
+private userSubscribers:Array<UserCard>;
 	private profileСhange: string; 
-  private btnChange: boolean;
+  private btnChangeFollow: boolean;
+  private btnChangeDelete: boolean;
   private isProfileSubscribtion: Subscription;
-
+  private isUserProfileSubscribers: Subscription;
+  private isCurrentUserSubscribers: Subscription;
   constructor(
     private networkService: NetworkService,
     private store: Store<State>) {
-  	this.isProfileSubscribtion =  this.store.pipe(select(getIsSubscriptionsProfile)).subscribe(isUserSubsc => {
-      console.log(isUserSubsc)
-      this.userSubscription = isUserSubsc
+    this.isProfileSubscribtion = this.networkService.profileSubjObservable().subscribe(data => {
+      this.profileСhange = data
+      if (data === 'profile') {
+        this.isUserProfileSubscribers =  this.store.pipe(select(getIsSubscribersProfile)).subscribe(isUserSubscribers => {
+          this.userSubscribers = isUserSubscribers;
+          this.btnChangeFollow = false;
+          this.btnChangeDelete = false;
+      });
+      } else {       
+        this.isCurrentUserSubscribers = this.store.pipe(select(getIsSubscribersCurrent)).subscribe(isUserSubscribers => this.userSubscribers = isUserSubscribers);
+        this.btnChangeFollow = true;
+        this.btnChangeDelete = false;
+      }
     });
-
   }
 
   ngOnInit() {
-  	//this.networkService.profileСhange('subscriptions');
-  	this.store.dispatch(new GetSubscriptionsProfile());
+    if (this.profileСhange === 'profile') {
+      this.store.dispatch(new GetSubscribersProfile());      
+    } else {
+      this.store.dispatch(new GetSubscribersId(this.profileСhange));      
+    }
   }
 
   
-  public onViewSubscribeUser(id) {
-    console.log(id , 'wwwww')
-    this.networkService.profileСhange(id);
-    this.store.dispatch(new GetCurrentUserProfile(id));
-    this.store.dispatch(new GetSubscribersId(id));
-    
+  public onViewSubscribeUser(item) {
+    this.networkService.profileСhange(item.id);
+    this.store.dispatch(new GetCurrentUserProfile(item.id));
+    this.store.dispatch(new GetSubscribersId(item.id));    
   }
 }

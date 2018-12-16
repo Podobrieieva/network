@@ -5,14 +5,18 @@
     <div class="row">
       <div class="input-field col s6">
         <i class="material-icons prefix">people</i>
-        <input type="text" id="search" name="search" [(ngModel)] = "searchStr" #search = "ngModel" placeholder="Search user"  >
+        <input type="text" id="search" name="search" (keyup)="searchStr$.next($event.target.value)" placeholder="Search user"  >
       </div>
     </div>
   </form>
 </div>
     <div class="row"> 
-      <app-card-of-user *ngFor = "let u of users|search:searchStr; let i = index"
-      [user]="u" [index]="i">
+      <app-card-of-user *ngFor = "let u of users; let i = index"
+      [user]="u" [index]="i"
+      (viewEvt)="onViewSubscribeUser($event)"
+      (addEvt)="onAddAsFriend($event)"
+      [btnChangeFollow]="btnChangeFollow"
+      [btnChangeDelete]="btnChangeDelete">
       </app-card-of-user>
     </div>
 </div>

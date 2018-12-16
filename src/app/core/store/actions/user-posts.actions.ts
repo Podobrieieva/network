@@ -43,4 +43,9 @@ export enum UserPostsActionTypes {
 
  
 
-  export type UserPostsActionsUnion = GetUserPosts  | GetUserPostsFail | GetUserPostsSuccess | GetUserPostAdd  | GetUserPostAddFail | GetUserPostAddSuccess;
+  export type UserPostsActionsUnion = GetUserPosts  | 
+    GetUserPostsFail | 
+    GetUserPostsSuccess | 
+    GetUserPostAdd  | 
+    GetUserPostAddFail | 
+    GetUserPostAddSuccess;

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NetworkService } from '../../../shared/services/network.service';
 import { Post, UserProfileModel,  UserCard } from '../../../shared/models/user.model';
 import { Store, select } from '@ngrx/store';
-import { State, getIsUserPosts, getIsUserProfile, getIsCurrentUserProfile, getIsSubscribersProfile, getIsSubscribersCurrent, getPosts } from '../../../core/store';
+import { State, getIsUserPosts, getIsUserProfile, getIsCurrentUserProfile, getIsSubscribersProfile, getIsSubscribersCurrent, getPosts, getIsSubscriptionsProfile, getIsSubscriptionsId } from '../../../core/store';
 import {GetUserPosts } from '../../../core/store/actions/user-posts.actions'
 import { BehaviorSubject, Observable, of, Subject, Subscription } from 'rxjs';
 import { GetPosts } from '../../../core/store/actions/news.actions';
@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit, OnDestroy  {
   private isUserProfileSubscribers: Subscription;
   private isCurrentUserSubscribers: Subscription;
   private user$: UserProfileModel;
+  
   private profileСhange: string;
   public currentUser = {
     name: 'Sarah',
@@ -60,26 +61,24 @@ export class ProfileComponent implements OnInit, OnDestroy  {
     //   this.user$= data;
     // });
     
-this.subscriptionIdUser = this.service.profileSubjObservable().subscribe(data => {
-  this.profileСhange = data
-  console.log(data)
-  if (data === 'profile') {
-     this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => this.user$ = isUserProfile);
-     this.isUserProfileSubscribers =  this.store.pipe(select(getIsSubscribersProfile)).subscribe(isUserSubscribers => this.userSubscribers = isUserSubscribers);
+    this.subscriptionIdUser = this.service.profileSubjObservable().subscribe(data => {
+      this.profileСhange = data
+      console.log(data)
+      if (data === 'profile') {
+        this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => this.user$ = isUserProfile);
+        this.isUserProfileSubscribers =  this.store.pipe(select( getIsSubscriptionsProfile)).subscribe(isUserSubscribers => this.userSubscribers = isUserSubscribers);
+       } else {    
+        this.isCurrentUserSubscription =  this.store.pipe(select(getIsCurrentUserProfile)).subscribe(isCurrentUserProfile => this.user$ = isCurrentUserProfile) 
+        this.isCurrentUserSubscribers = this.store.pipe(select(getIsSubscriptionsId)).subscribe(isUserSubscribers => this.userSubscribers = isUserSubscribers);
+      }
+    }); 
 
-  } else {
-    
-    this.isCurrentUserSubscription =  this.store.pipe(select(getIsCurrentUserProfile)).subscribe(isCurrentUserProfile => this.user$ = isCurrentUserProfile) 
-    this.isCurrentUserSubscribers = this.store.pipe(select(getIsSubscribersCurrent)).subscribe(isUserSubscribers => this.userSubscribers = isUserSubscribers);
-  }
-});
-
-    this.isUserProfileSubscription = this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
-      console.log(isUserProfile)
-      if (isUserProfile) {
-        this.userId = isUserProfile.id
-      }      
-    })
+    // this.isUserProfileSubscription = this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
+    //   console.log(isUserProfile)
+    //   if (isUserProfile) {
+    //     this.userId = isUserProfile.id
+    //   }      
+    // })
    
   }
 

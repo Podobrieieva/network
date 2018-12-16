@@ -4,9 +4,9 @@ import * as fromRouter from '@ngrx/router-store';
 import * as fromNews from './reducers/news.reducer';
 import * as fromPasswordChange from './reducers/password-change.reducer';
 import * as fromUserProfile from './reducers/user-profile.reducer';
-import * as fromUserPosts from './reducers/user-posts.reducer'
-
+import * as fromUserPosts from './reducers/user-posts.reducer';
 import * as fromSubscribe from './reducers/subscribers.reducer';
+import * as fromUsers from './reducers/user-profile.reducer'
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
  * our top level state interface is just a map of keys to inner state types.
@@ -17,7 +17,8 @@ export interface State {
   passwordChange: fromPasswordChange.IpassChangeState;
   userProfile: fromUserProfile.State;
   userPosts: fromUserPosts.State;
-  subscribers: fromSubscribe.State
+  subscribers: fromSubscribe.State;
+  users: fromUsers.State;
 }
 
 export const reducers: ActionReducerMap < State > = {
@@ -26,7 +27,8 @@ export const reducers: ActionReducerMap < State > = {
   passwordChange: fromPasswordChange.reducer,
   userProfile: fromUserProfile.reducer,
   userPosts: fromUserPosts.reducer,
-  subscribers: fromSubscribe.reducer
+  subscribers: fromSubscribe.reducer,
+  users: fromUsers.reducer
 };
 
 // console.log all actions
@@ -46,6 +48,9 @@ export const getIsSubscribersProfile = (state) => state.subscribers.isGetSubscri
 export const getIsAddSubscribe = (state) => state.subscribers.isAddSubscribe;
 export const getIsDeleteSubscribe = (state) => state.subscribers.isDeleteSubscribe;
 export const getIsSubscriptionsProfile = (state) => state.subscribers.isGetSubscriptionsProfile;
+export const getIsSubscriptionsId = (state) => state.subscribers.isGetSubscriptionsId;
+export const getIsUsers = (state) => state.users.isUsers;
+
 // export const getNewsState = createFeatureSelector<fromNews.State>('news');
 
 export const getPosts = (state) => state.post.posts;

@@ -25,9 +25,7 @@ export class NavComponent implements OnInit {
     private store: Store<State>) {
       router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url);
     this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
-      
-      this.userProfile = isUserProfile;
-      console.log(this.userProfile)
+      this.userProfile = (isUserProfile)? isUserProfile: localStorage.getItem("userProfile");
      })
   }
 
@@ -37,7 +35,7 @@ export class NavComponent implements OnInit {
 
   goToProfilePage() {
     this.networkService.profileСhange('profile');
-    
+    this.networkService.userProfileСontrol.next('profile');
   }
 
   public logout() {

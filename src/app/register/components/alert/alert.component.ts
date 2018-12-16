@@ -26,10 +26,8 @@ export class AlertComponent implements OnInit, OnDestroy {
     });
   }
     
-  deleteMassegeAlert() {
-    // location.reload(true);
-    this.changeLogin.emit()
-    this.registerService.logout(); 
+  deleteMassegeAlert() { 
+    this.changeLogin.emit(); 
     this.message = false;       
   }
 

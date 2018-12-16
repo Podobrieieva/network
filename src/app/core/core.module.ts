@@ -24,16 +24,13 @@ import { SubscriptionListComponent } from './containers/subscription-list/subscr
 
 
 
-
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    MaterialModule
-    
-   
+    MaterialModule   
   ],
   declarations: [
     HeaderComponent, 
@@ -49,7 +46,7 @@ import { SubscriptionListComponent } from './containers/subscription-list/subscr
     CardOfUserComponent,
     // AddCommentForCommentComponent,
     ChangePasswordComponent,
-    SubscriptionListComponent
+    SubscriptionListComponent,
     ],
     
   exports: [

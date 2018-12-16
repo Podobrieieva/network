@@ -5,8 +5,10 @@
       		[user]="item" 
       		[index]="i"
       		(viewEvt)="onViewSubscribeUser($event)"
-			(addEvt)="onAddAsFriend($event)"
-			(removeEvt)="onRemoveFromFriends($event)"
+			    (addEvt)="onAddAsFriend($event)"
+			    (removeEvt)="onRemoveFromFriends($event)"
+          [btnChangeDelete]="btnChangeDelete"
+          [btnChangeFollow]="btnChangeFollow"
       		>
       </app-card-of-user>
     </div>

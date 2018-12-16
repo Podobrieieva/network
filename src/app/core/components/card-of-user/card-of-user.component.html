@@ -6,8 +6,8 @@
   </div>
   <div class="box footer">
     <button class="view" (click)="viewSubscribeUser(user)">View Profile</button>
-    <button *ngIf="!btnChange" class="follow">Follow</button>
-    <button *ngIf="btnChange" class="follow" (click)="removeFromFriends(user)">Delete</button>
+    <button *ngIf="btnChangeFollow" class="follow" (click)="addAsFriend(user)">Follow</button>
+    <button *ngIf="btnChangeDelete" class="follow" (click)="removeFromFriends(user)">Delete</button>
 
   </div>
 </div> 

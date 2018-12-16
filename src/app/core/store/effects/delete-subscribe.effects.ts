@@ -1,17 +1,14 @@
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Action } from '@ngrx/store';
+import { Action, select, Store} from '@ngrx/store';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
-
 import { DeleteSubscribe, DeleteSubscribeSuccess, DeleteSubscribeFail, SubscribersActionTypes } from '../actions/subscribe.actions';
 import { AlertService } from '../../../register/service/alert.service';
 import { NetworkService } from '../../../shared/services/network.service'
-
-import { GetUserProfile, GetCurrentUserProfile } from '../../../core/store/actions/user-profile.actions'
-import { GetSubscribersId, GetSubscribersProfile } from '../../../core/store/actions/subscribe.actions'
-import { select, Store} from "@ngrx/store";
-import { getIsUserProfile, State, getIsCurrentUserProfile, getIsSubscribersProfile, getIsSubscribersCurrent } from "../../../core/store";
+import { GetUserProfile } from '../../../core/store/actions/user-profile.actions'
+import { GetSubscribersId, GetSubscriptionsProfile } from '../../../core/store/actions/subscribe.actions'
+import { State } from "../../../core/store";
 
 
 
@@ -25,10 +22,9 @@ export class DeleteSubscribeEffect {
     exhaustMap(
     	action => this.networkService.deleteSubscribe(action.payload).pipe(
     		map(data => {
-          console.log(data)
-          this.alertService.success('Subscription on profile delete.', true);
+          //this.alertService.success('Subscription on profile delete.', true);
           this.store.dispatch(new GetUserProfile());
-          this.store.dispatch(new GetSubscribersProfile());
+          this.store.dispatch(new GetSubscriptionsProfile());
        		return new DeleteSubscribeSuccess(data);           		    			
     		}),
     		catchError(err => {
