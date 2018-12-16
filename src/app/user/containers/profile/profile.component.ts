@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NetworkService } from '../../../shared/services/network.service';
 import { Post, UserProfileModel,  UserCard } from '../../../shared/models/user.model';
 import { Store, select } from '@ngrx/store';
-import { State, getIsUserPosts, getIsUserProfile, getIsCurrentUserProfile, getIsSubscribersProfile, getIsSubscribersCurrent } from '../../../core/store';
+import { State, getIsUserPosts, getIsUserProfile, getIsCurrentUserProfile, getIsSubscribersProfile, getIsSubscribersCurrent, getPosts } from '../../../core/store';
 import {GetUserPosts } from '../../../core/store/actions/user-posts.actions'
 import { BehaviorSubject, Observable, of, Subject, Subscription } from 'rxjs';
 import { GetPosts } from '../../../core/store/actions/news.actions';
@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit, OnDestroy  {
   public userSubscribers:Array<UserCard>;
   //private paramsRouteId:string;
   private subscriptionIdUser: Subscription;
+  private isUserPostsSubscription: Subscription;
   private isCurrentUserSubscription: Subscription;
   private isUserProfileSubscribers: Subscription;
   private isCurrentUserSubscribers: Subscription;
@@ -41,6 +42,10 @@ export class ProfileComponent implements OnInit, OnDestroy  {
 
  
   constructor(private service: NetworkService, private store: Store<State>) {
+    this.isUserPostsSubscription = this.store.pipe(select(getPosts)).subscribe(posts => {
+      console.log(posts)
+       
+    })
     this.isUserPostSubscription = this.store.pipe(select(getIsUserPosts)).subscribe(posts => {
       console.log(posts)
        if (posts) {
@@ -87,7 +92,7 @@ this.subscriptionIdUser = this.service.profileSubjObservable().subscribe(data =>
       this.store.dispatch(new GetCurrentUserProfile(this.profileСhange));
       this.store.dispatch(new GetSubscribersId(this.profileСhange));      
     }
-
+    this.store.dispatch(new GetPosts ())
     this.store.dispatch(new GetUserPosts (this.userId));
     this.service.getUserProfile();
   }
