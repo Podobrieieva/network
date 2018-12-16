@@ -20,13 +20,13 @@ import { AlertComponent } from './register/components/alert/alert.component'
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     NetworkDirective,
     CustomPipe,
     AlertComponent
-
   ],
   imports: [
     BrowserModule,

@@ -14,8 +14,8 @@ export class ErrorInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(catchError(err => {
             if (err.status === 401) {
                 //logout if 401 response returned from api
-                //this.registerService.logout();
-                //location.reload(true);
+                // this.registerService.logout();
+                // location.reload(true);
                 //this.alertService.error('The email or password entered are not the same as those stored in our database. Check that the entered data is correct and try again.', true);
 
             }  

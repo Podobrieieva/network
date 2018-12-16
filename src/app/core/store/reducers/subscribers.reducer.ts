@@ -5,7 +5,9 @@ export interface State {
  isDeleteSubscribe: object;
  isGetSubscribersProfile: Array<UserCard>;
  isGetSubscribersCurrent: Array<UserCard>;
- isGetSubscriptionsProfile: Array<UserCard>; 
+ isGetSubscriptionsProfile: Array<UserCard>;
+ isGetSubscriptionsId: Array<UserCard>;
+
 }
 
 export const  initialState: State = {
@@ -13,7 +15,8 @@ export const  initialState: State = {
   isDeleteSubscribe: {},
   isGetSubscribersProfile: [],
   isGetSubscribersCurrent: [],
-  isGetSubscriptionsProfile: []
+  isGetSubscriptionsProfile: [],
+  isGetSubscriptionsId: []
 };
 
 export function reducer (state: State = initialState, action: UserProfileActionsUnion) {
@@ -42,7 +45,12 @@ export function reducer (state: State = initialState, action: UserProfileActions
       return {
         ...state,
         isGetSubscriptionsProfile: action.payload        
-      };              
+      };
+    case SubscribersActionTypes.GET_SUBSCRIPTIONS_ID_SUCCESS:
+      return {
+        ...state,
+        isGetSubscriptionsId: action.payload        
+      };                    
     default:
       return state;
   }

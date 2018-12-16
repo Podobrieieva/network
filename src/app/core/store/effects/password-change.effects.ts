@@ -18,7 +18,6 @@ export class PasswordChangeEffect {
     exhaustMap(
       action => this.networkService.resetPassword(action['payload']).pipe(
         map(data => {
-          console.log(data);
           this.alertService.success('Your password has been reset successfully, you can now log in with your new password.', true);	
     	    window.close();
           return new GetPasswordSuccess(data);

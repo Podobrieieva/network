@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-
+import { Router } from '@angular/router';
 import { PermissionToEnter } from '../models/profile.model';
 
 
@@ -13,7 +13,7 @@ export class RegisterService {
   public permissionSubject: BehaviorSubject<PermissionToEnter>;
   public apiUrl:string = 'https://s-network.herokuapp.com/api/v1';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.permissionSubject = new BehaviorSubject<PermissionToEnter>(JSON.parse(localStorage.getItem('permissionToEnter')));
     this.permissionSubject.asObservable();
   }
@@ -42,7 +42,8 @@ export class RegisterService {
 
   public logout() {
     localStorage.removeItem('permissionToEnter');
-    this.permissionSubject.next(null);        
+    this.permissionSubject.next(null);
+    this.router.navigate(['/register']);        
   }
   
  

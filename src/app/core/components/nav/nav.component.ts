@@ -35,7 +35,7 @@ export class NavComponent implements OnInit {
 
   goToProfilePage() {
     this.networkService.profileСhange('profile');
-    
+    this.networkService.userProfileСontrol.next('profile');
   }
 
   public logout() {

@@ -16,15 +16,13 @@ export class GetSubscriptionsProfileEffect {
     exhaustMap(
       action => this.networkService.getUsersSubscriptionsProfile().pipe(
         map(data => {
-
           return new GetSubscriptionsProfileSuccess(data.data.subscriptions);                         
         }),
         catchError(err => {
           return of(new GetSubscriptionsProfileFail(err));
         })
       )
-    )  
-
+    )
   );
 
   constructor(

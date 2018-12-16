@@ -20,30 +20,37 @@ import { NetworkService } from '../../../shared/services/network.service';
 export class FriendsListComponent implements OnInit {
 
   @Input() userSubscribers$:Array<UserCard>;
-  private btnChange: boolean;
+  private btnChangeFollow: boolean;
+  private btnChangeDelete: boolean;
+
+  private isUsersSubscription: Subscription;
+  private profileSubscription: Subscription; 
 
   constructor(
     private networkService: NetworkService,
-    private store: Store<State>) {     
+    private store: Store<State>) {
+    this.profileSubscription = this.networkService.profileSubjObservable().subscribe(data => {
+    this.btnChangeDelete = (data==='profile')? true: false;
+    this.btnChangeFollow = !this.btnChangeDelete      
+    })
+
   }
 
   ngOnInit() {
   }
 
   
-  public onViewSubscribeUser(id) {
-    console.log(id , 'wwwww')
-    this.networkService.profileСhange(id);
-    this.store.dispatch(new GetCurrentUserProfile(id));
-    this.store.dispatch(new GetSubscribersId(id));
-    
+  public onViewSubscribeUser(item) {
+    this.networkService.profileСhange(item.id);
+    this.store.dispatch(new GetCurrentUserProfile(item.id));
+    this.store.dispatch(new GetSubscribersId(item.id));    
   }
 
-  public onAddAsFriend(id) {
-    this.store.dispatch(new AddSubscribe(id));
+  public onAddAsFriend(item) {
+    this.store.dispatch(new AddSubscribe(item.id));
   }
 
-  public onRemoveFromFriends(id) {
-    this.store.dispatch(new DeleteSubscribe(id));
+  public onRemoveFromFriends(item) {
+    this.store.dispatch(new DeleteSubscribe(item.id));
   }
 }

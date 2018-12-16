@@ -22,12 +22,12 @@ export class AddNewPostComponent implements OnInit {
   public post: Post = {
         id: '',
         text: '',
-        author: { name: "",
-        surname: "",
-        fullname: "",
-        avatarUrl: '',
-        id: '8',
-
+        author: { 
+          name: "",
+          surname: "",
+          fullname: "",
+          avatarUrl: '',
+          id: '8',
         },
         likes: 0,
         dislikes: 0,
@@ -43,10 +43,10 @@ export class AddNewPostComponent implements OnInit {
     this.isUserProfileSubscription = this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
       console.log(isUserProfile)
       if (isUserProfile) {
-        this.post.author.name = isUserProfile.data.name;
-        this.post.author.surname = isUserProfile.data.surname;
-        this.post.author.avatarUrl = isUserProfile.data.avatarUrl;
-        this.post.author.id = isUserProfile.data.id;
+        this.post.author.name = isUserProfile.name;
+        this.post.author.surname = isUserProfile.surname;
+        this.post.author.avatarUrl = isUserProfile.avatarUrl;
+        this.post.author.id = isUserProfile.id;
 
       }      
     })

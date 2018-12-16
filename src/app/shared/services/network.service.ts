@@ -121,8 +121,7 @@ export class NetworkService {
 
     
   public logout() {
-    this.registerService.logout()
-
+    this.registerService.logout();
     // localStorage.removeItem('permissionToEnter');
     // //localStorage.clear(); 
     // location.reload(true);    
@@ -172,7 +171,16 @@ export class NetworkService {
     return this.http.get<any>(`${this.apiUrl}/profile/subscriptions`);
   }
 
-  
+  public getUsersSubscriptionsId(id) {
+    return this.http.get<any>(`${this.apiUrl}/profile/${id}/subscriptions`);
+  }
+
+  public getUsersSearch(term) {
+    console.log('data')
+    return this.http.get<any>(`${this.apiUrl}/profile/search?fullname=${term}`);
+  }
+
+
 
 //////////////////////////////////////////////////////////////////
 
@@ -196,22 +204,6 @@ public uploadPhotoUser(selectedFile){
 }
 
 
-  public getUsers():Observable<UserCard[]>{
-    return this.http.get("https://randomuser.me/api/?page=3&results=10&seed=abc").pipe(
-                 map(response => response["results"]),
-                 map(users=>{
-                   return users.map( (user,i) => {
-                     return {
-                       name: user.name.first,
-                       surname: user.name.last,
-                       photo: user.picture.large,
-                       id: i,
-                     }
-                   })
-                 }))
-                          
-                    
-  }
   
 
 

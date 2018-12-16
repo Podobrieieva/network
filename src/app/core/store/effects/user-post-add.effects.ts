@@ -17,14 +17,10 @@ export class UserPostAddEffect {
     ofType<GetUserPostAdd>(UserPostsActionTypes.GET_USER_POST_ADD),
     exhaustMap(
     	action => this.networkService.addPost(action.payload, action.imageUrl).pipe(
-    		map(data=> {
-    			console.log(data)
-           		
-           		return new GetUserPostAddSuccess(data);
-           		    			
+    		map(data=> {           		
+          return new GetUserPostAddSuccess(data);           		    			
     		}),
-    		catchError(err => {
-    		
+    		catchError(err => {    		
     			return of(new GetUserPostAddFail(err));
     		})
   		)

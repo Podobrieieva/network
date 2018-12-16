@@ -6,9 +6,9 @@ import { catchError, exhaustMap, map } from 'rxjs/operators';
 
 
 import { GetUserProfile, GetCurrentUserProfile } from '../../../core/store/actions/user-profile.actions'
-import { GetSubscribersId, GetSubscribersProfile } from '../../../core/store/actions/subscribe.actions'
+import { GetSubscribersProfile } from '../../../core/store/actions/subscribe.actions'
 import { select, Store} from "@ngrx/store";
-import { getIsUserProfile, State, getIsCurrentUserProfile, getIsSubscribersProfile, getIsSubscribersCurrent } from "../../../core/store";
+import { State } from "../../../core/store";
 
 
 import { AddSubscribe, AddSubscribeSuccess, AddSubscribeFail, SubscribersActionTypes } from '../actions/subscribe.actions';

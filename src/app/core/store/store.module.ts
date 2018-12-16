@@ -18,8 +18,8 @@ import { GetSubscribersIdEffect} from './effects/get-current-subscribers.effects
 import { GetSubscribersProfileEffect } from './effects/get-profile-subscribers.effects';
 import { DeleteSubscribeEffect } from './effects/delete-subscribe.effects';
 import { GetSubscriptionsProfileEffect } from './effects/get-profile-subscrirtions.effects'
-
-
+import { GetUsersEffect } from './effects/get-users.effects';
+import { GetSubscriptionsIdEffect } from './effects/get-current-subscrirtions.effects'
 
 @NgModule({
   imports: [
@@ -37,7 +37,9 @@ import { GetSubscriptionsProfileEffect } from './effects/get-profile-subscrirtio
         GetSubscribersIdEffect,
         GetSubscribersProfileEffect,
         DeleteSubscribeEffect,
-        GetSubscriptionsProfileEffect
+        GetSubscriptionsProfileEffect,
+        GetUsersEffect,
+        GetSubscriptionsIdEffect
     ])
   ]
 })
