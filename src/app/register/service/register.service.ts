@@ -42,6 +42,7 @@ export class RegisterService {
 
   public logout() {
     localStorage.removeItem('permissionToEnter');
+    localStorage.clear();
     this.permissionSubject.next(null);
     this.router.navigate(['/register']);        
   }

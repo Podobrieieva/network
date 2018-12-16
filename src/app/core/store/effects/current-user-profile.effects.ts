@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
-import { GetSubscribersId } from '../../../core/store/actions/subscribe.actions'
+import { GetSubscriptionsId } from '../../../core/store/actions/subscribe.actions'
 import { GetCurrentUserProfile, GetCurrentUserProfileFail, GetCurrentUserProfileSuccess, UserProfileActionTypes } from '../actions/user-profile.actions';
 import { AlertService } from '../../../register/service/alert.service';
 import { NetworkService } from '../../../shared/services/network.service'
@@ -19,8 +19,10 @@ export class CurrentUserProfileEffect {
     exhaustMap(
     	action => this.networkService.getCurrentUserProfile(action.payload).pipe(
     		map(data => {
-          const carrentUser = data.data.user;          
+          const carrentUser = data.data.user;
+           this.store.dispatch(new GetSubscriptionsId(carrentUser.id));          
            this.router.navigate(["network/profile"]);
+
            return new GetCurrentUserProfileSuccess(carrentUser);           		    			
     		}),
     		catchError(err => {

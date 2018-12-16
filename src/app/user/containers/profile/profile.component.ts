@@ -52,7 +52,7 @@ export class ProfileComponent implements OnInit, OnDestroy  {
     //   this.userPosts= data;
     // });
     const subscrip = this.service.userProfileSubjObservable().subscribe(data => {
-      this.user$= data;
+      this.user$ = data;
     });
     
     this.subscriptionIdUser = this.service.profileSubjObservable().subscribe(data => {

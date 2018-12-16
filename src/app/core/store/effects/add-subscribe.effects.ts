@@ -6,7 +6,7 @@ import { catchError, exhaustMap, map } from 'rxjs/operators';
 
 
 import { GetUserProfile, GetCurrentUserProfile } from '../../../core/store/actions/user-profile.actions'
-import { GetSubscribersProfile } from '../../../core/store/actions/subscribe.actions'
+import { GetSubscriptionsProfile } from '../../../core/store/actions/subscribe.actions'
 import { select, Store} from "@ngrx/store";
 import { State } from "../../../core/store";
 
@@ -26,7 +26,7 @@ export class AddSubscribeEffect {
     		map(data => {
           this.alertService.success('Subscription on profile succeeded.', true);
           this.store.dispatch(new GetUserProfile());
-          this.store.dispatch(new GetSubscribersProfile());
+          this.store.dispatch(new GetSubscriptionsProfile());
        		return new AddSubscribeSuccess(data);           		    			
     		}),
     		catchError(err => {
