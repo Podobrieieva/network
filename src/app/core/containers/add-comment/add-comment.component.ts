@@ -42,9 +42,9 @@ export class AddCommentComponent implements OnInit {
 
 
   public onSubmit(form: NgForm) {
-    const comment = {...this.model};
-    this.networkService.addComment(comment)
-    this.addBtnClickHandler()
+    // const comment = {...this.model};
+    // this.networkService.addComment(comment)
+    // this.addBtnClickHandler()
       
   }
   public addBtnClickHandler() {

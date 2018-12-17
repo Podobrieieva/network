@@ -32,24 +32,24 @@ export class ProfileComponent implements OnInit, OnDestroy  {
   private user$: UserProfileModel;
   private profileСhange: string;
   public userPosts: Array<Post>;
-  public allPosts:  Array<Post>;
+  // public allPosts:  Array<Post>;
   public accessToAddPost: boolean = false;
 
 
  
   constructor(private service: NetworkService, private store: Store<State>) {
-    this.isUserPostsSubscription = this.store.pipe(select(getPosts)).subscribe(posts => {
-      console.log(posts)  
-       if (posts.length) {
-        this.allPosts = posts
-      }  
+    // this.isUserPostsSubscription = this.store.pipe(select(getPosts)).subscribe(posts => {
+    //   console.log(posts)  
+    //    if (posts.length) {
+    //     this.allPosts = posts
+    //   }  
        
-    })
+    // })
     this.isUserPostSubscription = this.store.pipe(select(getIsUserPosts)).subscribe(
       posts => {
       console.log(posts)
-       if (this.allPosts) {
-        this.userPosts = posts.data.posts
+      if (posts) {
+        this.userPosts = posts
       }      
 
     })
@@ -87,8 +87,6 @@ export class ProfileComponent implements OnInit, OnDestroy  {
       this.store.dispatch(new GetCurrentUserProfile(this.profileСhange));
       this.store.dispatch(new GetSubscribersId(this.profileСhange));      
     }
-    this.store.dispatch(new GetPosts ())
-    this.store.dispatch(new GetUserPosts (this.user$.id));
     
   }
 

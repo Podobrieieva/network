@@ -5,7 +5,10 @@ import { Router } from '@angular/router';
 import { Action } from '@ngrx/store';
 import { GetUserProfile, GetUserProfileFail, GetUserProfileSuccess, UserProfileActionTypes } from '../actions/user-profile.actions';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
-import { NetworkService } from '../.././../shared/services/network.service'
+import { NetworkService } from '../.././../shared/services/network.service';
+import { GetUserPosts } from '../actions/user-posts.actions';
+import { select, Store} from "@ngrx/store";
+import { State } from "../../../core/store";
 
 @Injectable()
 export class UserProfileEffect {
@@ -16,7 +19,8 @@ export class UserProfileEffect {
     exhaustMap(
     	action => this.networkService.getUserProfile().pipe(
     		map(data => {
-          localStorage.setItem('userProfile', JSON.stringify(data.data.user));
+          sessionStorage.setItem('userProfile', JSON.stringify(data.data.user));
+          this.store.dispatch(new GetUserPosts(data.data.user.id));
           //this.router.navigate(["network/profile", {id: data.data.user.id}]);
           return new GetUserProfileSuccess(data.data.user);           		    			
     		}),
@@ -31,6 +35,6 @@ export class UserProfileEffect {
   constructor(
   	private actions$: Actions,
   	private networkService: NetworkService,
-  	private router: Router
-  	) {}
+  	private router: Router,
+  	private store: Store<State>) {}
 }

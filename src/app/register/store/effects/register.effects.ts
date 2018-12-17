@@ -19,8 +19,8 @@ export class RegisterEffect {
     	action => this.registerService.register(action.payload).pipe(
     		map(data => {
     			 		this.alertService.success('Registration successful', true);
-           		localStorage.setItem('permissionToEnter', JSON.stringify(data));
-           		localStorage.setItem('token', data['data'].token);
+           		sessionStorage.setItem('permissionToEnter', JSON.stringify(data));
+           		sessionStorage.setItem('token', data['data'].token);
            		this.router.navigate([""]);
            		return new GetRegisterSuccess(data);
            		    			
