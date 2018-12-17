@@ -7,6 +7,9 @@ import { catchError, exhaustMap, map } from 'rxjs/operators';
 
 import { UserPostsActionTypes, GetUserPostDelete, GetUserPostDeleteSuccess, GetUserPostDeleteFail } from '../actions/user-posts.actions'
 import { NetworkService } from '../../../shared/services/network.service';
+import { GetUserProfile } from '../actions/user-profile.actions'
+import { Store, select } from '@ngrx/store';
+import { State } from '../../../core/store';
 
 
 @Injectable()
@@ -17,7 +20,8 @@ export class UserPostDeleteEffect {
     ofType<GetUserPostDelete>(UserPostsActionTypes.GET_USER_POST_DELETE),
     exhaustMap(
     	action => this.networkService.deletePost(action.payload).pipe(
-    		map(data=> {           		
+    		map(data=> { 
+          this.store.dispatch(new GetUserProfile());        		
           return new GetUserPostDeleteSuccess(data);           		    			
     		}),
     		catchError(err => {    		
@@ -31,5 +35,5 @@ export class UserPostDeleteEffect {
   constructor(
   	private actions$: Actions,
   	private networkService: NetworkService,
-  	) {}
+  	private store: Store<State>) {}
 }

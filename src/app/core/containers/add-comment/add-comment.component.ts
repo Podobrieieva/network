@@ -36,7 +36,7 @@ export class AddCommentComponent implements OnInit {
    
 
   ngOnInit() {
-    this.store.dispatch(new GetUserProfile());
+    ////////////////////////////this.store.dispatch(new GetUserProfile());
   }
 
 

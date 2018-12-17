@@ -16,8 +16,7 @@ export class UserPostsEffect {
     exhaustMap(
     	action => this.networkService.getUserPosts(action.payload).pipe(
     		map(
-					data => {
-            console.log(data)
+					data => {            
           return new GetUserPostsSuccess(data.data.posts);           		    			
     		}),
     		catchError(err => {

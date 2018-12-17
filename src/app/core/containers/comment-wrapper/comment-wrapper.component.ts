@@ -27,7 +27,7 @@ export class CommentWrapperComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new GetPosts ())
+    /////this.store.dispatch(new GetPosts ())
   }
 
 

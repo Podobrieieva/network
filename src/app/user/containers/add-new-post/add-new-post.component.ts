@@ -53,7 +53,7 @@ export class AddNewPostComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new GetUserProfile());
+    //////////////////////////////////////////////////////////this.store.dispatch(new GetUserProfile());
   }
 
     public handleFileInput (event){

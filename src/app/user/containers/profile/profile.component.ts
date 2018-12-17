@@ -3,12 +3,12 @@ import { NetworkService } from '../../../shared/services/network.service';
 import { Post, UserProfileModel,  UserCard } from '../../../shared/models/user.model';
 import { Store, select } from '@ngrx/store';
 import { State, getIsUserPosts, getIsUserProfile, getIsCurrentUserProfile, getIsSubscribersProfile, getIsSubscribersCurrent, getPosts, getIsSubscriptionsProfile, getIsSubscriptionsId } from '../../../core/store';
-import {GetUserPosts, GetUserPostDelete } from '../../../core/store/actions/user-posts.actions'
+import { GetUserPosts, GetUserPostDelete } from '../../../core/store/actions/user-posts.actions'
 import { BehaviorSubject, Observable, of, Subject, Subscription } from 'rxjs';
 import { GetPosts } from '../../../core/store/actions/news.actions';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GetUserProfile, GetCurrentUserProfile } from '../../../core/store/actions/user-profile.actions'
-import { AddSubscribe, GetSubscribersId, GetSubscribersProfile } from '../../../core/store/actions/subscribe.actions'
+import { AddSubscribe, GetSubscriptionsId, GetSubscriptionsProfile } from '../../../core/store/actions/subscribe.actions'
 
 
 @Component({
@@ -61,13 +61,9 @@ export class ProfileComponent implements OnInit, OnDestroy  {
       this.profileСhange = data
       console.log(data)
       if (data === 'profile') {
-        this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
-          this.user$ = isUserProfile;
-          this.accessToAddPost = true;
-        }
-          
-          );
+        this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => this.user$ = isUserProfile);
         this.isUserProfileSubscribers =  this.store.pipe(select( getIsSubscriptionsProfile)).subscribe(isUserSubscribers => this.userSubscribers = isUserSubscribers);
+        this.accessToAddPost = true;
        } else {    
         this.isCurrentUserSubscription =  this.store.pipe(select(getIsCurrentUserProfile)).subscribe(isCurrentUserProfile => this.user$ = isCurrentUserProfile) 
         this.isCurrentUserSubscribers = this.store.pipe(select(getIsSubscriptionsId)).subscribe(isUserSubscribers => this.userSubscribers = isUserSubscribers);
@@ -79,13 +75,12 @@ export class ProfileComponent implements OnInit, OnDestroy  {
   }
 
   ngOnInit() {
-  
     if (this.profileСhange === 'profile') {
       this.store.dispatch(new GetUserProfile());
-      this.store.dispatch(new GetSubscribersProfile());      
+      this.store.dispatch(new GetSubscriptionsProfile());      
     } else {
       this.store.dispatch(new GetCurrentUserProfile(this.profileСhange));
-      this.store.dispatch(new GetSubscribersId(this.profileСhange));      
+      this.store.dispatch(new GetSubscriptionsId(this.profileСhange));      
     }
     
   }
