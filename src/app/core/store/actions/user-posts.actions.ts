@@ -8,6 +8,9 @@ export enum UserPostsActionTypes {
     GET_USER_POST_ADD = '[USER_PROFILE] Fetch UserPostsAdd requested',
     GET_USER_POST_ADD_SUCCESS = '[USER_PROFILE] Fetch UserPostsAdd success',
     GET_USER_POST_ADD_FAIL = '[USER_PROFILE] Fetch UserPostsAdd failed',
+    GET_USER_POST_DELETE = '[USER_PROFILE] Fetch UserPostsDelete requested',
+    GET_USER_POST_DELETE_SUCCESS = '[USER_PROFILE] Fetch UserPostsDelete success',
+    GET_USER_POST_DELETE_FAIL = '[USER_PROFILE] Fetch UserPostsDelete failed',
 
   }
 
@@ -41,6 +44,23 @@ export enum UserPostsActionTypes {
     constructor(public payload: object) {}
   }
 
+  
+  export class GetUserPostDelete implements Action{
+    readonly type = UserPostsActionTypes.GET_USER_POST_DELETE;
+    constructor(public payload: string) {}
+  }
+
+  export class GetUserPostDeleteSuccess implements Action {
+    readonly type = UserPostsActionTypes.GET_USER_POST_DELETE_SUCCESS;
+    constructor(public payload: object) {}
+  }
+
+  export class GetUserPostDeleteFail implements Action {
+    readonly type = UserPostsActionTypes.GET_USER_POST_DELETE_FAIL;
+    constructor(public payload: object) {}
+  }
+  
+
  
 
   export type UserPostsActionsUnion = GetUserPosts  | 
@@ -48,4 +68,7 @@ export enum UserPostsActionTypes {
     GetUserPostsSuccess | 
     GetUserPostAdd  | 
     GetUserPostAddFail | 
-    GetUserPostAddSuccess;
+    GetUserPostAddSuccess |
+    GetUserPostDelete  | 
+    GetUserPostDeleteFail | 
+    GetUserPostDeleteSuccess;

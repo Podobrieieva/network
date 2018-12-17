@@ -2,12 +2,14 @@ import { UserPostsActionTypes,UserPostsActionsUnion} from '../actions/user-posts
 export interface State {
  isUserPosts:object;
  isAddUserPost: object;
+ isDeleteUserPost: object;
  
 }
 
 export const  initialState: State = {
   isUserPosts: {},
   isAddUserPost: {},
+  isDeleteUserPost: {}
 
 };
 
@@ -22,6 +24,11 @@ export function reducer (state: State = initialState, action: UserPostsActionsUn
       return {
         ...state,
         isAddUserPost: action.payload        
+      };
+      case UserPostsActionTypes.GET_USER_POST_DELETE_SUCCESS:
+      return {
+        ...state,
+        isDeleteUserPost: action.payload        
       };
     default:
       return state;

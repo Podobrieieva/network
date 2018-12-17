@@ -9,7 +9,7 @@ import { HeaderComponent } from './containers/header/header.component'
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './containers/footer/footer.component';
 import { ItemPostComponent } from './components/item-post/item-post.component';
-// import { CommentWrapperComponent } from './containers/comment-wrapper/comment-wrapper.component';
+import { CommentWrapperComponent } from './containers/comment-wrapper/comment-wrapper.component';
 import { AddCommentComponent } from './containers/add-comment/add-comment.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CommentComponent } from './components/comment/comment.component';
@@ -21,6 +21,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import   MaterialModule  from '../user/material-module';
 import { SubscriptionListComponent } from './containers/subscription-list/subscription-list.component';
+
 
 
 
@@ -37,7 +38,7 @@ import { SubscriptionListComponent } from './containers/subscription-list/subscr
     NavComponent,
     ItemPostComponent, 
     FooterComponent, 
-    // CommentWrapperComponent,
+    CommentWrapperComponent,
     AddCommentComponent,
     NotFoundComponent,
     CommentComponent, 
@@ -47,6 +48,7 @@ import { SubscriptionListComponent } from './containers/subscription-list/subscr
     // AddCommentForCommentComponent,
     ChangePasswordComponent,
     SubscriptionListComponent,
+    
     ],
     
   exports: [
@@ -54,7 +56,8 @@ import { SubscriptionListComponent } from './containers/subscription-list/subscr
     NavComponent,
     ItemPostComponent, 
     FooterComponent, 
-    // CommentWrapperComponent,
+    
+    CommentWrapperComponent,
     AddCommentComponent,
     NotFoundComponent,
     CommentComponent,

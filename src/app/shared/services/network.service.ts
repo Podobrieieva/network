@@ -217,6 +217,10 @@ public uploadPhotoUser(selectedFile){
     return this.http.get<any>(`${this.apiUrl}/posts`, {params});
   }
 
+  public deletePost(id){
+      return this.http.delete(`${this.apiUrl}/posts/${id}`)
+  }
+
   public fetchUserPosts(params){
     this.userPostsSubj.next(params)
   }
@@ -263,17 +267,6 @@ public uploadPhotoUser(selectedFile){
     return this.addPostSubject.asObservable();
   }
   
-  // public addPost(post, selectedFile ){
-    
-  //    let postUser = JSON.stringify(post)
-
-    
-  //   const uploadData = new FormData();
-  //   uploadData.append('image', selectedFile, selectedFile.name );
-  //   uploadData.append('data', postUser)
-
-  //   return this.http.post<any>(`${this.apiUrl}/posts`, postUser, selectedFile);
-  // }
   
   public addPost(post, selectedFile ){
     

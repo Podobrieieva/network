@@ -3,7 +3,7 @@ import { NetworkService } from '../../../shared/services/network.service';
 import { Post, UserProfileModel,  UserCard } from '../../../shared/models/user.model';
 import { Store, select } from '@ngrx/store';
 import { State, getIsUserPosts, getIsUserProfile, getIsCurrentUserProfile, getIsSubscribersProfile, getIsSubscribersCurrent, getPosts, getIsSubscriptionsProfile, getIsSubscriptionsId } from '../../../core/store';
-import {GetUserPosts } from '../../../core/store/actions/user-posts.actions'
+import {GetUserPosts, GetUserPostDelete } from '../../../core/store/actions/user-posts.actions'
 import { BehaviorSubject, Observable, of, Subject, Subscription } from 'rxjs';
 import { GetPosts } from '../../../core/store/actions/news.actions';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit, OnDestroy  {
   public selectedFile: File;
   private isUserPostSubscription: Subscription;
   private isUserProfileSubscription: Subscription;
-  private userId: string;
+ 
   //
   public userSubscribers:Array<UserCard>;
   //private paramsRouteId:string;
@@ -30,42 +30,43 @@ export class ProfileComponent implements OnInit, OnDestroy  {
   private isUserProfileSubscribers: Subscription;
   private isCurrentUserSubscribers: Subscription;
   private user$: UserProfileModel;
-  
   private profileСhange: string;
-  public currentUser = {
-    name: 'Sarah',
-    avatar: '../../../../assets/img/user-profile/users/user-1.jpg',
-    surname: 'Cruiz',
-    workPosition: 'Creative Director'
-  };
   public userPosts: Array<Post>;
+  public allPosts:  Array<Post>;
+  public accessToAddPost: boolean = false;
 
 
  
   constructor(private service: NetworkService, private store: Store<State>) {
     this.isUserPostsSubscription = this.store.pipe(select(getPosts)).subscribe(posts => {
-      console.log(posts)
+      console.log(posts)  
+       if (posts.length) {
+        this.allPosts = posts
+      }  
        
     })
-    this.isUserPostSubscription = this.store.pipe(select(getIsUserPosts)).subscribe(posts => {
+    this.isUserPostSubscription = this.store.pipe(select(getIsUserPosts)).subscribe(
+      posts => {
       console.log(posts)
-       if (posts) {
+       if (this.allPosts) {
         this.userPosts = posts.data.posts
       }      
+
     })
 
-    // const subscription = this.service.userPostsSubjObservable().subscribe(data => {
-    //   this.userPosts= data;
-    // });
-    // const subscrip = this.service.userProfileSubjObservable().subscribe(data => {
-    //   this.user$= data;
-    // });
-    
+
+
+  
     this.subscriptionIdUser = this.service.profileSubjObservable().subscribe(data => {
       this.profileСhange = data
       console.log(data)
       if (data === 'profile') {
-        this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => this.user$ = isUserProfile);
+        this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
+          this.user$ = isUserProfile;
+          this.accessToAddPost = true;
+        }
+          
+          );
         this.isUserProfileSubscribers =  this.store.pipe(select( getIsSubscriptionsProfile)).subscribe(isUserSubscribers => this.userSubscribers = isUserSubscribers);
        } else {    
         this.isCurrentUserSubscription =  this.store.pipe(select(getIsCurrentUserProfile)).subscribe(isCurrentUserProfile => this.user$ = isCurrentUserProfile) 
@@ -73,17 +74,12 @@ export class ProfileComponent implements OnInit, OnDestroy  {
       }
     }); 
 
-    // this.isUserProfileSubscription = this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
-    //   console.log(isUserProfile)
-    //   if (isUserProfile) {
-    //     this.userId = isUserProfile.id
-    //   }      
-    // })
+
    
   }
 
   ngOnInit() {
-    // this.service.getPosts();
+  
     if (this.profileСhange === 'profile') {
       this.store.dispatch(new GetUserProfile());
       this.store.dispatch(new GetSubscribersProfile());      
@@ -92,13 +88,14 @@ export class ProfileComponent implements OnInit, OnDestroy  {
       this.store.dispatch(new GetSubscribersId(this.profileСhange));      
     }
     this.store.dispatch(new GetPosts ())
-    this.store.dispatch(new GetUserPosts (this.userId));
-    this.service.getUserProfile();
+    this.store.dispatch(new GetUserPosts (this.user$.id));
+    
   }
 
  
    public addSubscribe() {
     this.store.dispatch(new AddSubscribe(this.user$.id))
+
   }
 
   public onFileChanged(event) {
@@ -110,18 +107,14 @@ export class ProfileComponent implements OnInit, OnDestroy  {
       this.service.setItemByIndex(item, itemIndex);
   }
 
-  // public cancelHandler(){
-  //   this.service.getUserPosts()
-  // }
   public deleteHandler(id){
+    this.store.dispatch(new GetUserPostDelete(id))
 
   }
 
 
   ngOnDestroy() {
-    // this.subscriptionIdUser.unsubscribe();
-    // this.isUserProfileSubscription.unsubscribe();
-    //this.isCurrentUserSubscription.unsubscribe();
+   
   }
 
 }

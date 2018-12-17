@@ -2,7 +2,11 @@ import { Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core
 import { NgForm } from '@angular/forms';
 
 import { NetworkService } from '../../../shared/services/network.service';
-import { CommentModel } from '../../../shared/models/user.model';
+import { CommentModel, PostComment } from '../../../shared/models/user.model';
+import { Store, select } from '@ngrx/store';
+import { State, getIsUserProfile } from '../../store';
+import { GetUserProfile } from '../../store/actions/user-profile.actions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-comment',
@@ -12,22 +16,27 @@ import { CommentModel } from '../../../shared/models/user.model';
 export class AddCommentComponent implements OnInit {
   @Output() addEvt = new EventEmitter();
  
-  public model: CommentModel = {
-    content: '',
-    avatar: "",
-    userName: ""
-  }
+  private isUserProfileSubscription: Subscription;
+ 
+  public comment: PostComment;
 
   @ViewChild('commentForm') commentForm: NgForm;
 
-  constructor( private networkService: NetworkService) { 
-    this.model.avatar = this.networkService.commentWrapper[0].avatar
-    this.model.userName = this.networkService.commentWrapper[0].userName
+  constructor( private networkService: NetworkService, private store: Store<State>) { 
+    this.isUserProfileSubscription = this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
+      console.log(isUserProfile)
+      if (isUserProfile) {
+        this.comment.author.name = isUserProfile.name;
+        this.comment.author.surname = isUserProfile.surname;
+        this.comment.author.avatarUrl = isUserProfile.avatarUrl;
+        this.comment.author.id = isUserProfile.id;
+      }      
+    })
   }
    
 
   ngOnInit() {
-  
+    this.store.dispatch(new GetUserProfile());
   }
 
 
