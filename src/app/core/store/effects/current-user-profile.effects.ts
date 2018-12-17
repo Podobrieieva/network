@@ -9,6 +9,8 @@ import { AlertService } from '../../../register/service/alert.service';
 import { NetworkService } from '../../../shared/services/network.service'
 import { select, Store, Action} from "@ngrx/store";
 import { State } from "../../../core/store";
+import { GetUserPosts } from '../actions/user-posts.actions';
+
 
 @Injectable()
 export class CurrentUserProfileEffect {
@@ -20,7 +22,8 @@ export class CurrentUserProfileEffect {
     	action => this.networkService.getCurrentUserProfile(action.payload).pipe(
     		map(data => {
           const carrentUser = data.data.user;
-           this.store.dispatch(new GetSubscriptionsId(carrentUser.id));          
+           this.store.dispatch(new GetSubscriptionsId(carrentUser.id));
+           this.store.dispatch(new GetUserPosts(carrentUser.id));          
            this.router.navigate(["network/profile"]);
 
            return new GetCurrentUserProfileSuccess(carrentUser);           		    			

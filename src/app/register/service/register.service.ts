@@ -14,12 +14,12 @@ export class RegisterService {
   public apiUrl:string = 'https://s-network.herokuapp.com/api/v1';
 
   constructor(private http: HttpClient, private router: Router) {
-    this.permissionSubject = new BehaviorSubject<PermissionToEnter>(JSON.parse(localStorage.getItem('permissionToEnter')));
+    this.permissionSubject = new BehaviorSubject<PermissionToEnter>(JSON.parse(sessionStorage.getItem('permissionToEnter')));
     this.permissionSubject.asObservable();
   }
 
   public get permissionToEnterValue():PermissionToEnter {
-    return JSON.parse(localStorage.getItem('permissionToEnter'));
+    return JSON.parse(sessionStorage.getItem('permissionToEnter'));
   }
 
   public register(user) {
@@ -41,8 +41,8 @@ export class RegisterService {
   }
 
   public logout() {
-    localStorage.removeItem('permissionToEnter');
-    localStorage.clear();
+    // localStorage.removeItem('permissionToEnter');
+    // localStorage.clear();
     this.permissionSubject.next(null);
     this.router.navigate(['/register']);        
   }

@@ -18,7 +18,7 @@ export class UserPostsEffect {
     		map(
 					data => {
             console.log(data)
-          return new GetUserPostsSuccess(data);           		    			
+          return new GetUserPostsSuccess(data.data.posts);           		    			
     		}),
     		catchError(err => {
     			return of(new GetUserPostsFail(err));

@@ -43,17 +43,17 @@ export class ProfileComponent implements OnInit, OnDestroy  {
   constructor(private service: NetworkService, private store: Store<State>) {
     this.isUserPostSubscription = this.store.pipe(select(getIsUserPosts)).subscribe(posts => {
       console.log(posts)
-      // if (posts) {
-      //   this.userPosts = posts.data.
-      // }      
+      if (posts) {
+        this.userPosts = posts
+      }      
     })
 
     // const subscription = this.service.userPostsSubjObservable().subscribe(data => {
     //   this.userPosts= data;
     // });
-    const subscrip = this.service.userProfileSubjObservable().subscribe(data => {
-      this.user$ = data;
-    });
+    // const subscrip = this.service.userProfileSubjObservable().subscribe(data => {
+    //   this.user$ = data;
+    // });
     
     this.subscriptionIdUser = this.service.profileSubjObservable().subscribe(data => {
       this.profileСhange = data
@@ -78,7 +78,7 @@ export class ProfileComponent implements OnInit, OnDestroy  {
       this.store.dispatch(new GetSubscriptionsId(this.profileСhange));      
     }
 
-    this.store.dispatch(new GetUserPosts (this.user$.id));
+    
   }
 
  
