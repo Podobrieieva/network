@@ -1,6 +1,6 @@
 <li>
   <div class="post-comment">
-    <img [src]="item.avatar" alt="" class="profile-photo-sm">
+    <img [src]="item.avatar || defaultAvatar" alt="" class="profile-photo-sm">
     <p><a href="timeline.html" class="profile-link">{{item.userName}} </a><i class="em em-laughing"></i>
       {{item.content}}</p>
 

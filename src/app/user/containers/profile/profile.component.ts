@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit, OnDestroy  {
   private isCurrentUserSubscribers: Subscription;
   private user$: UserProfileModel;
   private profileСhange: string;
+  private defaultAvatar: string;
   public currentUser = {
     name: 'Sarah',
     avatar: '../../../../assets/img/user-profile/users/user-1.jpg',
@@ -37,10 +38,11 @@ export class ProfileComponent implements OnInit, OnDestroy  {
     workPosition: 'Creative Director'
   };
   public userPosts: Array<Post>;
-
+  
 
  
   constructor(private service: NetworkService, private store: Store<State>) {
+    this.defaultAvatar = this.service.defaultAvatar; 
     this.isUserPostSubscription = this.store.pipe(select(getIsUserPosts)).subscribe(posts => {
       console.log(posts)
       if (posts) {

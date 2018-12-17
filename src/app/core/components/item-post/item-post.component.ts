@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Post } from '../../../shared/models/user.model';
+import { NetworkService } from '../../../shared/services/network.service';
 
 
 @Component({
@@ -19,9 +20,11 @@ export class ItemPostComponent implements OnInit {
   public editModePost = false;
   public counterLike: any = 0;
   public counterDislike: any  = 0;
-  
+  private defaultAvatar:  string;
 
-  constructor() { 
+  
+  constructor(private networkService:NetworkService) {
+     this.defaultAvatar = this.networkService.defaultAvatar; 
   }
 
   private editingItem = <Post>{};

@@ -11,15 +11,18 @@ import { NetworkService } from '../../../shared/services/network.service';
   styleUrls: ['./add-comment-for-comment.component.scss']
 })
 export class AddCommentForCommentComponent implements OnInit {
+
   public model: CommentModel = {
     content: '',
     avatar: "",
     userName: ""
   }
-
   @ViewChild('commentForm') commentForm: NgForm;
-
-  constructor( private networkService: NetworkService) { 
+  
+  private defaultAvatar:  string;
+  
+  constructor( private networkService: NetworkService) {
+    this.defaultAvatar = this.networkService.defaultAvatar; 
     this.model.avatar = 'https://thunder-team.com/friend-finder/images/users/user-11.jpg'
     this.model.userName = 'name John'
   }

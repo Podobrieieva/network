@@ -11,10 +11,11 @@ export class CommentComponent implements OnInit {
   @Input() itemIndex = 0;
 
   public editMode = false;
-
   public commentForComment: Array<any>;
+  private defaultAvatar: string;
 
   constructor(private networkService: NetworkService) { 
+    this.defaultAvatar = this.networkService.defaultAvatar; 
     const subscription = this.networkService.commentForComSubjObservable().subscribe(data => {
       console.log(data);
       this.commentForComment = data;

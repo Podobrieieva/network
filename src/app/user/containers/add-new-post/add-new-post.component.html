@@ -6,7 +6,7 @@
       <img
         width="40"
         height="40"
-        [src]="post.author.avatarUrl"
+        [src]="post.author.avatarUrl || defaultAvatar"
         alt=""
         class="profile-photo-md"
       />

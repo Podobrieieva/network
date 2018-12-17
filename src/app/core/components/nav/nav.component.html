@@ -3,7 +3,7 @@
     <div class="nav-wrapper">
       <a routerLink='/main'  routerLinkActive="active" class="brand-logo"><img src="../../../../assets/img/logo.svg" width="150px" alt=""></a>
         
-        <img class="img-profile" src="{{userProfile.avatarUrl}}" mat-button [matMenuTriggerFor] = "menu">
+        <img class="img-profile" src="{{userProfile.avatarUrl || defaultAvatar}}" mat-button [matMenuTriggerFor] = "menu">
         
          <mat-menu  #menu="matMenu" [overlapTrigger]="false">
           <button mat-menu-item>{{userProfile.fullname}}</button>        

@@ -18,19 +18,21 @@ export class NavComponent implements OnInit {
   private isUserProfileSubscription: Subscription;
   public currentUrl: string;
   public userProfile: UserProfileModel;
+  private defaultAvatar:  string;
 
   constructor(
     private router: Router, 
     private networkService:NetworkService, 
     private store: Store<State>) {
+      this.defaultAvatar = this.networkService.defaultAvatar; 
       router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url);
     this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
-      this.userProfile = (isUserProfile)? isUserProfile: localStorage.getItem("userProfile");
+      this.userProfile = (isUserProfile)? isUserProfile: sessionStorage.getItem("userProfile");
      })
   }
 
   ngOnInit() {
-    
+     this.userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
  }
 
   goToProfilePage() {

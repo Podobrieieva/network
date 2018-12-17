@@ -18,7 +18,7 @@ export enum UserPostsActionTypes {
 
   export class GetUserPostsSuccess implements Action {
     readonly type = UserPostsActionTypes.GET_USER_POSTS_SUCCESS;
-    constructor(public payload: object) {}
+    constructor(public payload: any) {}
   }
 
   export class GetUserPostsFail implements Action {

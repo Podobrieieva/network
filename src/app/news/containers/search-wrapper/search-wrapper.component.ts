@@ -31,7 +31,8 @@ export class SearchWrapperComponent implements OnInit {
   }
 
   ngOnInit() {
-     this.searchStr$.pipe(debounceTime(400), distinctUntilChanged()).subscribe(str =>this.store.dispatch(new GetUsers(str)))  
+    this.store.dispatch(new GetUsers('a'))
+    this.searchStr$.pipe(debounceTime(400), distinctUntilChanged()).subscribe(str =>this.store.dispatch(new GetUsers(str)))  
   }
   
   public onViewSubscribeUser(item) {  

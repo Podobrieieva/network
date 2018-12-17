@@ -16,8 +16,7 @@ export class AppComponent {
   ) {}
 
   logout() {
-    this.registerService.logout();
-    this.router.navigate(['/register']);
+    this.registerService.logout();    
   }
 }
 
