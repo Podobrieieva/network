@@ -254,8 +254,16 @@ public uploadPhotoUser(selectedFile){
     return this.commentForComSubj.asObservable();
   }
 
-  public addComment(comment){
-    this.commentWrapper.push(comment);
+  public addComment(idPost, comment){
+    const commentText = {
+      "text": comment.text 
+    }
+
+   return this.http.post<any>(`${this.apiUrl}/posts/${idPost}/comment`, commentText)
+  }
+
+  public deleteComment (idPost, idComment){
+    return this.http.delete<any>(`${this.apiUrl}/posts/${idPost}/comment/${idComment}`)
   }
 
   public setItemByIndex(item,index){

@@ -39,7 +39,6 @@ export class AddNewPostComponent implements OnInit {
   @ViewChild('f') f: NgForm;
 
   constructor(private service: NetworkService, private store: Store<State>) { 
-    // const addPostSubscription = this.service.getAddPostObservable().subscribe(data => this.post = data);
     this.isUserProfileSubscription = this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
       console.log(isUserProfile)
       if (isUserProfile) {
@@ -53,7 +52,7 @@ export class AddNewPostComponent implements OnInit {
   }
 
   ngOnInit() {
-    //////////////////////////////////////////////////////////this.store.dispatch(new GetUserProfile());
+  
   }
 
     public handleFileInput (event){

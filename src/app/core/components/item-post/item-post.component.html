@@ -40,8 +40,8 @@
         <button class="btn-main" *ngIf="editModePost" (click)="cancelBtnClickHandler(item, itemIndex)">Cancel</button>
         <div class="line-divider"></div>
         <a class="comment clearfix" (click) = "addBtnClickHandler()" *ngIf="!editMode" > Add comment</a>
-        <app-comment-wrapper></app-comment-wrapper>
-        <app-add-comment *ngIf="editMode" (addEvt)="addHandler($event)" ></app-add-comment>
+        <app-comment-wrapper [postId]= "item.id"  [arrayComments]= "item.comments"></app-comment-wrapper>
+        <app-add-comment [postId]= "item.id" *ngIf="editMode"  ></app-add-comment>
       </div>
     </div>
  

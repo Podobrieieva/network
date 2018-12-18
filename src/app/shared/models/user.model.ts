@@ -92,7 +92,7 @@ export interface Post {
 }
 
 export interface PostComment {
-    id: string;
+    _id: string;
     author: UserCard;
     text: string;
     date: Date;

@@ -3,13 +3,17 @@ export interface State {
  isUserPosts:object;
  isAddUserPost: object;
  isDeleteUserPost: object;
+ isUserPostAddComment: object;
+ isUserPostCommentDelete: object;
  
 }
 
 export const  initialState: State = {
   isUserPosts: {},
   isAddUserPost: {},
-  isDeleteUserPost: {}
+  isDeleteUserPost: {},
+  isUserPostAddComment: {},
+  isUserPostCommentDelete: {}
 
 };
 
@@ -29,6 +33,16 @@ export function reducer (state: State = initialState, action: UserPostsActionsUn
       return {
         ...state,
         isDeleteUserPost: action.payload        
+      };
+      case UserPostsActionTypes.GET_USER_POST_ADD_COMMENT_SUCCESS:
+      return {
+        ...state,
+        isUserPostAddComment: action.payload        
+      };
+      case UserPostsActionTypes.GET_USER_POST_COMMENT_DELETE_SUCCESS:
+      return {
+        ...state,
+        isUserPostCommentDelete: action.payload        
       };
     default:
       return state;

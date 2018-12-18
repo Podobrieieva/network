@@ -1,5 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output,  EventEmitter  } from '@angular/core';
 import { NetworkService } from '../../../shared/services/network.service';
+import { PostComment } from '../../../shared/models/user.model';
+import { Subscription } from 'rxjs';
+import {  UserProfileModel } from '../../../shared/models/user.model';
+import { State, getIsUserProfile } from '../../store';
+import { Store, select } from '@ngrx/store';
+
 
 @Component({
   selector: 'app-comment',
@@ -7,30 +13,38 @@ import { NetworkService } from '../../../shared/services/network.service';
   styleUrls: ['./comment.component.scss']
 })
 export class CommentComponent implements OnInit {
-  @Input() item = <any>{};
+  @Input() item: PostComment;
   @Input() itemIndex = 0;
+  @Output() deleteEvtComment = new EventEmitter();
+ 
 
-  public editMode = false;
+  private  isUserProfileSubscribers: Subscription;
+  public accessToDeleteComment: boolean = false;
+  public user$: UserProfileModel;
 
   public commentForComment: Array<any>;
 
-  constructor(private networkService: NetworkService) { 
-    // const subscription = this.networkService.commentForComSubjObservable().subscribe(data => {
-    //   console.log(data);
-    //   this.commentForComment = data;
-    // });
+  constructor(private networkService: NetworkService,  private store: Store<State> ) { 
+    this.isUserProfileSubscribers =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
+      this.user$ = isUserProfile;
+    })    
+  
+   
+    
   }
 
   ngOnInit() {
-    // this.networkService.getCommentsForComments();
+     if (this.user$.id === this.item.author.id){
+      this.accessToDeleteComment = true
+     }
+ 
   }
 
-  public addBtnClickHandler(){
-    this.editMode = true;
-  }
-  public addHandler(e){
-    this.editMode = e;
+  public deleteBtnCkickHandlerComment(id){
   
+    this.deleteEvtComment.emit(id);
   }
+
+
 
 }

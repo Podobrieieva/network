@@ -57,7 +57,8 @@ export const getPosts = (state) => state.post.posts;
 export const getIsUserPosts = (state) => state.userPosts.isUserPosts;
 export const getIsAddUserPost = (state) => state.userPosts.isAddUserPost;
 export const getIsDeleteUserPost = (state) => state.userPosts.isDeleteUserPost;
-
+export const getIsAddUserPostComment = (state) => state.userPosts.isUserPostAddComment;
+export const getIsDeleteUserPostComment = (state) => state.userPosts.isUserPostCommentDelete;
 
 
 

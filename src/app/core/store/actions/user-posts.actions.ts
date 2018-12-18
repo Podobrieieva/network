@@ -11,6 +11,13 @@ export enum UserPostsActionTypes {
     GET_USER_POST_DELETE = '[USER_PROFILE] Fetch UserPostsDelete requested',
     GET_USER_POST_DELETE_SUCCESS = '[USER_PROFILE] Fetch UserPostsDelete success',
     GET_USER_POST_DELETE_FAIL = '[USER_PROFILE] Fetch UserPostsDelete failed',
+    GET_USER_POST_ADD_COMMENT = '[USER_PROFILE] Fetch UserPostAddComment requested',
+    GET_USER_POST_ADD_COMMENT_SUCCESS = '[USER_PROFILE] Fetch UserPostAddComment success',
+    GET_USER_POST_ADD_COMMENT_FAIL = '[USER_PROFILE] Fetch UserPostAddComment failed',
+    GET_USER_POST_COMMENT_DELETE = '[USER_PROFILE] Fetch UserPostsCommentDelete requested',
+    GET_USER_POST_COMMENT_DELETE_SUCCESS = '[USER_PROFILE] Fetch UserPostsCommentDelete success',
+    GET_USER_POST_COMMENT_DELETE_FAIL = '[USER_PROFILE] Fetch UserPostsCommentDelete failed',
+
 
   }
 
@@ -59,6 +66,36 @@ export enum UserPostsActionTypes {
     readonly type = UserPostsActionTypes.GET_USER_POST_DELETE_FAIL;
     constructor(public payload: object) {}
   }
+
+  export class GetUserPostAddComment implements Action{
+    readonly type = UserPostsActionTypes.GET_USER_POST_ADD_COMMENT;
+    constructor(public payloadIdPost: string, public payload: object) {}
+  }
+
+  export class GetUserPostAddCommentSuccess implements Action {
+    readonly type = UserPostsActionTypes.GET_USER_POST_ADD_COMMENT_SUCCESS;
+    constructor(public payload: object) {}
+  }
+
+  export class GetUserPostAddCommentFail implements Action {
+    readonly type = UserPostsActionTypes.GET_USER_POST_ADD_COMMENT_FAIL;
+    constructor(public payload: object) {}
+  }
+
+  export class GetUserPostCommentDelete implements Action{
+    readonly type = UserPostsActionTypes.GET_USER_POST_COMMENT_DELETE;
+    constructor(public payloadIdPost: string, public payloadIdPostComment: string) {}
+  }
+
+  export class GetUserPostCommentDeleteSuccess implements Action {
+    readonly type = UserPostsActionTypes.GET_USER_POST_COMMENT_DELETE_SUCCESS;
+    constructor(public payload: object) {}
+  }
+
+  export class GetUserPostCommentDeleteFail implements Action {
+    readonly type = UserPostsActionTypes.GET_USER_POST_COMMENT_DELETE_FAIL;
+    constructor(public payload: object) {}
+  }
   
 
  
@@ -71,4 +108,10 @@ export enum UserPostsActionTypes {
     GetUserPostAddSuccess |
     GetUserPostDelete  | 
     GetUserPostDeleteFail | 
-    GetUserPostDeleteSuccess;
+    GetUserPostDeleteSuccess |
+    GetUserPostAddComment | 
+    GetUserPostAddCommentFail | 
+    GetUserPostAddCommentSuccess|
+    GetUserPostCommentDelete  | 
+    GetUserPostCommentDeleteFail | 
+    GetUserPostCommentDeleteSuccess;

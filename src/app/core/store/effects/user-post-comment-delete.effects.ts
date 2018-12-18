@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Action } from '@ngrx/store';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
 
-import { UserPostsActionTypes, GetUserPostDelete, GetUserPostDeleteSuccess, GetUserPostDeleteFail } from '../actions/user-posts.actions'
+import { UserPostsActionTypes, GetUserPostDelete, GetUserPostDeleteSuccess, GetUserPostDeleteFail, GetUserPostCommentDelete } from '../actions/user-posts.actions'
 import { NetworkService } from '../../../shared/services/network.service';
 import { GetUserProfile } from '../actions/user-profile.actions'
 import { Store, select } from '@ngrx/store';
@@ -14,13 +14,13 @@ import { GetPosts } from '../actions/news.actions';
 
 
 @Injectable()
-export class UserPostDeleteEffect {
+export class UserPostDeleteCommentEffect {
   @Effect()
-  getIsUserPostDelete$: Observable<Action>  = this.actions$
+  getIsUserPostCommentDelete$: Observable<Action>  = this.actions$
   .pipe(
-    ofType<GetUserPostDelete>(UserPostsActionTypes.GET_USER_POST_DELETE),
+    ofType<GetUserPostCommentDelete>(UserPostsActionTypes.GET_USER_POST_COMMENT_DELETE),
     exhaustMap(
-    	action => this.networkService.deletePost(action.payload).pipe(
+    	action => this.networkService.deleteComment(action.payloadIdPost, action.payloadIdPostComment).pipe(
     		map(data=> { 
           this.store.dispatch(new GetUserProfile());  
           this.store.dispatch(new GetPosts());;        		

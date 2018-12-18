@@ -40,7 +40,7 @@ export class ItemPostComponent implements OnInit {
 
 
   ngOnInit() {
-    // ///////////////////////////////////////////////////////this.store.dispatch(new GetUserProfile());
+
     if(this.user$.id === this.item.author.id){
       this.accessToEditPost = true
     }

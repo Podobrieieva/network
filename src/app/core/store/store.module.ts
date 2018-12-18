@@ -21,6 +21,8 @@ import { GetSubscriptionsProfileEffect } from './effects/get-profile-subscrirtio
 import { GetUsersEffect } from './effects/get-users.effects';
 import { GetSubscriptionsIdEffect } from './effects/get-current-subscrirtions.effects'
 import { UserPostDeleteEffect } from "./effects/user-post-delete.effects";
+import { UserPostAddCommentEffect } from "./effects/user-post-add-comment.effects";
+import { UserPostDeleteCommentEffect } from "./effects/user-post-comment-delete.effects";
 
 @NgModule({
   imports: [
@@ -35,6 +37,8 @@ import { UserPostDeleteEffect } from "./effects/user-post-delete.effects";
         UserPostsEffect, 
         UserPostAddEffect,
         UserPostDeleteEffect,
+        UserPostAddCommentEffect,
+        UserPostDeleteCommentEffect,
     	AddSubscribeEffect,
         GetSubscribersIdEffect,
         GetSubscribersProfileEffect,
