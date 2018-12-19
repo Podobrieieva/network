@@ -42,7 +42,7 @@ export class RegisterService {
 
   public logout() {
     // localStorage.removeItem('permissionToEnter');
-    // localStorage.clear();
+    sessionStorage.clear();
     this.permissionSubject.next(null);
     this.router.navigate(['/register']);        
   }

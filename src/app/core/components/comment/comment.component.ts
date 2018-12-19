@@ -23,14 +23,15 @@ export class CommentComponent implements OnInit {
   public user$: UserProfileModel;
 
   public commentForComment: Array<any>;
+  private defaultAvatar: string;
 
   constructor(private networkService: NetworkService,  private store: Store<State> ) { 
     this.isUserProfileSubscribers =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
       this.user$ = isUserProfile;
     })    
-  
+
+    this.defaultAvatar = this.networkService.defaultAvatar; 
    
-    
   }
 
   ngOnInit() {

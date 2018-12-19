@@ -41,6 +41,7 @@ export function logger(reducer: ActionReducer <State>): ActionReducer < State > 
 }
 
 export const getIsUserProfile = (state) => state.userProfile.isUserProfile;
+export const getIsUpdateUserProfile = (state) => state.userProfile.isUpdateUserProfile;
 export const getIsCurrentUserProfile = (state) => state.userProfile.isCurrentUserProfile;
 export const getIsNewPassword = (state) => state.passwordChange.isNewPass;
 export const getIsSubscribersCurrent = (state) => state.subscribers.isGetSubscribersCurrent;
@@ -59,6 +60,10 @@ export const getIsAddUserPost = (state) => state.userPosts.isAddUserPost;
 export const getIsDeleteUserPost = (state) => state.userPosts.isDeleteUserPost;
 export const getIsAddUserPostComment = (state) => state.userPosts.isUserPostAddComment;
 export const getIsDeleteUserPostComment = (state) => state.userPosts.isUserPostCommentDelete;
+
+export const getIsAddLike = (state) => state.userPosts.isAddLike;
+export const getIsAddDislike = (state) => state.userPosts.isAddDislike;
+
 
 
 

@@ -66,8 +66,21 @@ a {
 }
  a:hover {
     color: #23527c;
-    cursor: pointer;
- 
+    cursor: pointer; 
+}
+
+.profile-link {
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.profile-link:hover {
+    color: #23527c;
+    cursor: pointer; 
+}
+
+.profile-photo-md:hover {
+    cursor: pointer;     
 }
 
 p {

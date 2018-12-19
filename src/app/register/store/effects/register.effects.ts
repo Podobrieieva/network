@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { Action } from '@ngrx/store';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
+import { NetworkService } from '../../../shared/services/network.service'
 
 import { GetRegister, GetRegisterFail, GetRegisterSuccess, RegisterActionTypes } from '../actions/register.actions';
 import { AlertService } from '../../service/alert.service';
@@ -21,6 +22,7 @@ export class RegisterEffect {
     			 		this.alertService.success('Registration successful', true);
            		sessionStorage.setItem('permissionToEnter', JSON.stringify(data));
            		sessionStorage.setItem('token', data['data'].token);
+              this.networkService.profileСhange('profile');
            		this.router.navigate([""]);
            		return new GetRegisterSuccess(data);
            		    			
@@ -38,7 +40,8 @@ export class RegisterEffect {
   	private actions$: Actions,
   	private registerService: RegisterService,
   	private alertService: AlertService,
-  	private router: Router
+  	private router: Router,
+    private networkService: NetworkService
   	) {}
 }
 

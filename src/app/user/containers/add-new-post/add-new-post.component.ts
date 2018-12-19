@@ -18,6 +18,7 @@ export class AddNewPostComponent implements OnInit {
   private isUserProfileSubscription: Subscription;
   private addPostSub: Subscription;
   private selectedFile: File;
+  private defaultAvatar:  string;
 
   public fileToUpload: File = null;
   public post: Post = {
@@ -38,7 +39,9 @@ export class AddNewPostComponent implements OnInit {
 
   @ViewChild('f') f: NgForm;
 
-  constructor(private service: NetworkService, private store: Store<State>) { 
+  constructor(private service: NetworkService, private store: Store<State>) {
+    this.defaultAvatar = this.service.defaultAvatar;
+    const addPostSubscription = this.service.getAddPostObservable().subscribe(data => this.post = data);
     this.isUserProfileSubscription = this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
       console.log(isUserProfile)
       if (isUserProfile) {

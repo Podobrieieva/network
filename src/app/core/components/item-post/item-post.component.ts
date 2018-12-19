@@ -1,10 +1,15 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+<<<<<<< HEAD
 import { Post, UserProfileModel } from '../../../shared/models/user.model';
 import { Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { NetworkService } from '../../../shared/services/network.service';
 import { State, getIsUserProfile } from '../../store';
 import { GetUserProfile } from '../../store/actions/user-profile.actions';
+=======
+import { Post } from '../../../shared/models/user.model';
+import { NetworkService } from '../../../shared/services/network.service';
+>>>>>>> origin/viktor
 
 
 @Component({
@@ -28,14 +33,19 @@ export class ItemPostComponent implements OnInit {
   private isUserProfileSubscribers: Subscription;
   private editingItem = <Post>{};
   private user$: UserProfileModel;
-  
+  private defaultAvatar:  string;
   
 
   constructor( private service: NetworkService, private store: Store<State> ) { 
         this.isUserProfileSubscribers =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
           this.user$ = isUserProfile;
         })      
+        this.defaultAvatar = this.service.defaultAvatar; 
        } ; 
+
+ 
+
+  
 
 
 
@@ -72,15 +82,17 @@ export class ItemPostComponent implements OnInit {
     this.editMode = e;
   
   }
-  public like(){
-    this.counterLike +=1
-  
+  public like(item){
+    this.networkService.like(item.id)  
   }
-  public dislike(){
-    this.counterDislike ++
+
+  public dislike(item){
+    this.networkService.dislike(item.id)
   }
   public deleteBtnCkickHandler(id){
     this.deleteEvt.emit(id);
   }
-
+  onViewSubscribeUser(item) {
+    this.networkService.onViewSubscribeUser(item.author.id)
+  }
 }

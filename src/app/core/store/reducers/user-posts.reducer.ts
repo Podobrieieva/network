@@ -1,20 +1,26 @@
 import { UserPostsActionTypes,UserPostsActionsUnion} from '../actions/user-posts.actions';
+import { PostModel } from '../../../shared/models/user.model'
+
 export interface State {
- isUserPosts:object;
+ isUserPosts:Array<PostModel>;
  isAddUserPost: object;
  isDeleteUserPost: object;
  isUserPostAddComment: object;
  isUserPostCommentDelete: object;
  
+ isAddLike: object;
+ isAddDislike: object; 
 }
 
 export const  initialState: State = {
-  isUserPosts: {},
+  isUserPosts: [],
   isAddUserPost: {},
   isDeleteUserPost: {},
   isUserPostAddComment: {},
-  isUserPostCommentDelete: {}
+  isUserPostCommentDelete: {},
 
+  isAddLike: {},
+  isAddDislike: {}
 };
 
 export function reducer (state: State = initialState, action: UserPostsActionsUnion) {
@@ -44,6 +50,16 @@ export function reducer (state: State = initialState, action: UserPostsActionsUn
         ...state,
         isUserPostCommentDelete: action.payload        
       };
+      case UserPostsActionTypes.ADD_LIKE_SUCCESS:
+      return {
+        ...state,
+        isAddLike: action.payload        
+      };      
+      case UserPostsActionTypes.ADD_DISLIKE_SUCCESS:
+      return {
+        ...state,
+        isAddDislike: action.payload        
+      }; 
     default:
       return state;
   }

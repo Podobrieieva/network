@@ -19,8 +19,6 @@ import { AppStoreModule } from './core/store/store.module'
 import { AlertComponent } from './register/components/alert/alert.component'
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

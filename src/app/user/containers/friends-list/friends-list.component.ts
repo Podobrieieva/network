@@ -4,9 +4,9 @@ import { Observable, Subscription } from 'rxjs'
 import { select, Store} from '@ngrx/store';
 
 import { State} from '../../../core/store';
-import { AddSubscribe, GetSubscriptionsId, GetSubscribersProfile, DeleteSubscribe } from '../../../core/store/actions/subscribe.actions';
+import { AddSubscribe, GetSubscriptionsId, GetSubscriptionsProfile, DeleteSubscribe } from '../../../core/store/actions/subscribe.actions';
 import { GetCurrentUserProfile, GetUserProfile } from '../../../core/store/actions/user-profile.actions';
-import { getIsUserProfile, getIsCurrentUserProfile, getIsSubscribersProfile, getIsSubscribersCurrent } from "../../../core/store";
+import { getIsUserProfile, getIsCurrentUserProfile, getIsSubscriptionsProfile, getIsSubscriptionsId } from "../../../core/store";
 import { UserCard } from '../../../shared/models/user.model';
 import { NetworkService } from '../../../shared/services/network.service';
 
@@ -19,37 +19,40 @@ import { NetworkService } from '../../../shared/services/network.service';
 })
 export class FriendsListComponent implements OnInit {
 
-  @Input() userSubscribers$:Array<UserCard>;
+  private userSubscribers$;
   private btnChangeFollow: boolean;
   private btnChangeDelete: boolean;
-
+  private profileСhange: string;
   private isUsersSubscription: Subscription;
+  private isCurrentUsersSubscription: Subscription;
   private profileSubscription: Subscription; 
 
   constructor(
     private networkService: NetworkService,
     private store: Store<State>) {
     this.profileSubscription = this.networkService.profileSubjObservable().subscribe(data => {
-    this.btnChangeDelete = (data==='profile')? true: false;
-    this.btnChangeFollow = !this.btnChangeDelete      
+      this.profileСhange = data
+      this.btnChangeDelete = (data==='profile')? true: false;
+      this.btnChangeFollow = !this.btnChangeDelete;      
+      this.userSubscribers$ = (data === 'profile')? this.store.pipe(select(getIsSubscriptionsProfile)):this.store.pipe(select(getIsSubscriptionsId));
     })
   }
 
   ngOnInit() {
+    (this.profileСhange === 'profile')? this.store.dispatch(new GetSubscriptionsProfile()): this.store.dispatch(new GetSubscriptionsId(this.profileСhange));      
+  
   }
 
   
   public onViewSubscribeUser(item) {
-    this.networkService.profileСhange(item.id);
-    this.store.dispatch(new GetCurrentUserProfile(item.id));
-      
+    this.networkService.onViewSubscribeUser(item.id)
   }
 
   public onAddAsFriend(item) {
-    this.store.dispatch(new AddSubscribe(item.id));
+    this.networkService.onAddAsFriend(item.id);
   }
 
   public onRemoveFromFriends(item) {
-    this.store.dispatch(new DeleteSubscribe(item.id));
+    this.networkService.onRemoveFromFriends(item.id);
   }
 }

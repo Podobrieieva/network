@@ -14,16 +14,10 @@ import { GetUserPostDelete } from '../../../core/store/actions/user-posts.action
 })
 export class PostWrapperComponent implements OnInit {
   public isUserPostSubscription: Subscription; 
-  public userPosts: Array<Post>;
+  public userPosts;
 
   constructor(private store:Store<State>, private service: NetworkService ) { 
-
-  this.isUserPostSubscription = this.store.pipe(select(getPosts)).subscribe(posts => {
-    console.log(posts)
-    if (posts.length) {
-      this.userPosts = posts
-    }      
-  })
+    this.userPosts = this.store.pipe(select(getPosts))
   }
 
   ngOnInit() {
