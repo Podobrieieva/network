@@ -84,7 +84,7 @@ export enum UserPostsActionTypes {
 
   export class GetUserPostCommentDelete implements Action{
     readonly type = UserPostsActionTypes.GET_USER_POST_COMMENT_DELETE;
-    constructor(public payloadIdPost: string, public payloadIdPostComment: string) {}
+    constructor(public payloadPost: object, public payloadIdPostComment: string) {}
   }
 
   export class GetUserPostCommentDeleteSuccess implements Action {

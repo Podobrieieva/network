@@ -262,7 +262,8 @@ public uploadPhotoUser(selectedFile){
    return this.http.post<any>(`${this.apiUrl}/posts/${idPost}/comment`, commentText)
   }
 
-  public deleteComment (idPost, idComment){
+  public deleteComment (post, idComment){
+    const idPost = post.id
     return this.http.delete<any>(`${this.apiUrl}/posts/${idPost}/comment/${idComment}`)
   }
 

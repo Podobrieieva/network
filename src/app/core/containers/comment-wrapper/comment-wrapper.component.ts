@@ -14,7 +14,8 @@ import { GetUserPostCommentDelete } from '../../store/actions/user-posts.actions
 })
 export class CommentWrapperComponent implements OnInit {
   @Input() arrayComments: Array<PostComment>;
-  @Input () postId: string;
+  // @Input () postId: string;
+  @Input() post: Post
   // private isUserPostSubscription: Subscription;
   // user
  
@@ -37,7 +38,7 @@ console.log(this.arrayComments)
   }
 
   public deleteHandler(id){
-    this.store.dispatch(new GetUserPostCommentDelete(this.postId, id))
+    this.store.dispatch(new GetUserPostCommentDelete(this.post, id))
 
   }
 

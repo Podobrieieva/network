@@ -20,8 +20,9 @@ export class UserPostDeleteCommentEffect {
   .pipe(
     ofType<GetUserPostCommentDelete>(UserPostsActionTypes.GET_USER_POST_COMMENT_DELETE),
     exhaustMap(
-    	action => this.networkService.deleteComment(action.payloadIdPost, action.payloadIdPostComment).pipe(
+    	action => this.networkService.deleteComment(action.payloadPost, action.payloadIdPostComment).pipe(
     		map(data=> { 
+          
           this.store.dispatch(new GetUserProfile());  
           this.store.dispatch(new GetPosts());;        		
           return new GetUserPostDeleteSuccess(data);           		    			
