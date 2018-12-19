@@ -8,18 +8,19 @@ import { EffectsModule } from "@ngrx/effects";
 import { NewsEffects } from "./effects/news.effects";
 import { PasswordChangeEffect } from './effects/password-change.effects';
 import { UserProfileEffect } from './effects/user-profile.effects';
-
 import { CurrentUserProfileEffect } from './effects/current-user-profile.effects'
-import { UserPostsEffect } from "./effects/user-posts.effects";
-import { UserPostAddEffect } from "./effects/user-post-add.effects";
-
+import { UserPostsEffect } from './effects/user-posts.effects';
+import { UserPostAddEffect } from './effects/user-post-add.effects';
 import { AddSubscribeEffect } from './effects/add-subscribe.effects';
 import { GetSubscribersIdEffect} from './effects/get-current-subscribers.effects';
 import { GetSubscribersProfileEffect } from './effects/get-profile-subscribers.effects';
 import { DeleteSubscribeEffect } from './effects/delete-subscribe.effects';
-import { GetSubscriptionsProfileEffect } from './effects/get-profile-subscrirtions.effects'
+import { GetSubscriptionsProfileEffect } from './effects/get-profile-subscrirtions.effects';
 import { GetUsersEffect } from './effects/get-users.effects';
-import { GetSubscriptionsIdEffect } from './effects/get-current-subscrirtions.effects'
+import { GetSubscriptionsIdEffect } from './effects/get-current-subscrirtions.effects';
+import { AddLikeEffect } from './effects/add-like-post.effects';
+import { AddDislikeEffect } from './effects/add-dislike-post.effects';       
+import { UpdateUserProfileEffect } from './effects/update-user-profile.effects';
 
 @NgModule({
   imports: [
@@ -39,7 +40,10 @@ import { GetSubscriptionsIdEffect } from './effects/get-current-subscrirtions.ef
         DeleteSubscribeEffect,
         GetSubscriptionsProfileEffect,
         GetUsersEffect,
-        GetSubscriptionsIdEffect
+        GetSubscriptionsIdEffect,
+        AddLikeEffect,
+        AddDislikeEffect, 
+        UpdateUserProfileEffect
     ])
   ]
 })

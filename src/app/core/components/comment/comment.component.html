@@ -1,8 +1,7 @@
 <li>
   <div class="post-comment">
     <img [src]="item.avatar || defaultAvatar" alt="" class="profile-photo-sm">
-    <p><a href="timeline.html" class="profile-link">{{item.userName}} </a><i class="em em-laughing"></i>
-      {{item.content}}</p>
+    <p class="profile-link" (click)="onViewSubscribeUser(item)">{{item.userName}} <i class="em em-laughing"></i>{{item.content}}</p>
 
   </div>
   <div class="line-divider"></div>

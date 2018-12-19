@@ -7,7 +7,7 @@ import { GetLogin, GetLoginSuccess, GetLoginFail, RegisterActionTypes } from '..
 import { catchError, exhaustMap, map } from 'rxjs/operators';
 import { AlertService } from '../../service/alert.service';
 import { RegisterService } from '../../service/register.service';
-
+import { NetworkService } from '../../../shared/services/network.service'
 import { State} from '../../../core/store'
 import { select, Store} from '@ngrx/store';
 import { GetUserProfile } from '../../../core/store/actions/user-profile.actions';
@@ -25,8 +25,9 @@ export class LoginEffect {
     			sessionStorage.setItem('permissionToEnter', JSON.stringify(data));
           sessionStorage.setItem('token', data['data'].token);
           this.registerService.permissionSubject.next(data);
-          this.router.navigate(['/network/profile', {id: 'profile'}]); 
-          return new GetLoginSuccess(data['data'].user);           		    			
+          this.networkService.profileСhange('profile');
+          this.router.navigate(['/network/profile']); 
+          return new GetLoginSuccess(data);           		    			
     		}),
     		catchError(err => {
           this.alertService.error('The email or password entered are not the same as those stored in our database. Check that the entered data is correct and try again.', true);
@@ -39,6 +40,7 @@ export class LoginEffect {
 
   constructor(
   	private actions$: Actions,
+    private networkService: NetworkService, 
   	private registerService: RegisterService,
   	private alertService: AlertService,
   	private router: Router,

@@ -11,6 +11,13 @@ export enum UserProfileActionTypes {
     GET_USERS = '[USERS] Fetch Users requested',
     GET_USERS_SUCCESS = '[USERS] Fetch Users success',
     GET_USERS_FAIL = '[USERS] Fetch Users failed',
+
+    PUT_UPDATE_PROFILE = '[UPDATE_PROFILE] Fetch UpdateProfile requested',
+    PUT_UPDATE_PROFILE_SUCCESS = '[UPDATE_PROFILE] Fetch UpdateProfile success',
+    PUT_UPDATE_PROFILE_FAIL = '[UPDATE_PROFILE] Fetch UpdateProfile failed'
+      
+
+
   }
 
   export class GetUserProfile implements Action{
@@ -58,6 +65,21 @@ export enum UserProfileActionTypes {
   }
 
 
+  export class PutUpdateProfile implements Action{
+    readonly type = UserProfileActionTypes.PUT_UPDATE_PROFILE;
+    constructor(public payload:object) {}
+  }
+
+  export class PutUpdateProfileSuccess implements Action {
+    readonly type = UserProfileActionTypes.PUT_UPDATE_PROFILE_SUCCESS;
+    constructor(public payload: object) {}
+  }
+
+  export class PutUpdateProfileFail implements Action {
+    readonly type = UserProfileActionTypes.PUT_UPDATE_PROFILE_FAIL;
+    constructor(public payload: object) {}
+  }
+
   export type UserProfileActionsUnion = GetUserProfile | 
     GetUserProfileFail | 
     GetUserProfileSuccess | 
@@ -66,4 +88,7 @@ export enum UserProfileActionTypes {
     GetCurrentUserProfileSuccess | 
     GetUsers | 
     GetUsersSuccess | 
-    GetUsersFail;
+    GetUsersFail | 
+    PutUpdateProfile | 
+    PutUpdateProfileFail | 
+    PutUpdateProfileSuccess;

@@ -5,12 +5,14 @@ export interface State {
  isUserProfile: object;
  isCurrentUserProfile: object;
  isUsers: Array<UserCard>;
+ isUpdateUserProfile: object;
 }
 
 export const  initialState: State = {
   isUserProfile: {},
   isCurrentUserProfile: {},
-  isUsers: []
+  isUsers: [],
+  isUpdateUserProfile: {}
 };
 
 export function reducer (state: State = initialState, action: UserProfileActionsUnion) {
@@ -31,7 +33,11 @@ export function reducer (state: State = initialState, action: UserProfileActions
         ...state,
         isUsers: action.payload        
       };
-    default:
+    case UserProfileActionTypes.PUT_UPDATE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        isUserProfile: action.payload        
+      };    default:
       return state;
   }
 }

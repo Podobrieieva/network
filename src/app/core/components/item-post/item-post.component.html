@@ -1,17 +1,17 @@
 
 <div class="wrapper">
   <div class="post-content">
-    <img [src]="item.imageUrl || 'https://techflourish.com/images/jpeg-flower-images-2.jpg'" alt="post-image" class="img-responsive post-image">
+    <img [src]="item?.imageUrl" alt="post-image" class="img-responsive post-image">
     <div class="post-container">
-      <img [src]="item.author.avatarUrl || defaultAvatar" alt="user" class="profile-photo-md pull-left">
+      <img [src]="item.author.avatarUrl || defaultAvatar" alt="user" class="profile-photo-md pull-left" (click)="onViewSubscribeUser(item)">
       <div class="post-detail">
         <div class="user-info">
-          <h5><a href="timeline.html" class="profile-link">{{item.author.fullname}}</a> <span class="following">following</span></h5>
+          <h5><p class="profile-link" (click)="onViewSubscribeUser(item)">{{item.author.fullname}}</p> <span class="following">following</span></h5>
           <p class="text-muted">{{item.date}}</p>
         </div>
         <div class="reaction">
-          <a (click) = "like()" class="btn text-green"><i class="material-icons">  thumb_up  </i> {{item.likes}}</a>
-          <a (click) = "dislike()" class="btn text-red"><i class="material-icons">  thumb_down  </i> {{item.dislikes}}</a>
+          <a (click) = "like(item)" class="btn text-green"><i class="material-icons">  thumb_up  </i> {{item.likes.length}}</a>
+          <a (click) = "dislike(item)" class="btn text-red"><i class="material-icons">  thumb_down  </i> {{item.dislikes.length}}</a>
           
               <button mat-icon-button [matMenuTriggerFor]="menu">
                   <mat-icon>more_vert</mat-icon>

@@ -127,6 +127,11 @@ label {
 .gender .custom-label {
   padding-left: 0;
 }
+
+.gender label {
+  margin-right: 20px;
+}
+
 .custom-label {
     display: inline-block;
     max-width: 100%;

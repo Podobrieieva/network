@@ -4,13 +4,15 @@ import { PostModel } from '../../../shared/models/user.model'
 export interface State {
  isUserPosts:Array<PostModel>;
  isAddUserPost: object;
- 
+ isAddLike: object;
+ isAddDislike: object; 
 }
 
 export const  initialState: State = {
   isUserPosts: [],
   isAddUserPost: {},
-
+  isAddLike: {},
+  isAddDislike: {}
 };
 
 export function reducer (state: State = initialState, action: UserPostsActionsUnion) {
@@ -25,6 +27,16 @@ export function reducer (state: State = initialState, action: UserPostsActionsUn
         ...state,
         isAddUserPost: action.payload        
       };
+      case UserPostsActionTypes.ADD_LIKE_SUCCESS:
+      return {
+        ...state,
+        isAddLike: action.payload        
+      };      
+      case UserPostsActionTypes.ADD_DISLIKE_SUCCESS:
+      return {
+        ...state,
+        isAddDislike: action.payload        
+      }; 
     default:
       return state;
   }

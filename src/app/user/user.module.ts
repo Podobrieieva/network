@@ -27,7 +27,8 @@ import { SettingsComponent } from './containers/settings/settings.component';
    BrowserAnimationsModule,
    FormsModule,
    HttpClientModule,
-   MatNativeDateModule
+   MatNativeDateModule,
+   ReactiveFormsModule 
  
   ],
   declarations: [

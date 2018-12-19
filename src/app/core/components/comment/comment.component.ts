@@ -29,9 +29,11 @@ export class CommentComponent implements OnInit {
   public addBtnClickHandler(){
     this.editMode = true;
   }
-  public addHandler(e){
-    this.editMode = e;
-  
-  }
 
+  public addHandler(e){
+    this.editMode = e; 
+  }
+  onViewSubscribeUser(item) {
+    //this.networkService.onViewSubscribeUser(item.author.id)
+  }
 }

@@ -14,18 +14,10 @@ import { NetworkService } from '../../../shared/services/network.service';
 export class PostWrapperComponent implements OnInit {
   // postList$: Observable <PostModel[]>
   public isUserPostSubscription: Subscription; 
-  public userPosts: Array<Post>;
+  public userPosts;
 
   constructor(private store:Store<State>, private service: NetworkService ) { 
-    // const subscription = this.service.userPostsSubjObservable().subscribe(data => {
-    //   this.userPosts= data;
-  // })
-  this.isUserPostSubscription = this.store.pipe(select(getPosts)).subscribe(posts => {
-    console.log(posts)
-    if (posts.length) {
-      this.userPosts = posts
-    }      
-  })
+    this.userPosts = this.store.pipe(select(getPosts))
   }
 
   ngOnInit() {

@@ -5,10 +5,14 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map, switchMap } from 'rxjs/operators'
 import { RequestOptions, Request, RequestMethod} from '@angular/http';
 import { UserProfileModel} from '../models/user.model'
-import { GetUserProfile, GetCurrentUserProfile } from '../../core/store/actions/user-profile.actions'
+import { GetUserProfile, GetCurrentUserProfile, PutUpdateProfile } from '../../core/store/actions/user-profile.actions'
 import { select, Store} from "@ngrx/store";
-import { getIsUserProfile, State, getIsCurrentUserProfile, getIsSubscribersProfile, getIsSubscribersCurrent } from "../../core/store";
-import { RegisterService } from '../../register/service/register.service'
+import { State } from "../../core/store";
+import { RegisterService } from '../../register/service/register.service';
+import { AddSubscribe, DeleteSubscribe } from '../../core/store/actions/subscribe.actions';
+import { AddLike, AddDislike }  from '../../core/store/actions/user-posts.actions'
+
+
 
 
 @Injectable({
@@ -100,15 +104,51 @@ export class NetworkService {
   public getUsersSearch(term) {
      return this.http.get<any>(`${this.apiUrl}/profile/search?fullname=${term}`);
   }
+/////////////////////////////////// REQUESTS FOR POSTS    //////////////////////////////////
 
+  public addLikePost(id) {
+     return this.http.put<any>(`${this.apiUrl}/posts/${id}/like`, id);
+  }
 
+  public addDislikePost(id) {
+     return this.http.put<any>(`${this.apiUrl}/posts/${id}/dislike`, id);
+  }
 
-//////////////////////////////////////////////////////////////////
-
-
-
-
+//////////////////    METHODS   CARD USER    ////////////////////////////////////////////////
+  public onViewSubscribeUser(id) {
+    this.profileСhange(id);
+    this.store.dispatch(new GetCurrentUserProfile(id));      
+  }
+  public onAddAsFriend(id) {
+    this.store.dispatch(new AddSubscribe(id));
+  }
   
+  public onRemoveFromFriends(id) {
+    this.store.dispatch(new DeleteSubscribe(id));
+  }
+/////////////////////////////////// METHODS FOR POSTS    //////////////////////////////////
+  
+
+  public like(id) {
+    this.store.dispatch(new AddLike(id));
+  }
+
+  public dislike(id) {
+    this.store.dispatch(new AddDislike(id));
+  }
+
+
+/////////////////////////////////// METHODS END REQUESTS  FOR UPDATE PROFILE /////////////////////////////////////////
+
+public putUpdateProfile(data) {
+  console.log("111111111")
+  return this.http.put<any>(`${this.apiUrl}/profile`, data);
+}
+
+public updateProfile(data) {
+  this.store.dispatch(new PutUpdateProfile(data));
+}
+////////////////////////////////////////////////////////////////////////////////////////////////// 
 public uploadPhotoUser(selectedFile){
   const uploadData = new FormData();
   uploadData.append('image', selectedFile, selectedFile.name);

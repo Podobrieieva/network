@@ -25,9 +25,7 @@ export class SearchWrapperComponent implements OnInit {
   
 
   constructor(private networkService: NetworkService, private router: Router, private store: Store<State>) {
-    this.isUsersSubscription =  this.store.pipe(select(getIsUsers)).subscribe(data => {
-      this.users = data
-    });
+    this.isUsersSubscription =  this.store.pipe(select(getIsUsers)).subscribe(data => this.users = data);
   }
 
   ngOnInit() {
@@ -36,13 +34,11 @@ export class SearchWrapperComponent implements OnInit {
   }
   
   public onViewSubscribeUser(item) {  
-    this.networkService.profileСhange(item._id);
-    this.store.dispatch(new GetCurrentUserProfile(item._id));
-    this.router.navigate(["network/profile"]);    
+    this.networkService.onViewSubscribeUser(item._id);
   }
 
   public onAddAsFriend(item) {
-    this.store.dispatch(new AddSubscribe(item._id));
+    this.networkService.onAddAsFriend(item._id);
   }
 
 

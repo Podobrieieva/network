@@ -58,15 +58,17 @@ export class ItemPostComponent implements OnInit {
     this.editMode = e;
   
   }
-  public like(){
-    this.counterLike +=1
-  
+  public like(item){
+    this.networkService.like(item.id)  
   }
-  public dislike(){
-    this.counterDislike ++
+
+  public dislike(item){
+    this.networkService.dislike(item.id)
   }
   public deleteBtnCkickHandler(item){
     this.deleteEvt.emit(item.id);
   }
-
+  onViewSubscribeUser(item) {
+    this.networkService.onViewSubscribeUser(item.author.id)
+  }
 }
