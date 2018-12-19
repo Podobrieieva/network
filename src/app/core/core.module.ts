@@ -19,7 +19,7 @@ import { CardOfUserComponent } from './components/card-of-user/card-of-user.comp
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 // import { AddCommentForCommentComponent } from './containers/add-comment-for-comment/add-comment-for-comment.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
-import   MaterialModule  from '../user/material-module';
+import   MaterialModule  from './material-module';
 import { SubscriptionListComponent } from './containers/subscription-list/subscription-list.component';
 
 

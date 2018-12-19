@@ -1,15 +1,10 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-<<<<<<< HEAD
 import { Post, UserProfileModel } from '../../../shared/models/user.model';
 import { Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { NetworkService } from '../../../shared/services/network.service';
 import { State, getIsUserProfile } from '../../store';
 import { GetUserProfile } from '../../store/actions/user-profile.actions';
-=======
-import { Post } from '../../../shared/models/user.model';
-import { NetworkService } from '../../../shared/services/network.service';
->>>>>>> origin/viktor
 
 
 @Component({
@@ -83,16 +78,16 @@ export class ItemPostComponent implements OnInit {
   
   }
   public like(item){
-    this.networkService.like(item.id)  
+    this.service.like(item.id)  
   }
 
   public dislike(item){
-    this.networkService.dislike(item.id)
+    this.service.dislike(item.id)
   }
   public deleteBtnCkickHandler(id){
     this.deleteEvt.emit(id);
   }
   onViewSubscribeUser(item) {
-    this.networkService.onViewSubscribeUser(item.author.id)
+    this.service.onViewSubscribeUser(item.author.id)
   }
 }

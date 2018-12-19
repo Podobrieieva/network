@@ -74,9 +74,9 @@ export class ProfileComponent implements OnInit, OnDestroy  {
     this.service.uploadPhotoUser(this.selectedFile)
   } 
  
-  public saveHandler({item, itemIndex}){
-      this.service.setItemByIndex(item, itemIndex);
-  }
+  // public saveHandler({item, itemIndex}){
+  //     this.service.setItemByIndex(item, itemIndex);
+  // }
 
   public deleteHandler(id){
     this.store.dispatch(new GetUserPostDelete(id))
