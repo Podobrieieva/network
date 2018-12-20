@@ -1,6 +1,6 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {NotFoundComponent} from './core/components/not-found/not-found.component'
+import {NotFoundComponent} from './core/components/not-found/not-found.component';
 import { MainComponent } from './core/containers/main/main.component';
 import { SearchComponent } from './news/components/search/search.component';
 import { PostWrapperComponent } from './news/containers/post-wrapper/post-wrapper.component';
@@ -9,14 +9,15 @@ import { FriendsListComponent } from './user/containers/friends-list/friends-lis
 import { RegisterGuard } from './shared/guards/register.guard';
 import { SuccessfulComponent } from './core/components/successful/successful.component';
 import { SearchWrapperComponent } from './news/containers/search-wrapper/search-wrapper.component';
-import { ChangePasswordComponent }  from './core/components/change-password/change-password.component'
-import { SubscriptionListComponent } from './core/containers/subscription-list/subscription-list.component'
+import { ChangePasswordComponent } from './core/components/change-password/change-password.component';
+import { SubscriptionListComponent } from './core/containers/subscription-list/subscription-list.component';
 
 
 const routes: Routes = [
-  {path: '',  
-  redirectTo: 'network', 
-  pathMatch: 'full'
+  {
+    path: '',  
+    redirectTo: 'network', 
+    pathMatch: 'full'
   },
   {
     path: 'auth/reset_password',

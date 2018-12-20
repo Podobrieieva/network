@@ -2,10 +2,9 @@ import { Component, OnInit, ViewChild, Output, Input, EventEmitter} from '@angul
 import { NgForm } from '@angular/forms';
 
 import { NetworkService } from '../../../shared/services/network.service';
-import { CommentModel, PostComment } from '../../../shared/models/user.model';
+import { PostComment } from '../../../shared/models/user.model';
 import { Store, select } from '@ngrx/store';
-import { State, getIsUserProfile, getPosts } from '../../store';
-import { GetUserProfile } from '../../store/actions/user-profile.actions';
+import { State, getIsUserProfile} from '../../store';
 import { Subscription } from 'rxjs';
 import { GetUserPostAddComment } from '../../store/actions/user-posts.actions';
 
@@ -18,8 +17,7 @@ export class AddCommentComponent implements OnInit {
   @Input () postId: string;
   @Output() addEvt = new EventEmitter();
  
-  private isUserProfileSubscription: Subscription;
-  private isUserPostSubscription: Subscription;
+
  
   public comment: PostComment ={
     _id: "",

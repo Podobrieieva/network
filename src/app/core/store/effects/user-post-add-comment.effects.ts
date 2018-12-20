@@ -22,10 +22,9 @@ export class UserPostAddCommentEffect {
     exhaustMap(
     	action => this.networkService.addComment(action.payloadIdPost, action.payload).pipe(
     		map(data=> {
-          
-                
-        this.store.dispatch(new GetUserProfile());
-        // this.store.dispatch(new GetCurrentUserProfile());
+          data.data.post.author.id === action.payload.author.id ? 
+                this.store.dispatch(new GetUserProfile()) : this.store.dispatch(new GetCurrentUserProfile(data.data.post.author.id));
+      
         this.store.dispatch(new GetPosts());;       		
         return new GetUserPostAddCommentSuccess(data);           		    			
     		}),

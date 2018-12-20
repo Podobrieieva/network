@@ -1,4 +1,5 @@
 import {Action} from '@ngrx/store';
+import { PostComment } from '../../../shared/models/user.model';
 
 
 export enum UserPostsActionTypes {
@@ -74,7 +75,7 @@ export enum UserPostsActionTypes {
 
   export class GetUserPostAddComment implements Action{
     readonly type = UserPostsActionTypes.GET_USER_POST_ADD_COMMENT;
-    constructor(public payloadIdPost: string, public payload: object) {}
+    constructor(public payloadIdPost: string, public payload: PostComment) {}
   }
 
   export class GetUserPostAddCommentSuccess implements Action {
@@ -89,7 +90,7 @@ export enum UserPostsActionTypes {
 
   export class GetUserPostCommentDelete implements Action{
     readonly type = UserPostsActionTypes.GET_USER_POST_COMMENT_DELETE;
-    constructor(public payloadPost: object, public payloadIdPostComment: string) {}
+    constructor(public payloadPost: object, public payloadComment: PostComment) {}
   }
 
   export class GetUserPostCommentDeleteSuccess implements Action {

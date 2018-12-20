@@ -41,9 +41,9 @@ export class CommentComponent implements OnInit {
  
   }
 
-  public deleteBtnCkickHandlerComment(id){
+  public deleteBtnCkickHandlerComment(comment){
   
-    this.deleteEvtComment.emit(id);
+    this.deleteEvtComment.emit(comment);
   }
 
 
