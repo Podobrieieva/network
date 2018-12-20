@@ -36,10 +36,10 @@ $fa-font-path: '~font-awesome/fonts';
 .reg-form-container {
   background: #fff;
   box-shadow: 0 0 35px rgba(0, 0, 0, 0.4);
-  padding: 30px;
+  padding: 25px;
   border-radius: 6px;
   position: relative;
-  min-height: 450px;
+  min-height: 420px;
   z-index: 10;
 }
 
@@ -350,3 +350,13 @@ path {
     opacity: 1;
   }
 }
+
+@media screen and (max-width: 460px) {
+  .wrapper {
+  min-width: 60%;
+  }
+  .reg-form-container {
+    padding: 15px;
+  }
+}
+

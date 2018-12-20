@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -13,11 +13,18 @@ import { State } from "../../../core/store";
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-  
+  @Input() interest: string;
+
   public basicInfoForm:FormGroup;
   public educationForm:FormGroup;
   public workForm:FormGroup;
-  
+  private interestArr: string[] = [];
+  private bycicle:boolean=false;
+  private photgraphy:boolean=false;
+  private shopping:boolean=false;
+  private traveling:boolean=false;
+  private eating:boolean=false;
+
   constructor(
   	private networkService: NetworkService,
   	private store: Store<State>,
@@ -73,7 +80,7 @@ export class SettingsComponent implements OnInit {
   	return this.basicInfoForm.get('city');
   }
 
-private createFromGroupBasicInfo() {
+  private createFromGroupBasicInfo() {
   	return new FormGroup({
   		lastname:new FormControl('', [Validators.maxLength(15), Validators.pattern('^[a-zA-Zа-яА-Я]+$')]),
   		firstname:new FormControl('', [Validators.maxLength(15), Validators.pattern('^[a-zA-Zа-яА-Я]+$')]),
@@ -86,13 +93,8 @@ private createFromGroupBasicInfo() {
   		city: new FormControl(''),
   		country: new FormControl(''),
   		aboutMe: new FormControl('')
-
   	})
   }
-
-
-
-
 
   private  submitEducationForm() {
   	const educationData = {
@@ -140,17 +142,17 @@ private createFromGroupEducation() {
 
 
 
- submitWorkForm() {
+  submitWorkForm() {
   	const workData = {
 	  "work": [
     	{
     	  "country":"",
-		  "city": this.companyCity.value, 
-		  "company": this.company.value,
-		  // "designation": this.designation.value,
-		  "period": `${this.companyFrom.value}${this.companyTo.value}` 
-		}
-  	  ]
+		    "city": this.companyCity.value, 
+		    "company": this.company.value,
+		    // "designation": this.designation.value,
+		    "period": `${this.companyFrom.value}${this.companyTo.value}` 
+		  }
+  	]
 	}
   	console.log(workData);  	 
 	this.networkService.updateProfile(workData);    
@@ -179,7 +181,7 @@ private createFromGroupEducation() {
 
 
 
-private createFromGroupWorkForm() {
+  private createFromGroupWorkForm() {
   	return new FormGroup({
   		company:new FormControl('', [Validators.maxLength(25), Validators.pattern('^[a-zA-Zа-яА-Я]+$')]),
   		description:new FormControl('', [Validators.maxLength(200), Validators.pattern('^[a-zA-Zа-яА-Я]+$')]),
@@ -190,18 +192,47 @@ private createFromGroupWorkForm() {
   	})
   }
 
+  private addBycicleArray (elem) {
+    this.interestArr.push(elem.target.innerText);
+    this.bycicle=!this.bycicle
+  } 
+  private addPhotgraphy (elem) {
+    this.interestArr.push(elem.target.innerText);
+    this.photgraphy=!this.photgraphy;
+  } 
+  
+
+  private addShoppingArray (elem) {
+    this.interestArr.push(elem.target.innerText);
+    this.shopping=!this.shopping
+  }
+
+    private addTravelingArray (elem) {
+    this.interestArr.push(elem.target.innerText);
+    this.traveling=!this.traveling
+  } 
 
 
+    private addEatingArray (elem) {
+    this.interestArr.push(elem.target.innerText);
+    this.eating=!this.eating
+  } 
+ 
 
-
-
-
-
-
-
-
-
-
+  private AddInterestsProfile() {
+    console.log(this.interest)
+    if (this.interest) {
+      this.interestArr.push(this.interest);    
+    }
+    this.bycicle=false;
+    this.photgraphy=false;
+    this.shopping=false;
+    this.traveling=false;
+    this.eating=false;
+    this.interest="";  
+    this.networkService.updateProfile({"interests": this.interestArr})
+    this.interestArr=[];
+  }
 
 
 }

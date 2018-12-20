@@ -4,11 +4,11 @@
     h3 {
       font-family: 'Agency FB Bold', arial;
       color: #27aae1;
-      font-size: 26px;
+      font-size: 30px;
     }
     .text-muted{
       color: #939598;
-      font-size: 10px;
+      font-size: 12px;
       margin-bottom: 20px;
     }    
       .form-group {
@@ -25,10 +25,11 @@
           font-size: 12px;
           height: 30px;
           margin-bottom: 0;
+          box-sizing: border-box;
         }
       }    
     .already {
-      font-size: 10px;
+      font-size: 12px;
       color: #27aae1;
     }
     .already:hover {
@@ -68,3 +69,5 @@
     margin-top: 5px
   }
 }
+
+
