@@ -179,13 +179,17 @@ public uploadPhotoUser(selectedFile){
     return this.http.get<any>(`${this.apiUrl}/posts`, {params});
   }
 
-  // public fetchUserPosts(params){
-  //   this.userPostsSubj.next(params)
-  // }
+  public deletePost(id){
+      return this.http.delete(`${this.apiUrl}/posts/${id}`)
+  }
 
-  // public userPostsSubjObservable(){
-  //   return this.userPostsSubj.asObservable()
-  // }
+  public fetchUserPosts(params){
+    this.userPostsSubj.next(params)
+  }
+
+  public userPostsSubjObservable(){
+    return this.userPostsSubj.asObservable()
+  }
    public userProfileSubjObservable(){
     return this.userProfileSubj.asObservable()
  }
@@ -202,9 +206,7 @@ public uploadPhotoUser(selectedFile){
     return this.commentSubj.asObservable();
   }
 
-  public getCommentsForComments() {
-    return this.fetchCommentsForCom(this.commentWrapperForComment);
-  }
+  
 
   public fetchCommentsForCom(params) {
       this.commentForComSubj.next(params);
@@ -214,14 +216,19 @@ public uploadPhotoUser(selectedFile){
     return this.commentForComSubj.asObservable();
   }
 
-  public addComment(comment){
-    this.commentWrapper.push(comment);
-  }
-  public addCommentForComment(comment){
-     this.commentWrapperForComment.push(comment);
-    console.log(this.commentWrapperForComment);
+  public addComment(idPost, comment){
+    const commentText = {
+      "text": comment.text 
+    }
 
+   return this.http.post<any>(`${this.apiUrl}/posts/${idPost}/comment`, commentText)
   }
+
+  public deleteComment (post, idComment){
+    const idPost = post.id
+    return this.http.delete<any>(`${this.apiUrl}/posts/${idPost}/comment/${idComment}`)
+  }
+
   public setItemByIndex(item,index){
     this.userPosts[index] = item;
     // this.getUserPosts();
@@ -230,17 +237,7 @@ public uploadPhotoUser(selectedFile){
   public getAddPostObservable(){
     return this.addPostSubject.asObservable();
   }
-  // public addPost(post, selectedFile ){
-    
-  //    let postUser = JSON.stringify(post)
-
-    
-  //   const uploadData = new FormData();
-  //   uploadData.append('image', selectedFile, selectedFile.name );
-  //   uploadData.append('data', postUser)
-
-  //   return this.http.post<any>(`${this.apiUrl}/posts`, postUser, selectedFile);
-  // }
+  
   
   public addPost(post, selectedFile ){
     

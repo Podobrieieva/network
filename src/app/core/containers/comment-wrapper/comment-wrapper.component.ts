@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NetworkService } from '../../../shared/services/network.service';
+import { PostComment, Post } from '../../../shared/models/user.model';
+import { Store, select } from '@ngrx/store';
+import { State, getIsUserProfile, getPosts } from '../../store';
+import { Subscription } from 'rxjs';
+import { GetPosts } from '../../store/actions/news.actions';
+import { GetUserPostCommentDelete } from '../../store/actions/user-posts.actions';
 
 @Component({
   selector: 'app-comment-wrapper',
@@ -7,16 +13,33 @@ import { NetworkService } from '../../../shared/services/network.service';
   styleUrls: ['./comment-wrapper.component.scss']
 })
 export class CommentWrapperComponent implements OnInit {
-  public commentWrapper: Array<any>;
+  @Input() arrayComments: Array<PostComment>;
+  // @Input () postId: string;
+  @Input() post: Post
+  // private isUserPostSubscription: Subscription;
+  // user
+ 
+ 
+  
 
-  constructor(private networkService: NetworkService) { 
-    const subscription = this.networkService.commentSubjObservable().subscribe(data => {
-      this.commentWrapper = data;
-    });
+  constructor(private networkService: NetworkService, private store: Store<State>) { 
+    // this.isUserPostSubscription = this.store.pipe(select(getPosts)).subscribe(posts => {
+    //   console.log(posts)
+    //   if (posts.length) {
+    //     this.userPosts = posts
+    //   }      
+    // })
+  
+
   }
 
   ngOnInit() {
-    this.networkService.getComments();
+console.log(this.arrayComments)
+  }
+
+  public deleteHandler(id){
+    this.store.dispatch(new GetUserPostCommentDelete(this.post, id))
+
   }
 
 

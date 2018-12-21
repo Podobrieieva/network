@@ -13,15 +13,15 @@
           <a (click) = "like(item)" class="btn text-green"><i class="material-icons">  thumb_up  </i> {{item.likes.length}}</a>
           <a (click) = "dislike(item)" class="btn text-red"><i class="material-icons">  thumb_down  </i> {{item.dislikes.length}}</a>
           
-              <button mat-icon-button [matMenuTriggerFor]="menu">
+              <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf = "accessToEditPost" >
                   <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                  <button (click)="editBtnCkickHandler()" mat-menu-item>
+                  <!-- <button (click)="editBtnCkickHandler()"  mat-menu-item>
                     <mat-icon>edit</mat-icon>
                     <span>Edit</span>
-                  </button>
-                  <button (click)="deleteBtnCkickHandler(item)" mat-menu-item>
+                  </button> -->
+                  <button (click)="deleteBtnCkickHandler(item.id)" mat-menu-item>
                     <mat-icon>delete</mat-icon>
                     <span>Delete</span>
                   </button>
@@ -40,8 +40,8 @@
         <button class="btn-main" *ngIf="editModePost" (click)="cancelBtnClickHandler(item, itemIndex)">Cancel</button>
         <div class="line-divider"></div>
         <a class="comment clearfix" (click) = "addBtnClickHandler()" *ngIf="!editMode" > Add comment</a>
-        <!-- <app-comment-wrapper></app-comment-wrapper>
-        <app-add-comment *ngIf="editMode" (addEvt)="addHandler($event)" ></app-add-comment> -->
+        <app-comment-wrapper [post]= "item"  [arrayComments]= "item.comments"></app-comment-wrapper>
+        <app-add-comment [postId]= "item.id" *ngIf="editMode"  ></app-add-comment>
       </div>
     </div>
  

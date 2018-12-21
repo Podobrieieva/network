@@ -6,6 +6,7 @@
             <app-item-post
              [item]="itemPost"
               [itemIndex]="i"
+              (deleteEvt) = "deleteHandler($event)"
               >
             </app-item-post>
         </div>

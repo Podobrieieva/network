@@ -85,18 +85,20 @@ export interface Post {
     imageUrl?: string;
     text: number | string;
     author: UserCard;
-    likes: number;
-    dislikes: number;
+    likes?: Array<string>;
+    dislikes?: Array<string>;
     date?: Date;
     comments?: Array<PostComment>;
 }
 
 export interface PostComment {
-    id: string;
-    user: UserCard;
+    _id: string;
+    author: UserCard;
     text: string;
     date: Date;
-    childrensId: Array<string>;
+    likes?: Array<string>;
+    dislikes?: Array<string>;
+    
 }
 
 

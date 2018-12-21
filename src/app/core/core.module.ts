@@ -17,10 +17,11 @@ import { MainComponent } from './containers/main/main.component';
 import { SuccessfulComponent } from './components/successful/successful.component';
 import { CardOfUserComponent } from './components/card-of-user/card-of-user.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { AddCommentForCommentComponent } from './containers/add-comment-for-comment/add-comment-for-comment.component';
+// import { AddCommentForCommentComponent } from './containers/add-comment-for-comment/add-comment-for-comment.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
-import   MaterialModule  from '../user/material-module';
+import   MaterialModule  from './material-module';
 import { SubscriptionListComponent } from './containers/subscription-list/subscription-list.component';
+
 
 
 
@@ -44,9 +45,10 @@ import { SubscriptionListComponent } from './containers/subscription-list/subscr
     MainComponent,
     SuccessfulComponent,
     CardOfUserComponent,
-    AddCommentForCommentComponent,
+    // AddCommentForCommentComponent,
     ChangePasswordComponent,
     SubscriptionListComponent,
+    
     ],
     
   exports: [
@@ -54,6 +56,7 @@ import { SubscriptionListComponent } from './containers/subscription-list/subscr
     NavComponent,
     ItemPostComponent, 
     FooterComponent, 
+    
     CommentWrapperComponent,
     AddCommentComponent,
     NotFoundComponent,

@@ -17,6 +17,9 @@ import { GetSubscribersProfileEffect } from './effects/get-profile-subscribers.e
 import { DeleteSubscribeEffect } from './effects/delete-subscribe.effects';
 import { GetSubscriptionsProfileEffect } from './effects/get-profile-subscrirtions.effects';
 import { GetUsersEffect } from './effects/get-users.effects';
+import { UserPostDeleteEffect } from "./effects/user-post-delete.effects";
+import { UserPostAddCommentEffect } from "./effects/user-post-add-comment.effects";
+import { UserPostDeleteCommentEffect } from "./effects/user-post-comment-delete.effects";
 import { GetSubscriptionsIdEffect } from './effects/get-current-subscrirtions.effects';
 import { AddLikeEffect } from './effects/add-like-post.effects';
 import { AddDislikeEffect } from './effects/add-dislike-post.effects';       
@@ -34,6 +37,9 @@ import { UpdateUserProfileEffect } from './effects/update-user-profile.effects';
         CurrentUserProfileEffect,
         UserPostsEffect, 
         UserPostAddEffect,
+        UserPostDeleteEffect,
+        UserPostAddCommentEffect,
+        UserPostDeleteCommentEffect,
     	AddSubscribeEffect,
         GetSubscribersIdEffect,
         GetSubscribersProfileEffect,

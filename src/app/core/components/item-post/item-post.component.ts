@@ -1,6 +1,10 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Post } from '../../../shared/models/user.model';
+import { Post, UserProfileModel } from '../../../shared/models/user.model';
+import { Subscription } from 'rxjs';
+import { Store, select } from '@ngrx/store';
 import { NetworkService } from '../../../shared/services/network.service';
+import { State, getIsUserProfile } from '../../store';
+import { GetUserProfile } from '../../store/actions/user-profile.actions';
 
 
 @Component({
@@ -16,20 +20,35 @@ export class ItemPostComponent implements OnInit {
   @Output() saveEvt = new EventEmitter();
   @Output() cancelEvt = new EventEmitter();
   @Output() deleteEvt = new EventEmitter();
+  public accessToEditPost: boolean = false;
   public editMode = false;
   public editModePost = false;
   public counterLike: any = 0;
   public counterDislike: any  = 0;
+  private isUserProfileSubscribers: Subscription;
+  private editingItem = <Post>{};
+  private user$: UserProfileModel;
   private defaultAvatar:  string;
+  
+
+  constructor( private service: NetworkService, private store: Store<State> ) { 
+        this.isUserProfileSubscribers =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
+          this.user$ = isUserProfile;
+        })      
+        this.defaultAvatar = this.service.defaultAvatar; 
+       } ; 
+
+ 
 
   
-  constructor(private networkService:NetworkService) {
-     this.defaultAvatar = this.networkService.defaultAvatar; 
-  }
 
-  private editingItem = <Post>{};
+
 
   ngOnInit() {
+
+    if(this.user$.id === this.item.author.id){
+      this.accessToEditPost = true
+    }
   }
 
   public inputHandler(event) {
@@ -59,16 +78,16 @@ export class ItemPostComponent implements OnInit {
   
   }
   public like(item){
-    this.networkService.like(item.id)  
+    this.service.like(item.id)  
   }
 
   public dislike(item){
-    this.networkService.dislike(item.id)
+    this.service.dislike(item.id)
   }
-  public deleteBtnCkickHandler(item){
-    this.deleteEvt.emit(item.id);
+  public deleteBtnCkickHandler(id){
+    this.deleteEvt.emit(id);
   }
   onViewSubscribeUser(item) {
-    this.networkService.onViewSubscribeUser(item.author.id)
+    this.service.onViewSubscribeUser(item.author.id)
   }
 }

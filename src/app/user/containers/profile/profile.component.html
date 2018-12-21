@@ -10,7 +10,7 @@
       <div class="timeline-nav-bar">
         <div class="profile-info">
           <img
-            [src]="user$.avatarUrl || defaultAvatar"
+            [src]="user$?.avatarUrl || defaultAvatar"
             alt=""
             class="img-responsive profile-photo"
           />
@@ -36,7 +36,7 @@
         <div id="page-contents">
           <div class="main-wrap">
             <div class="main-post-field">
-              <app-add-new-post></app-add-new-post>
+              <app-add-new-post *ngIf = 'accessToAddPost'></app-add-new-post>
                <ul>
                 <div *ngFor= "let itemPost of userPosts; let i = index">
                     <app-item-post

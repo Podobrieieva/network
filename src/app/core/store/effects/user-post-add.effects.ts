@@ -8,6 +8,9 @@ import { catchError, exhaustMap, map } from 'rxjs/operators';
 import { GetUserPostAdd, GetUserPostAddFail, GetUserPostAddSuccess, UserPostsActionTypes } from '../actions/user-posts.actions'
 import { NetworkService } from '../../../shared/services/network.service';
 
+import { GetUserProfile } from '../actions/user-profile.actions'
+import { select, Store} from "@ngrx/store";
+import { State } from "../../../core/store";
 
 @Injectable()
 export class UserPostAddEffect {
@@ -17,8 +20,9 @@ export class UserPostAddEffect {
     ofType<GetUserPostAdd>(UserPostsActionTypes.GET_USER_POST_ADD),
     exhaustMap(
     	action => this.networkService.addPost(action.payload, action.imageUrl).pipe(
-    		map(data=> {           		
-          return new GetUserPostAddSuccess(data);           		    			
+    		map(data=> {
+        this.store.dispatch(new GetUserProfile());;         		
+        return new GetUserPostAddSuccess(data);           		    			
     		}),
     		catchError(err => {    		
     			return of(new GetUserPostAddFail(err));
@@ -31,5 +35,5 @@ export class UserPostAddEffect {
   constructor(
   	private actions$: Actions,
   	private networkService: NetworkService,
-  	) {}
+  	private store: Store<State>) {}
 }
