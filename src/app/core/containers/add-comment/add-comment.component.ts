@@ -16,6 +16,7 @@ import { GetUserPostAddComment } from '../../store/actions/user-posts.actions';
 export class AddCommentComponent implements OnInit {
   @Input () postId: string;
   @Output() addEvt = new EventEmitter();
+  public isUserProfileSubscription : Subscription;
  
 
  

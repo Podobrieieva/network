@@ -8,6 +8,7 @@ import { SearchWrapperComponent } from './containers/search-wrapper/search-wrapp
 import { CoreModule } from '../core/core.module'
 import { SearchPipe } from '../shared/pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
+import { FilterPostPipe } from '../shared/pipes/filter-post.pipe';
 
 
 
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     PostWrapperComponent,
     SearchComponent,
     SearchWrapperComponent,
-    SearchPipe
+    SearchPipe,
+    FilterPostPipe
   ],
   exports:[
     PostWrapperComponent,

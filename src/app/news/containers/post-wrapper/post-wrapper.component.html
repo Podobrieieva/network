@@ -2,6 +2,8 @@
 <div class ="wrapper">
 <!-- <app-add-new-post></app-add-new-post> -->
 <ul class="news">
+        <!-- <div *ngFor= "let itemPost of (userPosts | async) | filterPost: itemPost.author.id; let i = index"> -->
+
         <div *ngFor= "let itemPost of userPosts | async; let i = index">
             <app-item-post
              [item]="itemPost"

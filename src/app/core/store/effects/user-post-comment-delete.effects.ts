@@ -22,13 +22,11 @@ export class UserPostDeleteCommentEffect {
     exhaustMap(
     	action => this.networkService.deleteComment(action.payloadPost, action.payloadComment).pipe(
     		map(data=> { 
-          
-          // console.log(data)
-          // this.store.dispatch(new GetUserProfile()) 
+          this.store.dispatch(new GetPosts()) && 
           data.data.post.author.id === action.payloadComment.author.id ? 
           this.store.dispatch(new GetUserProfile()) : this.store.dispatch(new GetCurrentUserProfile(data.data.post.author.id));
   
-          this.store.dispatch(new GetPosts());;        		
+        		
           return new GetUserPostDeleteSuccess(data);           		    			
     		}),
     		catchError(err => {    		
