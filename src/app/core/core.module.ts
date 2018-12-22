@@ -5,7 +5,7 @@ import { MatNativeDateModule } from '@angular/material';
 
 
 
-import { HeaderComponent } from './containers/header/header.component'
+import { HeaderComponent } from './containers/header/header.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './containers/footer/footer.component';
 import { ItemPostComponent } from './components/item-post/item-post.component';
@@ -19,7 +19,7 @@ import { CardOfUserComponent } from './components/card-of-user/card-of-user.comp
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 // import { AddCommentForCommentComponent } from './containers/add-comment-for-comment/add-comment-for-comment.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
-import   MaterialModule  from './material-module';
+import MaterialModule from './material-module';
 import { SubscriptionListComponent } from './containers/subscription-list/subscription-list.component';
 
 
@@ -31,32 +31,29 @@ import { SubscriptionListComponent } from './containers/subscription-list/subscr
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    MaterialModule   
+    MaterialModule
   ],
   declarations: [
-    HeaderComponent, 
+    HeaderComponent,
     NavComponent,
-    ItemPostComponent, 
-    FooterComponent, 
+    ItemPostComponent,
+    FooterComponent,
     CommentWrapperComponent,
     AddCommentComponent,
     NotFoundComponent,
-    CommentComponent, 
+    CommentComponent,
     MainComponent,
     SuccessfulComponent,
     CardOfUserComponent,
     // AddCommentForCommentComponent,
     ChangePasswordComponent,
-    SubscriptionListComponent,
-    
-    ],
-    
+    SubscriptionListComponent
+   ],
   exports: [
-    HeaderComponent, 
+    HeaderComponent,
     NavComponent,
-    ItemPostComponent, 
-    FooterComponent, 
-    
+    ItemPostComponent,
+    FooterComponent,
     CommentWrapperComponent,
     AddCommentComponent,
     NotFoundComponent,
@@ -66,7 +63,6 @@ import { SubscriptionListComponent } from './containers/subscription-list/subscr
     CommonModule,
     CardOfUserComponent,
     ChangePasswordComponent
- 
   ]
 })
-export class CoreModule { }
+export class CoreModule {}

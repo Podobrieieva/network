@@ -11,7 +11,7 @@ export const  initialState: IpassChangeState = {
 export function reducer (state: IpassChangeState = initialState, action: PassworChangesActionsUnion) {
   switch (action.type) {
     case PasswordChangesActionTypes.GET_PASSWORD_SUCCESS:
-      return {        
+      return {
         ...state,
         isNewPass: action.payload
       };

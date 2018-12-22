@@ -12,26 +12,26 @@ import { LoginEffect } from './store/effects/login.effects';
 import { EmailEffect } from './store/effects/password-recovery.effects';
 import { reducers } from './store';
 
-import { RegisterService } from './service/register.service'
+import { RegisterService } from './service/register.service';
 import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
 import { CheckInComponent } from './components/check-in/check-in.component';
-import { LogInComponent } from './components/log-in/log-in.component'
+import { LogInComponent } from './components/log-in/log-in.component';
 import { RegisterComponent } from './containers/register/register.component';
-import { ChangePasswordComponent } from '../core/components/change-password/change-password.component'
+import { ChangePasswordComponent } from '../core/components/change-password/change-password.component';
 
 
 
 @NgModule({
   declarations: [
-  	RegisterComponent,
-  	CheckInComponent,
+    RegisterComponent,
+    CheckInComponent,
     LogInComponent,
     PasswordRecoveryComponent
   ],
   imports: [
-	  CommonModule, 
-	  ReactiveFormsModule, 
-	  RegisterRoutingModule,
+    CommonModule,
+    ReactiveFormsModule,
+    RegisterRoutingModule,
     CoreModule,
     StoreModule.forFeature('auth', reducers),
     EffectsModule.forFeature([RegisterEffect, LoginEffect, EmailEffect])

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-
-import { RegisterService } from '../../register/service/register.service'
-
+import { RegisterService } from '../../register/service/register.service';
 
 @Injectable({ providedIn: 'root' })
 export class RegisterGuard implements CanActivate {

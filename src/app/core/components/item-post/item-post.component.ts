@@ -14,13 +14,12 @@ import { GetUserProfile } from '../../store/actions/user-profile.actions';
 })
 export class ItemPostComponent implements OnInit {
 
-  
   @Input() item: Post;
   @Input() itemIndex = 0;
   @Output() saveEvt = new EventEmitter();
   @Output() cancelEvt = new EventEmitter();
   @Output() deleteEvt = new EventEmitter();
-  public accessToEditPost: boolean = false;
+  public accessToEditPost = false;
   public editMode = false;
   public editModePost = false;
   public counterLike: any = 0;
@@ -29,26 +28,22 @@ export class ItemPostComponent implements OnInit {
   private editingItem = <Post>{};
   private user$: UserProfileModel;
   private defaultAvatar:  string;
-  
-
-  constructor( private service: NetworkService, private store: Store<State> ) { 
-        this.isUserProfileSubscribers =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
-          this.user$ = isUserProfile;
-        })      
-        this.defaultAvatar = this.service.defaultAvatar; 
-       } ; 
-
- 
-
-  
-
-
+  private defaultImageUrl = '../../../../assets/img/4.jpg';
+  private srcError = 'http://res.cloudinary.com/s-cloud/image/upload/v1544363237/posts/mmxjjuv6jch2sbah8nxv.png';
+  constructor( private service: NetworkService, private store: Store<State> ) {
+    this.isUserProfileSubscribers =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
+       this.user$ = isUserProfile;
+    });
+    this.defaultAvatar = this.service.defaultAvatar;
+  }
 
   ngOnInit() {
-
-    if(this.user$.id === this.item.author.id){
-      this.accessToEditPost = true
+    if (this.user$.id === this.item.author.id) {
+      this.accessToEditPost = true;
     }
+
+    this.item.imageUrl = this.item.imageUrl !== this.srcError ?
+    this.item.imageUrl : this.defaultImageUrl;
   }
 
   public inputHandler(event) {
@@ -65,29 +60,31 @@ export class ItemPostComponent implements OnInit {
     this.cancelEvt.emit();
   }
 
-
-   public editBtnCkickHandler(){
+   public editBtnCkickHandler() {
      this.editModePost = true;
    }
 
-  public addBtnClickHandler(){
+  public addBtnClickHandler() {
     this.editMode = true;
   }
-  public addHandler(e){
+
+  public addHandler(e) {
     this.editMode = e;
-  
-  }
-  public like(item){
-    this.service.like(item.id)  
   }
 
-  public dislike(item){
-    this.service.dislike(item.id)
+  public like(item) {
+    this.service.like(item.id);
   }
-  public deleteBtnCkickHandler(id){
+
+  public dislike(item) {
+    this.service.dislike(item.id);
+  }
+
+  public deleteBtnCkickHandler(id) {
     this.deleteEvt.emit(id);
   }
+
   onViewSubscribeUser(item) {
-    this.service.onViewSubscribeUser(item.author.id)
+    this.service.onViewSubscribeUser(item.author.id);
   }
 }

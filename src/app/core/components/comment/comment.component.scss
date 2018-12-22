@@ -25,6 +25,20 @@ a:hover{
     color: #23527c;
     cursor: pointer;
 }
+.profile-link {
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.profile-link:hover {
+    color: #23527c;
+    cursor: pointer; 
+}
+.profile-photo-sm:hover {
+    cursor: pointer;     
+}
+
+
 // .comment{
 //     float: right;
 // }

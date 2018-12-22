@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { select, Store} from '@ngrx/store';
-import { Subscription } from "rxjs";
+import { Subscription } from 'rxjs';
 import { State} from '../../store';
 import { GetCurrentUserProfile } from '../../store/actions/user-profile.actions';
 import { NetworkService } from '../../../shared/services/network.service';
@@ -19,31 +19,23 @@ export class CardOfUserComponent implements OnInit {
   @Output() addEvt = new EventEmitter();
   @Output() removeEvt = new EventEmitter();
   private defaultAvatar: string;
-  
 
   constructor(private store: Store<State>, private service: NetworkService) {
-    this.defaultAvatar = this.service.defaultAvatar; 
+    this.defaultAvatar = this.service.defaultAvatar;
   }
 
   ngOnInit() {
   }
 
   public viewSubscribeUser(item) {
-  	
-    this.viewEvt.emit(item)
-    //this.store.dispatch(new GetCurrentUserProfile(this.id));
-    //this.viewEvt(params) 
-    //this.router.navigate(["network/profile", {id: params}]);    
+    this.viewEvt.emit(item);
   }
 
   public addAsFriend(item) {
-   console.log(item); 
-    this.addEvt.emit(item)
+    this.addEvt.emit(item);
   }
 
   public removeFromFriends(item) {
-    console.log(item)
-    this.removeEvt.emit(item)
+    this.removeEvt.emit(item);
   }
-
 }

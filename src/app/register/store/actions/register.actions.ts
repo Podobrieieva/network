@@ -1,4 +1,4 @@
-import {Action} from "@ngrx/store";
+import {Action} from '@ngrx/store';
 
 export enum RegisterActionTypes {
   GET_LOGIN = '[LOGIN] Fetch login requested',

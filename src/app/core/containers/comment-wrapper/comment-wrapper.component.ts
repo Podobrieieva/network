@@ -14,34 +14,13 @@ import { GetUserPostCommentDelete } from '../../store/actions/user-posts.actions
 })
 export class CommentWrapperComponent implements OnInit {
   @Input() arrayComments: Array<PostComment>;
-  // @Input () postId: string;
-  @Input() post: Post
-  // private isUserPostSubscription: Subscription;
-  // user
- 
- 
-  
-
-  constructor(private networkService: NetworkService, private store: Store<State>) { 
-    // this.isUserPostSubscription = this.store.pipe(select(getPosts)).subscribe(posts => {
-    //   console.log(posts)
-    //   if (posts.length) {
-    //     this.userPosts = posts
-    //   }      
-    // })
-  
-
-  }
+  @Input() post: Post;
+  constructor(private networkService: NetworkService, private store: Store<State>) {}
 
   ngOnInit() {
-console.log(this.arrayComments)
   }
 
-  public deleteHandler(id){
-    this.store.dispatch(new GetUserPostCommentDelete(this.post, id))
-
+  public deleteHandler(id) {
+    this.store.dispatch(new GetUserPostCommentDelete(this.post, id));
   }
-
-
-
 }

@@ -14,6 +14,6 @@ export class SuccessfulComponent implements OnInit {
   }
 
   btnSubmit() {
-   this.router.navigate(['/network/profile']); 
+   this.router.navigate(['/network/profile']);
   }
 }

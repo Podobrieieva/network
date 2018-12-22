@@ -15,16 +15,14 @@ export class NewsEffects {
       ofType<newsAction.GetPosts>(newsAction.NewsActionTypes.GET_POSTS),
       exhaustMap(
         action => this.networkService.getPosts().pipe(
-          map(data=> {
-            return new newsAction.GetPostsSuccess(data)}),
+          map(data => {
+            return new newsAction.GetPostsSuccess(data);
+          }),
           catchError(err => {
             return of(new newsAction.GetPostsFail(err));
           })
-         )
+        )
       )
     );
-
-
-
   constructor(private actions$: Actions, private networkService: NetworkService) {}
 }

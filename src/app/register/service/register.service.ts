@@ -8,44 +8,35 @@ import { PermissionToEnter } from '../models/profile.model';
 
 @Injectable({ providedIn: 'root' })
 
-export class RegisterService {    
+export class RegisterService {
 
   public permissionSubject: BehaviorSubject<PermissionToEnter>;
-  public apiUrl:string = 'https://s-network.herokuapp.com/api/v1';
+  public apiUrl = 'https://s-network.herokuapp.com/api/v1';
 
   constructor(private http: HttpClient, private router: Router) {
     this.permissionSubject = new BehaviorSubject<PermissionToEnter>(JSON.parse(sessionStorage.getItem('permissionToEnter')));
     this.permissionSubject.asObservable();
   }
 
-  public get permissionToEnterValue():PermissionToEnter {
+  public get permissionToEnterValue(): PermissionToEnter {
     return JSON.parse(sessionStorage.getItem('permissionToEnter'));
   }
 
   public register(user) {
-    const body = {
-      "name": user.firstname,
-      "surname": user.lastname,
-      "email": user.email,
-      "password": user.password           
-    } 
-      return this.http.post<any>(`${this.apiUrl}/entries/register`, body);
+      return this.http.post<any>(`${this.apiUrl}/entries/register`, user);
   }
 
   login(body) {
-    return this.http.post<any>(`${this.apiUrl}/entries/login`, body)
+    return this.http.post<any>(`${this.apiUrl}/entries/login`, body);
   }
 
   passwordRecovery(body) {
-      return this.http.post<any>(`${this.apiUrl}/entries/forgot_password`, body)
+      return this.http.post<any>(`${this.apiUrl}/entries/forgot_password`, body);
   }
 
   public logout() {
-    // localStorage.removeItem('permissionToEnter');
     sessionStorage.clear();
     this.permissionSubject.next(null);
-    this.router.navigate(['/register']);        
+    this.router.navigate(['/register']);
   }
-  
- 
 }

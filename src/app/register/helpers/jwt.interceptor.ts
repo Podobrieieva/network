@@ -10,8 +10,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // add authorization header with jwt token if available
-        let permissionToEnter = this.registerService.permissionToEnterValue;
-        console.log(permissionToEnter)
+        const permissionToEnter = this.registerService.permissionToEnterValue;
         if (permissionToEnter && permissionToEnter.data.token) {
             request = request.clone({
                 setHeaders: {
@@ -19,7 +18,6 @@ export class JwtInterceptor implements HttpInterceptor {
                 }
             });
         }
-
         return next.handle(request);
     }
 }

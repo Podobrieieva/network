@@ -17,58 +17,42 @@ import { GetUserPostAddComment } from '../../store/actions/user-posts.actions';
 export class AddCommentComponent implements OnInit {
   @Input () postId: string;
   @Output() addEvt = new EventEmitter();
- 
   private isUserProfileSubscription: Subscription;
   private isUserPostSubscription: Subscription;
- 
-  public comment: PostComment ={
-    _id: "",
+  public comment: PostComment = {
+    _id: '',
     author: {
-      name: "",
-          surname: "",
-          fullname: "",
+      name: '',
+          surname: '',
+          fullname: '',
           avatarUrl: '',
           id: '',
     },
-    text: "",
+    text: '',
     date: new Date()
-   
-
-  }
-
+  };
   @ViewChild('commentForm') commentForm: NgForm;
 
-  constructor( private networkService: NetworkService, private store: Store<State>) { 
+  constructor( private networkService: NetworkService, private store: Store<State>) {
     this.isUserProfileSubscription = this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
-      console.log(isUserProfile)
       if (isUserProfile) {
         this.comment.author.name = isUserProfile.name;
         this.comment.author.surname = isUserProfile.surname;
         this.comment.author.avatarUrl = isUserProfile.avatarUrl;
         this.comment.author.id = isUserProfile.id;
-      }      
-    })
-
-   
+      }
+    });
   }
-   
 
   ngOnInit() {
-
   }
-
-
 
   public onSubmit(form: NgForm) {
-    this.store.dispatch(new GetUserPostAddComment(this.postId, this.comment)) 
-    this.addBtnClickHandler()
-      
+    this.store.dispatch(new GetUserPostAddComment(this.postId, this.comment));
+    this.addBtnClickHandler();
   }
+
   public addBtnClickHandler() {
-      this.addEvt.emit(false);
-    
+    this.addEvt.emit(false);
   }
-
-  
-
 }

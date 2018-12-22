@@ -23,10 +23,9 @@ export enum UserPostsActionTypes {
     ADD_DISLIKE = '[ADD_DISLIKE] Fetch AddDislike requested',
     ADD_DISLIKE_SUCCESS = '[ADD_DISLIKE] Fetch AddDislike success',
     ADD_DISLIKE_FAIL = '[ADD_DISLIKE] Fetch AddDislike failed'
+}
 
-  }
-
-  export class GetUserPosts implements Action{
+  export class GetUserPosts implements Action {
     readonly type = UserPostsActionTypes.GET_USER_POSTS;
     constructor(public payload: string) {}
   }
@@ -40,10 +39,10 @@ export enum UserPostsActionTypes {
     readonly type = UserPostsActionTypes.GET_USER_POSTS_FAIL;
     constructor(public payload: object) {}
   }
-  
-  export class GetUserPostAdd implements Action{
+
+  export class GetUserPostAdd implements Action {
     readonly type = UserPostsActionTypes.GET_USER_POST_ADD;
-    constructor(public payload: object, public imageUrl:File) {}
+    constructor(public payload: object, public imageUrl: File) {}
   }
 
   export class GetUserPostAddSuccess implements Action {
@@ -56,8 +55,7 @@ export enum UserPostsActionTypes {
     constructor(public payload: object) {}
   }
 
-  
-  export class GetUserPostDelete implements Action{
+  export class GetUserPostDelete implements Action {
     readonly type = UserPostsActionTypes.GET_USER_POST_DELETE;
     constructor(public payload: string) {}
   }
@@ -72,7 +70,7 @@ export enum UserPostsActionTypes {
     constructor(public payload: object) {}
   }
 
-  export class GetUserPostAddComment implements Action{
+  export class GetUserPostAddComment implements Action {
     readonly type = UserPostsActionTypes.GET_USER_POST_ADD_COMMENT;
     constructor(public payloadIdPost: string, public payload: object) {}
   }
@@ -87,7 +85,7 @@ export enum UserPostsActionTypes {
     constructor(public payload: object) {}
   }
 
-  export class GetUserPostCommentDelete implements Action{
+  export class GetUserPostCommentDelete implements Action {
     readonly type = UserPostsActionTypes.GET_USER_POST_COMMENT_DELETE;
     constructor(public payloadPost: object, public payloadIdPostComment: string) {}
   }
@@ -101,12 +99,8 @@ export enum UserPostsActionTypes {
     readonly type = UserPostsActionTypes.GET_USER_POST_COMMENT_DELETE_FAIL;
     constructor(public payload: object) {}
   }
-  
 
- 
-
-
-  export class AddLike implements Action{
+  export class AddLike implements Action {
     readonly type = UserPostsActionTypes.ADD_LIKE;
     constructor(public payload: string) {}
   }
@@ -121,9 +115,7 @@ export enum UserPostsActionTypes {
     constructor(public payload: object) {}
   }
 
-
-
-  export class AddDislike implements Action{
+  export class AddDislike implements Action {
     readonly type = UserPostsActionTypes.ADD_DISLIKE;
     constructor(public payload: string) {}
   }
@@ -136,26 +128,26 @@ export enum UserPostsActionTypes {
   export class AddDislikeFail implements Action {
     readonly type = UserPostsActionTypes.ADD_DISLIKE_FAIL;
     constructor(public payload: object) {}
-  } 
+  }
 
-  export type UserPostsActionsUnion = GetUserPosts  | 
-    GetUserPostsFail | 
-    GetUserPostsSuccess | 
-    GetUserPostAdd  | 
-    GetUserPostAddFail | 
+  export type UserPostsActionsUnion = GetUserPosts  |
+    GetUserPostsFail |
+    GetUserPostsSuccess |
+    GetUserPostAdd  |
+    GetUserPostAddFail |
     GetUserPostAddSuccess |
-    GetUserPostDelete  | 
-    GetUserPostDeleteFail | 
+    GetUserPostDelete  |
+    GetUserPostDeleteFail |
     GetUserPostDeleteSuccess |
-    GetUserPostAddComment | 
-    GetUserPostAddCommentFail | 
+    GetUserPostAddComment |
+    GetUserPostAddCommentFail |
     GetUserPostAddCommentSuccess|
-    GetUserPostCommentDelete  | 
-    GetUserPostCommentDeleteFail | 
+    GetUserPostCommentDelete  |
+    GetUserPostCommentDeleteFail |
     GetUserPostCommentDeleteSuccess|
-    AddLike | 
-    AddLikeFail | 
-    AddLikeSuccess | 
-    AddDislike | 
-    AddDislikeFail | 
+    AddLike |
+    AddLikeFail |
+    AddLikeSuccess |
+    AddDislike |
+    AddDislikeFail |
     AddDislikeSuccess;

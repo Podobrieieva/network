@@ -13,28 +13,18 @@ import { GetUserPostDelete } from '../../../core/store/actions/user-posts.action
   styleUrls: ['./post-wrapper.component.scss']
 })
 export class PostWrapperComponent implements OnInit {
-  public isUserPostSubscription: Subscription; 
+  public isUserPostSubscription: Subscription;
   public userPosts;
 
-  constructor(private store:Store<State>, private service: NetworkService ) { 
-    this.userPosts = this.store.pipe(select(getPosts))
+  constructor( private store: Store<State>, private service: NetworkService ) {
+    this.userPosts = this.store.pipe(select(getPosts));
   }
 
   ngOnInit() {
-    
     this.store.dispatch(new GetPosts());
-
   }
 
-  public deleteHandler(id){
-    this.store.dispatch(new GetUserPostDelete(id))
-
+  public deleteHandler(id) {
+    this.store.dispatch(new GetUserPostDelete(id));
   }
-
-
 }
-
-
-
-
-
