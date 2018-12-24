@@ -14,17 +14,10 @@ import { GetPassword } from '../../store/actions/password-change.actions';
 
 export class ChangePasswordComponent implements OnInit {
 
-  private isPassChangeSubscription: Subscription;
   public changePasswordForm: FormGroup;
   private changePass = false;
 
-  constructor( private fb: FormBuilder, private router: Router, private store: Store<State>) {
-    // this.isPassChangeSubscription = this.store.pipe(select(getIsNewPassword)).subscribe(isChange => {
-    //   if(isChange) {
-
-    //   };
-    // })
-  }
+  constructor( private fb: FormBuilder, private router: Router, private store: Store<State>) {}
 
   ngOnInit() {
     this.changePasswordForm = this.fb.group(this.createFromGroup().controls, {validator: this.passwordConfirming});

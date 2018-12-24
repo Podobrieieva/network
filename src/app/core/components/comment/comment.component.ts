@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output,  EventEmitter  } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output,  EventEmitter  } from '@angular/core';
 import { NetworkService } from '../../../shared/services/network.service';
 import { PostComment } from '../../../shared/models/user.model';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,7 @@ import { Store, select } from '@ngrx/store';
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.scss']
 })
-export class CommentComponent implements OnInit {
+export class CommentComponent implements OnInit, OnDestroy {
 
   @Input() item: PostComment;
   @Input() itemIndex = 0;
@@ -43,5 +43,8 @@ export class CommentComponent implements OnInit {
   onViewSubscribeUser(item) {
     this.networkService.onViewSubscribeUser(item.author.id);
   }
+  ngOnDestroy() {
+    this.isUserProfileSubscribers && this.isUserProfileSubscribers.unsubscribe();
+  }  
 }
 

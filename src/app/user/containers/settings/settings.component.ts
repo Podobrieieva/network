@@ -180,38 +180,15 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  private addBycicleArray (elem) {
+  private addInterestArray (elem) {
     this.interestArr.push(elem.target.innerText);
-    this.bycicle = !this.bycicle;
-  }
-
-  private addPhotgraphy (elem) {
-    this.interestArr.push(elem.target.innerText);
-    this.photgraphy = !this.photgraphy;
-  }
-
-  private addShoppingArray (elem) {
-    this.interestArr.push(elem.target.innerText);
-    this.shopping = !this.shopping;
-  }
-
-  private addTravelingArray (elem) {
-    this.interestArr.push(elem.target.innerText);
-    this.traveling = !this.traveling;
-  }
-
-  private addEatingArray (elem) {
-    this.interestArr.push(elem.target.innerText);
-    this.eating = !this.eating;
+    const int = elem.target.innerText.toLowerCase();
+    this[int] = !this[int];
   }
 
   private AddInterestsProfile() {
     if (this.interest) { this.interestArr.push(this.interest); }
-    this.bycicle = false;
-    this.photgraphy = false;
-    this.shopping = false;
-    this.traveling = false;
-    this.eating = false;
+    this.interestArr.forEach(x => {this[x.toLowerCase()] = !this[x.toLowerCase()]})
     this.interest = '';
     this.networkService.updateProfile({'interests': this.interestArr});
     this.interestArr = [];

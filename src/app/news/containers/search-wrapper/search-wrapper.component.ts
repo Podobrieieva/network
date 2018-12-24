@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject, Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { map, switchMap, distinctUntilChanged} from 'rxjs/operators';
@@ -15,7 +15,7 @@ import { GetSubscribersId, AddSubscribe } from '../../../core/store/actions/subs
   templateUrl: './search-wrapper.component.html',
   styleUrls: ['./search-wrapper.component.scss']
 })
-export class SearchWrapperComponent implements OnInit {
+export class SearchWrapperComponent implements OnInit, OnDestroy {
 
   public users: Array<UserCard>;
   public searchStr$ = new Subject<string>();
@@ -38,5 +38,9 @@ export class SearchWrapperComponent implements OnInit {
 
   public onAddAsFriend(item) {
     this.networkService.onAddAsFriend(item._id);
+  }
+
+  ngOnDestroy() {
+    this.isUsersSubscription && this.isUsersSubscription.unsubscribe();
   }
 }

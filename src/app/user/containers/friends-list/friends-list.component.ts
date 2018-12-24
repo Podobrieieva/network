@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { first, flatMap, map } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 import { select, Store } from '@ngrx/store';
-
 import { State } from '../../../core/store';
 import { AddSubscribe, GetSubscriptionsId, GetSubscriptionsProfile, DeleteSubscribe } from '../../../core/store/actions/subscribe.actions';
 import { GetCurrentUserProfile, GetUserProfile } from '../../../core/store/actions/user-profile.actions';
@@ -17,7 +16,7 @@ import { NetworkService } from '../../../shared/services/network.service';
   templateUrl: './friends-list.component.html',
   styleUrls: ['./friends-list.component.scss']
 })
-export class FriendsListComponent implements OnInit {
+export class FriendsListComponent implements OnInit, OnDestroy {
 
   private userSubscribers$;
   private btnChangeFollow: boolean;
@@ -55,4 +54,10 @@ export class FriendsListComponent implements OnInit {
   public onRemoveFromFriends(item) {
     this.networkService.onRemoveFromFriends(item.id);
   }
+
+  ngOnDestroy() {
+    this.isUsersSubscription && this.isUsersSubscription.unsubscribe();
+  }
+
+
 }

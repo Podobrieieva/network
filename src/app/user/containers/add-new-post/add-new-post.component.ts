@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Post } from '../../../shared/models/user.model';
 import { NetworkService } from '../../../shared/services/network.service';
 import { NgForm } from '@angular/forms';
@@ -14,7 +14,7 @@ import { GetUserProfile } from '../../../core/store/actions/user-profile.actions
   templateUrl: './add-new-post.component.html',
   styleUrls: ['./add-new-post.component.scss']
 })
-export class AddNewPostComponent implements OnInit {
+export class AddNewPostComponent implements OnInit, OnDestroy {
 
   private isUserProfileSubscription: Subscription;
   private addPostSub: Subscription;
@@ -68,5 +68,9 @@ export class AddNewPostComponent implements OnInit {
     this.store.dispatch(new GetUserPostAdd(this.post, this.selectedFile));
     this.f.resetForm();
     this.post.imageUrl = ' ../../../../../assets/img/images-default.png';
+  }
+
+ngOnDestroy() {
+    this.isUserProfileSubscription && this.isUserProfileSubscription.unsubscribe();
   }
 }

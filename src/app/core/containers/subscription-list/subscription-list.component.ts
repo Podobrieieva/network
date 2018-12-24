@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { first, flatMap, map } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 import { select, Store } from '@ngrx/store';
@@ -12,7 +12,7 @@ import { NetworkService } from '../../../shared/services/network.service';
   templateUrl: './subscription-list.component.html',
   styleUrls: ['./subscription-list.component.scss']
 })
-export class SubscriptionListComponent implements OnInit {
+export class SubscriptionListComponent implements OnInit, OnDestroy {
 
   private userSubscribers: Array<UserCard>;
   private profileСhange: string;
@@ -51,4 +51,11 @@ export class SubscriptionListComponent implements OnInit {
   public onViewSubscribeUser(item) {
     this.networkService.onViewSubscribeUser(item.id);
   }
+
+  ngOnDestroy() {
+    this.isProfileSubscribtion && this.isProfileSubscribtion.unsubscribe();
+    this.isUserProfileSubscribers && this.isUserProfileSubscribers.unsubscribe();
+    this.isCurrentUserSubscribers && this.isCurrentUserSubscribers.unsubscribe();
+  }
+
 }

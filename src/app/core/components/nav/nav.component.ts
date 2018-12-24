@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { select, Store} from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { UserProfileModel } from '../../../shared/models/user.model';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, OnDestroy {
 
   private isUserProfileSubscription: Subscription;
   public currentUrl: string;
@@ -40,5 +40,8 @@ export class NavComponent implements OnInit {
 
   public logout() {
     this.networkService.logout();
+  }
+  ngOnDestroy() {
+    this.isUserProfileSubscription && this.isUserProfileSubscription.unsubscribe();
   }
 }

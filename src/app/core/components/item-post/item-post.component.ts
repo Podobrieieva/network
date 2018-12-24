@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, EventEmitter, Output } from '@angular/core';
 import { Post, UserProfileModel } from '../../../shared/models/user.model';
 import { Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
@@ -12,7 +12,7 @@ import { GetUserProfile } from '../../store/actions/user-profile.actions';
   templateUrl: './item-post.component.html',
   styleUrls: ['./item-post.component.scss']
 })
-export class ItemPostComponent implements OnInit {
+export class ItemPostComponent implements OnInit, OnDestroy {
 
   @Input() item: Post;
   @Input() itemIndex = 0;
@@ -86,5 +86,9 @@ export class ItemPostComponent implements OnInit {
 
   onViewSubscribeUser(item) {
     this.service.onViewSubscribeUser(item.author.id);
+  }
+
+  ngOnDestroy() {
+    this.isUserProfileSubscribers && this.isUserProfileSubscribers.unsubscribe();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, Input, EventEmitter} from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, Output, Input, EventEmitter} from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { NetworkService } from '../../../shared/services/network.service';
@@ -14,7 +14,7 @@ import { GetUserPostAddComment } from '../../store/actions/user-posts.actions';
   templateUrl: './add-comment.component.html',
   styleUrls: ['./add-comment.component.scss']
 })
-export class AddCommentComponent implements OnInit {
+export class AddCommentComponent implements OnInit, OnDestroy {
   @Input () postId: string;
   @Output() addEvt = new EventEmitter();
   private isUserProfileSubscription: Subscription;
@@ -54,5 +54,9 @@ export class AddCommentComponent implements OnInit {
 
   public addBtnClickHandler() {
     this.addEvt.emit(false);
+  }
+
+  ngOnDestroy() {
+    this.isUserProfileSubscription && this.isUserProfileSubscription.unsubscribe();
   }
 }
