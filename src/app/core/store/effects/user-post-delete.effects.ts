@@ -4,29 +4,32 @@ import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { Action } from '@ngrx/store';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
-import { GetUserPostAdd,
-         GetUserPostAddFail,
-         GetUserPostAddSuccess,
-         UserPostsActionTypes } from '../actions/user-posts.actions';
+import { UserPostsActionTypes,
+         GetUserPostDelete,
+         GetUserPostDeleteSuccess,
+         GetUserPostDeleteFail } from '../actions/user-posts.actions';
 import { NetworkService } from '../../../shared/services/network.service';
 import { GetUserProfile } from '../actions/user-profile.actions';
-import { select, Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { State } from '../../../core/store';
+import { GetPosts } from '../actions/news.actions';
+
 
 @Injectable()
-export class UserPostAddEffect {
+export class UserPostDeleteEffect {
   @Effect()
-  getIsUserPostAdd$: Observable<Action>  = this.actions$
+  getIsUserPostDelete$: Observable<Action>  = this.actions$
   .pipe(
-    ofType<GetUserPostAdd>(UserPostsActionTypes.GET_USER_POST_ADD),
+    ofType<GetUserPostDelete>(UserPostsActionTypes.GET_USER_POST_DELETE),
     exhaustMap(
-      action => this.networkService.addPost(action.payload, action.imageUrl).pipe(
+      action => this.networkService.deletePost(action.payload).pipe(
         map(data => {
-        this.store.dispatch(new GetUserProfile());
-        return new GetUserPostAddSuccess(data);
+          this.store.dispatch(new GetUserProfile());
+          this.store.dispatch(new GetPosts());
+          return new GetUserPostDeleteSuccess(data);
         }),
         catchError(err => {
-          return of(new GetUserPostAddFail(err));
+          return of(new GetUserPostDeleteFail(err));
         })
       )
     )
@@ -36,5 +39,5 @@ export class UserPostAddEffect {
     private actions$: Actions,
     private networkService: NetworkService,
     private store: Store<State>
-  ) {}
+    ) {}
 }

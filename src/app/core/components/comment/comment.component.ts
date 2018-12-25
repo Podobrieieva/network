@@ -1,36 +1,50 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output,  EventEmitter  } from '@angular/core';
 import { NetworkService } from '../../../shared/services/network.service';
+import { PostComment } from '../../../shared/models/user.model';
+import { Subscription } from 'rxjs';
+import {  UserProfileModel } from '../../../shared/models/user.model';
+import { State, getIsUserProfile } from '../../store';
+import { Store, select } from '@ngrx/store';
+
 
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.scss']
 })
-export class CommentComponent implements OnInit {
-  @Input() item = <any>{};
+export class CommentComponent implements OnInit, OnDestroy {
+
+  @Input() item: PostComment;
   @Input() itemIndex = 0;
-
-  public editMode = false;
-
+  @Output() deleteEvtComment = new EventEmitter();
+  private  isUserProfileSubscribers: Subscription;
+  public accessToDeleteComment = false;
+  public user$: UserProfileModel;
   public commentForComment: Array<any>;
+  private defaultAvatar: string;
 
-  constructor(private networkService: NetworkService) { 
-    // const subscription = this.networkService.commentForComSubjObservable().subscribe(data => {
-    //   console.log(data);
-    //   this.commentForComment = data;
-    // });
+  constructor(private networkService: NetworkService,  private store: Store<State> ) {
+    this.isUserProfileSubscribers =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
+      this.user$ = isUserProfile;
+    });
+    this.defaultAvatar = this.networkService.defaultAvatar;
   }
 
   ngOnInit() {
-    // this.networkService.getCommentsForComments();
+     if (this.user$.id === this.item.author.id) {
+      this.accessToDeleteComment = true;
+     }
   }
 
-  public addBtnClickHandler(){
-    this.editMode = true;
-  }
-  public addHandler(e){
-    this.editMode = e;
-  
+  public deleteBtnCkickHandlerComment(id) {
+    this.deleteEvtComment.emit(id);
   }
 
+  onViewSubscribeUser(item) {
+    this.networkService.onViewSubscribeUser(item.author.id);
+  }
+  ngOnDestroy() {
+    this.isUserProfileSubscribers && this.isUserProfileSubscribers.unsubscribe();
+  }  
 }
+

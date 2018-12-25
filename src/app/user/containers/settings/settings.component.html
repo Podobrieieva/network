@@ -12,11 +12,13 @@
     <div class="line"></div>
   </div>
   <div class="edit-block">
-    <form name="basic-info" id="basic-info" class="form-inline">
+
+    <form [formGroup]="basicInfoForm" name="basic-info" id="basic-info" class="form-inline"(ngSubmit)="submitBasicInfo()">
       <div class="row">
         <div class="form-group half">
           <label for="firstname">First name</label>
           <input
+            formControlName="firstname" 
             id="firstname"
             class="form-control"
             type="text"
@@ -29,6 +31,7 @@
         <div class="form-group half">
           <label for="lastname" class="">Last name</label>
           <input
+            formControlName="lastname" 
             id="lastname"
             class="form-control"
             type="text"
@@ -43,6 +46,7 @@
         <div class="form-group full">
           <label for="email">My email</label>
           <input
+            formControlName="email" 
             id="email"
             class="form-control"
             type="text"
@@ -57,7 +61,11 @@
         <p class="custom-label"><strong>Date of Birth</strong></p>
         <div class="form-group selects half">
           <label for="month" class="sr-only"></label>
-          <select class="form-control" id="day">
+          <select 
+            formControlName="day" 
+            class="form-control" 
+            id="day"
+            >
             <option value="Day">Day</option>
             <option>1</option>
             <option>2</option>
@@ -94,7 +102,7 @@
         </div>
         <div class="form-group selects half">
           <label for="month" class="sr-only"></label>
-          <select class="form-control" id="month">
+          <select formControlName="month" class="form-control" id="month">
             <option value="month">Month</option>
             <option>Jan</option>
             <option>Feb</option>
@@ -112,9 +120,29 @@
         </div>
         <div class="form-group selects full">
           <label for="year" class="sr-only"></label>
-          <select class="form-control" id="year">
+          <select formControlName="year" class="form-control" id="year">
             <option value="year">Year</option>
-            <option selected="">2000</option>
+            <option>1980</option>
+            <option>1981</option>
+            <option>1982</option>
+            <option>1983</option>
+            <option>1984</option>
+            <option>1985</option>
+            <option>1986</option>
+            <option>1987</option>
+            <option>1988</option>
+            <option>1989</option>
+            <option>1990</option>
+            <option>1991</option>
+            <option>1992</option>
+            <option>1993</option>
+            <option>1994</option>
+            <option>1995</option>
+            <option>1996</option>
+            <option>1997</option>
+            <option>1998</option>
+            <option>1999</option>
+            <option>2000</option>
             <option>2001</option>
             <option>2002</option>
             <option>2004</option>
@@ -132,28 +160,28 @@
       <div class="form-group gender">
         <span class="custom-label"><strong>I am a: </strong></span>
         <label class="radio-inline">
-          <input type="radio" name="optradio" checked="" />Male
+          <input formControlName="male" type="radio" name="male" value="male"/>Male
         </label>
         <label class="radio-inline">
-          <input type="radio" name="optradio" />Female
+          <input formControlName="female" type="radio" name="female" value="female"/>Female
         </label>
       </div>
       <div class="row">
         <div class="form-group half">
           <label for="city"> My city</label>
           <input
+            formControlName="city"
             id="city"
             class="form-control"
             type="text"
             name="city"
             title="Enter city"
             placeholder="Your city"
-            value="New York"
           />
         </div>
         <div class="form-group half">
           <label for="country">My country</label>
-          <select class="form-control" id="country">
+          <select formControlName="country" class="form-control" id="country">
             <option value="country">Country</option>
             <option value="AFG">Afghanistan</option>
             <option value="ALA">Ƭand Islands</option>
@@ -417,6 +445,7 @@
         <div class="form-group full">
           <label for="my-info">About me</label>
           <textarea
+            formControlName="aboutMe"
             id="my-info"
             name="information"
             class="form-control"
@@ -442,18 +471,18 @@
     <div class="line"></div>
   </div>
   <div class="edit-block">
-    <form name="education" id="education" class="form-inline">
+    <form [formGroup]="educationForm" name="education" id="education" class="form-inline" (ngSubmit)="submitEducationForm()">
       <div class="row">
         <div class="form-group full">
-          <label for="school">My university</label>
+          <label for="university">My university</label>
           <input
-            id="school"
+            formControlName="university"
+            id="university"
             class="form-control"
             type="text"
-            name="school"
-            title="Enter School"
-            placeholder="My School"
-            value="Harvard Unversity"
+            name="university"
+            title="Enter University"
+            placeholder="My University"           
           />
         </div>
       </div>
@@ -461,25 +490,27 @@
         <div class="form-group half">
           <label for="date-from">From</label>
           <input
+            formControlName="universityFrom"
             id="date-from"
             class="form-control"
             type="text"
             name="date"
             title="Enter a Date"
             placeholder="from"
-            value="2012"
+            
           />
         </div>
         <div class="form-group half">
           <label for="date-to" class="">To</label>
           <input
+            formControlName="universityTo"
             id="date-to"
             class="form-control"
             type="text"
             name="date"
             title="Enter a Date"
             placeholder="to"
-            value="2016"
+            
           />
         </div>
       </div>
@@ -487,19 +518,22 @@
         <div class="form-group full">
           <label for="edu-description">Description</label>
           <textarea
+            formControlName="description"
             id="edu-description"
             name="description"
             class="form-control"
             placeholder="Some texts about my education"
             rows="4"
             cols="400"
-          >At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate</textarea>
+          ></textarea>
         </div>
       </div>
+
       <div class="row">
         <div class="form-group full">
           <label for="graduate">Graduated?:-</label>
           <input
+            formControlName="graduate"
             id="graduate"
             type="checkbox"
             name="graduate"
@@ -525,11 +559,12 @@
     <div class="line"></div>
   </div>
   <div class="edit-block">
-    <form name="work" id="work" class="form-inline">
+    <form [formGroup]="workForm" name="workForm" id="work" class="form-inline" (ngSubmit)="submitWorkForm()">
       <div class="row">
         <div class="form-group full">
           <label for="company">Company</label>
           <input
+            formControlName="company"
             id="company"
             class="form-control"
             type="text"
@@ -544,6 +579,7 @@
         <div class="form-group full">
           <label for="designation">Designation</label>
           <input
+            formControlName="designation"
             id="designation"
             class="form-control"
             type="text"
@@ -558,6 +594,7 @@
         <div class="form-group half">
           <label for="from-date">From</label>
           <input
+            formControlName="companyFrom"
             id="from-date"
             class="form-control"
             type="text"
@@ -570,6 +607,7 @@
         <div class="form-group half">
           <label for="to-date" class="">To</label>
           <input
+            formControlName="companyTo"
             id="to-date"
             class="form-control"
             type="text"
@@ -584,6 +622,7 @@
         <div class="form-group full">
           <label for="work-city">City/Town</label>
           <input
+            formControlName="companyCity"
             id="work-city"
             class="form-control"
             type="text"
@@ -598,6 +637,7 @@
         <div class="form-group full">
           <label for="work-description">Description</label>
           <textarea
+            formControlName="description"
             id="work-description"
             name="description"
             class="form-control"
@@ -623,20 +663,14 @@
   </div>
   <div class="edit-block">
     <ul class="list-inline interests">
-      <li>
-        <a href=""><i class="icon ion-android-bicycle"></i> Bycicle</a>
+      <li [class.activedInt]="bycicle" [class.editblockulinterestsli]="!bycicle" (click)="addInterestArray($event)"><i class="icon ion-android-bicycle"></i> Bycicle
       </li>
-      <li>
-        <a href=""><i class="icon ion-ios-camera"></i> Photgraphy</a>
+      <li [class.activedInt]="photgraphy" [class.editblockulinterestsli]="!photgraphy" (click)="addInterestArray($event)"><i class="icon ion-ios-camera"></i> Photgraphy
       </li>
-      <li>
-        <a href=""><i class="icon ion-android-cart"></i> Shopping</a>
+      <li [class.activedInt]="shopping" [class.editblockulinterestsli]="!shopping" (click)="addInterestArray($event)"><i class="icon ion-android-cart"></i> Shopping
       </li>
-      <li>
-        <a href=""><i class="icon ion-android-plane"></i> Traveling</a>
-      </li>
-      <li>
-        <a href=""><i class="icon ion-android-restaurant"></i> Eating</a>
+      <li [class.activedInt]="traveling" [class.editblockulinterestsli]="!traveling" (click)="addInterestArray($event)"><i class="icon ion-android-plane"></i> Traveling</li>
+      <li [class.activedInt]="eating" [class.editblockulinterestsli]="!eating" (click)="addInterestArray($event)"><i class="icon ion-android-restaurant"></i> Eating
       </li>
     </ul>
     <div class="line"></div>
@@ -644,7 +678,8 @@
       <p class="custom-label"><strong>Add interests</strong></p>
       <div class="form-group col-sm-8">
         <input
-          id="add-interest"
+          [(ngModel)]="interest"
+          id="addInterest"
           class="form-control"
           type="text"
           name="interest"
@@ -653,7 +688,7 @@
         />
       </div>
       <div class="form-group col-sm-4">
-        <button class="btn btn-primary">Add</button>
+        <button class="btn btn-primary" (click)="AddInterestsProfile()">Add</button>
       </div>
     </div>
   </div>

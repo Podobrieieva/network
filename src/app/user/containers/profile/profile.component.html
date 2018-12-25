@@ -5,12 +5,12 @@
     Timeline
     =================================================
   -->
-  <div class="timeline">
+  <div class="timeline" >
     <div class="timeline-cover">
       <div class="timeline-nav-bar">
         <div class="profile-info">
           <img
-            src="{{ user$?.avatarUrl }}"
+            src="{{ user$?.avatarUrl || defaultAvatar }}"
             alt=""
             class="img-responsive profile-photo"
           />
@@ -19,8 +19,8 @@
             type="file" (change)="onFileChanged($event)" 
             #fileInput>
           <button  class="btn-main" (click)="fileInput.click()">Change photo</button>
-         <h3>{{user$.fullname}}</h3> 
-         <p class="text-muted">{{user$.fullname}}</p>      
+         <h3>{{user$?.fullname}}</h3> 
+         <p class="text-muted">{{user$?.fullname}}</p>      
 
         </div>
         <div class="profile-cont">
@@ -36,8 +36,8 @@
         <div id="page-contents">
           <div class="main-wrap">
             <div class="main-post-field">
-              <app-add-new-post></app-add-new-post>
-               <ul class="post-fields">
+              <app-add-new-post *ngIf = 'accessToAddPost'></app-add-new-post>
+               <ul>
                 <div *ngFor= "let itemPost of userPosts; let i = index">
                     <app-item-post
                      [item]="itemPost"
@@ -60,7 +60,7 @@
           <app-settings></app-settings>
         </mat-tab>
       <mat-tab label="Friends" >
-        <app-friends-list [userSubscribers$]="userSubscribers" ></app-friends-list>
+        <app-friends-list></app-friends-list>
       </mat-tab>
     </mat-tab-group>
   </div>

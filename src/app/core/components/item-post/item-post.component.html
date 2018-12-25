@@ -1,27 +1,27 @@
 
 <div class="wrapper">
   <div class="post-content">
-    <img [src]="item.imageUrl || 'https://techflourish.com/images/jpeg-flower-images-2.jpg'" alt="post-image" class="img-responsive post-image">
+    <img [src]="item?.imageUrl" alt="post-image" class="img-responsive post-image">
     <div class="post-container">
-      <img src="{{ item?.author.avatarUrl }}" alt="user" class="profile-photo-md pull-left">
+      <img [src]="item.author.avatarUrl || defaultAvatar" alt="user" class="profile-photo-md pull-left" (click)="onViewSubscribeUser(item)">
       <div class="post-detail">
         <div class="user-info">
-          <h5><a href={{}} class="profile-link">{{item.author.fullname}}</a> <span class="following">following</span></h5>
+          <h5><p class="profile-link" (click)="onViewSubscribeUser(item)">{{item.author.fullname}}</p> <span class="following">following</span></h5>
           <p class="text-muted">{{item.date}}</p>
         </div>
         <div class="reaction">
-          <a (click) = "like()" class="btn text-green"><i class="material-icons">  thumb_up  </i> {{item.likes}}</a>
-          <a (click) = "dislike()" class="btn text-red"><i class="material-icons">  thumb_down  </i> {{item.dislikes}}</a>
+          <a (click) = "like(item)" class="btn text-green"><i class="material-icons">  thumb_up  </i> {{item.likes.length}}</a>
+          <a (click) = "dislike(item)" class="btn text-red"><i class="material-icons">  thumb_down  </i> {{item.dislikes.length}}</a>
           
-              <button mat-icon-button [matMenuTriggerFor]="menu">
+              <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf = "accessToEditPost" >
                   <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                  <button (click)="editBtnCkickHandler()" mat-menu-item>
+                  <!-- <button (click)="editBtnCkickHandler()"  mat-menu-item>
                     <mat-icon>edit</mat-icon>
                     <span>Edit</span>
-                  </button>
-                  <button (click)="deleteBtnCkickHandler(item)" mat-menu-item>
+                  </button> -->
+                  <button (click)="deleteBtnCkickHandler(item.id)" mat-menu-item>
                     <mat-icon>delete</mat-icon>
                     <span>Delete</span>
                   </button>
@@ -40,8 +40,8 @@
         <button class="btn-main" *ngIf="editModePost" (click)="cancelBtnClickHandler(item, itemIndex)">Cancel</button>
         <div class="line-divider"></div>
         <a class="comment clearfix" (click) = "addBtnClickHandler()" *ngIf="!editMode" > Add comment</a>
-        <!-- <app-comment-wrapper></app-comment-wrapper>
-        <app-add-comment *ngIf="editMode" (addEvt)="addHandler($event)" ></app-add-comment> -->
+        <app-comment-wrapper [post]= "item"  [arrayComments]= "item.comments"></app-comment-wrapper>
+        <app-add-comment [postId]= "item.id" *ngIf="editMode"  ></app-add-comment>
       </div>
     </div>
  

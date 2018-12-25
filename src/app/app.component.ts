@@ -15,15 +15,11 @@ export class AppComponent {
     private registerService: RegisterService
   ) {}
 
+  onActivate(event) {
+    window.scroll(0, 0);
+  }
+
   logout() {
     this.registerService.logout();
-    this.router.navigate(['/register']);
   }
 }
-
-
-
-
-  
-
-   

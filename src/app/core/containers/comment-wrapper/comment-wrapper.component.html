@@ -1,7 +1,10 @@
-<!-- <ul>
-<div *ngFor="let commentItem of commentWrapper; let i = index">
+<ul>
+<div *ngFor="let commentItem of arrayComments; let i = index">
     <app-comment
-     [item]="commentItem" [itemIndex]="i">
+     [item]="commentItem" [itemIndex]="i"
+     (deleteEvtComment)= "deleteHandler($event)"
+     >
+     
     </app-comment>
 </div>
-</ul> -->
+</ul>

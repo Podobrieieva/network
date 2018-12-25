@@ -10,31 +10,30 @@ import { RegisterService } from '../../service/register.service';
 })
 
 export class RegisterComponent implements OnInit {
-	login: boolean=true;
-	register: boolean=false;
-  recovery: boolean=false;  	
-  constructor() { }
 
-  ngOnInit() {
-  }
+  private login = true;
+  private register = false;
+  private recovery = false;
+
+  constructor() {}
+
+  ngOnInit() {}
 
   changeRegister() {
-  	this.login=false;
-    this.register=true;
-    this.recovery=false;
+    this.login = false;
+    this.register = true;
+    this.recovery = false;
   }
-  
+
   changeLogin() {
-    this.login=true;
-    this.register=false;
-    this.recovery=false;  	
-  }
-  
-  onClickRecovery(recovery:boolean) {
-    this.login=false;
-    this.register=false;
-    this.recovery = true;    
+    this.login = true;
+    this.register = false;
+    this.recovery = false;
   }
 
-
+  btnClickRecovery(recovery: boolean) {
+    this.login = false;
+    this.register = false;
+    this.recovery = true;
+  }
 }

@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { PostWrapperComponent } from './containers/post-wrapper/post-wrapper.component';
 import { SearchComponent } from './components/search/search.component';
 import { SearchWrapperComponent } from './containers/search-wrapper/search-wrapper.component';
-import { CoreModule } from '../core/core.module'
+import { CoreModule } from '../core/core.module';
 import { SearchPipe } from '../shared/pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
 
@@ -17,7 +17,6 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     CoreModule,
     FormsModule,
-  
   ],
   declarations: [
     PostWrapperComponent,
@@ -25,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     SearchWrapperComponent,
     SearchPipe
   ],
-  exports:[
+  exports: [
     PostWrapperComponent,
     SearchComponent,
     SearchWrapperComponent,

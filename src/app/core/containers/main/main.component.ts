@@ -10,11 +10,8 @@ export class MainComponent implements OnInit {
   public currentUrl: string;
 
   constructor() {
-    
   }
 
   ngOnInit() {
-    
   }
-
 }

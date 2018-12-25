@@ -20,113 +20,112 @@ export enum SubscribersActionTypes {
     GET_SUBSCRIPTIONS_ID = '[SUBSCRIPTIONS_ID] Fetch GetSubscriptionsId requested',
     GET_SUBSCRIPTIONS_ID_SUCCESS = '[SUBSCRIPTIONS_ID] Fetch GetSubscriptionsId success',
     GET_SUBSCRIPTIONS_ID_FAIL = '[SUBSCRIPTIONS_ID] Fetch GetSubscriptionsId failed'
+}
 
-  }
+export class AddSubscribe implements Action {
+  readonly type = SubscribersActionTypes.ADD_SUBSCRIBE;
+  constructor(public payload: string) {}
+}
 
-  export class AddSubscribe implements Action{
-    readonly type = SubscribersActionTypes.ADD_SUBSCRIBE;
-    constructor(public payload: string) {}
-  }
+export class AddSubscribeSuccess implements Action {
+  readonly type = SubscribersActionTypes.ADD_SUBSCRIBE_SUCCESS;
+  constructor(public payload: any) {}
+}
 
-  export class AddSubscribeSuccess implements Action {
-    readonly type = SubscribersActionTypes.ADD_SUBSCRIBE_SUCCESS;
-    constructor(public payload: any) {}
-  }
+export class AddSubscribeFail implements Action {
+  readonly type = SubscribersActionTypes.ADD_SUBSCRIBE_FAIL;
+  constructor(public payload: any) {}
+}
 
-  export class AddSubscribeFail implements Action {
-    readonly type = SubscribersActionTypes.ADD_SUBSCRIBE_FAIL;
-    constructor(public payload: any) {}
-  }
+export class GetSubscribersId implements Action {
+  readonly type = SubscribersActionTypes.GET_SUBSCRIBERS_ID;
+  constructor(public payload: string) {}
+}
 
-  export class GetSubscribersId implements Action{
-    readonly type = SubscribersActionTypes.GET_SUBSCRIBERS_ID;
-    constructor(public payload:string) {}
-  }
+export class GetSubscribersIdSuccess implements Action {
+  readonly type = SubscribersActionTypes.GET_SUBSCRIBERS_ID_SUCCESS;
+  constructor(public payload: any) {}
+}
 
-  export class GetSubscribersIdSuccess implements Action {
-    readonly type = SubscribersActionTypes.GET_SUBSCRIBERS_ID_SUCCESS;
-    constructor(public payload: any) {}
-  }
+export class GetSubscribersIdFail implements Action {
+  readonly type = SubscribersActionTypes.GET_SUBSCRIBERS_ID_FAIL;
+  constructor(public payload: any) {}
+}
 
-  export class GetSubscribersIdFail implements Action {
-    readonly type = SubscribersActionTypes.GET_SUBSCRIBERS_ID_FAIL;
-    constructor(public payload: any) {}
-  }
+export class GetSubscribersProfile implements Action {
+  readonly type = SubscribersActionTypes.GET_SUBSCRIBERS_PROFILE;
+}
 
-  export class GetSubscribersProfile implements Action{
-    readonly type = SubscribersActionTypes.GET_SUBSCRIBERS_PROFILE;
-  }
+export class GetSubscribersProfileSuccess implements Action {
+  readonly type = SubscribersActionTypes.GET_SUBSCRIBERS_PROFILE_SUCCESS;
+  constructor(public payload: any) {}
+}
 
-  export class GetSubscribersProfileSuccess implements Action {
-    readonly type = SubscribersActionTypes.GET_SUBSCRIBERS_PROFILE_SUCCESS;
-    constructor(public payload: any) {}
-  }
+export class GetSubscribersProfileFail implements Action {
+  readonly type = SubscribersActionTypes.GET_SUBSCRIBERS_PROFILE_FAIL;
+  constructor(public payload: any) {}
+}
 
-  export class GetSubscribersProfileFail implements Action {
-    readonly type = SubscribersActionTypes.GET_SUBSCRIBERS_PROFILE_FAIL;
-    constructor(public payload: any) {}
-  }
+export class DeleteSubscribe implements Action {
+  readonly type = SubscribersActionTypes.DELETE_SUBSCRIBE;
+  constructor(public payload: string) {}
+}
 
-  export class DeleteSubscribe implements Action{
-    readonly type = SubscribersActionTypes.DELETE_SUBSCRIBE;
-    constructor(public payload: string) {}
-  }
+export class DeleteSubscribeSuccess implements Action {
+  readonly type = SubscribersActionTypes.DELETE_SUBSCRIBE_SUCCESS;
+  constructor(public payload: any) {}
+}
 
-  export class DeleteSubscribeSuccess implements Action {
-    readonly type = SubscribersActionTypes.DELETE_SUBSCRIBE_SUCCESS;
-    constructor(public payload: any) {}
-  }
+export class DeleteSubscribeFail implements Action {
+  readonly type = SubscribersActionTypes.DELETE_SUBSCRIBE_FAIL;
+  constructor(public payload: any) {}
+}
 
-  export class DeleteSubscribeFail implements Action {
-    readonly type = SubscribersActionTypes.DELETE_SUBSCRIBE_FAIL;
-    constructor(public payload: any) {}
-  }
+export class GetSubscriptionsProfile implements Action {
+  readonly type = SubscribersActionTypes.GET_SUBSCRIPTIONS_PROFILE;
+}
 
-  export class GetSubscriptionsProfile implements Action{
-    readonly type = SubscribersActionTypes.GET_SUBSCRIPTIONS_PROFILE;
-  }
+export class GetSubscriptionsProfileSuccess implements Action {
+  readonly type = SubscribersActionTypes.GET_SUBSCRIPTIONS_PROFILE_SUCCESS;
+  constructor(public payload: any) {}
+}
 
-  export class GetSubscriptionsProfileSuccess implements Action {
-    readonly type = SubscribersActionTypes.GET_SUBSCRIPTIONS_PROFILE_SUCCESS;
-    constructor(public payload: any) {}
-  }
+export class GetSubscriptionsProfileFail implements Action {
+  readonly type = SubscribersActionTypes.GET_SUBSCRIPTIONS_PROFILE_FAIL;
+  constructor(public payload: any) {}
+}
 
-  export class GetSubscriptionsProfileFail implements Action {
-    readonly type = SubscribersActionTypes.GET_SUBSCRIPTIONS_PROFILE_FAIL;
-    constructor(public payload: any) {}
-  }
+export class GetSubscriptionsId implements Action {
+  readonly type = SubscribersActionTypes.GET_SUBSCRIPTIONS_ID;
+  constructor(public payload: string) {}
+}
 
-  export class GetSubscriptionsId implements Action{
-    readonly type = SubscribersActionTypes.GET_SUBSCRIPTIONS_ID;
-    constructor(public payload: string) {}
-  }
+export class GetSubscriptionsIdSuccess implements Action {
+  readonly type = SubscribersActionTypes.GET_SUBSCRIPTIONS_ID_SUCCESS;
+  constructor(public payload: any) {}
+}
 
-  export class GetSubscriptionsIdSuccess implements Action {
-    readonly type = SubscribersActionTypes.GET_SUBSCRIPTIONS_ID_SUCCESS;
-    constructor(public payload: any) {}
-  }
-
-  export class GetSubscriptionsIdFail implements Action {
-    readonly type = SubscribersActionTypes.GET_SUBSCRIPTIONS_ID_FAIL;
-    constructor(public payload: any) {}
-  }
+export class GetSubscriptionsIdFail implements Action {
+  readonly type = SubscribersActionTypes.GET_SUBSCRIPTIONS_ID_FAIL;
+  constructor(public payload: any) {}
+}
 
 
-  export type UserProfileActionsUnion = AddSubscribe | 
-    AddSubscribeFail | 
-    AddSubscribeSuccess | 
-    GetSubscribersId | 
-    GetSubscribersIdFail | 
-    GetSubscribersIdSuccess | 
-    GetSubscribersProfile | 
-    GetSubscribersProfileFail | 
-    GetSubscribersProfileSuccess |
-    DeleteSubscribe | 
-    DeleteSubscribeFail | 
-    DeleteSubscribeSuccess | 
-    GetSubscriptionsProfile |
-    GetSubscriptionsProfileSuccess | 
-    GetSubscriptionsProfileFail | 
-    GetSubscriptionsId |
-    GetSubscriptionsIdSuccess | 
-    GetSubscriptionsIdFail;
+export type UserProfileActionsUnion = AddSubscribe |
+  AddSubscribeFail |
+  AddSubscribeSuccess |
+  GetSubscribersId |
+  GetSubscribersIdFail |
+  GetSubscribersIdSuccess |
+  GetSubscribersProfile |
+  GetSubscribersProfileFail |
+  GetSubscribersProfileSuccess |
+  DeleteSubscribe |
+  DeleteSubscribeFail |
+  DeleteSubscribeSuccess |
+  GetSubscriptionsProfile |
+  GetSubscriptionsProfileSuccess |
+  GetSubscriptionsProfileFail |
+  GetSubscriptionsId |
+  GetSubscriptionsIdSuccess |
+  GetSubscriptionsIdFail;

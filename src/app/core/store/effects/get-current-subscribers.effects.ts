@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { GetSubscribersId, GetSubscribersIdFail, GetSubscribersIdSuccess, SubscribersActionTypes } from '../actions/subscribe.actions';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
-import { NetworkService } from '../.././../shared/services/network.service'
+import { NetworkService } from '../.././../shared/services/network.service';
 
 @Injectable()
 export class GetSubscribersIdEffect {
@@ -13,21 +13,18 @@ export class GetSubscribersIdEffect {
   .pipe(
     ofType<GetSubscribersId>(SubscribersActionTypes.GET_SUBSCRIBERS_ID),
     exhaustMap(
-    	action => this.networkService.getUsersSubscribersId(action.payload).pipe(
-    		map(data => {
-          return new GetSubscribersIdSuccess(data.data.subscribers);           		    			
-    		}),
-    		catchError(err => {
-    			return of(new GetSubscribersIdFail(err));
-    		})
-  		)
-    )  
-
+      action => this.networkService.getUsersSubscribersId(action.payload).pipe(
+        map(data => {
+          return new GetSubscribersIdSuccess(data.data.subscribers);
+        }),
+        catchError(err => {
+          return of(new GetSubscribersIdFail(err));
+        })
+      )
+    )
   );
 
   constructor(
-  	private actions$: Actions,
-  	private networkService: NetworkService) {}
+    private actions$: Actions,
+    private networkService: NetworkService) {}
 }
-
-

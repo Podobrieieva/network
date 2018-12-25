@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import {GetPosts} from '../../../core/store/actions/news.actions';
+import { GetPosts } from '../../../core/store/actions/news.actions';
 import { State, getPosts } from '../../../core/store';
-import { Observable, Subscription } from 'rxjs';
-import { PostModel, Post } from '../../../shared/models/user.model';
+import {  Post } from '../../../shared/models/user.model';
 import { NetworkService } from '../../../shared/services/network.service';
+import { GetUserPostDelete } from '../../../core/store/actions/user-posts.actions';
 
 @Component({
   selector: 'app-post-wrapper',
@@ -12,34 +12,17 @@ import { NetworkService } from '../../../shared/services/network.service';
   styleUrls: ['./post-wrapper.component.scss']
 })
 export class PostWrapperComponent implements OnInit {
-  // postList$: Observable <PostModel[]>
-  public isUserPostSubscription: Subscription; 
-  public userPosts: Array<Post>;
+  public userPosts;
 
-  constructor(private store:Store<State>, private service: NetworkService ) { 
-    // const subscription = this.service.userPostsSubjObservable().subscribe(data => {
-    //   this.userPosts= data;
-  // })
-  this.isUserPostSubscription = this.store.pipe(select(getPosts)).subscribe(posts => {
-    console.log(posts)
-    if (posts.length) {
-      this.userPosts = posts
-    }      
-  })
+  constructor( private store: Store<State>, private service: NetworkService ) {
+    this.userPosts = this.store.pipe(select(getPosts));
   }
 
   ngOnInit() {
-    // this.store.dispatch({type: NewsActions.NewsActionTypes.GET_POSTS})
-    // this.postList$ = this.store.pipe(select(getPosts));
-    // this.service.getUserPosts();
     this.store.dispatch(new GetPosts());
-
   }
 
-
+  public deleteHandler(id) {
+    this.store.dispatch(new GetUserPostDelete(id));
+  }
 }
-
-
-
-
-

@@ -12,16 +12,14 @@ export function reducer (state: State = initialState, action: RegisterActionsUni
     case RegisterActionTypes.GET_LOGIN_SUCCESS:
       return {
         ...state,
-        authorization: true        
+        authorization: true
       };
     case RegisterActionTypes.GET_REGISTER_SUCCESS:
       return {
         ...state,
         authorization: true
-      };  
+      };
     default:
       return state;
   }
 }
-
-

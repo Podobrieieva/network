@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
-import { select, Store } from "@ngrx/store";
-import { getIsAuthorization, State } from "../../store";
-import { GetRegister, GetRegisterSuccess } from "../../store/actions/register.actions";
+import { select, Store } from '@ngrx/store';
+import { getIsAuthorization, State } from '../../store';
+import { GetRegister, GetRegisterSuccess } from '../../store/actions/register.actions';
 import { User } from '../../models/profile.model';
 import { RegisterService } from '../../service/register.service';
 import { AlertService } from '../../service/alert.service';
@@ -16,7 +16,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./check-in.component.scss']
 })
 export class CheckInComponent implements OnInit {
-  public registerForm:FormGroup;
+  public registerForm: FormGroup;
   public loading = false;
   public returnUrl: string;
 
@@ -24,51 +24,49 @@ export class CheckInComponent implements OnInit {
   constructor(
     private registerService: RegisterService,
     private fb: FormBuilder,
-    private route: ActivatedRoute,    
-    private router: Router, 
+    private route: ActivatedRoute,
+    private router: Router,
     private store: Store<State>,
-    private alertService: AlertService
-    ) 
-  {     
-    if (this.registerService.permissionToEnterValue) { 
-      this.router.navigate(['']);
-    }  
+    private alertService: AlertService ) {
+      if (this.registerService.permissionToEnterValue) {
+        this.router.navigate(['']);
+      }
   }
 
   ngOnInit() {
-  	this.registerForm = this.fb.group(this.createFromGroup().controls, {validator: this.passwordConfirming});
+    this.registerForm = this.fb.group(this.createFromGroup().controls, {validator: this.passwordConfirming});
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   submitHandler() {
-    console.log(this.registerForm.value); 
+    console.log(this.registerForm.value);
     this.store.dispatch(new GetRegister(this.registerForm.value));
   }
 
   get firstname() {
-  	return this.registerForm.get('firstname');
+    return this.registerForm.get('name');
   }
   get lastname() {
-  	return this.registerForm.get('lastname');
+    return this.registerForm.get('surname');
   }
   get email() {
-  	return this.registerForm.get('email');
+    return this.registerForm.get('email');
   }
   get password() {
-  	return this.registerForm.get('password');
+    return this.registerForm.get('password');
   }
   get confirmPassword() {
-  	return this.registerForm.get('confirmPassword');
+    return this.registerForm.get('confirmPassword');
   }
 
   private createFromGroup() {
-  	return new FormGroup({
-  		lastname:new FormControl('', [Validators.required, Validators.maxLength(100), Validators.pattern('^[a-zA-Zа-яА-Я]+$')]),
-  		firstname:new FormControl('', [Validators.required, Validators.maxLength(100), Validators.pattern('^[a-zA-Zа-яА-Я]+$')]),
-  		email: new FormControl('', [Validators.required, Validators.email]),
-  		password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')]),
+    return new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.pattern('^[a-zA-Zа-яА-Я]+$')]),
+      surname: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.pattern('^[a-zA-Zа-яА-Я]+$')]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')]),
       confirmPassword: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')])
-  	})
+    });
   }
 
   private passwordConfirming(c: AbstractControl): { invalid: boolean, matching: any } {
@@ -77,6 +75,3 @@ export class CheckInComponent implements OnInit {
     }
   }
 }
-
-
-

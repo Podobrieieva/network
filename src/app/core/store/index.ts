@@ -6,7 +6,7 @@ import * as fromPasswordChange from './reducers/password-change.reducer';
 import * as fromUserProfile from './reducers/user-profile.reducer';
 import * as fromUserPosts from './reducers/user-posts.reducer';
 import * as fromSubscribe from './reducers/subscribers.reducer';
-import * as fromUsers from './reducers/user-profile.reducer'
+import * as fromUsers from './reducers/user-profile.reducer';
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
  * our top level state interface is just a map of keys to inner state types.
@@ -41,6 +41,7 @@ export function logger(reducer: ActionReducer <State>): ActionReducer < State > 
 }
 
 export const getIsUserProfile = (state) => state.userProfile.isUserProfile;
+export const getIsUpdateUserProfile = (state) => state.userProfile.isUpdateUserProfile;
 export const getIsCurrentUserProfile = (state) => state.userProfile.isCurrentUserProfile;
 export const getIsNewPassword = (state) => state.passwordChange.isNewPass;
 export const getIsSubscribersCurrent = (state) => state.subscribers.isGetSubscribersCurrent;
@@ -56,6 +57,12 @@ export const getIsUsers = (state) => state.users.isUsers;
 export const getPosts = (state) => state.post.posts;
 export const getIsUserPosts = (state) => state.userPosts.isUserPosts;
 export const getIsAddUserPost = (state) => state.userPosts.isAddUserPost;
+export const getIsDeleteUserPost = (state) => state.userPosts.isDeleteUserPost;
+export const getIsAddUserPostComment = (state) => state.userPosts.isUserPostAddComment;
+export const getIsDeleteUserPostComment = (state) => state.userPosts.isUserPostCommentDelete;
+
+export const getIsAddLike = (state) => state.userPosts.isAddLike;
+export const getIsAddDislike = (state) => state.userPosts.isAddDislike;
 
 
 
