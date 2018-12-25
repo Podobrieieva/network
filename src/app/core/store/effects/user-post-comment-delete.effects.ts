@@ -1,7 +1,7 @@
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Action } from '@ngrx/store';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
 
@@ -15,6 +15,7 @@ import { GetPosts } from '../actions/news.actions';
 
 @Injectable()
 export class UserPostDeleteCommentEffect {
+ public currentUrl: string;
   @Effect()
   getIsUserPostCommentDelete$: Observable<Action>  = this.actions$
   .pipe(
@@ -22,12 +23,14 @@ export class UserPostDeleteCommentEffect {
     exhaustMap(
     	action => this.networkService.deleteComment(action.payloadPost, action.payloadComment).pipe(
     		map(data=> { 
-          this.store.dispatch(new GetPosts()) && 
+          this.currentUrl == '/network/news' ?  this.store.dispatch(new GetPosts()) : 
           data.data.post.author.id === action.payloadComment.author.id ? 
-          this.store.dispatch(new GetUserProfile()) : this.store.dispatch(new GetCurrentUserProfile(data.data.post.author.id));
-  
-        		
-          return new GetUserPostDeleteSuccess(data);           		    			
+          this.store.dispatch(new GetUserProfile())  : this.store.dispatch(new GetCurrentUserProfile(data.data.post.author.id));
+          // this.store.dispatch(new GetPosts())
+             return new GetUserPostDeleteSuccess(data);  
+    
+	
+                		    			
     		}),
     		catchError(err => {    		
     			return of(new GetUserPostDeleteFail(err));
@@ -40,5 +43,8 @@ export class UserPostDeleteCommentEffect {
   constructor(
   	private actions$: Actions,
   	private networkService: NetworkService,
-  	private store: Store<State>) {}
+  	private router: Router,
+  	private store: Store<State>) {
+      router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url)
+    }
 }

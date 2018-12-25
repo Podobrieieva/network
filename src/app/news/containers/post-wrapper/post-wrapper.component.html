@@ -2,9 +2,25 @@
 <div class ="wrapper">
 <!-- <app-add-new-post></app-add-new-post> -->
 <ul class="news">
-        <!-- <div *ngFor= "let itemPost of (userPosts | async) | filterPost: itemPost.author.id; let i = index"> -->
+    <button class="btn-main" *ngIf = "!allPosts" (click)="switchPosts()">Show all</button>
+    <button  class="btn-main" *ngIf = "allPosts" (click)="switchPostsSubscription()">Posts of subscriptions</button>
+    <div *ngIf = "allPosts">
+       <div *ngFor= "let itemPost of userPosts | async; let i = index">
+           
+            <app-item-post
 
-        <div *ngFor= "let itemPost of userPosts | async; let i = index">
+             [item]="itemPost"
+              [itemIndex]="i"
+              (deleteEvt) = "deleteHandler($event)"
+              >
+            </app-item-post>
+    </div>
+    </div>
+    <div *ngIf = "!allPosts">
+        <!-- <ng-template #subscriptionPost> -->
+        <div *ngFor= "let itemPost of (userPosts | async ) | filterPost; let i = index">
+
+ 
             <app-item-post
              [item]="itemPost"
               [itemIndex]="i"
@@ -12,6 +28,9 @@
               >
             </app-item-post>
         </div>
+        <!-- </ng-template> -->
+        </div>
         </ul>
 </div>
 <!-- <app-footer></app-footer> -->
+<!-- itemPost?.author.id -->

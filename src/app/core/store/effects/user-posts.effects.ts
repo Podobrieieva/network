@@ -2,10 +2,11 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
-import { Action } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
 import { NetworkService } from '../.././../shared/services/network.service'
 import { GetUserPosts, UserPostsActionTypes,  GetUserPostsFail, GetUserPostsSuccess, } from '../actions/user-posts.actions';
+
 
 @Injectable()
 export class UserPostsEffect {
@@ -16,7 +17,7 @@ export class UserPostsEffect {
     exhaustMap(
     	action => this.networkService.getUserPosts(action.payload).pipe(
     		map(
-					data => {            
+					data => {   
           return new GetUserPostsSuccess(data.data.posts);           		    			
     		}),
     		catchError(err => {
@@ -30,6 +31,7 @@ export class UserPostsEffect {
   constructor(
   	private actions$: Actions,
   	private networkService: NetworkService,
-  	private router: Router
+		private router: Router,
+	
   	) {}
 }

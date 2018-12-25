@@ -25,14 +25,11 @@ a:hover{
     color: #23527c;
     cursor: pointer;
 }
-// .comment{
-//     float: right;
-// }
-// *:after{
-// 	box-sizing: border-box;
-// }
-// .clearfix:after{
-// 	display: block;
-// 	content: "";
-// 	clear: both;
-// }
+.text-muted {
+    color: #939598;
+}
+.post-comment-content{
+    max-width: 750px;
+    width: 100%;
+    overflow: hidden;
+}

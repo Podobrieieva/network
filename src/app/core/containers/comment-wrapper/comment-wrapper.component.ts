@@ -4,6 +4,7 @@ import { PostComment, Post } from '../../../shared/models/user.model';
 import { Store} from '@ngrx/store';
 import { State} from '../../store';
 import { GetUserPostCommentDelete } from '../../store/actions/user-posts.actions';
+import { GetPosts } from '../../store/actions/news.actions';
 
 @Component({
   selector: 'app-comment-wrapper',
@@ -28,6 +29,7 @@ console.log(this.arrayComments)
 
   public deleteHandler(comment){
     this.store.dispatch(new GetUserPostCommentDelete(this.post, comment))
+    
 
   }
 

@@ -2,3 +2,18 @@
     margin-left: 25%;
     margin-right: 25%;
 }
+.btn-main {
+    margin-left: 30px;
+    background-color: #09948d;
+    border-radius: 30px;
+    border: none;
+    padding: 7px 25px;
+    color: #fff;
+    transition: 1s;
+    margin-bottom: 15px;
+  }
+  .btn-main:hover {
+    cursor: pointer;
+    background: #00FFFF;
+   
+  }

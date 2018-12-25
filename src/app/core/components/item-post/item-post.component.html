@@ -7,7 +7,7 @@
       <div class="post-detail">
         <div class="user-info">
           <h5><p class="profile-link" (click)="onViewSubscribeUser(item)">{{item.author.fullname}}</p> <span class="following">following</span></h5>
-          <p class="text-muted">{{item.date}}</p>
+          <p class="text-muted">{{item.date | date:'medium'}}</p>
         </div>
         <div class="reaction">
           <a (click) = "like(item)" class="btn text-green"><i class="material-icons">  thumb_up  </i> {{item.likes.length}}</a>
@@ -36,12 +36,13 @@
         <div class="post-text" *ngIf="!editModePost" >
           <p>{{item.text}} <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
         </div>
-        <button class="btn-main" *ngIf="editModePost" (click)="saveBtnClickHandler(item, itemIndex)">Send</button>
-        <button class="btn-main" *ngIf="editModePost" (click)="cancelBtnClickHandler(item, itemIndex)">Cancel</button>
+        <!-- <button class="btn-main" *ngIf="editModePost" (click)="saveBtnClickHandler(item, itemIndex)">Send</button>
+        <button class="btn-main" *ngIf="editModePost" (click)="cancelBtnClickHandler(item, itemIndex)">Cancel</button> -->
         <div class="line-divider"></div>
         <a class="comment clearfix" (click) = "addBtnClickHandler()" *ngIf="!editMode" > Add comment</a>
-        <app-comment-wrapper [post]= "item"  [arrayComments]= "item.comments"></app-comment-wrapper>
         <app-add-comment [postId]= "item.id" *ngIf="editMode"  ></app-add-comment>
+        <app-comment-wrapper [post]= "item"  [arrayComments]= "item.comments"></app-comment-wrapper>
+       
       </div>
     </div>
  

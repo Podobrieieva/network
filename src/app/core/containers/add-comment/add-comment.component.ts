@@ -30,7 +30,7 @@ export class AddCommentComponent implements OnInit {
           id: '',
     },
     text: "",
-    date: new Date()
+    date: new Date(),
    
 
   }

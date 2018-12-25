@@ -1,14 +1,16 @@
 <form #commentForm="ngForm" (ngSubmit)="onSubmit(commentForm)" >
 <div class="post-comment">
           <img [src]="comment.author.avatarUrl" alt="" class="profile-photo-sm">
-          <input
-           type="text"
-           class="form-control" 
-           placeholder="Post a comment" 
-           [(ngModel)]="comment.text"  
-            name="text"
-            id="text"
-            #text = "ngModel" >
+          <textarea
+          type="text"
+          class="form-control" 
+          placeholder="Post a comment" 
+          [(ngModel)]="comment.text"  
+           name="text"
+           id="text"
+           #text = "ngModel" >
+          
+        </textarea>
             <button type="submit">Add comment</button>
 </div>
 </form>

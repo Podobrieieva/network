@@ -7,11 +7,11 @@
         
          <mat-menu  #menu="matMenu" [overlapTrigger]="false">
           <button mat-menu-item>{{userProfile?.fullname}}</button>        
-          <button mat-menu-item (click)="goToProfilePage()" routerLink='/network/profile'><i class="large material-icons">account_box</i>account_box</button>
-          <button mat-menu-item routerLink='/network/news'><i class="large material-icons">notifications</i>notifications</button>
-          <button mat-menu-item routerLink='/network/subscriptions'><i class="large material-icons">supervised_user_circle</i>supervised_user_circle</button>
-          <button mat-menu-item routerLink='/network/search'><i class="material-icons">search</i>search</button>
-          <button mat-menu-item (click)="logout()">Log out</button>
+          <button mat-menu-item (click)="goToProfilePage()" routerLink='/network/profile'><i class="large material-icons">account_box</i>My profile</button>
+          <button mat-menu-item routerLink='/network/news'><i class="large material-icons">notifications</i>News</button>
+          <button mat-menu-item routerLink='/network/subscribers'><i class="large material-icons">supervised_user_circle</i>My subscribers</button>
+          <button mat-menu-item routerLink='/network/search'><i class="material-icons">search</i>Search</button>
+          <button mat-menu-item (click)="logout()">Log Out</button>
         </mat-menu>
 
       
