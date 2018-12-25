@@ -1,35 +1,34 @@
 <div class="create-post">
-    <form #f="ngForm" (ngSubmit)="onSubmitNewPost(post)">
-  <div class="row">
-    
-    <div class="form-group">
-      <img
-        width="40"
-        height="40"
-<<<<<<< HEAD
-        src="{{ post?.author.avatarUrl }}"
-        
-=======
-        [src]="post.author.avatarUrl || defaultAvatar"
->>>>>>> viktor
-        alt=""
-        class="profile-photo-md"
-      />
-      <textarea
-      type="text" id="text" class="form-control" 
-       [(ngModel)]="post.text" name="text" #text = "ngModel" 
-        cols="30"
-        rows="1"
-        placeholder="Write what you wish"
-        required
-      ></textarea>
+  <form #f="ngForm" (ngSubmit)="onSubmitNewPost(post)">
+    <div class="row">
+      <div class="form-group">
+        <img
+          width="40"
+          height="40"
+          src="{{ post?.author.avatarUrl | defaultAvatar }}"
+          alt=""
+          class="profile-photo-md"
+        />
+        <textarea
+          type="text"
+          id="text"
+          class="form-control"
+          [(ngModel)]="post.text"
+          name="text"
+          #text="ngModel"
+          cols="30"
+          rows="1"
+          placeholder="Write what you wish"
+          required
+        ></textarea>
+      </div>
+      <img src="{{ post?.imageUrl }}" style=" height: 3em; cursor: pointer" (click)="Image.click()" />
+      <input type="file" #Image accept="image/*" (change)="handleFileInput($event)" style="display:none" />
+      <div class="tools">
+        <button type="submit" class="btn-main" [disabled]="Image.value == '' || !f.valid">Publish</button>
+      </div>
     </div>
-    <img src="{{ post?.imageUrl }}"  style = " height: 3em; cursor: pointer" (click)="Image.click()">
-    <input type="file"  #Image accept="image/*" (change) = "handleFileInput($event)" style="display:none" >
-    <div class="tools"><button  type="submit" class="btn-main" [disabled]="Image.value =='' || !f.valid">Publish</button></div>
-
-  </div>
-</form>
+  </form>
 </div>
 
 <!-- (change) = "handleFileInput($event.target.files)" -->
