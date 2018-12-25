@@ -30,7 +30,7 @@ export class CardOfUserComponent implements OnInit {
   }
 
   public viewSubscribeUser(item) {
-  	
+  	console.log(item)
     this.viewEvt.emit(item)
     //this.store.dispatch(new GetCurrentUserProfile(this.id));
     //this.viewEvt(params) 

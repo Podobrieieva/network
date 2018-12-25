@@ -10,7 +10,7 @@
       <div class="timeline-nav-bar">
         <div class="profile-info">
           <img
-            [src]="user$.avatarUrl"
+            src="{{ user$?.avatarUrl }}"
             alt=""
             class="img-responsive profile-photo"
           />
@@ -53,10 +53,12 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab label="Settings">
-        <app-settings></app-settings>
+      <mat-tab label="User info">
+        <app-user-info></app-user-info>
       </mat-tab>
-      <mat-tab label="Something else">Content 3</mat-tab>
+        <mat-tab label="Settings">
+          <app-settings></app-settings>
+        </mat-tab>
       <mat-tab label="Friends" >
         <app-friends-list [userSubscribers$]="userSubscribers" ></app-friends-list>
       </mat-tab>
@@ -64,4 +66,4 @@
   </div>
 </div>
 
-<!-- <app-footer></app-footer> -->
+<app-footer></app-footer>

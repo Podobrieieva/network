@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit, OnDestroy  {
   private isUserPostSubscription: Subscription;
   private isUserProfileSubscription: Subscription;
   private userId: string;
-  //
+  private i = 0;
   public userSubscribers:Array<UserCard>;
   //private paramsRouteId:string;
   private subscriptionIdUser: Subscription;
@@ -41,12 +41,7 @@ export class ProfileComponent implements OnInit, OnDestroy  {
 
  
   constructor(private service: NetworkService, private store: Store<State>) {
-    this.isUserPostSubscription = this.store.pipe(select(getIsUserPosts)).subscribe(posts => {
-      console.log(posts)
-       if (posts) {
-        this.userPosts = posts.data.posts
-      }      
-    })
+    
 
     // const subscription = this.service.userPostsSubjObservable().subscribe(data => {
     //   this.userPosts= data;
@@ -57,13 +52,36 @@ export class ProfileComponent implements OnInit, OnDestroy  {
     
     this.subscriptionIdUser = this.service.profileSubjObservable().subscribe(data => {
       this.profileСhange = data
-      console.log(data)
       if (data === 'profile') {
-        this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => this.user$ = isUserProfile);
+        this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
+          if(this.isUserPostSubscription) {
+            this.isUserPostSubscription.unsubscribe();
+          }
+          this.user$ = isUserProfile;
+          this.store.dispatch(new GetUserPosts (this.user$.id));
+          
+          this.isUserPostSubscription = this.store.pipe(select(getIsUserPosts)).subscribe(posts => {
+             if (posts.data) {
+              this.userPosts = posts.data.posts
+            }      
+          });
+        });
         this.isUserProfileSubscribers =  this.store.pipe(select( getIsSubscriptionsProfile)).subscribe(isUserSubscribers => this.userSubscribers = isUserSubscribers);
 
       } else {    
-        this.isCurrentUserSubscription =  this.store.pipe(select(getIsCurrentUserProfile)).subscribe(isCurrentUserProfile => this.user$ = isCurrentUserProfile) 
+        this.isCurrentUserSubscription =  this.store.pipe(select(getIsCurrentUserProfile)).subscribe(isCurrentUserProfile => {
+          if(this.isUserPostSubscription) {
+            this.isUserPostSubscription.unsubscribe();
+          }
+          this.user$ = isCurrentUserProfile;
+          this.store.dispatch(new GetUserPosts (this.user$.id));
+          
+          this.isUserPostSubscription = this.store.pipe(select(getIsUserPosts)).subscribe(posts => {
+             if (posts.data) {
+              this.userPosts = posts.data.posts
+            }      
+          });
+        }) 
         this.isCurrentUserSubscribers = this.store.pipe(select(getIsSubscriptionsId)).subscribe(isUserSubscribers => this.userSubscribers = isUserSubscribers);
       }
     });      
@@ -78,7 +96,6 @@ export class ProfileComponent implements OnInit, OnDestroy  {
       this.store.dispatch(new GetSubscriptionsId(this.profileСhange));      
     }
 
-    this.store.dispatch(new GetUserPosts (this.user$.id));
   }
 
  

@@ -14,10 +14,12 @@ import { FriendsListComponent } from './containers/friends-list/friends-list.com
 import { AddNewPostComponent } from './containers/add-new-post/add-new-post.component';
 import MaterialModule from './material-module';
 import { SettingsComponent } from './containers/settings/settings.component';
+import { UserInfoComponent } from './containers/info/user-info.component';
+
 
 @NgModule({
   imports: [
-  CommonModule,
+CommonModule,
     RouterModule,
     CoreModule,
    MaterialModule,
@@ -34,7 +36,8 @@ import { SettingsComponent } from './containers/settings/settings.component';
     ProfileComponent,
     AddNewPostComponent,
     FriendsListComponent,
-    SettingsComponent
+    SettingsComponent,
+    UserInfoComponent
   ],
   exports: [
     ProfileComponent,
