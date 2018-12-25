@@ -2,9 +2,12 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
-import { GetSubscriptionsId, GetSubscriptionsIdSuccess, GetSubscriptionsIdFail, SubscribersActionTypes } from '../actions/subscribe.actions';
+import { GetSubscriptionsId,
+         GetSubscriptionsIdSuccess,
+         GetSubscriptionsIdFail,
+         SubscribersActionTypes } from '../actions/subscribe.actions';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
-import { NetworkService } from '../.././../shared/services/network.service'
+import { NetworkService } from '../.././../shared/services/network.service';
 
 
 @Injectable()
@@ -15,20 +18,15 @@ export class GetSubscriptionsIdEffect {
     ofType<GetSubscriptionsId>(SubscribersActionTypes.GET_SUBSCRIPTIONS_ID),
     exhaustMap(
       action => this.networkService.getUsersSubscriptionsId(action.payload).pipe(
-        map(data => {
-
-          return new GetSubscriptionsIdSuccess(data.data.subscriptions);                         
-        }),
+        map(data => new GetSubscriptionsIdSuccess(data.data.subscriptions) ),
         catchError(err => {
           return of(new GetSubscriptionsIdFail(err));
         })
       )
-    )  
-
+    )
   );
 
   constructor(
     private actions$: Actions,
-    private networkService: NetworkService
-    ) {}
+    private networkService: NetworkService) {}
 }

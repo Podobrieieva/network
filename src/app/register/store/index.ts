@@ -1,7 +1,7 @@
 import * as fromRegister from './reducers/register.reducer';
 import * as fromEmail from './reducers/password-recovery.reducer';
 
-import {ActionReducerMap, createFeatureSelector, createSelector} from "@ngrx/store";
+import {ActionReducerMap, createFeatureSelector, createSelector} from '@ngrx/store';
 
 export interface State {
   authorization: fromRegister.State;
@@ -11,7 +11,7 @@ export interface State {
 export const reducers:  ActionReducerMap <State> = {
   authorization: fromRegister.reducer,
   email: fromEmail.reducer
-}
+};
 
 export const getIsAuthorization = (state) => state.authorization;
 

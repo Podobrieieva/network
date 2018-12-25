@@ -28,8 +28,7 @@ import { SettingsComponent } from './containers/settings/settings.component';
    FormsModule,
    HttpClientModule,
    MatNativeDateModule,
-   ReactiveFormsModule 
- 
+   ReactiveFormsModule
   ],
   declarations: [
     ProfileComponent,

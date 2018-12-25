@@ -33,3 +33,16 @@ a:hover{
     width: 100%;
     overflow: hidden;
 }
+.profile-link {
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.profile-link:hover {
+    color: #23527c;
+    cursor: pointer; 
+}
+.profile-photo-sm:hover {
+    cursor: pointer;     
+}
+

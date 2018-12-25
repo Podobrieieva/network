@@ -24,12 +24,11 @@ const routes: Routes = [
     component: ChangePasswordComponent
   },
   {
-    path: 'error', 
+    path: 'error',
     component: NotFoundComponent
   },
-
   {
-    path: 'network', 
+    path: 'network',
     canActivate: [RegisterGuard],
     children: [
       {
@@ -41,26 +40,20 @@ const routes: Routes = [
         component: SubscriptionListComponent
       },
       {
-        path: 'profile', 
+        path: 'profile',
         component: ProfileComponent,
         data: {
           type: 'profile'
         }
-
       },
       {
-        path: 'news', 
+        path: 'news',
         component: PostWrapperComponent
-      }, 
-      // {
-      //   path: 'main', 
-      //   component: MainComponent
-      // },
-      {
-        path: 'search', 
-        component: SearchWrapperComponent
       },
-      
+      {
+        path: 'search',
+        component: SearchWrapperComponent
+      }
     ]
   },
   {

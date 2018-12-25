@@ -13,26 +13,13 @@ import { GetPosts } from '../../store/actions/news.actions';
 })
 export class CommentWrapperComponent implements OnInit {
   @Input() arrayComments: Array<PostComment>;
-  @Input() post: Post
-  
- 
- 
-  
-
-  constructor(private networkService: NetworkService, private store: Store<State>) { 
-
-  }
+  @Input() post: Post;
+  constructor(private networkService: NetworkService, private store: Store<State>) {}
 
   ngOnInit() {
-console.log(this.arrayComments)
   }
 
   public deleteHandler(comment){
     this.store.dispatch(new GetUserPostCommentDelete(this.post, comment))
-    
-
   }
-
-
-
 }

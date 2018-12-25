@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Output, Input, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { RegisterService } from '../../service/register.service'
+import { RegisterService } from '../../service/register.service';
 import { AlertService } from '../../service/alert.service';
 
 @Component({
@@ -10,30 +10,27 @@ import { AlertService } from '../../service/alert.service';
 })
 export class AlertComponent implements OnInit, OnDestroy {
 
+  @Output() changeLogin = new EventEmitter();
   private subscription: Subscription;
-  private alert: boolean = false;
+  private alert = false;
   private message: any;
-  
-  @Output() changeLogin = new EventEmitter(); 
 
   constructor(
-    private registerService: RegisterService, 
-    private alertService: AlertService) { }
+    private registerService: RegisterService,
+    private alertService: AlertService) {}
 
   ngOnInit() {
-    this.subscription = this.alertService.getMessage().subscribe(message => { 
-    this.message = message;            
+    this.subscription = this.alertService.getMessage().subscribe( message => {
+    this.message = message;
     });
   }
-    
-  deleteMassegeAlert() { 
-    this.changeLogin.emit(); 
-    this.message = false;       
+
+  deleteMassegeAlert() {
+    this.changeLogin.emit();
+    this.message = false;
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
 }
-

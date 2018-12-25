@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output,  EventEmitter  } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output,  EventEmitter  } from '@angular/core';
 import { NetworkService } from '../../../shared/services/network.service';
 import { PostComment } from '../../../shared/models/user.model';
 import { Subscription } from 'rxjs';
@@ -12,40 +12,39 @@ import { Store, select } from '@ngrx/store';
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.scss']
 })
-export class CommentComponent implements OnInit {
+export class CommentComponent implements OnInit, OnDestroy {
+
   @Input() item: PostComment;
   @Input() itemIndex = 0;
   @Output() deleteEvtComment = new EventEmitter();
- 
-
   private  isUserProfileSubscribers: Subscription;
-  public accessToDeleteComment: boolean = false;
+  public accessToDeleteComment = false;
   public user$: UserProfileModel;
-
   public commentForComment: Array<any>;
   private defaultAvatar: string;
 
-  constructor(private networkService: NetworkService,  private store: Store<State> ) { 
+  constructor(private networkService: NetworkService,  private store: Store<State> ) {
     this.isUserProfileSubscribers =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
       this.user$ = isUserProfile;
-    })    
-
-    this.defaultAvatar = this.networkService.defaultAvatar; 
-   
+    });
+    this.defaultAvatar = this.networkService.defaultAvatar;
   }
 
   ngOnInit() {
-     if (this.user$.id === this.item.author.id){
-      this.accessToDeleteComment = true
+     if (this.user$.id === this.item.author.id) {
+      this.accessToDeleteComment = true;
      }
- 
   }
 
   public deleteBtnCkickHandlerComment(comment){
-  
     this.deleteEvtComment.emit(comment);
   }
 
-
-
+  onViewSubscribeUser(item) {
+    this.networkService.onViewSubscribeUser(item.author.id);
+  }
+  ngOnDestroy() {
+    this.isUserProfileSubscribers && this.isUserProfileSubscribers.unsubscribe();
+  }  
 }
+

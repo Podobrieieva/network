@@ -19,7 +19,7 @@
 
 //   @ViewChild('commentForm') commentForm: NgForm;
 
-//   constructor( private networkService: NetworkService) { 
+//   constructor(private networkService: NetworkService) {
 //     this.model.avatar = 'https://thunder-team.com/friend-finder/images/users/user-11.jpg'
 //     this.model.userName = 'name John'
 //   }
@@ -33,9 +33,7 @@
 //     console.log(this.model);
 //   }
 
-//   // public addBtnClickHandler() {
-//   //     this.addEvt.emit(false);
-    
-//   // }
-  
+//   public addBtnClickHandler() {
+// 	this.addEvt.emit(false);
+//   }
 // }

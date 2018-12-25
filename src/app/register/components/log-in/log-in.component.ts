@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
-import { select, Store} from "@ngrx/store";
-import { RegisterService } from '../../service/register.service'
-import { getIsAuthorization, State} from "../../store";
-import { Subscription } from "rxjs";
-import { GetLogin } from "../../store/actions/register.actions";
+import { select, Store} from '@ngrx/store';
+import { RegisterService } from '../../service/register.service';
+import { getIsAuthorization, State} from '../../store';
+import { Subscription } from 'rxjs';
+import { GetLogin } from '../../store/actions/register.actions';
 import { GetUserProfile } from '../../../core/store/actions/user-profile.actions';
 
 
@@ -16,35 +16,32 @@ import { GetUserProfile } from '../../../core/store/actions/user-profile.actions
   styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent implements OnInit {
-  //private isLoginSubscription: Subscription;
-	public loginForm: FormGroup;
+
+  public loginForm: FormGroup;
   public loading = false;
-  //public returnUrl: string;
   public error = '';
 
-  @Output() onClickRecovery = new EventEmitter<boolean>();
+  @Output() btnClickRecovery = new EventEmitter<boolean>();
 
   constructor(
-    private registerService: RegisterService, 
+    private registerService: RegisterService,
     private fb: FormBuilder,
-    private route: ActivatedRoute, 
-    private router: Router, 
-    private store: Store<State> ) { 
+    private route: ActivatedRoute,
+    private router: Router,
+    private store: Store<State> ) {
   }
 
   ngOnInit() {
-  	this.loginForm = this.fb.group(this.createFromGroup().controls);
-    this.registerService.logout(); 
-    //this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.loginForm = this.fb.group(this.createFromGroup().controls);
+    this.registerService.logout();
   }
 
-  clickedRecovery(recovery:boolean) {
-    this.onClickRecovery.emit(recovery);
+  clickedRecovery(recovery: boolean) {
+    this.btnClickRecovery.emit(recovery);
   }
 
   submitHandler() {
-    console.log(this.email.value, this.password.value)
-    this.store.dispatch(new GetLogin({"email":this.email.value, "password": this.password.value}))  
+    this.store.dispatch(new GetLogin(this.loginForm.value));
   }
 
   get email() {
@@ -56,10 +53,9 @@ export class LogInComponent implements OnInit {
   }
 
   private createFromGroup() {
-    return new FormGroup({      
+    return new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')])
     });
   }
-  
 }

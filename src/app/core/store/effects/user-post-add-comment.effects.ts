@@ -4,13 +4,15 @@ import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { Action } from '@ngrx/store';
 import { catchError, exhaustMap, map } from 'rxjs/operators';
-
-import { GetUserPostAddComment, GetUserPostAddCommentFail, GetUserPostAddCommentSuccess, UserPostsActionTypes, GetUserPosts } from '../actions/user-posts.actions'
+import { GetUserPostAddComment,
+         GetUserPostAddCommentFail,
+         GetUserPostAddCommentSuccess,
+         UserPostsActionTypes,
+         GetUserPosts } from '../actions/user-posts.actions';
 import { NetworkService } from '../../../shared/services/network.service';
-
-import { GetUserProfile, GetCurrentUserProfile } from '../actions/user-profile.actions'
-import { select, Store} from "@ngrx/store";
-import { State } from "../../../core/store";
+import { GetUserProfile, GetCurrentUserProfile } from '../actions/user-profile.actions';
+import { select, Store} from '@ngrx/store';
+import { State } from '../../../core/store';
 import { GetPosts } from '../actions/news.actions';
 
 @Injectable()
@@ -36,7 +38,8 @@ export class UserPostAddCommentEffect {
   );
 
   constructor(
-  	private actions$: Actions,
-  	private networkService: NetworkService,
-  	private store: Store<State>) {}
+    private actions$: Actions,
+    private networkService: NetworkService,
+    private store: Store<State>
+  ) {}
 }

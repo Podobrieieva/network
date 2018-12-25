@@ -1,5 +1,5 @@
-import { UserProfileActionTypes,UserProfileActionsUnion} from '../actions/user-profile.actions';
-import { UserCard } from '../../../shared/models/user.model'
+import { UserProfileActionTypes, UserProfileActionsUnion } from '../actions/user-profile.actions';
+import { UserCard } from '../../../shared/models/user.model';
 
 export interface State {
  isUserProfile: object;
@@ -21,23 +21,23 @@ export function reducer (state: State = initialState, action: UserProfileActions
       return {
         ...state,
         isUserProfile: action.payload,
-        // isCurrentUserProfile: action.payload         
       };
     case UserProfileActionTypes.GET_CURRENT_USER_PROFILE_SUCCESS:
       return {
         ...state,
-        isCurrentUserProfile: action.payload        
+        isCurrentUserProfile: action.payload
       };
     case UserProfileActionTypes.GET_USERS_SUCCESS:
       return {
         ...state,
-        isUsers: action.payload        
+        isUsers: action.payload
       };
     case UserProfileActionTypes.PUT_UPDATE_PROFILE_SUCCESS:
       return {
         ...state,
-        isUserProfile: action.payload        
-      };    default:
+        isUserProfile: action.payload
+      };
+    default:
       return state;
-  }
+    }
 }

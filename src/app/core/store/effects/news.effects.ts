@@ -25,11 +25,10 @@ export class NewsEffects {
           catchError(err => {
             return of(new newsAction.GetPostsFail(err));
           })
-         )
+        )
       )
     );
-
-
-
-  constructor(private actions$: Actions, private networkService: NetworkService, private store: Store<State>) {}
+  constructor(private actions$: Actions,
+     private networkService: NetworkService, 
+     private store: Store<State>) {}
 }

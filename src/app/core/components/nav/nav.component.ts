@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { select, Store} from "@ngrx/store";
-import { Observable, Subscription } from "rxjs";
-import { getIsUserProfile, State} from "../../store";
-import { NetworkService } from '../../../shared/services/network.service'
-import { GetCurrentUserProfile } from '../../store/actions/user-profile.actions'
-import { UserProfileModel } from '../../../shared/models/user.model'
+import { select, Store} from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
+import { getIsUserProfile, State} from '../../store';
+import { NetworkService } from '../../../shared/services/network.service';
+import { GetCurrentUserProfile } from '../../store/actions/user-profile.actions';
+import { UserProfileModel } from '../../../shared/models/user.model';
 
 
 @Component({
@@ -13,32 +13,35 @@ import { UserProfileModel } from '../../../shared/models/user.model'
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, OnDestroy {
 
   private isUserProfileSubscription: Subscription;
   public currentUrl: string;
   public userProfile: UserProfileModel;
-  private defaultAvatar: string; 
+  private defaultAvatar: string;
 
   constructor(
-    private router: Router, 
-    private networkService:NetworkService, 
+    private router: Router,
+    private networkService: NetworkService,
     private store: Store<State>) {
-      this.defaultAvatar = this.networkService.defaultAvatar
+      this.defaultAvatar = this.networkService.defaultAvatar;
       router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url);
-    this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
-      this.userProfile = (Object.keys(isUserProfile).length === 0)? JSON.parse(sessionStorage.getItem("userProfile")): isUserProfile;
-    })
+      this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
+      this.userProfile = (Object.keys(isUserProfile).length === 0) ? JSON.parse(sessionStorage.getItem('userProfile')) : isUserProfile;
+    });
   }
 
   ngOnInit() {
   }
 
   goToProfilePage() {
-    this.networkService.profileСhange('profile');    
+    this.networkService.profileСhange('profile');
   }
 
   public logout() {
     this.networkService.logout();
+  }
+  ngOnDestroy() {
+    this.isUserProfileSubscription && this.isUserProfileSubscription.unsubscribe();
   }
 }

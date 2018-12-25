@@ -6,7 +6,7 @@ import * as fromPasswordChange from './reducers/password-change.reducer';
 import * as fromUserProfile from './reducers/user-profile.reducer';
 import * as fromUserPosts from './reducers/user-posts.reducer';
 import * as fromSubscribe from './reducers/subscribers.reducer';
-import * as fromUsers from './reducers/user-profile.reducer'
+import * as fromUsers from './reducers/user-profile.reducer';
 /**
  * As mentioned, we treat each reducer like a table in a database. This means
  * our top level state interface is just a map of keys to inner state types.

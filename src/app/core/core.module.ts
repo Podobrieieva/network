@@ -5,7 +5,7 @@ import { MatNativeDateModule } from '@angular/material';
 
 
 
-import { HeaderComponent } from './containers/header/header.component'
+import { HeaderComponent } from './containers/header/header.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './containers/footer/footer.component';
 import { ItemPostComponent } from './components/item-post/item-post.component';
@@ -18,9 +18,9 @@ import { SuccessfulComponent } from './components/successful/successful.componen
 import { CardOfUserComponent } from './components/card-of-user/card-of-user.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
-import   MaterialModule  from './material-module';
+import MaterialModule from './material-module';
 import { SubscriptionListComponent } from './containers/subscription-list/subscription-list.component';
-// import { FilterPostPipe } from '../shared/pipes/filter-post.pipe';
+
 
 
 
@@ -31,32 +31,28 @@ import { SubscriptionListComponent } from './containers/subscription-list/subscr
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    MaterialModule   
+    MaterialModule
   ],
   declarations: [
-    HeaderComponent, 
+    HeaderComponent,
     NavComponent,
-    ItemPostComponent, 
-    FooterComponent, 
+    ItemPostComponent,
+    FooterComponent,
     CommentWrapperComponent,
     AddCommentComponent,
     NotFoundComponent,
-    CommentComponent, 
+    CommentComponent,
     MainComponent,
     SuccessfulComponent,
     CardOfUserComponent,
     ChangePasswordComponent,
-    SubscriptionListComponent,
-    // FilterPostPipe
-    
-    ],
-    
+    SubscriptionListComponent
+   ],
   exports: [
-    HeaderComponent, 
+    HeaderComponent,
     NavComponent,
-    ItemPostComponent, 
-    FooterComponent, 
-    
+    ItemPostComponent,
+    FooterComponent,
     CommentWrapperComponent,
     AddCommentComponent,
     NotFoundComponent,
@@ -66,7 +62,6 @@ import { SubscriptionListComponent } from './containers/subscription-list/subscr
     CommonModule,
     CardOfUserComponent,
     ChangePasswordComponent
- 
   ]
 })
-export class CoreModule { }
+export class CoreModule {}
