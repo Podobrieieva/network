@@ -5,32 +5,22 @@
     Timeline
     =================================================
   -->
-  <div class="timeline" >
+  <div class="timeline">
     <div class="timeline-cover">
       <div class="timeline-nav-bar">
         <div class="profile-info">
-          <img
-<<<<<<< HEAD
-            src="{{ user$?.avatarUrl || defaultAvatar }}"
-=======
-            [src]="user$?.avatarUrl || defaultAvatar"
->>>>>>> viktor
-            alt=""
-            class="img-responsive profile-photo"
-          />
-          <input 
-            style="display: none" 
-            type="file" (change)="onFileChanged($event)" 
-            #fileInput>
-          <button  class="btn-main" (click)="fileInput.click()">Change photo</button>
-         <h3>{{user$?.fullname}}</h3> 
-         <p class="text-muted">{{user$?.fullname}}</p>      
-
+          <img src="{{ user$?.avatarUrl || defaultAvatar }}" alt="" class="img-responsive profile-photo" />
+          <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput />
+          <button class="btn-main" (click)="fileInput.click()">Change photo</button>
+          <h3>{{ user$?.fullname }}</h3>
+          <p class="text-muted">{{ user$?.fullname }}</p>
         </div>
         <div class="profile-cont">
           <div class="follow-me">
-            <p>1,299 people following her</p>
-            <button class="btn-main" (click)="addSubscribe()">Add Friend</button>
+            <p *ngIf="user$?.subscribers">Subscribers: {{ user$?.subscribers.length }}</p>
+            <p *ngIf="user$?.subscriptions">Subscriptions: {{ user$?.subscriptions.length }}</p>
+
+            <button *ngIf="!isOwner" class="btn-main" (click)="addSubscribe()">Add Friend</button>
           </div>
         </div>
       </div>
@@ -40,31 +30,27 @@
         <div id="page-contents">
           <div class="main-wrap">
             <div class="main-post-field">
-              <app-add-new-post *ngIf = 'accessToAddPost'></app-add-new-post>
-               <ul>
-                <div *ngFor= "let itemPost of userPosts; let i = index">
-                    <app-item-post
-                     [item]="itemPost"
-                      [itemIndex]="i"
-                      (saveEvt)="saveHandler($event)"
-                      (cancelEvt)="cancelHandler()"
-                      (deleteEvt) = "deleteHandler($event)">
-                    </app-item-post>
+              <app-add-new-post *ngIf="accessToAddPost"></app-add-new-post>
+              <ul class="posts-list">
+                <div *ngFor="let itemPost of userPosts; let i = index">
+                  <app-item-post
+                    [item]="itemPost"
+                    [itemIndex]="i"
+                    (saveEvt)="saveHandler($event)"
+                    (cancelEvt)="cancelHandler()"
+                    (deleteEvt)="deleteHandler($event)"
+                  >
+                  </app-item-post>
                 </div>
-                </ul>
-              
+              </ul>
             </div>
           </div>
         </div>
       </mat-tab>
-      <mat-tab label="User info">
-        <app-user-info></app-user-info>
-      </mat-tab>
-        <mat-tab label="Settings">
-          <app-settings></app-settings>
-        </mat-tab>
-      <mat-tab label="Friends" >
-        <app-friends-list></app-friends-list>
+      <mat-tab label="User info"> <app-user-info [owner]="isOwner" [data]="user$"></app-user-info> </mat-tab>
+      <mat-tab *ngIf="isOwner" label="Settings"> <app-settings></app-settings> </mat-tab>
+      <mat-tab label="Friends">
+        <div class="friends-wraper"><app-friends-list></app-friends-list></div>
       </mat-tab>
     </mat-tab-group>
   </div>

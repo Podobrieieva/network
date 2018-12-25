@@ -1,4 +1,14 @@
 /* Edit Profile Contents */
+.data { 
+  font-size: 22px;
+  font-style: bold;
+  margin: 0;
+}
+.label {
+  height: 100%;
+  margin: 0;
+
+}
 .form-control {
     display: block;
     width: 100%;
@@ -204,3 +214,43 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.hing p{
+  color: #26a69a;
+}
+/*export interface UserProfileModel {
+  'avatarUrl': string;
+  'birthDate': string;
+  'contact': {
+    'country': string;
+    'city': string;
+    'street': string;
+    'mobilePhone': string;
+    'skype': string;
+  };
+  'education': {
+    'country': string;
+    'city': string;
+    'school': string;
+    'university': string;
+    'periodOfSchool': string;
+    'periodOfUniversity': string;
+  };
+  'email': string;
+  'fullname': string;
+  'gender': string;
+  'id': string;
+  'interests': string[];
+  'name': string;
+  'subscribers': string[];
+  'subscriptions': string[];
+  'surname': string;
+  'work': [
+    {
+      'country': string;
+      'city': string;
+      'company': string;
+      'period': string;
+    }
+  ];
+}*/

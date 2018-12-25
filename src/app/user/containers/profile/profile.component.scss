@@ -122,6 +122,11 @@ a:focus {
 /*==================================================
     Common
     ==================================================*/
+    .friends-wraper {
+      width: 75%;
+      max-width: 1200px;
+      margin: auto;
+    }
 .form-group {
   display: flex;
   justify-content: space-around;
@@ -137,8 +142,12 @@ a:focus {
   margin-left: 10px;
   width: 95%;
 }
-
+.posts-list {
+  
+  padding-top: 52px;
+}
 #page-contents {
+  width: 70%;
   max-width: 1200px;
   margin: auto;
   // padding: 35px 0 50px;
