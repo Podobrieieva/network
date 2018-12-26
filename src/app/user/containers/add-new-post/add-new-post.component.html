@@ -1,5 +1,5 @@
 <div class="create-post">
-    <form #f="ngForm" (ngSubmit)="onSubmitNewPost(post)">
+    <form #f="ngForm" (ngSubmit)="onSubmitNewPost(post)" >
   <div class="row">
     
     <div class="form-group">
@@ -12,7 +12,7 @@
       />
       <textarea
       type="text" id="text" class="form-control" 
-       [(ngModel)]="post.text" name="text" #text = "ngModel" 
+       [(ngModel)]="content" name="text" #text = "ngModel" 
         cols="30"
         rows="1"
         placeholder="Write what you wish"

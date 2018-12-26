@@ -1,7 +1,7 @@
 <li>
   <div class="post-comment">
-    <img [src]="item?.author.avatarUrl || defaultAvatar" alt="" class="profile-photo-sm">
-    <div class ="post-comment-content" (click)="onViewSubscribeUser(item)"><a href="timeline.html" class="profile-link">{{item.author.fullname}} </a><i class="em em-laughing"></i>
+    <img  (click)="onViewSubscribeUser(item)" [src]="item?.author.avatarUrl || defaultAvatar" alt="" class="profile-photo-sm">
+    <div class ="post-comment-content" (click)="onViewSubscribeUser(item)"><a  class="profile-link">{{item.author.fullname}} </a><i class="em em-laughing"></i>
       {{item.text}}<br> <p class ="text-muted">{{item.date | date:'medium'}}</p></div>
       <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf = "accessToDeleteComment" >
         <mat-icon>more_vert</mat-icon>

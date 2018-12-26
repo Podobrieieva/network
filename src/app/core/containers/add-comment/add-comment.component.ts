@@ -17,6 +17,7 @@ export class AddCommentComponent implements OnInit, OnDestroy {
   @Input () postId: string;
   @Output() addEvt = new EventEmitter();
   private isUserProfileSubscription: Subscription;
+  private content: string;
   public comment: PostComment = {
     _id: '',
     author: {
@@ -46,12 +47,30 @@ export class AddCommentComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit(form: NgForm) {
+    if(this.content && this.content.includes("<")){
+      this.comment.text = this.content.toString().replace("<", "!")
+    } else{
+      this.comment.text = this.content
+    }
     this.store.dispatch(new GetUserPostAddComment(this.postId, this.comment));
     this.addBtnClickHandler();
   }
 
   public addBtnClickHandler() {
     this.addEvt.emit(false);
+  }
+
+  public keyEvent(event:KeyboardEvent){
+    if(event.key === "Control"){
+      if(this.content && this.content.includes("<")){
+        this.comment.text = this.content.toString().replace("<", "!")
+      } else{
+        this.comment.text = this.content
+      }
+      this.store.dispatch(new GetUserPostAddComment(this.postId, this.comment));
+      this.addBtnClickHandler();
+    }
+
   }
 
   ngOnDestroy() {
