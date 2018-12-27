@@ -31,6 +31,11 @@
       font-size: 10px;
       color: #27aae1;
     }
+    .already:hover {
+      cursor: pointer;
+      color: #939598;
+    }
+
     .btn{
       background: #27aae1;
       border: none;
@@ -43,13 +48,14 @@
       border-radius: 30px;
       height: 30px;
       line-height: 1;
+      margin-bottom: 20px;
     }
     .btn:hover{
       background: #149AC9;
       transition: all 1s;
     }  
 }    
-    
+   
    
 .has-error {
   input {

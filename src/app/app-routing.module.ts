@@ -18,7 +18,6 @@ const routes: Routes = [
   {
     path: 'network', 
     canActivate: [RegisterGuard],
-   
     children: [
       {
         path: '',
@@ -43,19 +42,12 @@ const routes: Routes = [
       {
         path: 'search', 
         component: SearchWrapperComponent
-      }
-     
-    ]
-  },  
-   {
-        path: 'main', 
-        canActivate: [RegisterGuard],
-        component: MainComponent
       },
-
-  {
-    path: 'error', 
-    component: NotFoundComponent
+      {
+        path: 'error', 
+        component: NotFoundComponent
+      }     
+    ]
   },
   {
     path: 'register',

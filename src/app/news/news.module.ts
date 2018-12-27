@@ -6,18 +6,22 @@ import { PostWrapperComponent } from './containers/post-wrapper/post-wrapper.com
 import { SearchComponent } from './components/search/search.component';
 import { SearchWrapperComponent } from './containers/search-wrapper/search-wrapper.component';
 import { CoreModule } from '../core/core.module'
+import { SearchPipe } from '../shared/pipes/search.pipe';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    CoreModule
+    CoreModule,
+    FormsModule
   ],
   declarations: [
     PostWrapperComponent,
     SearchComponent,
-    SearchWrapperComponent
+    SearchWrapperComponent,
+    SearchPipe
   ],
   exports:[
     PostWrapperComponent,

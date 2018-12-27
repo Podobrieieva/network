@@ -30,12 +30,15 @@
           Password should contain at least one character and number
         </span>
       </div>
-    <p class="already"><a href="#">Forgot Password?</a></p>
+    <p class="already" (click)="clickedRecovery(true)">Forgot Password?</p>
      <button 
         [disabled]="loginForm.invalid"
         type="submit"
-        class="btn btn-success">
+        class="btn btn-success"
+      >
      Login Now
-   </button>
+   </button>  
   </form>
-</div>
+  <p class="text-muted">Do not use the network? Sign up now</p>
+  
+ </div>

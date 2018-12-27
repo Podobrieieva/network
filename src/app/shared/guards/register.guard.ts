@@ -7,15 +7,13 @@ export class RegisterGuard implements CanActivate {
 
   canActivate(): boolean {
     if (!this.isAuthenticated()) {
-      this.router.navigate(['register']);
-      console.log('0000000000000000000000')
+      this.router.navigate(['register']);      
       return false;
-    }
-    console.log('111111111111111111111')
+    }  
     return true;
   }
 
   private isAuthenticated() {
-    return localStorage.getItem('isRegistered') || localStorage.getItem('loggedIn') ;
+    return localStorage.getItem('isRegistered') || localStorage.getItem('loggedIn') || localStorage.getItem('isChange') ;
   }
 }

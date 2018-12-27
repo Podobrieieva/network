@@ -8,12 +8,13 @@
         </ul>
       </div>      
       <div class="tab-content">
-        <app-log-in *ngIf="login"></app-log-in>
+        <app-log-in *ngIf="login" (onClickRecovery)="onClickRecovery($event)"></app-log-in>
         <app-check-in *ngIf="register"></app-check-in>
+        <app-password-recovery *ngIf="recovery" ></app-password-recovery>
       </div> 
     </div>
     <div class="icons"> 
-      <ul class="list-inline ">
+      <ul class="list-inline social-icons">
         <li><a href="http://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
         <li><a href="http://twitter.com/"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
         <li><a href="https://plus.google.com/"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
@@ -23,4 +24,10 @@
       </ul>
     </div>
   </div>
-</div>     
+
+</div>       
+<div *ngIf="alert" class="alertAll" >
+    <div class="" (click)="toggleAlert()"><i class="fa fa-times did" ></i></div>
+    <p>The email and password entered are not the same as those stored in our database. Check that the entered data is correct and try again.</p>
+      
+</div>
