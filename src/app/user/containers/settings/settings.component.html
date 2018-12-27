@@ -1,44 +1,44 @@
 <div class="edit-profile-container">
   <div class="block-title">
-    <h4 class="grey-text">
-      <i class="icon ion-android-checkmark-circle"></i>Edit basic information
-    </h4>
+    <h4 class="grey-text"><i class="icon ion-android-checkmark-circle"></i>Edit basic information</h4>
     <div class="line"></div>
     <p>
-      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-      praesentium voluptatum deleniti atque corrupti quos dolores et quas
-      molestias excepturi sint occaecati cupiditate
+      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
+      corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate
     </p>
     <div class="line"></div>
   </div>
   <div class="edit-block">
-
-    <form [formGroup]="basicInfoForm" name="basic-info" id="basic-info" class="form-inline"(ngSubmit)="submitBasicInfo()">
+    <form
+      [formGroup]="basicInfoForm"
+      name="basic-info"
+      id="basic-info"
+      class="form-inline"
+      (ngSubmit)="submitBasicInfo()"
+    >
       <div class="row">
         <div class="form-group half">
           <label for="firstname">First name</label>
           <input
-            formControlName="firstname" 
+            formControlName="firstname"
             id="firstname"
             class="form-control"
             type="text"
             name="firstname"
             title="Enter first name"
             placeholder="First name"
-            value="John"
           />
         </div>
         <div class="form-group half">
           <label for="lastname" class="">Last name</label>
           <input
-            formControlName="lastname" 
+            formControlName="lastname"
             id="lastname"
             class="form-control"
             type="text"
             name="lastname"
             title="Enter last name"
             placeholder="Last name"
-            value="Doe"
           />
         </div>
       </div>
@@ -46,126 +46,31 @@
         <div class="form-group full">
           <label for="email">My email</label>
           <input
-            formControlName="email" 
+            formControlName="email"
             id="email"
             class="form-control"
             type="text"
             name="Email"
             title="Enter Email"
             placeholder="My Email"
-            value="razor.venon@gmail.com"
           />
         </div>
       </div>
       <div class="row">
-        <p class="custom-label"><strong>Date of Birth</strong></p>
-        <div class="form-group selects half">
-          <label for="month" class="sr-only"></label>
-          <select 
-            formControlName="day" 
-            class="form-control" 
-            id="day"
-            >
-            <option value="Day">Day</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-            <option>11</option>
-            <option>12</option>
-            <option>13</option>
-            <option>14</option>
-            <option>15</option>
-            <option>16</option>
-            <option>17</option>
-            <option>18</option>
-            <option selected="">19</option>
-            <option>20</option>
-            <option>21</option>
-            <option>22</option>
-            <option>23</option>
-            <option>24</option>
-            <option>25</option>
-            <option>26</option>
-            <option>27</option>
-            <option>28</option>
-            <option>29</option>
-            <option>30</option>
-            <option>31</option>
-          </select>
+        <!-- <p class="custom-label"><strong>Date of Birth</strong></p> -->
+        <div class="form-group half">
+          <label for="date">Date of Birth</label>
+          <input formControlName="date" type="date" name="date" id="date">
         </div>
-        <div class="form-group selects half">
-          <label for="month" class="sr-only"></label>
-          <select formControlName="month" class="form-control" id="month">
-            <option value="month">Month</option>
-            <option>Jan</option>
-            <option>Feb</option>
-            <option>Mar</option>
-            <option>Apr</option>
-            <option>May</option>
-            <option>Jun</option>
-            <option>Jul</option>
-            <option>Aug</option>
-            <option>Sep</option>
-            <option>Oct</option>
-            <option>Nov</option>
-            <option selected="">Dec</option>
-          </select>
-        </div>
-        <div class="form-group selects full">
-          <label for="year" class="sr-only"></label>
-          <select formControlName="year" class="form-control" id="year">
-            <option value="year">Year</option>
-            <option>1980</option>
-            <option>1981</option>
-            <option>1982</option>
-            <option>1983</option>
-            <option>1984</option>
-            <option>1985</option>
-            <option>1986</option>
-            <option>1987</option>
-            <option>1988</option>
-            <option>1989</option>
-            <option>1990</option>
-            <option>1991</option>
-            <option>1992</option>
-            <option>1993</option>
-            <option>1994</option>
-            <option>1995</option>
-            <option>1996</option>
-            <option>1997</option>
-            <option>1998</option>
-            <option>1999</option>
-            <option>2000</option>
-            <option>2001</option>
-            <option>2002</option>
-            <option>2004</option>
-            <option>2005</option>
-            <option>2006</option>
-            <option>2007</option>
-            <option>2008</option>
-            <option>2009</option>
-            <option>2010</option>
-            <option>2011</option>
-            <option>2012</option>
-          </select>
-        </div>
+        <div class="form-group gender half">
+            <label for="gender">I am a:</label>
+            <mat-radio-group formControlName="gender" id="gender" name="gender" class="radio-inline">
+              <mat-radio-button class="radio-btn" value="male">Male</mat-radio-button>
+              <mat-radio-button class="radio-btn" value="female">Female</mat-radio-button>
+            </mat-radio-group>
+          </div>
       </div>
-      <div class="form-group gender">
-        <span class="custom-label"><strong>I am a: </strong></span>
-        <label class="radio-inline">
-          <input formControlName="male" type="radio" name="male" value="male"/>Male
-        </label>
-        <label class="radio-inline">
-          <input formControlName="female" type="radio" name="female" value="female"/>Female
-        </label>
-      </div>
+      
       <div class="row">
         <div class="form-group half">
           <label for="city"> My city</label>
@@ -179,9 +84,36 @@
             placeholder="Your city"
           />
         </div>
+
+        <div class="form-group half">
+            <label for="phone"> My phone number</label>
+            <input
+              formControlName="phone"
+              id="phone"
+              class="form-control"
+              type="text"
+              name="phone"
+              title="Enter phone"
+              placeholder="Your phone"
+            />
+          </div>
+          <div class="form-group half">
+              <label for="skype"> My skype number</label>
+              <input
+                formControlName="skype"
+                id="skype"
+                class="form-control"
+                type="text"
+                name="skype"
+                title="Enter skype"
+                placeholder="Your skype"
+              />
+            </div>
+
         <div class="form-group half">
           <label for="country">My country</label>
-          <select formControlName="country" class="form-control" id="country">
+          <select formControlName="country" class="form-control" id="country" title="Enter country"
+          placeholder="Your country">
             <option value="country">Country</option>
             <option value="AFG">Afghanistan</option>
             <option value="ALA">Ƭand Islands</option>
@@ -314,9 +246,7 @@
             <option value="LTU">Lithuania</option>
             <option value="LUX">Luxembourg</option>
             <option value="MAC">Macao</option>
-            <option value="MKD"
-              >Macedonia, the former Yugoslav Republic of</option
-            >
+            <option value="MKD">Macedonia, the former Yugoslav Republic of</option>
             <option value="MDG">Madagascar</option>
             <option value="MWI">Malawi</option>
             <option value="MYS">Malaysia</option>
@@ -370,9 +300,7 @@
             <option value="RUS">Russian Federation</option>
             <option value="RWA">Rwanda</option>
             <option value="BLM">Saint Barthꭥmy</option>
-            <option value="SHN"
-              >Saint Helena, Ascension and Tristan da Cunha</option
-            >
+            <option value="SHN">Saint Helena, Ascension and Tristan da Cunha</option>
             <option value="KNA">Saint Kitts and Nevis</option>
             <option value="LCA">Saint Lucia</option>
             <option value="MAF">Saint Martin (French part)</option>
@@ -393,9 +321,7 @@
             <option value="SLB">Solomon Islands</option>
             <option value="SOM">Somalia</option>
             <option value="ZAF">South Africa</option>
-            <option value="SGS"
-              >South Georgia and the South Sandwich Islands</option
-            >
+            <option value="SGS">South Georgia and the South Sandwich Islands</option>
             <option value="SSD">South Sudan</option>
             <option value="ESP">Spain</option>
             <option value="LKA">Sri Lanka</option>
@@ -445,33 +371,39 @@
         <div class="form-group full">
           <label for="my-info">About me</label>
           <textarea
-            formControlName="aboutMe"
+            
             id="my-info"
             name="information"
             class="form-control"
             placeholder="Some texts about me"
             rows="4"
             cols="400"
-          >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur</textarea>
+          >
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur</textarea
+          >
         </div>
       </div>
       <button class="btn btn-primary">Save Changes</button>
     </form>
   </div>
 
-
   <div class="block-title">
     <h4 class="grey-text"><i class="icon ion-ios-book-outline"></i>My education</h4>
     <div class="line"></div>
     <p>
-      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-      praesentium voluptatum deleniti atque corrupti quos dolores et quas
-      molestias excepturi sint occaecati cupiditate
+      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
+      corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate
     </p>
     <div class="line"></div>
   </div>
   <div class="edit-block">
-    <form [formGroup]="educationForm" name="education" id="education" class="form-inline" (ngSubmit)="submitEducationForm()">
+    <form
+      [formGroup]="educationForm"
+      name="education"
+      id="education"
+      class="form-inline"
+      (ngSubmit)="submitEducationForm()"
+    >
       <div class="row">
         <div class="form-group full">
           <label for="university">My university</label>
@@ -482,7 +414,7 @@
             type="text"
             name="university"
             title="Enter University"
-            placeholder="My University"           
+            placeholder="My University"
           />
         </div>
       </div>
@@ -493,11 +425,10 @@
             formControlName="universityFrom"
             id="date-from"
             class="form-control"
-            type="text"
+            type="date"
             name="date"
             title="Enter a Date"
             placeholder="from"
-            
           />
         </div>
         <div class="form-group half">
@@ -506,11 +437,10 @@
             formControlName="universityTo"
             id="date-to"
             class="form-control"
-            type="text"
+            type="date"
             name="date"
             title="Enter a Date"
             placeholder="to"
-            
           />
         </div>
       </div>
@@ -528,33 +458,15 @@
           ></textarea>
         </div>
       </div>
-
-      <div class="row">
-        <div class="form-group full">
-          <label for="graduate">Graduated?:-</label>
-          <input
-            formControlName="graduate"
-            id="graduate"
-            type="checkbox"
-            name="graduate"
-            value="graduate"
-            checked=""
-          />
-          Yes!!
-        </div>
-      </div>
       <button class="btn btn-primary">Save Changes</button>
     </form>
   </div>
   <div class="block-title">
-    <h4 class="grey-text">
-      <i class="icon ion-ios-briefcase-outline"></i>Work Experiences
-    </h4>
+    <h4 class="grey-text"><i class="icon ion-ios-briefcase-outline"></i>Work Experiences</h4>
     <div class="line"></div>
     <p>
-      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-      praesentium voluptatum deleniti atque corrupti quos dolores et quas
-      molestias excepturi sint occaecati cupiditate
+      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
+      corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate
     </p>
     <div class="line"></div>
   </div>
@@ -597,7 +509,7 @@
             formControlName="companyFrom"
             id="from-date"
             class="form-control"
-            type="text"
+            type="date"
             name="date"
             title="Enter a Date"
             placeholder="from"
@@ -610,7 +522,7 @@
             formControlName="companyTo"
             id="to-date"
             class="form-control"
-            type="text"
+            type="date"
             name="date"
             title="Enter a Date"
             placeholder="to"
@@ -644,163 +556,12 @@
             placeholder="Some texts about my work"
             rows="4"
             cols="400"
-          >At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate</textarea>
+          >
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate</textarea
+          >
         </div>
       </div>
       <button class="btn btn-primary">Save Changes</button>
     </form>
-  </div>
-
-  <div class="block-title">
-    <h4 class="grey-text"><i class="icon ion-ios-heart-outline"></i>My Interests</h4>
-    <div class="line"></div>
-    <p>
-      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-      praesentium voluptatum deleniti atque corrupti quos dolores et quas
-      molestias excepturi sint occaecati cupiditate
-    </p>
-    <div class="line"></div>
-  </div>
-  <div class="edit-block">
-    <ul class="list-inline interests">
-      <li [class.activedInt]="bycicle" [class.editblockulinterestsli]="!bycicle" (click)="addInterestArray($event)"><i class="icon ion-android-bicycle"></i> Bycicle
-      </li>
-      <li [class.activedInt]="photgraphy" [class.editblockulinterestsli]="!photgraphy" (click)="addInterestArray($event)"><i class="icon ion-ios-camera"></i> Photgraphy
-      </li>
-      <li [class.activedInt]="shopping" [class.editblockulinterestsli]="!shopping" (click)="addInterestArray($event)"><i class="icon ion-android-cart"></i> Shopping
-      </li>
-      <li [class.activedInt]="traveling" [class.editblockulinterestsli]="!traveling" (click)="addInterestArray($event)"><i class="icon ion-android-plane"></i> Traveling</li>
-      <li [class.activedInt]="eating" [class.editblockulinterestsli]="!eating" (click)="addInterestArray($event)"><i class="icon ion-android-restaurant"></i> Eating
-      </li>
-    </ul>
-    <div class="line"></div>
-    <div class="row">
-      <p class="custom-label"><strong>Add interests</strong></p>
-      <div class="form-group col-sm-8">
-        <input
-          [(ngModel)]="interest"
-          id="addInterest"
-          class="form-control"
-          type="text"
-          name="interest"
-          title="Choose Interest"
-          placeholder="Interests. For example, photography"
-        />
-      </div>
-      <div class="form-group col-sm-4">
-        <button class="btn btn-primary" (click)="AddInterestsProfile()">Add</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="block-title">
-    <h4 class="grey-text"><i class="icon ion-ios-settings"></i>Account Settings</h4>
-    <div class="line"></div>
-    <p>
-      At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-      praesentium voluptatum deleniti atque corrupti quos dolores et quas
-      molestias excepturi sint occaecati cupiditate
-    </p>
-    <div class="line"></div>
-  </div>
-  <div class="edit-block">
-    <div class="settings-block">
-      <div class="row">
-        <div class="col-sm-9">
-          <div class="switch-description">
-            <div><strong>Enable follow me</strong></div>
-            <p>Enable this if you want people to follow you</p>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="toggle-switch">
-            <label class="switch">
-              <input type="checkbox" checked="" />
-              <span class="slider round"></span>
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="line"></div>
-    <div class="settings-block">
-      <div class="row">
-        <div class="col-sm-9">
-          <div class="switch-description">
-            <div><strong>Send me notifications</strong></div>
-            <p>
-              Send me notification emails my friends like, share or message me
-            </p>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="toggle-switch">
-            <label class="switch">
-              <input type="checkbox" checked="" />
-              <span class="slider round"></span>
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="line"></div>
-    <div class="settings-block">
-      <div class="row">
-        <div class="col-sm-9">
-          <div class="switch-description">
-            <div><strong>Text messages</strong></div>
-            <p>Send me messages to my cell phone</p>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="toggle-switch">
-            <label class="switch">
-              <input type="checkbox" /> <span class="slider round"></span>
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="line"></div>
-    <div class="settings-block">
-      <div class="row">
-        <div class="col-sm-9">
-          <div class="switch-description">
-            <div><strong>Enable tagging</strong></div>
-            <p>Enable my friends to tag me on their posts</p>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="toggle-switch">
-            <label class="switch">
-              <input type="checkbox" checked="" />
-              <span class="slider round"></span>
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="line"></div>
-    <div class="settings-block">
-      <div class="row">
-        <div class="col-sm-9">
-          <div class="switch-description">
-            <div><strong>Enable sound</strong></div>
-            <p>
-              You'll hear notification sound when someone sends you a private
-              message
-            </p>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="toggle-switch">
-            <label class="switch">
-              <input type="checkbox" checked="" />
-              <span class="slider round"></span>
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>

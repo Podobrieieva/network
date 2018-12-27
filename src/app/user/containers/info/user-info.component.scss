@@ -1,6 +1,13 @@
 /* Edit Profile Contents */
-* {
+.data { 
+  font-size: 22px;
+  font-style: bold;
   margin: 0;
+}
+.label {
+  height: 100%;
+  margin: 0;
+
 }
 .form-control {
     display: block;
@@ -33,7 +40,6 @@ textarea {
     justify-content: space-around;
 }
 .edit-profile-container {
-  padding-top: 55px;
   width: 100%;
   max-width: 1200px;
   margin: auto;
@@ -74,7 +80,6 @@ textarea {
   -moz-appearance: none;
   appearance: none;
 }
-
 .grey-text {
   color: grey;
   text-align: center;
@@ -107,7 +112,7 @@ label {
 .selects {
     width: 31%;
 }
-.editblockulinterestsli {
+.edit-block ul.interests li {
   background: #8dc63f;
   color: #fff;
   padding: 5px 15px;
@@ -117,24 +122,11 @@ label {
   border-radius: 40px;
 }
 
-
-.edit-block ul.interests li div {
-  /*color: #fff;*/
-}
-
-.activedInt {
-  background: #C0C0C0;
+.edit-block ul.interests li a {
   color: #fff;
-  padding: 5px 15px;
-  margin-right: 10px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-radius: 40px;
-  pointer-events: none;
-  cursor: default;
 }
 
-.edit-block ul.interests li div i.icon {
+.edit-block ul.interests li a i.icon {
   font-size: 18px;
 }
 
@@ -144,22 +136,6 @@ label {
 
 .gender .custom-label {
   padding-left: 0;
-  position: relative;
-}
-.radio-inline {
-  user-select: none;
-  width: 50%;
-  display: flex;
-  justify-content: space-around;
-  height: 100%;
-  align-items: center;
-  padding-left: 50px;
-}
-.gender label {
-  margin-right: 20px;
-}
-.radio-btn {
-  color: #26a69a;
 }
 .custom-label {
     display: inline-block;
@@ -167,7 +143,7 @@ label {
     margin-bottom: 5px;
     font-weight: 700;
     position: absolute;
-    top: 0px;
+    top: -20px;
     left: 7px;
 
 }
@@ -237,4 +213,8 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.hing p{
+  color: #26a69a;
 }

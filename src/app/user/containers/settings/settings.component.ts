@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NetworkService } from '../../../shared/services/network.service';
 import { select, Store } from '@ngrx/store';
 import { State } from '../../../core/store';
+import { UserProfileModel } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-settings',
@@ -13,7 +14,7 @@ import { State } from '../../../core/store';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-
+  @Input() user: UserProfileModel;
   @Input() interest: string;
   public basicInfoForm: FormGroup;
   public educationForm: FormGroup;
@@ -35,6 +36,21 @@ export class SettingsComponent implements OnInit {
     this.basicInfoForm = this.fb.group(this.createFromGroupBasicInfo().controls);
     this.educationForm = this.fb.group(this.createFromGroupEducation().controls);
     this.workForm = this.fb.group(this.createFromGroupWorkForm().controls);
+    //basic
+    this.basicInfoForm.controls.lastname.setValue(this.user.surname, {onlySelf: true});
+    this.basicInfoForm.controls.firstname.setValue(this.user.name, {onlySelf: true});
+    this.basicInfoForm.controls.email.setValue(this.user.email, {onlySelf: true});
+    this.basicInfoForm.controls.date.setValue(new Date(this.user.birthDate), {onlySelf: true});
+    this.basicInfoForm.controls.gender.setValue(this.user.gender, {onlySelf: true});
+    // this.basicInfoForm.controls.aboutMe.setValue(this.user., {onlySelf: true});
+
+    //contacts
+    if(this.user.contact) {
+      this.basicInfoForm.controls.country.setValue(this.user.contact.country, {onlySelf: true});
+      this.basicInfoForm.controls.city.setValue(this.user.contact.city, {onlySelf: true});
+      this.basicInfoForm.controls.phone.setValue(this.user.contact.mobilePhone, {onlySelf: true});
+      this.basicInfoForm.controls.skype.setValue(this.user.contact.skype, {onlySelf: true});
+    }
   }
 
   submitBasicInfo() {
@@ -43,16 +59,20 @@ export class SettingsComponent implements OnInit {
       'fullname': `${this.firstname.value} ${this.lastname.value}`,
       'name': this.firstname.value,
       'surname': this.lastname.value,
-      'gender': 'string',
-      'birthDate': `${this.day.value} ${this.month.value} ${this.year.value}`,
+      'gender': this.gender.value,
+      'birthDate': this.date.value,
+      // 'aboutMe': this.aboutMe.value,
       'contact': {
         'country': this.country.value,
-        'city': this.city.value
+        'city': this.city.value,
+        'mobilePhone': this.phone.value,
+        'skype': this.skype.value
       }
     };
     this.networkService.updateProfile(basicInfo);
   }
 
+  
   get firstname() {
     return this.basicInfoForm.get('firstname');
   }
@@ -62,14 +82,11 @@ export class SettingsComponent implements OnInit {
   get email() {
     return this.basicInfoForm.get('email');
   }
-  get day() {
-    return this.basicInfoForm.get('day');
+  get gender() {
+    return this.basicInfoForm.get('gender');
   }
-  get month() {
-    return this.basicInfoForm.get('month');
-  }
-  get year() {
-    return this.basicInfoForm.get('year');
+  get date() {
+    return this.basicInfoForm.get('date');
   }
   get country() {
     return this.basicInfoForm.get('country');
@@ -77,21 +94,33 @@ export class SettingsComponent implements OnInit {
   get city() {
     return this.basicInfoForm.get('city');
   }
+  get phone() {
+    return this.basicInfoForm.get('phone');
+  }
+  get skype() {
+    return this.basicInfoForm.get('skype');
+  }
+  // get aboutMe() {
+  //   return this.basicInfoForm.get('aboutMe');
+  // }
 
   private createFromGroupBasicInfo() {
-    return new FormGroup({
+    const formGroup = new FormGroup({
       lastname: new FormControl('', [Validators.maxLength(15), Validators.pattern('^[a-zA-Zа-яА-Я]+$')]),
       firstname: new FormControl('', [Validators.maxLength(15), Validators.pattern('^[a-zA-Zа-яА-Я]+$')]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      day: new FormControl(''),
-      month: new FormControl(''),
-      year: new FormControl(''),
-      male: new FormControl(''),
-      female: new FormControl(''),
+      date: new FormControl(''),
+      gender: new FormControl(''),
       city: new FormControl(''),
       country: new FormControl(''),
-      aboutMe: new FormControl('')
+      phone: new FormControl(''),
+      skype: new FormControl(''),
+      // aboutMe: new FormControl('')
     });
+
+    
+
+    return formGroup;
   }
 
   private  submitEducationForm() {
@@ -107,7 +136,7 @@ export class SettingsComponent implements OnInit {
     };
     this.networkService.updateProfile(educationData);
   }
-
+  
   get university() {
     return this.educationForm.get('university');
   }
