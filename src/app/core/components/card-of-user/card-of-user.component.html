@@ -5,10 +5,9 @@
     <h3>{{user.surname | uppercase}}</h3>
   </div>
   <div class="box footer">
-    <button class="view" (click)="viewSubscribeUser(user)">View Profile</button>
+    <button class="view" (click)="viewSubscribeUser(user)">Visit</button>
     <button *ngIf="btnChangeFollow" class="follow" (click)="addAsFriend(user)">Follow</button>
     <button *ngIf="btnChangeDelete" class="follow" (click)="removeFromFriends(user)">Delete</button>
-
   </div>
 </div> 
 

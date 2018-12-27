@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { first, flatMap, map } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 import { select, Store } from '@ngrx/store';
@@ -8,6 +8,7 @@ import { GetCurrentUserProfile, GetUserProfile } from '../../../core/store/actio
 import { getIsUserProfile, getIsCurrentUserProfile, getIsSubscriptionsProfile, getIsSubscriptionsId } from '../../../core/store';
 import { UserCard } from '../../../shared/models/user.model';
 import { NetworkService } from '../../../shared/services/network.service';
+import { I18nPluralPipe } from '@angular/common';
 
 
 
@@ -39,6 +40,7 @@ export class FriendsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+  
     this.profileСhange === 'profile' ?
     this.store.dispatch(new GetSubscriptionsProfile()) : this.store.dispatch(new GetSubscriptionsId(this.profileСhange));
   }

@@ -29,7 +29,7 @@ export class SearchWrapperComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.store.dispatch(new GetUsers('a'));
-    this.searchStr$.pipe(debounceTime(400), distinctUntilChanged()).subscribe(str => this.store.dispatch(new GetUsers(str)));
+    this.searchStr$.pipe(debounceTime(200), distinctUntilChanged()).subscribe(str => this.store.dispatch(new GetUsers(str)));
   }
 
   public onViewSubscribeUser(item) {

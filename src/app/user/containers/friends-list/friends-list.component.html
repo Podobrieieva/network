@@ -1,5 +1,4 @@
 
-<div class = "friends_list_wrapper">
 	<div class="row"> 
       	<app-card-of-user *ngFor = "let item of userSubscribers$ | async; let i = index"
       		[user]="item" 
@@ -12,5 +11,4 @@
       		>
       </app-card-of-user>
     </div>
-</div>
 
