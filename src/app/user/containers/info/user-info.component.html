@@ -20,7 +20,7 @@
 
         <div class="form-group half"><p class="label">My date of Birth:</p></div>
         <div class="form-group half">
-          <p *ngIf="data.birthDate; else dash" class="data">{{ data.birthDate }}</p>
+          <p *ngIf="data.birthDate; else dash" class="data">{{ data.birthDate | date: 'mediumDate' }}</p>
         </div>
         <div class="line"></div>
 

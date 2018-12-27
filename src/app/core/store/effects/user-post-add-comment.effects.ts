@@ -17,6 +17,7 @@ import { GetPosts } from '../actions/news.actions';
 
 @Injectable()
 export class UserPostAddCommentEffect {
+  public currentUrl: string;
   @Effect()
   getIsUserPostAddComment$: Observable<Action>  = this.actions$
   .pipe(
@@ -24,9 +25,10 @@ export class UserPostAddCommentEffect {
     exhaustMap(
     	action => this.networkService.addComment(action.payloadIdPost, action.payload).pipe(
     		map(data=> {
-          // this.store.dispatch(new GetPosts());
+          this.currentUrl = this.router.url;
+          this.currentUrl === '/network/news' ?  this.store.dispatch(new GetPosts()) : 
           data.data.post.author.id === action.payload.author.id ? 
-                this.store.dispatch(new GetUserProfile()) : this.store.dispatch(new GetCurrentUserProfile(data.data.post.author.id))      		
+               this.store.dispatch(new GetUserProfile()) : this.store.dispatch(new GetCurrentUserProfile(data.data.post.author.id))      		
         return new GetUserPostAddCommentSuccess(data);           		    			
     		}),
     		catchError(err => {    		
@@ -40,6 +42,7 @@ export class UserPostAddCommentEffect {
   constructor(
     private actions$: Actions,
     private networkService: NetworkService,
-    private store: Store<State>
+    private store: Store<State>,
+    private router: Router,
   ) {}
 }

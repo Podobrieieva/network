@@ -6,7 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NetworkService } from '../../../shared/services/network.service';
 import { select, Store } from '@ngrx/store';
 import { State } from '../../../core/store';
-import { UserProfileModel } from 'src/app/shared/models/user.model';
+import { UserProfileModel } from '../../../shared/models/user.model';
 
 @Component({
   selector: 'app-settings',

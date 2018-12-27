@@ -23,11 +23,12 @@ export class UserPostDeleteCommentEffect {
     exhaustMap(
     	action => this.networkService.deleteComment(action.payloadPost, action.payloadComment).pipe(
     		map(data=> { 
-          this.currentUrl == '/network/news' ?  this.store.dispatch(new GetPosts()) : 
+          this.currentUrl = this.router.url;
+          this.currentUrl === '/network/news' ?  this.store.dispatch(new GetPosts()) : 
           data.data.post.author.id === action.payloadComment.author.id ? 
           this.store.dispatch(new GetUserProfile())  :
            this.store.dispatch(new GetCurrentUserProfile(data.data.post.author.id));
-          // this.store.dispatch(new GetPosts())
+
              return new GetUserPostDeleteSuccess(data);  
     
 	
@@ -46,6 +47,5 @@ export class UserPostDeleteCommentEffect {
   	private networkService: NetworkService,
   	private router: Router,
   	private store: Store<State>) {
-      router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url)
     }
 }
