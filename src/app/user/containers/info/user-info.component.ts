@@ -9,9 +9,13 @@ export class UserInfoComponent implements OnInit {
   @Input() data: any;
   @Input() owner: boolean;
 
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit() {
+    // this.data.birthDate = new Date(this.data.birbirthDate).toLocaleString();
+    // console.log(this.data.birthDate);
+
   }
 
   public testFunction () {

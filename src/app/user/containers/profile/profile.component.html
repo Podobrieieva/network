@@ -19,7 +19,6 @@
           <div class="follow-me">
             <p *ngIf="user$?.subscribers">Subscribers: {{ user$?.subscribers.length }}</p>
             <p *ngIf="user$?.subscriptions">Subscriptions: {{ user$?.subscriptions.length }}</p>
-
             <button *ngIf="!isOwner" class="btn-main" (click)="addSubscribe()">Add Friend</button>
           </div>
         </div>
@@ -48,7 +47,7 @@
         </div>
       </mat-tab>
       <mat-tab label="User info"> <app-user-info [owner]="isOwner" [data]="user$"></app-user-info> </mat-tab>
-      <mat-tab *ngIf="isOwner" label="Settings"> <app-settings></app-settings> </mat-tab>
+      <mat-tab *ngIf="isOwner" label="Settings"> <app-settings [user]="user$"></app-settings> </mat-tab>
       <mat-tab label="Friends">
         <div class="friends-wraper"><app-friends-list></app-friends-list></div>
       </mat-tab>
