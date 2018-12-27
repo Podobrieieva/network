@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfileComponent } from './containers/profile/profile.component';
 import { FriendsListComponent } from './containers/friends-list/friends-list.component';
 import { AddNewPostComponent } from './containers/add-new-post/add-new-post.component';
-import MaterialModule from '../core/material-module';
+import {MaterialModule} from '../core/material-module';
 import { SettingsComponent } from './containers/settings/settings.component';
 import { UserInfoComponent } from './containers/info/user-info.component';
 

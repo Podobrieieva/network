@@ -18,13 +18,13 @@ import { NetworkService } from '../../../shared/services/network.service';
 })
 export class FriendsListComponent implements OnInit, OnDestroy {
 
-  private userSubscribers$;
-  private btnChangeFollow: boolean;
-  private btnChangeDelete: boolean;
-  private profileСhange: string;
-  private isUsersSubscription: Subscription;
-  private isCurrentUsersSubscription: Subscription;
-  private profileSubscription: Subscription;
+  public userSubscribers$;
+  public btnChangeFollow: boolean;
+  public btnChangeDelete: boolean;
+  public profileСhange: string;
+  public isUsersSubscription: Subscription;
+  public isCurrentUsersSubscription: Subscription;
+  public profileSubscription: Subscription;
 
   constructor(
     private networkService: NetworkService,

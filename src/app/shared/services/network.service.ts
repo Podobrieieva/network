@@ -19,10 +19,10 @@ import { AddLike, AddDislike } from '../../core/store/actions/user-posts.actions
   providedIn: 'root'
 })
 export class NetworkService {
-  private addPostSubject: Subject <any> = new Subject();
-  private UsersSubscription: BehaviorSubject<any>;
+  public addPostSubject: Subject <any> = new Subject();
+  public UsersSubscription: BehaviorSubject<any>;
   public userProfileСontrol: BehaviorSubject<string> = new BehaviorSubject('profile');
-  private apiUrl = 'https://s-network.herokuapp.com/api/v1';
+  public apiUrl = 'https://s-network.herokuapp.com/api/v1';
   public defaultAvatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKW8JSKU4Swud_MeCE1rN7cayv8RtnyzFxf6rZzh_g9M-b6dhqGA';
   public userPosts: Array<Post>;
  

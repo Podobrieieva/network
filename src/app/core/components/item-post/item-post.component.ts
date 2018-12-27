@@ -24,12 +24,12 @@ export class ItemPostComponent implements OnInit, OnDestroy {
   public editModePost = false;
   public counterLike: any = 0;
   public counterDislike: any  = 0;
-  private isUserProfileSubscribers: Subscription;
-  private editingItem = <Post>{};
-  private user$: UserProfileModel;
-  private defaultAvatar:  string;
-  private defaultImageUrl = '../../../../assets/img/4.jpg';
-  private srcError = 'http://res.cloudinary.com/s-cloud/image/upload/v1544363237/posts/mmxjjuv6jch2sbah8nxv.png';
+  public isUserProfileSubscribers: Subscription;
+  public editingItem = <Post>{};
+  public user$: UserProfileModel;
+  public defaultAvatar:  string;
+  public defaultImageUrl = '../../../../assets/img/4.jpg';
+  public srcError = 'http://res.cloudinary.com/s-cloud/image/upload/v1544363237/posts/mmxjjuv6jch2sbah8nxv.png';
   constructor( private service: NetworkService, private store: Store<State> ) {
     this.isUserProfileSubscribers =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {
        this.user$ = isUserProfile;

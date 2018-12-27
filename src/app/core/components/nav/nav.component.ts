@@ -15,10 +15,10 @@ import { UserProfileModel } from '../../../shared/models/user.model';
 })
 export class NavComponent implements OnInit, OnDestroy {
 
-  private isUserProfileSubscription: Subscription;
+  public isUserProfileSubscription: Subscription;
   public currentUrl: string;
   public userProfile: UserProfileModel;
-  private defaultAvatar: string;
+  public defaultAvatar: string;
 
   constructor(
     private router: Router,

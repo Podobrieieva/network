@@ -15,11 +15,11 @@ import { GetUserPostAdd } from '../../../core/store/actions/user-posts.actions';
 })
 export class AddNewPostComponent implements OnInit, OnDestroy {
 
-  private isUserProfileSubscription: Subscription;
-  private addPostSub: Subscription;
-  private selectedFile: File;
-  private defaultAvatar:  string;
-  private content: string;
+  public isUserProfileSubscription: Subscription;
+  public addPostSub: Subscription;
+  public selectedFile: File;
+  public defaultAvatar:  string;
+  public content: string;
   public fileToUpload: File = null;
   public post: Post = {
         id: '',
@@ -32,10 +32,10 @@ export class AddNewPostComponent implements OnInit, OnDestroy {
           id: '8',
         },
         date: new Date(),
-        imageUrl: '../../../../../assets/img/images-default.png',
+        imageUrl: 'assets/img/images-default.png',
   };
 
-  @ViewChild('f') f: NgForm;
+  @ViewChild('f') f: any;
 
   constructor(private service: NetworkService, private store: Store<State>) {
     this.defaultAvatar = this.service.defaultAvatar;
@@ -67,7 +67,7 @@ export class AddNewPostComponent implements OnInit, OnDestroy {
     reader.readAsDataURL(this.selectedFile);
   }
 
-  public onSubmitNewPost(f: NgForm) {
+  public onSubmitNewPost(f: any) {
     if(this.content && this.content.includes("<")){
       this.post.text = this.content.toString().replace("<", "!")
     } else{

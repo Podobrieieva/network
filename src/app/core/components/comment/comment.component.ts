@@ -17,11 +17,11 @@ export class CommentComponent implements OnInit, OnDestroy {
   @Input() item: PostComment;
   @Input() itemIndex = 0;
   @Output() deleteEvtComment = new EventEmitter();
-  private  isUserProfileSubscribers: Subscription;
+  public  isUserProfileSubscribers: Subscription;
   public accessToDeleteComment = false;
   public user$: UserProfileModel;
   public commentForComment: Array<any>;
-  private defaultAvatar: string;
+  public defaultAvatar: string;
 
   constructor(private networkService: NetworkService,  private store: Store<State> ) {
     this.isUserProfileSubscribers =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => {

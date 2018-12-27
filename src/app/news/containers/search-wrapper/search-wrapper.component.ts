@@ -19,9 +19,9 @@ export class SearchWrapperComponent implements OnInit, OnDestroy {
 
   public users: Array<UserCard>;
   public searchStr$ = new Subject<string>();
-  private isUsersSubscription: Subscription;
-  private btnChangeFollow = true;
-  private btnChangeDelete = false;
+  public isUsersSubscription: Subscription;
+  public btnChangeFollow = true;
+  public btnChangeDelete = false;
 
   constructor(private networkService: NetworkService, private router: Router, private store: Store<State>) {
     this.isUsersSubscription =  this.store.pipe(select(getIsUsers)).subscribe(data => this.users = data);

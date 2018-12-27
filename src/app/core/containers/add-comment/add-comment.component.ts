@@ -16,8 +16,8 @@ import { GetUserPostAddComment } from '../../store/actions/user-posts.actions';
 export class AddCommentComponent implements OnInit, OnDestroy {
   @Input () postId: string;
   @Output() addEvt = new EventEmitter();
-  private isUserProfileSubscription: Subscription;
-  private content: string;
+  public isUserProfileSubscription: Subscription;
+  public content: string;
   public comment: PostComment = {
     _id: '',
     author: {

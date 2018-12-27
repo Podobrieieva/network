@@ -19,12 +19,12 @@ export class SettingsComponent implements OnInit {
   public basicInfoForm: FormGroup;
   public educationForm: FormGroup;
   public workForm: FormGroup;
-  private interestArr = [];
-  private bycicle = false;
-  private photgraphy = false;
-  private shopping = false;
-  private traveling = false;
-  private eating = false;
+  public interestArr = [];
+  public bycicle = false;
+  public photgraphy = false;
+  public shopping = false;
+  public traveling = false;
+  public eating = false;
 
   constructor(
     private networkService: NetworkService,
@@ -123,7 +123,7 @@ export class SettingsComponent implements OnInit {
     return formGroup;
   }
 
-  private  submitEducationForm() {
+  public  submitEducationForm() {
     const educationData = {
       'education': {
         'country': '',

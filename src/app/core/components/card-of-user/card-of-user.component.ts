@@ -18,7 +18,7 @@ export class CardOfUserComponent implements OnInit {
   @Output() viewEvt = new EventEmitter();
   @Output() addEvt = new EventEmitter();
   @Output() removeEvt = new EventEmitter();
-  private defaultAvatar: string;
+  public defaultAvatar: string;
 
   constructor(private store: Store<State>, private service: NetworkService) {
     this.defaultAvatar = this.service.defaultAvatar;

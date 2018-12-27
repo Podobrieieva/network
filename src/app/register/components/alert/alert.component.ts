@@ -11,9 +11,9 @@ import { AlertService } from '../../service/alert.service';
 export class AlertComponent implements OnInit, OnDestroy {
 
   @Output() changeLogin = new EventEmitter();
-  private subscription: Subscription;
-  private alert = false;
-  private message: any;
+  public subscription: Subscription;
+  public alert = false;
+  public message: any;
 
   constructor(
     private registerService: RegisterService,

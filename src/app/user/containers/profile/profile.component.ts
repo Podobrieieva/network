@@ -23,14 +23,14 @@ export class ProfileComponent implements OnInit, OnDestroy  {
   public selectedFile: File;
   public userPosts: Array<Post>;
   public accessToAddPost = false;
-  private isUserPostSubscription: Subscription;
-  private subscriptionIdUser: Subscription;
-  private profileСhange: string;
-  private isOwner: boolean;
-  private isUserProfileSubscription: Subscription;
-  private isCurrentUserSubscription: Subscription;
-  private user$: UserProfileModel;
-  private defaultAvatar: string;
+  public isUserPostSubscription: Subscription;
+  public subscriptionIdUser: Subscription;
+  public profileСhange: string;
+  public isOwner: boolean;
+  public isUserProfileSubscription: Subscription;
+  public isCurrentUserSubscription: Subscription;
+  public user$: UserProfileModel;
+  public defaultAvatar: string;
 
   constructor(private service: NetworkService, private store: Store<State>) {
     this.defaultAvatar = this.service.defaultAvatar;

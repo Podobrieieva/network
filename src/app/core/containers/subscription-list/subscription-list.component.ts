@@ -14,13 +14,13 @@ import { NetworkService } from '../../../shared/services/network.service';
 })
 export class SubscriptionListComponent implements OnInit, OnDestroy {
 
-  private userSubscribers: Array<UserCard>;
-  private profileСhange: string;
-  private btnChangeFollow: boolean;
-  private btnChangeDelete: boolean;
-  private isProfileSubscribtion: Subscription;
-  private isUserProfileSubscribers: Subscription;
-  private isCurrentUserSubscribers: Subscription;
+  public userSubscribers: Array<UserCard>;
+  public profileСhange: string;
+  public btnChangeFollow: boolean;
+  public btnChangeDelete: boolean;
+  public isProfileSubscribtion: Subscription;
+  public isUserProfileSubscribers: Subscription;
+  public isCurrentUserSubscribers: Subscription;
 
   constructor(
     private networkService: NetworkService,

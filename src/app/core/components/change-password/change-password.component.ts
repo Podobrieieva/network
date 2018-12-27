@@ -15,7 +15,7 @@ import { GetPassword } from '../../store/actions/password-change.actions';
 export class ChangePasswordComponent implements OnInit {
 
   public changePasswordForm: FormGroup;
-  private changePass = false;
+  public changePass = false;
 
   constructor( private fb: FormBuilder, private router: Router, private store: Store<State>) {}
 

@@ -11,9 +11,9 @@ import { RegisterService } from '../../service/register.service';
 
 export class RegisterComponent implements OnInit {
 
-  private login = true;
-  private register = false;
-  private recovery = false;
+  public login = true;
+  public register = false;
+  public recovery = false;
 
   constructor() {}
 
