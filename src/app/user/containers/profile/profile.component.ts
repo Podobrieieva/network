@@ -8,7 +8,7 @@ import { State,
          getIsCurrentUserProfile,
          getIsSubscriptionsProfile,
          getIsSubscriptionsId } from '../../../core/store';
-import { GetUserPostDelete } from '../../../core/store/actions/user-posts.actions';
+import { GetUserPostDelete, GetUserPosts } from '../../../core/store/actions/user-posts.actions';
 import { BehaviorSubject, Observable, of, Subject, Subscription } from 'rxjs';
 import { GetUserProfile, GetCurrentUserProfile } from '../../../core/store/actions/user-profile.actions';
 
@@ -41,6 +41,7 @@ export class ProfileComponent implements OnInit, OnDestroy  {
       if (this.isOwner) {
         this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => this.user$ = isUserProfile);
         this.accessToAddPost = true;
+        this.store.dispatch(new GetUserPosts(this.user$.id));
       } else {
         this.isCurrentUserSubscription = this.store.pipe(select(getIsCurrentUserProfile)).subscribe(isCurrentUserProfile => {
           return this.user$ = isCurrentUserProfile;

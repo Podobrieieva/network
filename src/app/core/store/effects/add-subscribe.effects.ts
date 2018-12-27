@@ -20,7 +20,6 @@ export class AddSubscribeEffect {
       action => this.networkService.addSubscribe( action.payload ).pipe(
         map( data => {
           this.alertService.success('Subscription on profile succeeded.', true);
-          this.store.dispatch(new GetUserProfile());
           this.store.dispatch(new GetSubscriptionsProfile());
           return new AddSubscribeSuccess( data );
         }),
