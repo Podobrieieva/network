@@ -19,19 +19,13 @@ import { AddLike, AddDislike } from '../../core/store/actions/user-posts.actions
   providedIn: 'root'
 })
 export class NetworkService {
-
-  // private userProfileSubj: BehaviorSubject<any> = new BehaviorSubject(3);
-  // private userPostsSubj: BehaviorSubject<any> = new BehaviorSubject(3);
-  // private commentSubj: BehaviorSubject<any> = new BehaviorSubject(3);
-  // private commentForComSubj: BehaviorSubject<any> = new BehaviorSubject(3);
-
   private addPostSubject: Subject <any> = new Subject();
   private UsersSubscription: BehaviorSubject<any>;
   public userProfileСontrol: BehaviorSubject<string> = new BehaviorSubject('profile');
   private apiUrl = 'https://s-network.herokuapp.com/api/v1';
   public defaultAvatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKW8JSKU4Swud_MeCE1rN7cayv8RtnyzFxf6rZzh_g9M-b6dhqGA';
   public userPosts: Array<Post>;
-  public commentWrapperForComment: CommentModel [];
+ 
 
   constructor(private http: HttpClient, private store: Store<State>, private registerService: RegisterService) {}
 
@@ -158,37 +152,6 @@ export class NetworkService {
       return this.http.delete(`${this.apiUrl}/posts/${id}`);
   }
 
- //  public fetchUserPosts(params){
- //    this.userPostsSubj.next(params);
- //  }
-
- //  public userPostsSubjObservable(){
- //    return this.userPostsSubj.asObservable();
- //  }
- //   public userProfileSubjObservable(){
- //    return this.userProfileSubj.asObservable()
- // }
-
-  // public getComments() {
-  //   return this.fetchComments(this.commentWrapper);
-  // }
-
-  // public fetchComments(params) {
-  //     this.commentSubj.next(params);
-  // }
-
-  // public commentSubjObservable(){
-  //   return this.commentSubj.asObservable();
-  // }
-
-  // public fetchCommentsForCom(params) {
-  //     this.commentForComSubj.next(params);
-  // }
-
-  // public commentForComSubjObservable(){
-  //   return this.commentForComSubj.asObservable();
-  // }
-
   public addComment(idPost, comment) {
     const commentText = {
       'text': comment.text
@@ -203,10 +166,6 @@ export class NetworkService {
     return this.http.delete<any>(`${this.apiUrl}/posts/${idPost}/comment/${idComment}`)
   }
 
-  public setItemByIndex(item, index) {
-    this.userPosts[index] = item;
-  }
-
   public getAddPostObservable() {
     return this.addPostSubject.asObservable();
   }
@@ -215,7 +174,7 @@ export class NetworkService {
     const postUser = JSON.stringify(post);
     const uploadData = new FormData();
     uploadData.append('data', postUser);
-    const uploadImage = new FormData();
+    // const uploadImage = new FormData();
     uploadData.append('image', selectedFile, selectedFile.name );
     return this.http.post<any>(`${this.apiUrl}/posts`, uploadData );
   }

@@ -19,13 +19,14 @@ import { GetUserProfile, GetCurrentUserProfile } from '../../../core/store/actio
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit, OnDestroy  {
-
+  
   public selectedFile: File;
   public userPosts: Array<Post>;
   public accessToAddPost = false;
   private isUserPostSubscription: Subscription;
   private subscriptionIdUser: Subscription;
   private profileСhange: string;
+  private isOwner: boolean;
   private isUserProfileSubscription: Subscription;
   private isCurrentUserSubscription: Subscription;
   private user$: UserProfileModel;
@@ -36,7 +37,8 @@ export class ProfileComponent implements OnInit, OnDestroy  {
     this.isUserPostSubscription = this.store.pipe(select(getIsUserPosts)).subscribe(posts => this.userPosts = posts);
     this.subscriptionIdUser = this.service.profileSubjObservable().subscribe(data => {
       this.profileСhange = data;
-      if (data === 'profile') {
+      this.isOwner = (data === 'profile');
+      if (this.isOwner) {
         this.isUserProfileSubscription =  this.store.pipe(select(getIsUserProfile)).subscribe(isUserProfile => this.user$ = isUserProfile);
         this.accessToAddPost = true;
       } else {
@@ -49,22 +51,20 @@ export class ProfileComponent implements OnInit, OnDestroy  {
   }
 
   ngOnInit() {
-    this.profileСhange === 'profile' ?
+    this.isOwner ?
     this.store.dispatch(new GetUserProfile()) : this.store.dispatch(new GetCurrentUserProfile(this.profileСhange));
   }
 
+  
   public addSubscribe() {
     this.service.onAddAsFriend(this.user$.id);
   }
-
+  
   public onFileChanged(event) {
     this.selectedFile = event.target.files[0];
     this.service.uploadPhotoUser(this.selectedFile);
   }
 
-  // public saveHandler({item, itemIndex}){
-  //     this.service.setItemByIndex(item, itemIndex);
-  // }
 
   public deleteHandler(id) {
     this.store.dispatch(new GetUserPostDelete(id));

@@ -21,10 +21,14 @@ nav{
         flex-direction: row;
         align-items: center;
 
-        a {
-
+        .brand-logo {
+            line-height: 64px;
+            img{
+                margin: auto;
+                padding-top: 22px;
+            }
         }
-        img {
+        .img-profile {
             margin-left: 90%;            
             height: 40px;
             width: 40px;

@@ -5,28 +5,21 @@
     Timeline
     =================================================
   -->
-  <div class="timeline" >
+  <div class="timeline">
     <div class="timeline-cover">
       <div class="timeline-nav-bar">
         <div class="profile-info">
-          <img
-            [src]="user$?.avatarUrl || defaultAvatar"
-            alt=""
-            class="img-responsive profile-photo"
-          />
-          <input 
-            style="display: none" 
-            type="file" (change)="onFileChanged($event)" 
-            #fileInput>
-          <button  class="btn-main" (click)="fileInput.click()">Change photo</button>
-         <h3>{{user$?.fullname}}</h3> 
-         <p class="text-muted">{{user$?.fullname}}</p>      
-
+          <img src="{{ user$?.avatarUrl || defaultAvatar }}" alt="" class="img-responsive profile-photo" />
+          <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput />
+          <button class="btn-main" (click)="fileInput.click()">Change photo</button>
+          <h3>{{ user$?.fullname }}</h3>
+          <p class="text-muted">{{ user$?.fullname }}</p>
         </div>
         <div class="profile-cont">
           <div class="follow-me">
-            <p>{{UsersSubscribers}} 1,299 people following her</p>
-            <button class="btn-main" (click)="addSubscribe()">Add Friend</button>
+            <p *ngIf="user$?.subscribers">Subscribers: {{ user$?.subscribers.length }}</p>
+            <p *ngIf="user$?.subscriptions">Subscriptions: {{ user$?.subscriptions.length }}</p>
+            <button *ngIf="!isOwner" class="btn-main" (click)="addSubscribe()">Add Friend</button>
           </div>
         </div>
       </div>
@@ -36,102 +29,30 @@
         <div id="page-contents">
           <div class="main-wrap">
             <div class="main-post-field">
-              <app-add-new-post *ngIf = 'accessToAddPost'></app-add-new-post>
-               <ul>
-                <div *ngFor= "let itemPost of userPosts; let i = index">
-                    <app-item-post
-                     [item]="itemPost"
-                      [itemIndex]="i"
-                      (saveEvt)="saveHandler($event)"
-                      (cancelEvt)="cancelHandler()"
-                      (deleteEvt) = "deleteHandler($event)">
-                    </app-item-post>
+              <app-add-new-post *ngIf="accessToAddPost"></app-add-new-post>
+              <ul class="posts-list">
+                <div *ngFor="let itemPost of userPosts; let i = index">
+                  <app-item-post
+                    [item]="itemPost"
+                    [itemIndex]="i"
+                    (saveEvt)="saveHandler($event)"
+                    (cancelEvt)="cancelHandler()"
+                    (deleteEvt)="deleteHandler($event)"
+                  >
+                  </app-item-post>
                 </div>
-                </ul>
-              
-              <!--
-                <div class="post-date">
-                      <h5>{{ item.user.name }}</h5>
-                      <p class="text-grey">{{ item.date }}</p>
-                    </div>
-
-                    <img
-                      *ngIf="item.postImg !== null"
-                      src="{{item.postImg}}"
-                      alt="post-image"
-                      class="img-responsive post-image"
-                    />
-                    <div class="post-container">
-                      <img
-                        src="{{item.user.avatar}}"
-                        alt="user"
-                        class="profile-photo-md pull-left"
-                      />
-                      <div class="post-detail">
-                        <div class="user-info">
-                          <h5>
-                            <a href="#" class="profile-link"
-                              >{{ item.user.name }} {{ item.user.surname }}</a
-                            >
-                          </h5>
-                          <p class="text-muted">Published {{ item.date }}</p>
-                        </div>
-                        <div class="reaction">
-                          <a class="btn text-green"
-                            ><i class="icon ion-thumbsup"></i> {{ item.likes }}</a
-                          >
-                          <a class="btn text-red"
-                            ><i class="fa fa-thumbs-down"></i> {{ item.dislikes }}</a
-                          >
-                        </div>
-                        <div class="line-divider"></div>
-                        <div class="post-text">
-                          <p class="comment">{{ item.text }}</p>
-                        </div>
-                        <div class="line-divider"></div>
-                        <div class="post-comment" *ngFor="let comment of item.comments">
-                          <img
-                            src="{{comment.avatar}}"
-                            alt=""
-                            class="profile-photo-sm"
-                          />
-                          <p class="comment">
-                            <a href="#" class="profile-link">{{ comment.user }} </a
-                            >{{ comment.text }}
-                          </p>
-                        </div>
-                        <div class="post-comment">
-                          <img
-                            src="{{item.user.avatar}}"
-                            alt=""
-                            class="profile-photo-sm"
-                          />
-                          <input
-                            type="text"
-                            class="form-control"
-                            placeholder="Post a comment"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                </div>
-                </div>
-              -->
+              </ul>
             </div>
           </div>
         </div>
       </mat-tab>
-      <mat-tab label="Settings">
-        <app-settings></app-settings>
-      </mat-tab>
-      <mat-tab label="Something else">Content 3</mat-tab>
-      <mat-tab label="Friends" >
-        <app-friends-list></app-friends-list>
+      <mat-tab label="User info"> <app-user-info [owner]="isOwner" [data]="user$"></app-user-info> </mat-tab>
+      <mat-tab *ngIf="isOwner" label="Settings"> <app-settings [user]="user$"></app-settings> </mat-tab>
+      <mat-tab label="Friends">
+        <div class="friends-wraper"><app-friends-list></app-friends-list></div>
       </mat-tab>
     </mat-tab-group>
   </div>
 </div>
 
-<!-- <app-footer></app-footer> -->
+<app-footer></app-footer>

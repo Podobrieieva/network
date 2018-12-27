@@ -6,8 +6,7 @@ import { Store, select } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { State, getIsUserProfile } from '../../../core/store';
 import { GetUserPostAdd } from '../../../core/store/actions/user-posts.actions';
-import { readElementValue } from '@angular/core/src/render3/util';
-import { GetUserProfile } from '../../../core/store/actions/user-profile.actions';
+
 
 @Component({
   selector: 'app-add-new-post',
@@ -20,6 +19,7 @@ export class AddNewPostComponent implements OnInit, OnDestroy {
   private addPostSub: Subscription;
   private selectedFile: File;
   private defaultAvatar:  string;
+  private content: string;
   public fileToUpload: File = null;
   public post: Post = {
         id: '',
@@ -49,26 +49,35 @@ export class AddNewPostComponent implements OnInit, OnDestroy {
         this.post.author.id = isUserProfile.id;
       }
     });
+
+   
   }
 
   ngOnInit() {
+   
 
   }
 
   public handleFileInput (elem) {
     this.selectedFile = elem.target.files[0];
     const reader = new FileReader();
-    reader.onload = (event: any) => {
+    reader.onload = (elem: any) => {
       this.post.imageUrl = elem.target.result;
     };
     reader.readAsDataURL(this.selectedFile);
   }
 
   public onSubmitNewPost(f: NgForm) {
+    if(this.content && this.content.includes("<")){
+      this.post.text = this.content.toString().replace("<", "!")
+    } else{
+      this.post.text = this.content
+    }
     this.store.dispatch(new GetUserPostAdd(this.post, this.selectedFile));
     this.f.resetForm();
     this.post.imageUrl = ' ../../../../../assets/img/images-default.png';
   }
+
 
 ngOnDestroy() {
     this.isUserProfileSubscription && this.isUserProfileSubscription.unsubscribe();

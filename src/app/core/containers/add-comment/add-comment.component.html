@@ -1,17 +1,19 @@
-<form #commentForm="ngForm" (ngSubmit)="onSubmit(commentForm)" >
+<form #commentForm="ngForm" (ngSubmit)="onSubmit(commentForm)"  (window:keyup) = "keyEvent($event)">
 <div class="post-comment">
           <img [src]="comment.author.avatarUrl" alt="" class="profile-photo-sm">
           <textarea
+         
           type="text"
           class="form-control" 
           placeholder="Post a comment" 
-          [(ngModel)]="comment.text"  
+          [(ngModel)]="content"  
            name="text"
            id="text"
            #text = "ngModel" >
           
         </textarea>
-            <button type="submit">Add comment</button>
+            <button class="btn-main" type="submit">Publish</button>
 </div>
 </form>
 <!-- (click)="addBtnClickHandler() -->
+<!-- (window:keyup) = "keyEvent($event) -->

@@ -1,0 +1,159 @@
+<div class="edit-profile-container">
+  <!-- <button class="test-btn-test" (click)="testFunction()" style="position: fixed; top: 20%; left: 20%;">TEST</button> -->
+  <div class="block-title">
+    <div *ngIf="owner" class="hing"><p>You can fill empty fields in settings*</p></div>
+    <h4 class="grey-text">Basic info</h4>
+    <div class="line"></div>
+    <div name="basic-info" id="basic-info" class="form-inline">
+      <div class="row">
+        <div class="form-group half"><p class="label">First name:</p></div>
+        <div class="form-group half">
+          <p *ngIf="data.name; else dash" class="data">{{ data.name }}</p>
+        </div>
+        <div class="line"></div>
+
+        <div class="form-group half"><p class="label">Last name:</p></div>
+        <div class="form-group half">
+          <p *ngIf="data.surname; else dash" class="data">{{ data.surname }}</p>
+        </div>
+        <div class="line"></div>
+
+        <div class="form-group half"><p class="label">My date of Birth:</p></div>
+        <div class="form-group half">
+          <p *ngIf="data.birthDate; else dash" class="data">{{ data.birthDate }}</p>
+        </div>
+        <div class="line"></div>
+
+        <div class="form-group half"><p class="label">Gender:</p></div>
+        <div class="form-group half">
+          <p *ngIf="data.gender; else dash" class="data">{{ data.gender }}</p>
+        </div>
+        <div class="line"></div>
+
+        <div class="form-group full">
+          <p class="data">About me:</p>
+          <div class="line"></div>
+
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur
+        </div>
+        <div class="line"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block-title">
+    <h4 class="grey-text"><i class="icon ion-ios-book-outline"></i>Contacts</h4>
+    <div class="line"></div>
+    <div class="row">
+      <div class="form-group half"><p class="label">My email:</p></div>
+      <div class="form-group half">
+        <p *ngIf="data.email; else dash" class="data">{{ data.email }}</p>
+      </div>
+      <div class="line"></div>
+
+      <div class="form-group half"><p class="label">My phone:</p></div>
+      <div class="form-group half">
+        <p *ngIf="data.contact && data.contact.mobilePhone; else dash" class="data">{{ data.contact.mobilePhone }}</p>
+      </div>
+      <div class="line"></div>
+
+      <div class="form-group half"><p class="label">My Skype&#8482;:</p></div>
+      <div class="form-group half">
+        <p *ngIf="data.contact && data.contact.skype; else dash" class="data">{{ data.contact.skype }}</p>
+      </div>
+      <div class="line"></div>
+
+      <div class="form-group half"><p class="label">Town:</p></div>
+      <div class="form-group half">
+        <p *ngIf="data.contact && data.contact.city; else dash" class="data">{{ data.contact.city }}</p>
+      </div>
+      <div class="line"></div>
+
+      <div class="form-group half"><p class="label">Country:</p></div>
+      <div class="form-group half">
+        <p *ngIf="data.contact && data.contact.country; else dash" class="data">{{ data.contact.country }}</p>
+      </div>
+      <div class="line"></div>
+
+      <div class="form-group half"><p class="label">Street:</p></div>
+      <div class="form-group half">
+        <p *ngIf="data.contact && data.contact.street; else dash" class="data">{{ data.contact.street }}</p>
+      </div>
+      <div class="line"></div>
+    </div>
+  </div>
+
+  <div class="block-title">
+    <h4 class="grey-text"><i class="icon ion-ios-book-outline"></i>My education</h4>
+    <div class="line"></div>
+
+    <div name="education" id="education" class="form-inline">
+      <div class="row">
+        <div class="form-group half"><p class="label">School:</p></div>
+        <div class="form-group half">
+          <p *ngIf="data.education && data.education.school; else dash" class="data">{{ data.education.school }}</p>
+        </div>
+        <div class="form-group half"><p class="date-from label">Period:</p></div>
+        <div class="form-group half">
+          <p *ngIf="data.education && data.education.periodOfSchool; else dash" class="date-from data">
+            {{ data.education.periodOfSchool }}
+          </p>
+        </div>
+        <div class="line"></div>
+
+        <div class="form-group half"><p class="label">University:</p></div>
+        <div class="form-group half">
+          <p *ngIf="data.education && data.education.university; else dash" class="data">
+            {{ data.education.university }}
+          </p>
+        </div>
+        <div class="form-group half"><p class="date-from label">Period:</p></div>
+        <div class="form-group half">
+          <p *ngIf="data.education && data.education.periodOfUniversity; else dash" class="date-from data">
+            {{ data.education.periodOfUniversity }}
+          </p>
+        </div>
+        <div class="line"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block-title">
+    <h4 class="grey-text"><i class="icon ion-ios-briefcase-outline"></i>Work Experiences</h4>
+    <div class="line"></div>
+    <div name="work" id="work" class="form-inline">
+      <div *ngIf="data.work; else fullDash" class="row">
+        <div *ngFor="let work of data.work" class="work-item">
+          <div class="form-group half"><p class="label">Company:</p></div>
+          <div class="form-group half">
+            <p *ngIf="data.work && data.work.company; else dash" class="data">{{ data.work.company }}</p>
+          </div>
+
+          <div class="form-group half"><p class="label">Country:</p></div>
+          <div class="form-group half">
+            <p *ngIf="data.work && data.work.country; else dash" class="data">{{ data.work.country }}</p>
+          </div>
+
+          <div class="form-group half"><p class="label">City:</p></div>
+          <div class="form-group half">
+            <p *ngIf="data.work && data.work.city; else dash" class="data">{{ data.work.city }}</p>
+          </div>
+
+          <div class="form-group half"><p class="date-from label">Period</p></div>
+          <div class="form-group half">
+            <p *ngIf="data.work && data.work.period; else dash" class="date-from data">{{ data.work.period }}</p>
+          </div>
+          <div class="line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #dash> <p class="data">---</p> </ng-template>
+<ng-template #fullDash>
+  <div class="form-group full"><p class="data">---</p></div>
+</ng-template>
